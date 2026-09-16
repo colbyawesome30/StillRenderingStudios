@@ -7,6 +7,11 @@ public class CustomerSpawner : MonoBehaviour
     public GameObject storeFrontPoint;
     public GameObject entryPoint;
     public foodStation station1;
+    public foodStation station2;
+    public foodStation station3;
+    public GameObject rageLeaving;
+    public GameObject exitPoint;
+    public GameObject despawnPoint;
 
     public float spawnInterval = 5f;
 
@@ -25,5 +30,8 @@ public class CustomerSpawner : MonoBehaviour
         customerScript.storeFrontPoint = storeFrontPoint;
         customerScript.entryPoint = entryPoint;
         customerScript.station1 = station1;
+        customerScript.rageLeaving = rageLeaving.gameObject;
+        customerScript.exitPoint = exitPoint.gameObject;
+        customerScript.despawnPoint = despawnPoint.gameObject;
     }
 }

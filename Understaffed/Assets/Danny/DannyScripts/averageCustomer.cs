@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class averageCustomer : MonoBehaviour
@@ -8,6 +9,8 @@ public class averageCustomer : MonoBehaviour
     public int difficulty;
 
     public float patienceTimer;
+    public int rageStep = 0; // for rage movement before leaving
+    private float maxPatience; // used for the patience bar fill amount in decreasePatience
     public int lineCapacity; // xavier had idea to change line cap based on difficulty
 
     public GameObject storeFrontPoint;
@@ -15,9 +18,16 @@ public class averageCustomer : MonoBehaviour
     public foodStation station1;
     public foodStation station2;
     public foodStation station3;
+    public GameObject rageLeaving;
+    public GameObject exitPoint;
+    public GameObject despawnPoint;
 
     private bool reachedDoor = false;
-    private bool beingServed = false; 
+    private bool beingServed = false;
+
+    public GameObject patienceBar;
+    public Slider patienceSlider;
+    public GameObject rageSmoke;
 
     private int desire; // random int that determines how many items customer wants
     private int itemsBought = 0; 
@@ -25,11 +35,11 @@ public class averageCustomer : MonoBehaviour
 
     private enum CustomerState
     { 
-        Entering,
-        goingToLineEnd,
+        entering,
+        toCurrentLineEnd,
         inLine,
         atStation,
-        Rage
+        rage
     }
 
     private CustomerState currentState;
@@ -43,7 +53,7 @@ public class averageCustomer : MonoBehaviour
         rollDesire();
         //generateItemsWanted();
 
-        changeState(CustomerState.Entering);
+        changeState(CustomerState.entering);
     }
 
     private void Update()
@@ -51,7 +61,7 @@ public class averageCustomer : MonoBehaviour
         // update's currentState switch holds checks for each state and what to do when they reach their destination
         switch (currentState)
         {
-            case CustomerState.Entering:
+            case CustomerState.entering:
 
                 if (!reachedDoor && hasReachedDestination())
                 {
@@ -60,12 +70,13 @@ public class averageCustomer : MonoBehaviour
                 }
                 else if (reachedDoor && hasReachedDestination())
                 {
-                    changeState(CustomerState.goingToLineEnd);
+                    changeState(CustomerState.toCurrentLineEnd);
+                    reachedDoor = false;
                 }
 
                 break;
 
-            case CustomerState.goingToLineEnd:
+            case CustomerState.toCurrentLineEnd:
                 if (hasReachedDestination())
                 {
                     changeState(CustomerState.inLine);
@@ -77,31 +88,45 @@ public class averageCustomer : MonoBehaviour
                 break;
 
             case CustomerState.atStation:
-                decreasePatience();
-                // employee interaction capable, patience stops decreasing 
+                decreasePatience(); // employee interaction capable, patience stops decreasing 
                 break;
 
-            case CustomerState.Rage:
-                // out of patience behavior 
+            case CustomerState.rage:
+                if (hasReachedDestination())
+                {
+                    if (rageStep == 0)
+                    {
+                        rageStep = 1;
+                        moveTo(exitPoint.transform);
+                    }
+                    else if (rageStep == 1)
+                    {
+                        rageStep = 2;
+                        moveTo(despawnPoint.transform);
+                    }
+                    else if (rageStep == 2)
+                    {
+                        Destroy(gameObject);
+                    }
+                }
                 break;
         }
     }
 
     private void changeState(CustomerState newState)
     {
-        // changeState handles the logic for each state and what to do when first entering that state 
         currentState = newState;
 
         switch (currentState)
         {
-            case CustomerState.Entering:
+            case CustomerState.entering:
                 Debug.Log("Entering");
 
-                reachedDoor = true;
+                reachedDoor = false;
                 moveTo(storeFrontPoint.transform);
                 break;
 
-            case CustomerState.goingToLineEnd:
+            case CustomerState.toCurrentLineEnd:
                 Debug.Log("Going to line end");
 
                 station1.addCustomer(this);
@@ -114,19 +139,27 @@ public class averageCustomer : MonoBehaviour
 
             case CustomerState.inLine:
                 Debug.Log("In line");
+                decreasePatience();
                 break;
 
             case CustomerState.atStation:
                 Debug.Log("At station");
+                decreasePatience();
                 // employee can interact with customer and sell item (patience stops going down while being helped)
                 break;
 
-            case CustomerState.Rage:
-                Debug.Log("Mad");
-                // add customer rage and have them leave the store
+            case CustomerState.rage:
+                Debug.Log("Rage");
+                rageStep = 0; 
+                rageSmoke.SetActive(true);
+
+                station1.removeCustomer(this);
+
+                moveTo(rageLeaving.transform);
+                // add customer rage
                 break;
         }
-    }
+    } // changeState handles the logic for each state and what to do when first entering that state 
 
     private void decreasePatience()
     {
@@ -135,12 +168,18 @@ public class averageCustomer : MonoBehaviour
                        return; // patience does not decrease while being served
         }
 
+        patienceBar.SetActive(true);
+
         patienceTimer -= Time.deltaTime;
+
+        patienceSlider.value = patienceTimer / maxPatience;
 
         if (patienceTimer <= 0)
         {
             patienceTimer = 0;
-            changeState(CustomerState.Rage);
+            patienceSlider.value = 0;
+
+            changeState(CustomerState.rage);
         }
     }
 
@@ -165,6 +204,8 @@ public class averageCustomer : MonoBehaviour
         {
             patienceTimer = 15.0f;
         }
+
+        maxPatience = patienceTimer; // maxpatience works regardless of difficulty bc of here
     }
 
     private void rollDesire()
@@ -209,11 +250,16 @@ public class averageCustomer : MonoBehaviour
     private void moveTo(Transform destination)
     {
         agent.SetDestination(destination.position);
-    }
+    } // for movement to transform points
     private void moveToPosition(Vector3 destination)
     {
         agent.SetDestination(destination);
-    }
+    } // for movement in line
+
+    public void moveToLinePosition(Vector3 position)
+    {
+        moveToPosition(position);
+    } // to move up in line when someone leaves
 
 
 }

@@ -13,15 +13,30 @@ public class foodStation : MonoBehaviour
         line.Add(customer);
     }
 
+    public void removeCustomer(averageCustomer customer)
+    {
+        line.Remove(customer);
+
+        updateLinePositions();
+    }
+
     public Vector3 GetPositionForCustomer(averageCustomer customer)
     {
         int index = line.IndexOf(customer);
 
         Vector3 position = lineStart.position + lineDirection.forward * (index * lineSpacing);
 
-        Debug.Log("LineStart: " + lineStart.position);
-        Debug.Log("Customer Position: " + position);
-
         return position;
     }
+
+    private void updateLinePositions()
+    {
+         for (int i = 0; i < line.Count; i++)
+        {
+            Vector3 newPosition = lineStart.position + lineDirection.forward * (i * lineSpacing);
+
+            line[i].moveToLinePosition(newPosition);
+        }
+
+    } // should fix customers not filling in line when someone leaves
 }
