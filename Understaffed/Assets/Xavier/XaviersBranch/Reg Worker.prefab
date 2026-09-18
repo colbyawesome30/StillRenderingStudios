@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 4797420198115923475}
   - component: {fileID: 5124345094956387704}
   - component: {fileID: 1763310794193117337}
+  - component: {fileID: 352838451369078866}
   m_Layer: 8
   m_Name: Reg Worker
   m_TagString: Untagged
@@ -286,6 +287,23 @@ MonoBehaviour:
   maxScale: {x: 1, y: 1.05, z: 1}
   speed: 0.5
   Offset: 0.5
+--- !u!114 &352838451369078866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5127787832729579379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc2658010e4b864fa193e5613393f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  liftHeight: 1
 --- !u!1 &6385307099431619931
 GameObject:
   m_ObjectHideFlags: 0

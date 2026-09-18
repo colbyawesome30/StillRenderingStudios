@@ -20,7 +20,7 @@ public class WorkStation : MonoBehaviour, IInteractable
         stationUI.SetActive(false);
         stationOutline.SetActive(false);
 
-        workStationsList = new List<WorkStation>(FindObjectsOfType<WorkStation>());
+        workStationsList = new List<WorkStation>(FindObjectsByType<WorkStation>(FindObjectsSortMode.None));
         workStationsList.Remove(this);
     }
 

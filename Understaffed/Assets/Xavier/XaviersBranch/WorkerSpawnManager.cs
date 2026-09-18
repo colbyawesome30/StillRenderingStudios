@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WorkerSpawnManager : MonoBehaviour
 {
@@ -127,6 +128,38 @@ public class WorkerSpawnManager : MonoBehaviour
         SimpleNavigation navAgent = instance.GetComponent<SimpleNavigation>() ?? instance.AddComponent<SimpleNavigation>();
         navAgent.Initialize(spawn);
 
+        WorldDrag draggable = instance.GetComponent<WorldDrag>() ?? instance.AddComponent<WorldDrag>();
+        draggable.Initialize(worker, navAgent);
+
+
         return navAgent;
+    }
+
+    // Called when a UI roster drag begins: gets (or spawns) this worker's world instance
+    // and disables its NavMeshAgent so the caller can move its transform freely.
+    public SimpleNavigation BeginManualControl(Worker worker, Vector3 initialWorldPosition)
+    {
+        bool isDefault = worker == WorkerIndex.Instance?.GetDefaultWorker();
+        SimpleNavigation nav;
+
+        if (!isDefault && activeAgents.TryGetValue(worker, out nav))
+        {
+            // Already exists somewhere in the world — pick up that same instance
+        }
+        else
+        {
+            nav = SpawnInstance(worker);
+            if (nav == null) return null;
+
+            if (!isDefault) activeAgents[worker] = nav;
+        }
+
+        NavMeshAgent agent = nav.GetComponent<NavMeshAgent>();
+        if (agent != null) agent.enabled = false;
+
+        nav.IsSuspended = true;
+        nav.transform.position = initialWorldPosition;
+
+        return nav;
     }
 }

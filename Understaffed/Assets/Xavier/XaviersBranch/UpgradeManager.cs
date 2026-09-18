@@ -14,6 +14,13 @@ public class UpgradeManager : MonoBehaviour
     public Worker currentWorker;
     public Text workerName;
 
+    //Get list of all work stations
+    public static readonly List<UpgradeManager> AllStations = new List<UpgradeManager>();
+
+    //Remove this or add this to the list
+    private void OnEnable() => AllStations.Add(this);
+    private void OnDisable() => AllStations.Remove(this);
+
     //Possible Upgrades
     [System.Serializable]
     public struct Upgrades
@@ -38,12 +45,10 @@ public class UpgradeManager : MonoBehaviour
     
     [SerializeField]private Text speedFuture;
     [SerializeField]private Text speedCurrent;
-
     [SerializeField]private Text lineCapacityFuture;
     [SerializeField]private Text lineCapacityCurrent;
-
     [SerializeField]private Text upgradeCostCurrent;
-
+    //Old dropdown logic
     [SerializeField] private TMP_Dropdown workerDropdown;
 
     //Where the worker stands when they're working this station
@@ -56,7 +61,7 @@ public class UpgradeManager : MonoBehaviour
     //Set player info at start
     private void Start()
     {
-        playerInfo = FindObjectOfType<PlayerInfo>();
+        playerInfo = FindFirstObjectByType<PlayerInfo>();
         UpgradeShop();
         Debug.Log("Player Info Found");
 

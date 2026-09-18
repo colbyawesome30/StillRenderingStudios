@@ -167,4 +167,11 @@ public class WorkerIndex : MonoBehaviour
             WorkerSpawnManager.Instance?.UpdateWorkerDestination(newWorker, station, station.WorkerStandPoint);
         }
     }
+
+    // Exposes which station (if any) currently has this worker assigned — used by drag/drop.
+    public UpgradeManager GetCurrentStationFor(Worker worker)
+    {
+        workerStationMap.TryGetValue(worker, out UpgradeManager station);
+        return station;
+    }
 }
