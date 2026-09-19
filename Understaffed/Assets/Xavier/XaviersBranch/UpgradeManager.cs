@@ -116,7 +116,7 @@ public class UpgradeManager : MonoBehaviour
                 //Set current variables for UI
                 speedCurrent.text = workSpeed.ToString();
                 lineCapacityCurrent.text = lineCapacity.ToString();
-                upgradeCostCurrent.text = upgradeCost.ToString();
+                upgradeCostCurrent.text = upgradeCost + "$".ToString();
 
                 RefreshStats();
 

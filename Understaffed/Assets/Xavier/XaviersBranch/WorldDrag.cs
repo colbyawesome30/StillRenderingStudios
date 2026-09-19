@@ -9,6 +9,8 @@ public class WorldDrag : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float liftHeight = 1.5f;
+    //New
+    public static bool AnyDragging { get; private set; }
 
     private Worker worker;
     private NavMeshAgent agent;
@@ -54,7 +56,7 @@ public class WorldDrag : MonoBehaviour
         if (!PressedThisFrame(out Vector2 screenPos)) return;
 
         Ray ray = _camera.ScreenPointToRay(screenPos);
-        if (Physics.Raycast(ray, out RaycastHit hit, 1000f) && hit.collider.gameObject == gameObject)
+        if (Physics.Raycast(ray, out RaycastHit hit, 1000f) && hit.collider.GetComponentInParent<WorldDrag>() == this)
         {
             BeginDrag();
         }
@@ -64,6 +66,7 @@ public class WorldDrag : MonoBehaviour
     private void BeginDrag()
     {
         isDragging = true;
+        AnyDragging = true;
         if (navigation != null) navigation.IsSuspended = true;
         if (agent != null) agent.enabled = false;
     }
@@ -83,7 +86,7 @@ public class WorldDrag : MonoBehaviour
     private void EndDrag()
     {
         isDragging = false;
-
+        AnyDragging = false;
         Ray ray = _camera.ScreenPointToRay(CurrentPointerPosition());
         Vector3 dropPosition = transform.position;
 
@@ -126,5 +129,10 @@ public class WorldDrag : MonoBehaviour
     {
         if (Input.touchCount > 0) return Input.GetTouch(0).position;
         return Input.mousePosition;
+    }
+
+    private void OnDestroy()
+    {
+        if (isDragging) AnyDragging = false;
     }
 }

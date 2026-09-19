@@ -51,7 +51,7 @@ public class SimpleNavigation : MonoBehaviour
 
         if (!arrived) return;
 
-        //I fowrker has arrived keep them idle
+        //If worker has arrived keep them
         if (State == NavState.MovingToSpawn)
         {
             State = NavState.Idle;

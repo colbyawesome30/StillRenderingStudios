@@ -7,6 +7,7 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     [SerializeField] private Camera worldCamera;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float liftHeight = 1.5f;
+    public static bool UIDragging { get; private set; }
 
     //Specific worker
     public Worker worker;
@@ -21,7 +22,11 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     //Event happens when player clicks and drags
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (!RaycastGround(eventData.position, out Vector3 spawnPoint)) return;
+        Debug.Log("Roster: begin drag");
+        UIDragging = true;
+        bool hit = RaycastGround(eventData.position, out Vector3 spawnPoint);
+        Debug.Log("Roster: ground hit = " + hit);
+        if (!hit) return;
 
         draggedInstance = WorkerSpawnManager.Instance?.BeginManualControl(worker, spawnPoint + Vector3.up * liftHeight);
     }
@@ -40,6 +45,7 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     //What happens after the player stops dragging
     public void OnEndDrag(PointerEventData eventData)
     {
+        UIDragging = false;
         if (draggedInstance == null) return;
 
         Vector3 dropPosition = RaycastGround(eventData.position, out Vector3 point)
@@ -62,5 +68,10 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
         hitPoint = Vector3.zero;
         return false;
+    }
+    //Upon disable cant drag
+    private void OnDisable()
+    {
+        UIDragging = false;
     }
 }
