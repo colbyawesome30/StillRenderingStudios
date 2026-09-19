@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6320675527609995554}
   - component: {fileID: 584780165762933201}
   - component: {fileID: 6326001874293282561}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: PatienceMeterUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1263748900874467303}
   - component: {fileID: 2432890232593058218}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 4469172384808917304}
   - component: {fileID: 4907173712272760123}
   - component: {fileID: 6932696402902858498}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: CustomerArmRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,6 +264,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -285,9 +290,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &6932696402902858498
 CapsuleCollider:
@@ -323,7 +330,7 @@ GameObject:
   - component: {fileID: 7820369944005832721}
   - component: {fileID: 4138843835823705203}
   - component: {fileID: 1695950675552328639}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +406,7 @@ GameObject:
   - component: {fileID: 9142927344860575770}
   - component: {fileID: 3133507959805541248}
   - component: {fileID: 4756892176015547913}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Left Eye Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,6 +453,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -467,9 +479,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &4756892176015547913
 SphereCollider:
@@ -503,7 +517,7 @@ GameObject:
   - component: {fileID: 6956983552783157580}
   - component: {fileID: 3003288617461012111}
   - component: {fileID: 6947999027195387749}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +593,7 @@ GameObject:
   - component: {fileID: 6635850376232648159}
   - component: {fileID: 1634244022709456696}
   - component: {fileID: 6314168244325556862}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Left Eye Outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,6 +641,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -648,9 +667,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &6314168244325556862
 SphereCollider:
@@ -685,7 +706,7 @@ GameObject:
   - component: {fileID: 215974858376543448}
   - component: {fileID: 4855224888191630217}
   - component: {fileID: 3824718812551188280}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Right Eye Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,6 +753,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -753,9 +779,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &3824718812551188280
 SphereCollider:
@@ -789,7 +817,7 @@ GameObject:
   - component: {fileID: 4858862159733443388}
   - component: {fileID: 6678735822948809117}
   - component: {fileID: 4719059432778392245}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -865,7 +893,7 @@ GameObject:
   - component: {fileID: 8913068974954192620}
   - component: {fileID: 2629463904942476748}
   - component: {fileID: 333371044035454260}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: CustomerArmLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -912,6 +940,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -933,9 +966,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &333371044035454260
 CapsuleCollider:
@@ -972,7 +1007,7 @@ GameObject:
   - component: {fileID: 4118584917701955188}
   - component: {fileID: 710325112167267946}
   - component: {fileID: 7614885569463761659}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Right Eye Outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1020,6 +1055,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1041,9 +1081,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &7614885569463761659
 SphereCollider:
@@ -1077,7 +1119,7 @@ GameObject:
   - component: {fileID: 8172289957192496465}
   - component: {fileID: 651243883450751927}
   - component: {fileID: 3503746240775351323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: REarSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5833,7 +5875,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &3503746240775351323
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5849,6 +5891,11 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5870,9 +5917,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -5904,7 +5953,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &4519855937197247331
 GameObject:
   m_ObjectHideFlags: 0
@@ -5914,7 +5962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5618047134959838915}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: rageSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5956,7 +6004,7 @@ GameObject:
   - component: {fileID: 5733813104821849894}
   - component: {fileID: 8682110451783221504}
   - component: {fileID: 4420730501899192578}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Customer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6009,6 +6057,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6030,9 +6083,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &6460816331344571966
 CapsuleCollider:
@@ -6154,6 +6209,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 0.7
@@ -6254,7 +6310,7 @@ MonoBehaviour:
   _camera: {fileID: 0}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   liftHeight: 1
 --- !u!1 &6642057217613621755
 GameObject:
@@ -6265,7 +6321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8623187032400275202}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6301,7 +6357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6425549084527810606}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6339,7 +6395,7 @@ GameObject:
   - component: {fileID: 4151688889137033794}
   - component: {fileID: 4891992533794792438}
   - component: {fileID: 3702391894766521603}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LEarSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11095,7 +11151,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &3702391894766521603
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11111,6 +11167,11 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11132,9 +11193,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -11166,4 +11229,3 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0

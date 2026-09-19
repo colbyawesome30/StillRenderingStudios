@@ -327,7 +327,7 @@ public class averageCustomer : MonoBehaviour
             {
                 audioSource.PlayOneShot(happySound);
             }
-            if (roll == 9)
+            if (roll == 9 || roll == 8)
             {
                 audioSource.PlayOneShot(moneySound);
             }
