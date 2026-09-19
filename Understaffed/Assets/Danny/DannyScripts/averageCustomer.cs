@@ -201,14 +201,13 @@ public class averageCustomer : MonoBehaviour
                 Debug.Log("Rage");
                 rageStep = 0; 
                 rageSmoke.SetActive(true);
-                playerInfo.currentCustomers++;
+                playerInfo.Result(-100);
                 int roll = _random.Next(1, 4);
                 if (roll == 1)
                 {
                     audioSource.PlayOneShot(angrySound);
                 }
-                playerInfo.currentDayScore = playerInfo.currentDayScore - 100;
-                playerInfo.playerFunds = Mathf.Clamp(playerInfo.playerFunds -100, 0, int.MaxValue);
+
                 //New Changes
                 patienceBar.SetActive(false);
                 beingServed = false;
@@ -315,12 +314,12 @@ public class averageCustomer : MonoBehaviour
 
         if (station.isCheckout)
         {
-            playerInfo.currentCustomers++;
             currentStation = null;
             changeState(CustomerState.leaving);
-            int scoreToAdd = (int)(Mathf.Clamp(patienceTimer + 5, 0, 100) / maxPatience * 100);
-            playerInfo.currentDayScore += scoreToAdd;
-            playerInfo.playerFunds = Mathf.Clamp(playerInfo.playerFunds + scoreToAdd, 0, int.MaxValue);
+            float graceSeconds = 3f;
+            float patienceRatio = Mathf.Clamp01((patienceTimer + graceSeconds) / maxPatience);
+            int scoreToAdd = Mathf.RoundToInt(patienceRatio * playerInfo.maxScorePerCustomer);
+            playerInfo.Result(scoreToAdd);
             Debug.Log("Added " + scoreToAdd + "score");
             int roll = _random.Next(1, 9);
             if (roll == 1 || roll == 2)
@@ -341,6 +340,11 @@ public class averageCustomer : MonoBehaviour
         changeState(CustomerState.toCurrentLineEnd);   // picks the next station or checkout
     }
     //Change end
+
+    private void HandlePlayerDeath()
+    {
+        
+    }
 
     private bool hasReachedDestination()
     {

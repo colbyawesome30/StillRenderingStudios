@@ -15,14 +15,19 @@ public class CustomerSpawner : MonoBehaviour
     // public foodStation station2;
     // public foodStation station3;
     //-----------------------------------------------------------------------
-    public GameObject rageLeaving;
-    public GameObject exitPoint;
-    public List<GameObject> exitPoints;
-    public GameObject despawnPoint;
-
+    
     public PlayerInfo playerInfo;
-    public List<GameObject> despawnPoints;
     public float spawnInterval = 5f;
+
+    [System.Serializable]
+    public struct pathWays
+    {
+        public GameObject rageLeaving;
+        public GameObject exitPoint;
+        public GameObject despawnPoint;
+    }
+    public List <pathWays> customerPaths;
+
 
     private void Start()
     {
@@ -31,6 +36,7 @@ public class CustomerSpawner : MonoBehaviour
 
     private void SpawnCustomer()
     {
+        //Choose random customer
         int randomIndex = Random.Range(0, customers.Count);
         customerPrefab = customers[randomIndex];
 
@@ -39,13 +45,13 @@ public class CustomerSpawner : MonoBehaviour
         averageCustomer customerScript = customer.GetComponent<averageCustomer>();
 
         // adds movement point refs from spawner to customers since i cant prefab it
+        int randomChosenPath = Random.Range(0, customerPaths.Count);
+        customerScript.exitPoint = customerPaths[randomChosenPath].exitPoint;
+        customerScript.despawnPoint = customerPaths[randomChosenPath].despawnPoint;
+        customerScript.rageLeaving = customerPaths[randomChosenPath].rageLeaving;
+
         customerScript.storeFrontPoint = storeFrontPoint;
         customerScript.entryPoint = entryPoint;
-        customerScript.rageLeaving = rageLeaving.gameObject;
-        int randomExit = Random.Range(0, exitPoints.Count);
-        customerScript.exitPoint = exitPoints[randomExit];
-        int randomDespawn = Random.Range(0, despawnPoints.Count);
-        customerScript.despawnPoint = despawnPoints[randomDespawn];
 
         //-----------------------------------------------------------------------
         //No longer needed

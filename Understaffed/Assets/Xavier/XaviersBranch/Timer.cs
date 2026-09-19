@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public float countdownTime = 60f;
-
+    private PlayerInfo playerInfo;
     private float currentTime;
 
     [SerializeField]private TMP_Text timerText;
@@ -15,7 +15,9 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerInfo = FindAnyObjectByType<PlayerInfo>();
         currentTime = countdownTime;
+
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class Timer : MonoBehaviour
 
     public void EndTimeEvent()
     {
-        
+        playerInfo.gameEnd = true;
     }
 
     void UpdateTimerDisplay()

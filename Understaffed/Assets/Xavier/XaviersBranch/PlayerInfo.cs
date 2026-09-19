@@ -17,8 +17,10 @@ public class PlayerInfo : MonoBehaviour
     public int maxScorePerCustomer = 100;
     public float maxStars = 5f;
 
+    private bool _gameEnd = false;
 
     private int _currentDayScore;
+     
     public int currentDayScore
     {
         get => _currentDayScore;
@@ -33,6 +35,35 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
+    public bool gameEnd
+    {
+        get => _gameEnd;
+        set
+        {
+            if (_gameEnd != value)
+            {
+                _gameEnd = value;
+                CurrentDayScoreChanged?.Invoke(this, EventArgs.Empty);
+                UpdateStarRating();
+            }
+        }
+    }
+
+    public void Result(int points)
+    {
+        if (_gameEnd) return;                 // game over: nothing changes
+
+        currentCustomers++;                   // count first so the average uses the new total
+        currentDayScore += points;            // setter fires the event and refreshes stars if the score changed
+        playerFunds = Mathf.Clamp(playerFunds + points, 0, int.MaxValue);
+        UpdateStarRating();                   // also refresh when points is 0, since the setter won't fire
+    }
+
+    public void EndGame()
+    {
+        gameEnd = true;
+    }
+
     public void UpdateStarRating()
     {
         if (currentCustomers <= 0)
@@ -45,7 +76,7 @@ public class PlayerInfo : MonoBehaviour
         float ratio = Mathf.Clamp01(averageScore / maxScorePerCustomer);
 
         stars = Mathf.FloorToInt(ratio * maxStars * 10f) / 10f;   // one decimal place
-        Debug.Log(ratio + " current rating, " + stars + " stars");
+        Debug.Log(ratio + " current rating, " + stars + " stars, customers " + currentCustomers);
 
     }
 }
