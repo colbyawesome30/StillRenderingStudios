@@ -165,9 +165,7 @@ public class averageCustomer : MonoBehaviour
                 break;
 
             //New Changes
-            case CustomerState.leaving://Employee leaves
-                agent.autoBraking = false;
-            break;
+            case CustomerState.leaving:
             //Change end
 
             case CustomerState.rage:
@@ -401,7 +399,8 @@ public class averageCustomer : MonoBehaviour
         //New Changes
         if (agent.pathPending) return false;
 
-        if (currentState == CustomerState.entering && hasDestination)
+        if (currentState == CustomerState.entering && hasDestination || 
+        currentState == CustomerState.leaving && hasDestination)
         {
             Vector3 delta = currentDestination - transform.position;
             delta.y = 0f;

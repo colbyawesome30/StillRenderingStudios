@@ -9318,7 +9318,7 @@ PrefabInstance:
       objectReference: {fileID: 148652407}
     - target: {fileID: 5774840839917116033, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: _difficulty
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5774840839917116033, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: playerFunds
@@ -9500,11 +9500,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1803186578479070053, guid: 808edadd2ca9e03439252c7f30d29212, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.940502
+      value: -23.440502
       objectReference: {fileID: 0}
     - target: {fileID: 1803186578479070053, guid: 808edadd2ca9e03439252c7f30d29212, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.082939
+      value: 3.0829391
       objectReference: {fileID: 0}
     - target: {fileID: 1993906347336095380, guid: 808edadd2ca9e03439252c7f30d29212, type: 3}
       propertyPath: m_Name
@@ -9520,7 +9520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8226329457442486650, guid: 808edadd2ca9e03439252c7f30d29212, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.940502
+      value: -18.440502
       objectReference: {fileID: 0}
     - target: {fileID: 8226329457442486650, guid: 808edadd2ca9e03439252c7f30d29212, type: 3}
       propertyPath: m_LocalPosition.z
