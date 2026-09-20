@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour
     private PlayerInfo playerInfo;
     private float currentTime;
 
+
     [SerializeField]private TMP_Text timerText;
 
     // Start is called before the first frame update
@@ -39,7 +40,7 @@ public class Timer : MonoBehaviour
 
     public void EndTimeEvent()
     {
-        playerInfo.gameEnd = true;
+        playerInfo.EndGame();
     }
 
     void UpdateTimerDisplay()
@@ -51,6 +52,6 @@ public class Timer : MonoBehaviour
         int seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         // {0:00}:{1:00} forces a two-digit layout for both minutes and seconds
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = "Time Left: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }

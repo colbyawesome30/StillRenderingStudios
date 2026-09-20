@@ -38,6 +38,9 @@ public class averageCustomer : MonoBehaviour
     public float overflowAngerMultiplier = 2f;    // patience drains faster when over line capacity
     public bool refillPatienceAfterStation = false;
     public PlayerInfo playerInfo;
+    public float waypointArriveRadius = 2;
+    private Vector3 currentDestination;
+    private bool hasDestination;
     private foodStation currentStation;
     private HashSet<foodStation> visited = new HashSet<foodStation>();
     private int stationsToVisit = -1;   // -1 = not rolled yet (rolled on the first PickStation)
@@ -45,6 +48,7 @@ public class averageCustomer : MonoBehaviour
 
     private bool reachedDoor = false;
     private bool beingServed = false;
+    
 
     public GameObject patienceBar;
     public Slider patienceSlider;
@@ -70,21 +74,56 @@ public class averageCustomer : MonoBehaviour
     private CustomerState currentState;
     private NavMeshAgent agent;
 
+    private void OnEnable()
+    {
+        PlayerInfo.DifficultyChanged += OnDifficultyChanged;
+    }
+
     private void Start ()
     {
+        if (playerInfo == null) playerInfo = FindFirstObjectByType<PlayerInfo>();
         agent = GetComponent<NavMeshAgent>();
 
-        setPatience();
+        OnDifficultyChanged(PlayerInfo.CurrentDifficulty);
         rollDesire();
         //-----------------------------------------------------------------------
         //generateItemsWanted();
         //-----------------------------------------------------------------------
 
         //New Change - deals with stopping in line
-        if (playerInfo == null) playerInfo = FindFirstObjectByType<PlayerInfo>();
         agent.stoppingDistance = Mathf.Max(agent.stoppingDistance, 0.3f);
-
+        
         changeState(CustomerState.entering);
+    }
+
+    private void OnDifficultyChanged(int newDifficulty)
+    {
+        difficulty = newDifficulty;
+        switch (difficulty)
+        {
+            default:
+                overflowAngerMultiplier = 1.1f;
+                maxPatience = 40;
+                break;
+            case 1:
+                overflowAngerMultiplier = 1.5f;
+                maxPatience = 30;
+                break;
+            case 2:
+                overflowAngerMultiplier = 2f;
+                maxPatience = 25;
+                break;
+            case 3:
+                overflowAngerMultiplier = 4f;
+                maxPatience = 15;
+                break;
+            case 4:
+                overflowAngerMultiplier = 10f;
+                maxPatience = 10;
+                break;
+        }
+
+        patienceTimer = maxPatience;
     }
 
     private void Update()
@@ -93,7 +132,7 @@ public class averageCustomer : MonoBehaviour
         switch (currentState)
         {
             case CustomerState.entering:
-
+                agent.autoBraking = false;
                 if (!reachedDoor && hasReachedDestination())
                 {
                     reachedDoor = true;
@@ -108,6 +147,7 @@ public class averageCustomer : MonoBehaviour
                 break;
 
             case CustomerState.toCurrentLineEnd:
+                agent.autoBraking = true;
                 if (hasReachedDestination())
                 {
                     changeState(CustomerState.inLine);
@@ -115,18 +155,23 @@ public class averageCustomer : MonoBehaviour
                 break;
 
             case CustomerState.inLine:
+                agent.autoBraking = true;
                 decreasePatience(); 
                 break;
 
             case CustomerState.atStation:
+                agent.autoBraking = true;
                 decreasePatience(); // employee interaction capable, patience stops decreasing 
                 break;
 
             //New Changes
             case CustomerState.leaving://Employee leaves
+                agent.autoBraking = false;
+            break;
             //Change end
 
             case CustomerState.rage:
+                agent.autoBraking = false;
                 if (hasReachedDestination())
                 {
                     if (rageStep == 0)
@@ -156,18 +201,19 @@ public class averageCustomer : MonoBehaviour
         {
             case CustomerState.entering:
                 Debug.Log("Entering");
-
+                agent.autoBraking = false;
                 reachedDoor = false;
                 moveTo(storeFrontPoint.transform);
                 break;
 
             case CustomerState.toCurrentLineEnd:
                 Debug.Log("Going to line end");
-
+                agent.autoBraking = true;
                 //New Changes
                 currentStation = PickStation();
                 if (currentStation == null)
                 {
+                    agent.autoBraking = true;
                     Debug.LogWarning("No checkout found: add a foodStation on an object with no WorkStation.");
                     changeState(CustomerState.leaving);
                     break;
@@ -187,17 +233,20 @@ public class averageCustomer : MonoBehaviour
                 break;
 
             case CustomerState.inLine:
+                agent.autoBraking = true;
                 Debug.Log("In line");
                 decreasePatience();
                 break;
 
             case CustomerState.atStation:
+                agent.autoBraking = true;
                 Debug.Log("At station");
                 decreasePatience();
                 // employee can interact with customer and sell item (patience stops going down while being helped)
                 break;
 
             case CustomerState.rage:
+                agent.autoBraking = false;
                 Debug.Log("Rage");
                 rageStep = 0; 
                 rageSmoke.SetActive(true);
@@ -226,6 +275,7 @@ public class averageCustomer : MonoBehaviour
 
             //New Changes
             case CustomerState.leaving:
+                agent.autoBraking = false;
                 Debug.Log("Leaving");
                 patienceBar.SetActive(false);
                 rageStep = 1;   // skips rageLeaving: goes exitPoint then despawnPoint
@@ -234,6 +284,11 @@ public class averageCustomer : MonoBehaviour
             //Change end
         }
     } // changeState handles the logic for each state and what to do when first entering that state 
+
+    private void OnDestroy()
+    {
+        PlayerInfo.DifficultyChanged -= OnDifficultyChanged;
+    }
 
     private void decreasePatience()
     {
@@ -341,15 +396,18 @@ public class averageCustomer : MonoBehaviour
     }
     //Change end
 
-    private void HandlePlayerDeath()
-    {
-        
-    }
-
     private bool hasReachedDestination()
     {
         //New Changes
         if (agent.pathPending) return false;
+
+        if (currentState == CustomerState.entering && hasDestination)
+        {
+            Vector3 delta = currentDestination - transform.position;
+            delta.y = 0f;
+            if (delta.magnitude <= waypointArriveRadius) return true;
+        }
+
         if (agent.remainingDistance > agent.stoppingDistance) return false;
         return !agent.hasPath || agent.velocity.sqrMagnitude < 0.01f;
         //Change end
@@ -422,10 +480,14 @@ public class averageCustomer : MonoBehaviour
 
     private void moveTo(Transform destination)
     {
+        currentDestination = destination.position;
+        hasDestination = true;
         agent.SetDestination(destination.position);
     } // for movement to transform points
     private void moveToPosition(Vector3 destination)
     {
+        currentDestination = destination;
+        hasDestination = true;
         agent.SetDestination(destination);
     } // for movement in line
 
