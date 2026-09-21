@@ -9,6 +9,7 @@ public class SimpleNavigation : MonoBehaviour
     private NavMeshAgent agent;
     private Transform spawnPoint;
     private System.Action onArrivedAtSpawn;
+    public bool IsSuspended { get; set; }
 
     //path state
     public enum NavState { MovingToStation, MovingToSpawn, Idle }
@@ -40,13 +41,17 @@ public class SimpleNavigation : MonoBehaviour
     //Per frame update
     private void Update()
     {
+
+        if (IsSuspended) return;
         if (agent.pathPending || State == NavState.Idle) return;
 
+        //Check if worker is at station and the diostance they are at.
         bool arrived = agent.remainingDistance <= agent.stoppingDistance
                         && (!agent.hasPath || agent.velocity.sqrMagnitude < 0.01f);
 
         if (!arrived) return;
 
+        //If worker has arrived keep them
         if (State == NavState.MovingToSpawn)
         {
             State = NavState.Idle;

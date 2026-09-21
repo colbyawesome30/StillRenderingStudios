@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6320675527609995554}
   - component: {fileID: 584780165762933201}
   - component: {fileID: 6326001874293282561}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: PatienceMeterUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -126,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1263748900874467303}
   - component: {fileID: 2432890232593058218}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +217,7 @@ GameObject:
   - component: {fileID: 4469172384808917304}
   - component: {fileID: 4907173712272760123}
   - component: {fileID: 6932696402902858498}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: CustomerArmRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +330,7 @@ GameObject:
   - component: {fileID: 7820369944005832721}
   - component: {fileID: 4138843835823705203}
   - component: {fileID: 1695950675552328639}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +406,7 @@ GameObject:
   - component: {fileID: 9142927344860575770}
   - component: {fileID: 3133507959805541248}
   - component: {fileID: 4756892176015547913}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Left Eye Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +517,7 @@ GameObject:
   - component: {fileID: 6956983552783157580}
   - component: {fileID: 3003288617461012111}
   - component: {fileID: 6947999027195387749}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +593,7 @@ GameObject:
   - component: {fileID: 6635850376232648159}
   - component: {fileID: 1634244022709456696}
   - component: {fileID: 6314168244325556862}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Left Eye Outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -707,7 +706,7 @@ GameObject:
   - component: {fileID: 215974858376543448}
   - component: {fileID: 4855224888191630217}
   - component: {fileID: 3824718812551188280}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Right Eye Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +817,7 @@ GameObject:
   - component: {fileID: 4858862159733443388}
   - component: {fileID: 6678735822948809117}
   - component: {fileID: 4719059432778392245}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -894,7 +893,7 @@ GameObject:
   - component: {fileID: 8913068974954192620}
   - component: {fileID: 2629463904942476748}
   - component: {fileID: 333371044035454260}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: CustomerArmLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1008,7 +1007,7 @@ GameObject:
   - component: {fileID: 4118584917701955188}
   - component: {fileID: 710325112167267946}
   - component: {fileID: 7614885569463761659}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Right Eye Outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1120,7 +1119,7 @@ GameObject:
   - component: {fileID: 8172289957192496465}
   - component: {fileID: 651243883450751927}
   - component: {fileID: 3503746240775351323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: REarSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5963,7 +5962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5618047134959838915}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: rageSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6003,7 +6002,9 @@ GameObject:
   - component: {fileID: 6561570446778613967}
   - component: {fileID: 1073172450641020890}
   - component: {fileID: 5733813104821849894}
-  m_Layer: 8
+  - component: {fileID: 8682110451783221504}
+  - component: {fileID: 4420730501899192578}
+  m_Layer: 7
   m_Name: Customer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6186,9 +6187,132 @@ MonoBehaviour:
   rageLeaving: {fileID: 0}
   exitPoint: {fileID: 0}
   despawnPoint: {fileID: 0}
+  audioSource: {fileID: 8682110451783221504}
+  happySound: {fileID: 8300000, guid: cde87146b7fe5254d98d0d6d6685f6f1, type: 3}
+  angrySound: {fileID: 8300000, guid: f8fd55b9fafe2bd4cb6788bc22ceac27, type: 3}
+  moneySound: {fileID: 8300000, guid: 22f47616c6e3ecb49a65f5c736d07174, type: 3}
+  minStationsToVisit: 1
+  maxStationsToVisit: 3
+  overflowAngerMultiplier: 2
+  refillPatienceAfterStation: 0
+  playerInfo: {fileID: 0}
   patienceBar: {fileID: 255015221220192979}
   patienceSlider: {fileID: 2432890232593058218}
   rageSmoke: {fileID: 4519855937197247331}
+--- !u!82 &8682110451783221504
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519701519376992259}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 0.7
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &4420730501899192578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519701519376992259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc2658010e4b864fa193e5613393f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  liftHeight: 1
 --- !u!1 &6642057217613621755
 GameObject:
   m_ObjectHideFlags: 0
@@ -6198,7 +6322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8623187032400275202}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6234,7 +6358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6425549084527810606}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6273,7 +6397,7 @@ GameObject:
   - component: {fileID: 2475025108270841287}
   - component: {fileID: 2292421335145990458}
   - component: {fileID: 1595884336124999327}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: CustomerTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6386,7 +6510,7 @@ GameObject:
   - component: {fileID: 4151688889137033794}
   - component: {fileID: 4891992533794792438}
   - component: {fileID: 3702391894766521603}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LEarSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
