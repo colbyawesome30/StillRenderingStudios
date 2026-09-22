@@ -69,8 +69,7 @@ public class averageCustomer : MonoBehaviour
         inLine,
         atStation,
         rage,
-        //New Change
-        leaving   // normal exit
+        leaving
     }
 
     private CustomerState currentState;
