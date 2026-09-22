@@ -387,6 +387,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &41625361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -722,6 +723,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &144601270
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -812,7 +814,7 @@ GameObject:
   - component: {fileID: 177858971}
   - component: {fileID: 177858970}
   m_Layer: 0
-  m_Name: Station
+  m_Name: ShakeStation2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -838,6 +840,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 1
 --- !u!23 &177858971
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1318,7 +1321,7 @@ GameObject:
   - component: {fileID: 326786685}
   - component: {fileID: 326786684}
   m_Layer: 0
-  m_Name: Station
+  m_Name: BurgerStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1344,6 +1347,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &326786685
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1628,6 +1632,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &425094312
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2352,7 +2357,7 @@ GameObject:
   - component: {fileID: 629923405}
   - component: {fileID: 629923404}
   m_Layer: 0
-  m_Name: Station
+  m_Name: BurgerStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2378,6 +2383,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &629923405
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2601,6 +2607,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &668323579
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3567,6 +3574,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &983628409
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4212,6 +4220,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &1147924829
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4323,6 +4332,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &1158020929
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4421,7 +4431,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164009017}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
@@ -4473,7 +4483,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -5462,6 +5472,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &1403337076
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6128,6 +6139,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &1478391898
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6728,7 +6740,7 @@ GameObject:
   - component: {fileID: 1595870499}
   - component: {fileID: 1595870498}
   m_Layer: 0
-  m_Name: Station
+  m_Name: ShakeStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6754,6 +6766,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 1
 --- !u!23 &1595870499
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6951,7 +6964,7 @@ GameObject:
   - component: {fileID: 1658097731}
   - component: {fileID: 1658097730}
   m_Layer: 0
-  m_Name: Station
+  m_Name: FryStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6977,6 +6990,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 2
 --- !u!23 &1658097731
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7634,6 +7648,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &1860900252
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7719,7 +7734,7 @@ GameObject:
   - component: {fileID: 1861391233}
   - component: {fileID: 1861391232}
   m_Layer: 0
-  m_Name: Station
+  m_Name: FryStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7745,6 +7760,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 2
 --- !u!23 &1861391233
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8390,6 +8406,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
 --- !u!23 &2008651688
 MeshRenderer:
   m_ObjectHideFlags: 0

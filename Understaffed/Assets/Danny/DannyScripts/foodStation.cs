@@ -18,6 +18,7 @@ public class foodStation : MonoBehaviour
     public StationStats stats;
     public float baseServeTime = 4f; 
     private averageCustomer beingServed;
+    public int stationNumber;
     //Time left till done
     private float serveTimer;
     //Change end
@@ -38,11 +39,6 @@ public class foodStation : MonoBehaviour
             customer.SetBeingServed(false);
         }
         //Change end
-
-        //---------------------------------------------------------------------
-        //No longer needed
-        // line.Remove(customer);
-        //---------------------------------------------------------------------
 
         updateLinePositions();
     }
@@ -72,12 +68,7 @@ public class foodStation : MonoBehaviour
             //Change end
 
             line[i].moveToLinePosition(newPosition);
-
             
-            //---------------------------------------------------------------------
-            //No longer needed
-            // Vector3 newPosition = lineStart.position + lineDirection.forward * (i * lineSpacing);
-            //---------------------------------------------------------------------
         }
 
     } // should fix customers not filling in line when someone leaves
