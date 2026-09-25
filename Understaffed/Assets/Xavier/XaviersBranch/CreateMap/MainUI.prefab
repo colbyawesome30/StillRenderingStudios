@@ -146,7 +146,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 05ad723fdac5fb64bbc30fbeedfb5f92, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 05ad723fdac5fb64bbc30fbeedfb5f92, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1273,9 +1273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3433e13c00cbb4792864e2445297b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 300
-  winScreen: {fileID: 4686080658174758618}
-  loseScreen: {fileID: 2912075967796197873}
+  countdownTime: 60
   timerText: {fileID: 2888154999441318416}
 --- !u!1 &5984991319919530708
 GameObject:
@@ -1344,7 +1342,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 05ad723fdac5fb64bbc30fbeedfb5f92, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
