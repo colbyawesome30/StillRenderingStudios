@@ -5968,7 +5968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5618047134959838915
 Transform:
   m_ObjectHideFlags: 0
@@ -6196,6 +6196,7 @@ MonoBehaviour:
   overflowAngerMultiplier: 2
   refillPatienceAfterStation: 0
   playerInfo: {fileID: 0}
+  waypointArriveRadius: 2
   patienceBar: {fileID: 255015221220192979}
   patienceSlider: {fileID: 2432890232593058218}
   rageSmoke: {fileID: 4519855937197247331}
