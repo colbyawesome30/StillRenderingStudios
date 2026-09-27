@@ -9653,7 +9653,7 @@ MonoBehaviour:
   - {fileID: 5519701519376992259, guid: e31d579e542c4964f9f9a45b306172f0, type: 3}
   - {fileID: 5519701519376992259, guid: b48e2ddd2dbb45d4e95f667a8f386fff, type: 3}
   - {fileID: 5519701519376992259, guid: 68eb7ee229ddd8d439ba40811dfc25cb, type: 3}
-  - {fileID: 5127787832729579379, guid: f6ae11793c3fd2041a55029ead663928, type: 3}
+  - {fileID: 5519701519376992259, guid: 7a2ea3af690d1f345baa4b7d40925028, type: 3}
   spawnPoint: {fileID: 2119763382}
   storeFrontPoint: {fileID: 1446443270}
   entryPoint: {fileID: 2000465166}
