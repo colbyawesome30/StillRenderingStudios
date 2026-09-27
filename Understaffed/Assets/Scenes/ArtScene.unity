@@ -9652,6 +9652,8 @@ MonoBehaviour:
   - {fileID: 5519701519376992259, guid: d7721841616d3684c9975f918cab9b8f, type: 3}
   - {fileID: 5519701519376992259, guid: e31d579e542c4964f9f9a45b306172f0, type: 3}
   - {fileID: 5519701519376992259, guid: b48e2ddd2dbb45d4e95f667a8f386fff, type: 3}
+  - {fileID: 5519701519376992259, guid: 68eb7ee229ddd8d439ba40811dfc25cb, type: 3}
+  - {fileID: 5127787832729579379, guid: f6ae11793c3fd2041a55029ead663928, type: 3}
   spawnPoint: {fileID: 2119763382}
   storeFrontPoint: {fileID: 1446443270}
   entryPoint: {fileID: 2000465166}
@@ -9980,6 +9982,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1719111128854957474, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+      propertyPath: spawnPoints.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719111128854957474, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+      propertyPath: spawnPoints.Array.data[4].worker
+      value: 
+      objectReference: {fileID: 4486769449451301319, guid: 5c4bbc6ad19ea2d49a3dcc8b01be9a40, type: 3}
+    - target: {fileID: 1719111128854957474, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+      propertyPath: spawnPoints.Array.data[5].worker
+      value: 
+      objectReference: {fileID: 4486769449451301319, guid: f6ae11793c3fd2041a55029ead663928, type: 3}
+    - target: {fileID: 1719111128854957474, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+      propertyPath: spawnPoints.Array.data[4].spawnPoint
+      value: 
+      objectReference: {fileID: 4511153401691682224}
+    - target: {fileID: 1719111128854957474, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+      propertyPath: spawnPoints.Array.data[5].spawnPoint
+      value: 
+      objectReference: {fileID: 4511153401691682224}
     - target: {fileID: 5091381807872319672, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
       propertyPath: m_Name
       value: WorkerSpawn
@@ -9989,6 +10011,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+--- !u!4 &4511153401691682224 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 171033170374091242, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+  m_PrefabInstance: {fileID: 4511153401691682223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8789393626547393506
 PrefabInstance:
   m_ObjectHideFlags: 0
