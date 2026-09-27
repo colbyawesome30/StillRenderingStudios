@@ -2951,6 +2951,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3477412711635966213, guid: 808edadd2ca9e03439252c7f30d29212, type: 3}
   m_PrefabInstance: {fileID: 740357605}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &746084688 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 171033170374091242, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+  m_PrefabInstance: {fileID: 4511153401691682223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &795791837
 GameObject:
   m_ObjectHideFlags: 0
@@ -9204,6 +9209,8 @@ MonoBehaviour:
   customerPrefab: {fileID: 0}
   customers:
   - {fileID: 5519701519376992259, guid: d7721841616d3684c9975f918cab9b8f, type: 3}
+  - {fileID: 5519701519376992259, guid: 68eb7ee229ddd8d439ba40811dfc25cb, type: 3}
+  - {fileID: 5519701519376992259, guid: 7a2ea3af690d1f345baa4b7d40925028, type: 3}
   - {fileID: 5519701519376992259, guid: e31d579e542c4964f9f9a45b306172f0, type: 3}
   - {fileID: 5519701519376992259, guid: b48e2ddd2dbb45d4e95f667a8f386fff, type: 3}
   spawnPoint: {fileID: 2119763382}
@@ -9434,29 +9441,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 743779736809978299, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
-      propertyPath: m_TextStyleHashCode
-      value: -1183493901
-      objectReference: {fileID: 0}
-    - target: {fileID: 2672051852245350267, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
-      propertyPath: countdownTime
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 5652441464574398012, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: m_Name
       value: MainUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 6491239245506027198, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7639750292885475199, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8826379439822728630, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
-      propertyPath: m_Sprite
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9511,6 +9498,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 1383877216261282066, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: availableWorkers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383877216261282066, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: availableWorkers.Array.data[3].workerPrefab
+      value: 
+      objectReference: {fileID: 5127787832729579379, guid: 5c4bbc6ad19ea2d49a3dcc8b01be9a40, type: 3}
+    - target: {fileID: 1383877216261282066, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: availableWorkers.Array.data[4].workerPrefab
+      value: 
+      objectReference: {fileID: 5127787832729579379, guid: 2ef65f8ff15409c408f6362ffdc10bde, type: 3}
+    - target: {fileID: 1383877216261282066, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: availableWorkers.Array.data[5].workerPrefab
+      value: 
+      objectReference: {fileID: 5127787832729579379, guid: f6ae11793c3fd2041a55029ead663928, type: 3}
     - target: {fileID: 5774840839917116033, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: fillImage
       value: 
@@ -9599,6 +9602,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1719111128854957474, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+      propertyPath: spawnPoints.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719111128854957474, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+      propertyPath: spawnPoints.Array.data[4].worker
+      value: 
+      objectReference: {fileID: 4486769449451301319, guid: 2ef65f8ff15409c408f6362ffdc10bde, type: 3}
+    - target: {fileID: 1719111128854957474, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+      propertyPath: spawnPoints.Array.data[5].worker
+      value: 
+      objectReference: {fileID: 4486769449451301319, guid: f6ae11793c3fd2041a55029ead663928, type: 3}
+    - target: {fileID: 1719111128854957474, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+      propertyPath: spawnPoints.Array.data[4].spawnPoint
+      value: 
+      objectReference: {fileID: 746084688}
+    - target: {fileID: 1719111128854957474, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
+      propertyPath: spawnPoints.Array.data[5].spawnPoint
+      value: 
+      objectReference: {fileID: 746084688}
     - target: {fileID: 5091381807872319672, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
       propertyPath: m_Name
       value: WorkerSpawn
