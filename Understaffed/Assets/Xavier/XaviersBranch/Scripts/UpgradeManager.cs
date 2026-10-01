@@ -42,6 +42,7 @@ public class UpgradeManager : MonoBehaviour
     //Upgrades stack on top making easier to change things.
     protected float workSpeed = 0;
     protected int upgradeCost = 0;
+    private Tutorial tutorial;
     
     [SerializeField]private Text speedFuture;
     [SerializeField]private Text speedCurrent;
@@ -62,6 +63,7 @@ public class UpgradeManager : MonoBehaviour
     private void Start()
     {
         playerInfo = FindFirstObjectByType<PlayerInfo>();
+        tutorial = FindAnyObjectByType<Tutorial>();
         UpgradeShop();
         Debug.Log("Player Info Found");
 
@@ -119,6 +121,15 @@ public class UpgradeManager : MonoBehaviour
                 upgradeCostCurrent.text = upgradeCost + "$".ToString();
 
                 RefreshStats();
+
+                //Tutorial
+                if (tutorial != null && !tutorial.tutorialComplete && tutorial.TutorialStep == 3)
+                {
+                    tutorial.tutorialSteps[tutorial.TutorialStep].stepComplete = true;
+                    tutorial.NextStep();
+                    tutorial.CheckStepCompletion();
+                }
+                //Tutorial
 
                 if (!(currentUpgradeLevel + 1 < upgrades.Count))
                 {
@@ -209,6 +220,15 @@ public class UpgradeManager : MonoBehaviour
         speedCurrent.text = workSpeed.ToString();
         lineCapacityCurrent.text = lineCapacity.ToString();
         RefreshStats();
+
+        //Tutorial
+        if (tutorial != null && !tutorial.tutorialComplete && tutorial.TutorialStep == 4)
+        {
+            tutorial.tutorialSteps[tutorial.TutorialStep].stepComplete = true;
+            tutorial.NextStep();
+            tutorial.CheckStepCompletion();
+        }
+        //Tutorial
     }
 
     //Pick a random name for worker
