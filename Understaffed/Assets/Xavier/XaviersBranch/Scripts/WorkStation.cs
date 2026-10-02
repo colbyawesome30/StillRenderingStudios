@@ -10,6 +10,7 @@ public class WorkStation : MonoBehaviour, IInteractable
     public string stationName;
     [SerializeField]private Text stationText;
     public UpgradeManager upgradeManager;
+    private Tutorial tutorial;
 
     public List<WorkStation> workStationsList = new List<WorkStation>();
 
@@ -22,6 +23,8 @@ public class WorkStation : MonoBehaviour, IInteractable
 
         workStationsList = new List<WorkStation>(FindObjectsByType<WorkStation>(FindObjectsSortMode.None));
         workStationsList.Remove(this);
+
+        tutorial = FindAnyObjectByType<Tutorial>();
     }
 
 
@@ -30,6 +33,15 @@ public class WorkStation : MonoBehaviour, IInteractable
     {
         Debug.Log($"{gameObject.name} was tapped at {hit.point}");
         ToggleSelected(true);
+
+        //Tutorial
+        if (tutorial != null && !tutorial.tutorialComplete && tutorial.TutorialStep == 2)
+        {
+            tutorial.tutorialSteps[tutorial.TutorialStep].stepComplete = true;
+            tutorial.NextStep();
+            tutorial.CheckStepCompletion();
+        }
+        //Tutorial
     }
 
     //Toggle view

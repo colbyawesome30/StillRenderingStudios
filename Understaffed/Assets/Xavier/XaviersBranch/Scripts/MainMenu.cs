@@ -14,6 +14,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("TestScene");
     }
 
+    public void ClickTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
+
     public void ClickSettings()
     {
         

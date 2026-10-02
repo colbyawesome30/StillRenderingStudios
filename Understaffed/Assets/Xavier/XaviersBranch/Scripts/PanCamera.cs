@@ -41,7 +41,7 @@ public class CameraPan : MonoBehaviour
         HandleInput();
 
         // Glide toward the target instead of jumping
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime, Mathf.Infinity, Time.unscaledDeltaTime);
     }
 
     //Handle drags and touches
