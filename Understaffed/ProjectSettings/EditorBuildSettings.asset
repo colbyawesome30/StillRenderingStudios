@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Xavier/XaviersBranch/Scenes/MainMenu.unity
     guid: 758aa9bdbd5394b468ce3652f70a50fb
   - enabled: 1
-    path: Assets/Xavier/XaviersBranch/Scenes/TestScene.unity
-    guid: 6abb84249438c034ca1562e014b54440
-  - enabled: 1
     path: Assets/Xavier/XaviersBranch/Scenes/Tutorial.unity
     guid: 8c67db49c4ce13d418a1e2a7cefaa7bc
+  - enabled: 1
+    path: Assets/Scenes/ArtScene.unity
+    guid: 60ad05c54110bea438499342404c2fad
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

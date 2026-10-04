@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2740716933177971264
 Transform:
@@ -101,9 +101,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -261.00598
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
       propertyPath: m_Name
       value: Basket (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -175,9 +187,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -261.00598
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
       propertyPath: m_Name
       value: Basket (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -249,9 +273,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -261.00598
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
       propertyPath: m_Name
       value: Basket (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -323,9 +359,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -261.00598
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
       propertyPath: m_Name
       value: Basket (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -397,9 +445,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -261.00598
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
       propertyPath: m_Name
       value: Basket (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -471,9 +531,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -261.00598
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
       propertyPath: m_Name
       value: Basket (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -545,9 +617,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -261.00598
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
       propertyPath: m_Name
       value: Basket (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -619,9 +703,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -261.00598
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
       propertyPath: m_Name
       value: Basket
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -693,9 +789,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -261.00598
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
       propertyPath: m_Name
       value: Basket (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -767,9 +875,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -261.00598
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
       propertyPath: m_Name
       value: Basket (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 199586abb1abaab44aaaad885b004920, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

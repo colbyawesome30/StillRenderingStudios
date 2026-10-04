@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8752297824467177924
 Transform:
@@ -169,7 +169,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CerealBoxesRow (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6389488500786266505, guid: 06888954589ad2d45ab8575fe6de39dd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -187,14 +188,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8752297824467177924}
     m_Modifications:
-    - target: {fileID: 4686840851846073923, guid: f8ed07fe4b3f60e419d6d0708ffa8da0, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 133.59001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4686840851846073923, guid: f8ed07fe4b3f60e419d6d0708ffa8da0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 133.58995
-      objectReference: {fileID: 0}
     - target: {fileID: 4686840851846073923, guid: f8ed07fe4b3f60e419d6d0708ffa8da0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.098865
@@ -257,14 +250,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8752297824467177924}
     m_Modifications:
-    - target: {fileID: 4686840851846073923, guid: f8ed07fe4b3f60e419d6d0708ffa8da0, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 133.58995
-      objectReference: {fileID: 0}
-    - target: {fileID: 4686840851846073923, guid: f8ed07fe4b3f60e419d6d0708ffa8da0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 133.58995
-      objectReference: {fileID: 0}
     - target: {fileID: 4686840851846073923, guid: f8ed07fe4b3f60e419d6d0708ffa8da0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.4707003
@@ -393,14 +378,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8752297824467177924}
     m_Modifications:
-    - target: {fileID: 4686840851846073923, guid: f8ed07fe4b3f60e419d6d0708ffa8da0, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 133.58995
-      objectReference: {fileID: 0}
-    - target: {fileID: 4686840851846073923, guid: f8ed07fe4b3f60e419d6d0708ffa8da0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 133.58995
-      objectReference: {fileID: 0}
     - target: {fileID: 4686840851846073923, guid: f8ed07fe4b3f60e419d6d0708ffa8da0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.9987

@@ -20,6 +20,7 @@ public class Timer : MonoBehaviour
         playerInfo = FindAnyObjectByType<PlayerInfo>();
         tutorial = FindAnyObjectByType<Tutorial>();
         currentTime = countdownTime;
+        Time.timeScale = 1f;
 
         if (tutorial != null && !playerInfo.TutorialComplete)
         {

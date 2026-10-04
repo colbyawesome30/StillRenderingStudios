@@ -114,6 +114,8 @@ public class PlayerInfo : MonoBehaviour
         // finds the text on the screen object or any child (true = include inactive children)
         TMP_Text text = screen.GetComponentInChildren<TMP_Text>(true);
         if (text != null) StartCoroutine(PopText(text, 1f, 250f));
+
+        StartCoroutine(DelaySwitchScene(2f, "MainMenu"));
     }
 
     private IEnumerator PopText(TMP_Text text, float duration, float targetSize)
@@ -137,6 +139,13 @@ public class PlayerInfo : MonoBehaviour
         }
 
         text.fontSize = targetSize; //Target size is 250
+    }
+
+    private IEnumerator DelaySwitchScene(float delay, string sceneName)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        Time.timeScale = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 
 
