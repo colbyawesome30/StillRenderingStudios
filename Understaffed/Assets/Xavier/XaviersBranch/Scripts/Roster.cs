@@ -7,6 +7,7 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     [SerializeField] private Camera worldCamera;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float liftHeight = 1.5f;
+    private Tutorial tutorial;
     public static bool UIDragging { get; private set; }
 
     //Specific worker
@@ -17,6 +18,8 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     private void Awake()
     {
         if (worldCamera == null) worldCamera = Camera.main;
+
+        tutorial = FindAnyObjectByType<Tutorial>();
     }
 
     //Event happens when player clicks and drags
@@ -54,6 +57,15 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
         DragWorker.Instance.ResolveDrop(worker, draggedInstance, dropPosition);
         draggedInstance = null;
+
+        //Tutorial
+        if (tutorial != null && !tutorial.tutorialComplete && tutorial.TutorialStep == 1)
+        {
+            tutorial.tutorialSteps[tutorial.TutorialStep].stepComplete = true;
+            tutorial.NextStep();
+            tutorial.CheckStepCompletion();
+        }
+        //Tutorial
     }
 
     //Function for checking the drop area via raycast

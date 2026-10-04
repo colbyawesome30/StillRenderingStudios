@@ -117,7 +117,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerFunds: 10000
+  TutorialComplete: 0
   day: 0
   currentCustomers: 0
   stars: 0
@@ -196,12 +197,6 @@ MonoBehaviour:
   availableWorkers:
   - workerName: 
     workerPrefab: {fileID: 5127787832729579379, guid: dbe3f434c563ef84d8e8b43a6a7acffd, type: 3}
-  - workerName: 
-    workerPrefab: {fileID: 5127787832729579379, guid: 29e2b199c5acb314e8141ecfc6e06380, type: 3}
-  - workerName: 
-    workerPrefab: {fileID: 5127787832729579379, guid: d597dd956c932ae4f8981095137494b6, type: 3}
-  - workerName: 
-    workerPrefab: {fileID: 5127787832729579379, guid: 5c4bbc6ad19ea2d49a3dcc8b01be9a40, type: 3}
   - workerName: 
     workerPrefab: {fileID: 5127787832729579379, guid: 2ef65f8ff15409c408f6362ffdc10bde, type: 3}
   - workerName: 

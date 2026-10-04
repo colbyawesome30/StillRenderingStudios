@@ -8,7 +8,7 @@ public class PlayerInfo : MonoBehaviour
 {
     //Player funds and stats here
     public int playerFunds;
-
+    public bool TutorialComplete;
     
     public int day;
     //Could expand to save unlocked workers
