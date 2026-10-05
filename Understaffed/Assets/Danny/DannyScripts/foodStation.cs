@@ -16,7 +16,7 @@ public class foodStation : MonoBehaviour
     public bool isCheckout;
     public WorkStation linkedStation;
     public StationStats stats;
-    public float baseServeTime = 4f; 
+    public float baseServeTime = 0f; 
     private averageCustomer beingServed;
     //Time left till done
     private float serveTimer;
@@ -127,6 +127,7 @@ public class foodStation : MonoBehaviour
     // start serving whoever is at the front
     private void Update()
     {
+        if (stats != null && !stats.HasRealWorker) return;
         if (beingServed == null && line.Count > 0 && line[0].IsAtLineSpot)
         {
             beingServed = line[0];

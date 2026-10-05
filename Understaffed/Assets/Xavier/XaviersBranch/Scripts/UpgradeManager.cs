@@ -13,6 +13,14 @@ public class UpgradeManager : MonoBehaviour
     //Reference to worker
     public Worker currentWorker;
     public Text workerName;
+    public WorkerIndex workerIndex;
+    [SerializeField] private GameObject defaultWorkerPrefab;
+    public bool HasRealWorker => !IsDefaultWorker;
+    private bool IsDefaultWorker =>
+    currentWorker == null || currentWorker == WorkerIndex.Instance?.GetDefaultWorker();
+    // Use these anywhere gameplay needs the station's effective stats
+    public float EffectiveWorkSpeed => IsDefaultWorker ? 0f : workSpeed;
+    public int EffectiveLineCapacity => IsDefaultWorker ? 0 : lineCapacity;
 
     //Get list of all work stations
     public static readonly List<UpgradeManager> AllStations = new List<UpgradeManager>();
@@ -64,6 +72,8 @@ public class UpgradeManager : MonoBehaviour
     {
         playerInfo = FindFirstObjectByType<PlayerInfo>();
         tutorial = FindAnyObjectByType<Tutorial>();
+        workerIndex = FindAnyObjectByType<WorkerIndex>();
+        defaultWorkerPrefab = WorkerIndex.Instance?.GetDefaultWorker()?.gameObject ?? defaultWorkerPrefab;
         UpgradeShop();
         Debug.Log("Player Info Found");
 
@@ -81,6 +91,8 @@ public class UpgradeManager : MonoBehaviour
         {
             chooseRandomName();
         }
+
+        RefreshStats();
 
         //Send worker at start
         WorkerIndex.Instance?.Task(currentWorker, this);
@@ -119,7 +131,7 @@ public class UpgradeManager : MonoBehaviour
                 speedCurrent.text = workSpeed.ToString();
                 lineCapacityCurrent.text = lineCapacity.ToString();
                 upgradeCostCurrent.text = upgradeCost + "$".ToString();
-
+                
                 RefreshStats();
 
                 //Tutorial
@@ -138,7 +150,6 @@ public class UpgradeManager : MonoBehaviour
 
                 }
             }
-
         }
         else
         {
@@ -151,13 +162,21 @@ public class UpgradeManager : MonoBehaviour
     {
         bool hasNextLevel = currentUpgradeLevel + 1 < upgrades.Count;
 
-        if (hasNextLevel)
-        {
-            float nextSpeed = workSpeed + upgrades[currentUpgradeLevel + 1].localWorkSpeed;
-            int nextLineCapacity = lineCapacity + upgrades[currentUpgradeLevel + 1].localLineCapacity;
+        // Current stats
+        speedCurrent.text = EffectiveWorkSpeed.ToString();
+        lineCapacityCurrent.text = EffectiveLineCapacity.ToString();
+        upgradeCostCurrent.text = hasNextLevel ? upgradeCost + "$" : "Max";
 
-            speedFuture.text = nextSpeed.ToString();
-            lineCapacityFuture.text = nextLineCapacity.ToString();
+        // Future stats
+        if (IsDefaultWorker)
+        {
+            speedFuture.text = "N/A";
+            lineCapacityFuture.text = "N/A";
+        }
+        else if (hasNextLevel)
+        {
+            speedFuture.text = (workSpeed + upgrades[currentUpgradeLevel + 1].localWorkSpeed).ToString();
+            lineCapacityFuture.text = (lineCapacity + upgrades[currentUpgradeLevel + 1].localLineCapacity).ToString();
         }
         else
         {
@@ -181,8 +200,6 @@ public class UpgradeManager : MonoBehaviour
         }
         
         workerName.text = "Clerk Name: " + currentWorker.workerName;  
-        
-
     }
     
     //Swap this station's worker out for a new one
