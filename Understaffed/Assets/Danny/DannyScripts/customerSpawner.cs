@@ -8,13 +8,6 @@ public class CustomerSpawner : MonoBehaviour
     public Transform spawnPoint;
     public GameObject storeFrontPoint;
     public GameObject entryPoint;
-
-    //-----------------------------------------------------------------------
-    //No longer needed: customers find stations through foodStation.AllStations
-    // public foodStation station1;
-    // public foodStation station2;
-    // public foodStation station3;
-    //-----------------------------------------------------------------------
     
     public float minSpawnInterval = 0.1f; //MinSpawnInterval before spawning a customer
     [Range(0.5f, 0.99f)] public float dayDecay = 0.5f;   //Lower = difficulty ramps faster
@@ -113,12 +106,5 @@ public class CustomerSpawner : MonoBehaviour
 
         customerScript.storeFrontPoint = storeFrontPoint;
         customerScript.entryPoint = entryPoint;
-
-        //-----------------------------------------------------------------------
-        //No longer needed
-        // customerScript.station1 = station1;
-        //-----------------------------------------------------------------------
-
-
     }
 }

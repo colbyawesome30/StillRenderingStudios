@@ -109,8 +109,6 @@ public class MoveScript : MonoBehaviour
         // Someone entered while nobody was inside.
         if (currentCount == 0 && count > 0)
         {
-            Debug.Log("Opening door");
-
             if (openTransform != null)
             {
                 StartMove(openTransform.position);
@@ -120,8 +118,6 @@ public class MoveScript : MonoBehaviour
         // Everyone has left.
         else if (currentCount > 0 && count == 0)
         {
-            Debug.Log("Closing door");
-
             if (closedTransform != null)
             {
                 StartMove(closedTransform.position);

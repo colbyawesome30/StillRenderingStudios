@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 [System.Serializable]
 public class CustomerOrderItem
@@ -30,14 +31,12 @@ public class averageCustomer : MonoBehaviour
     public GameObject exitPoint;
     public GameObject despawnPoint;
 
-    //New Changes
     private static System.Random _random = new System.Random();
     [SerializeField]private AudioSource audioSource;
     [SerializeField]private AudioClip happySound;
     [SerializeField]private AudioClip angrySound;
     [SerializeField]private AudioClip moneySound;
-    public int minStationsToVisit = 1; 
-    public int maxStationsToVisit = 3;
+    
     public float overflowAngerMultiplier = 2f;    // patience drains faster when over line capacity
     public bool refillPatienceAfterStation = false;
     public PlayerInfo playerInfo;
@@ -46,8 +45,7 @@ public class averageCustomer : MonoBehaviour
     private bool hasDestination;
     private foodStation currentStation;
     private HashSet<foodStation> visited = new HashSet<foodStation>();
-    private int stationsToVisit = -1;   // -1 = not rolled yet (rolled on the first PickStation)
-    //Change end
+    
 
     private bool reachedDoor = false;
     private bool beingServed = false;
@@ -56,10 +54,9 @@ public class averageCustomer : MonoBehaviour
     public GameObject patienceBar;
     public Slider patienceSlider;
     public GameObject rageSmoke;
+    public customerOrderDisplay orderDisplay;
 
-    
-    private int desire; // random int that determines how many items customer wants
-    private int itemsBought = 0;
+    public int desire; // random int that determines how many items customer wants
     public List<CustomerOrderItem> order = new List<CustomerOrderItem>(); // list of items customer wants
 
     private enum CustomerState
@@ -85,9 +82,24 @@ public class averageCustomer : MonoBehaviour
         if (playerInfo == null) playerInfo = FindAnyObjectByType<PlayerInfo>();
         agent = GetComponent<NavMeshAgent>();
 
+        if (orderDisplay == null) orderDisplay = GetComponentInChildren<customerOrderDisplay>(); 
+
         OnDifficultyChanged(PlayerInfo.CurrentDifficulty);
         rollDesire();
         generateOrder();
+
+        Debug.Log("After generateOrder: desire = " + desire + ", order.Count = " + order.Count);
+
+        if (order == null || order.Count == 0)
+        {
+            Debug.LogError(
+                gameObject.name +
+                " has an EMPTY order in UpdateDisplay!"
+            );
+            return;
+        }
+
+        orderDisplay.UpdateDisplay();
 
         //New Change - deals with stopping in line
         agent.stoppingDistance = Mathf.Max(agent.stoppingDistance, 0.3f);
@@ -294,9 +306,6 @@ public class averageCustomer : MonoBehaviour
         }
     }
 
-    //New Changes
-
-    // used by foodStation to know when the front customer has actually arrived
     public bool IsAtLineSpot => currentState == CustomerState.inLine && hasReachedDestination();
 
     // called by foodStation while this customer is being helped (pauses patience)
@@ -308,48 +317,20 @@ public class averageCustomer : MonoBehaviour
     // picks the next lane: random open regular lane, then the shortest checkout when done shopping
     private foodStation PickStation()
     {
-        // new
-        if(order.Count > 0)
+        Debug.Log("PickStation called, order.Count = " + order.Count);
+        if (order.Count > 0)
         {
             int wantedStationNumber = order[0].stationNumber;
-            // looks through all stations for the one with the matching station number
             foodStation orderedStation = foodStation.AllStations.FirstOrDefault(s => s.stationNumber == wantedStationNumber);
 
-            if (orderedStation != null)
-            {
-                return orderedStation;
-            }
-
-            Debug.LogWarning($"Customer wants station {wantedStationNumber}, but no matching station was found");            
-        }
-        var regular = foodStation.AllStations.Where(s => !s.isCheckout).ToList();
-        var checkouts = foodStation.AllStations.Where(s => s.isCheckout).ToList();
-        foodStation bestCheckout = checkouts.OrderBy(s => s.Count).FirstOrDefault();
-
-        // roll once, the first time we actually pick, when all stations have registered
-        if (stationsToVisit < 0)
-        {
-            int max = Mathf.Min(Mathf.Max(1, maxStationsToVisit), regular.Count);
-            int min = Mathf.Min(Mathf.Max(2, minStationsToVisit), max);   // at least 2 stops
-            stationsToVisit = Random.Range(min, max + 1);
+            if (orderedStation != null) return orderedStation;
         }
 
-        Debug.Log($"PickStation: regular={regular.Count}, checkouts={checkouts.Count}, visited={visited.Count}, target={stationsToVisit}", this);
-
-        // never allow checkout before visiting at least one lane, if any regular lane exists
-        bool doneShopping = visited.Count >= stationsToVisit && (visited.Count > 0 || regular.Count == 0);
-
-        if (doneShopping) { Debug.Log("-> checkout: visited enough", this); return bestCheckout; }
-
-        var options = regular.Where(s => !visited.Contains(s)).ToList();
-        if (options.Count == 0) { Debug.Log($"-> checkout: no unvisited regular lanes (regular={regular.Count})", this); return bestCheckout; }
-
-        var open = options.Where(s => !s.IsFull).ToList();
-        if (open.Count > 0) return open[Random.Range(0, open.Count)];
-
-        return options.OrderBy(s => s.Count).First();   // all full: shortest line, angers faster
+        return foodStation.AllStations
+            .Where(s => s.isCheckout)
+            .OrderBy(s => s.Count)
+            .FirstOrDefault();
     }
-
     // called by foodStation when a customer finishes being served
     public void OnServiceFinished(foodStation station)
     {
@@ -376,7 +357,9 @@ public class averageCustomer : MonoBehaviour
             return;
         }
 
-        visited.Add(station);
+        order.RemoveAll(orderItem => orderItem.stationNumber == station.stationNumber); // removes the item from the order list when the customer finishes at the correct station
+        orderDisplay.UpdateDisplay();                                           // updates the display
+        visited.Add(station);                                                           // and removes that station from their list
         currentStation = null;
         //if (refillPatienceAfterStation) patienceTimer = maxPatience;
 
@@ -401,46 +384,26 @@ public class averageCustomer : MonoBehaviour
         return !agent.hasPath || agent.velocity.sqrMagnitude < 0.01f;
         //Change end
     }
-
-    private void setPatience()
-    {
-        // different difficulties / days will have different patience timers for customers
-        if (difficulty == 1)
-        {
-            patienceTimer = 30.0f;
-        }
-        else if (difficulty == 2)
-        {
-            patienceTimer = 25.0f;
-        }
-        else if (difficulty == 3)
-        {
-            patienceTimer = 15.0f;
-        }
-
-        maxPatience = patienceTimer; // maxpatience works regardless of difficulty bc of here
-    } // for when we do difficulty tuning
-
     private void rollDesire()
     {
         // difficulty affects how many items a customer could ask for
-        if (difficulty == 1)
+        if (difficulty == 0)
         {
             desire = Random.Range(1, 3);
         }
-        else if (difficulty == 2)
+        else if (difficulty == 1)
         {
             desire = Random.Range(1, 5);
         }
-        else if (difficulty == 3)
+        else if (difficulty == 2)
         {
             desire = Random.Range(1, 6);
         }
-        else if (difficulty == 4)
+        else if (difficulty == 3)
         {             
             desire = Random.Range(1, 7);
         }
-        else if (difficulty == 5)
+        else if (difficulty == 4)
         {
             desire = Random.Range(1, 9);
         }
@@ -449,27 +412,37 @@ public class averageCustomer : MonoBehaviour
     {
         order.Clear();
 
-        CustomerOrderItem firstItem = new CustomerOrderItem();
-        firstItem.stationNumber = Random.Range(0, 3); // random station number
-        if (firstItem.stationNumber == 0)
+        List<foodStation> openStations = foodStation.AllStations.FindAll(
+            station => !station.isCheckout && station.gameObject.activeInHierarchy
+        );
+
+        if (openStations.Count == 0)
         {
-            firstItem.itemName = "Burger";
-        }
-        else if (firstItem.stationNumber == 1)
-        {
-            firstItem.itemName = "Shake";
-        }
-        else if (firstItem.stationNumber == 2)
-        {
-            firstItem.itemName = "Fries";
+            Debug.LogError("generateOrder: No open food stations available!");
+            return;
         }
 
-        firstItem.quantity = Random.Range(1, 4);
+        for (int i = 0; i < desire; i++)
+        {
+            foodStation pick = openStations[Random.Range(0, openStations.Count)];
 
-        order.Add(firstItem);
+            CustomerOrderItem existingOrderItem =
+                order.Find(orderItem => orderItem.stationNumber == pick.stationNumber);
 
-        Debug.Log($"Customer order: Station {firstItem.stationNumber}");
-        Debug.Log ($"{firstItem.itemName} x {firstItem.quantity}");
+            if (existingOrderItem != null)
+            {
+                existingOrderItem.quantity++;
+            }
+            else
+            {
+                order.Add(new CustomerOrderItem
+                {
+                    stationNumber = pick.stationNumber,
+                    itemName = pick.foodStationType,
+                    quantity = 1
+                });
+            }
+        }
     }
 
     private void moveTo(Transform destination)

@@ -778,6 +778,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 8
+  foodStationType: Milk
 --- !u!23 &41625361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2127,6 +2129,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 15
+  foodStationType: Gum
 --- !u!23 &144601270
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2475,6 +2479,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 3
+  foodStationType: Fries
 --- !u!23 &177858971
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3695,6 +3701,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: stationNumber
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: foodStationType
+      value: Bakery
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4178,6 +4192,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  foodStationType: Burger
 --- !u!23 &326786685
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5044,6 +5060,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 10
+  foodStationType: Soda
 --- !u!23 &425094312
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5462,6 +5480,14 @@ PrefabInstance:
     - target: {fileID: 3629914475400534669, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_Carve
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: isCheckout
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: stationNumber
+      value: 101
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7420,6 +7446,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 1
+  foodStationType: Burger
 --- !u!23 &629923405
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7916,6 +7944,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 9
+  foodStationType: Beans
 --- !u!23 &668323579
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11758,6 +11788,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 14
+  foodStationType: Candy
 --- !u!23 &983628409
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13795,6 +13827,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 7
+  foodStationType: Juice
 --- !u!23 &1147924829
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13906,6 +13940,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 6
+  foodStationType: Juice
 --- !u!23 &1158020929
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14081,7 +14117,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164009017}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
@@ -14133,7 +14169,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -15927,6 +15963,14 @@ PrefabInstance:
       propertyPath: lineStart
       value: 
       objectReference: {fileID: 1245731220}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: stationNumber
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: foodStationType
+      value: Deli
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17027,6 +17071,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8213137659560168702, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: stationNumber
+      value: 105
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17239,6 +17287,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  foodStationType: 
 --- !u!23 &1403337076
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18613,6 +18663,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 11
+  foodStationType: Crackers
 --- !u!23 &1478391898
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19549,6 +19601,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8213137659560168702, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: stationNumber
+      value: 103
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20194,6 +20250,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 2
+  foodStationType: Fries
 --- !u!23 &1595870499
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20584,6 +20642,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 4
+  foodStationType: Milkshake
 --- !u!23 &1658097731
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22401,6 +22461,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8213137659560168702, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: stationNumber
+      value: 102
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22445,6 +22509,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 13
+  foodStationType: Candy
 --- !u!23 &1860900252
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22556,6 +22622,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 5
+  foodStationType: Milkshake
 --- !u!23 &1861391233
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22684,6 +22752,10 @@ PrefabInstance:
     - target: {fileID: 1025776336643815931, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213137659560168702, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: stationNumber
+      value: 104
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24404,6 +24476,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 12
+  foodStationType: Gum
 --- !u!23 &2008651688
 MeshRenderer:
   m_ObjectHideFlags: 0

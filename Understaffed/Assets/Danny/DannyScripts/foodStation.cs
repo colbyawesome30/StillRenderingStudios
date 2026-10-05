@@ -23,6 +23,9 @@ public class foodStation : MonoBehaviour
     private float serveTimer;
     //Change end
 
+    [SerializeField]
+    public string foodStationType;
+
     public void addCustomer(averageCustomer customer)
     {
         line.Add(customer);
@@ -50,11 +53,6 @@ public class foodStation : MonoBehaviour
         //New Changes
         Vector3 position = SnapToNavMesh(lineStart.position + lineDirection.forward * (index * lineSpacing));
         //Change end
-
-        //---------------------------------------------------------------------
-        //No longer needed
-        // Vector3 position = lineStart.position + lineDirection.forward * (index * lineSpacing);
-        //---------------------------------------------------------------------
 
         return position;
     }
@@ -144,5 +142,10 @@ public class foodStation : MonoBehaviour
             return hit.position;
         return position;
     }
-    //Change end
+    
+    public void stationType()
+    {
+        // set type of station for customers to reference
+        // foodStationType;
+    }
 }
