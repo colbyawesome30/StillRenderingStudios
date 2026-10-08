@@ -1613,10 +1613,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 902e81a1471b12b449bea4d39dceb75b, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 9e68c289b26be8a4ea30f9fbe0515484, type: 2}
     - target: {fileID: 919132149155446097, guid: 902e81a1471b12b449bea4d39dceb75b, type: 3}
       propertyPath: m_Name
       value: Road C (1)
@@ -16696,10 +16692,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 902e81a1471b12b449bea4d39dceb75b, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 9e68c289b26be8a4ea30f9fbe0515484, type: 2}
     - target: {fileID: 919132149155446097, guid: 902e81a1471b12b449bea4d39dceb75b, type: 3}
       propertyPath: m_Name
       value: Road C (2)
