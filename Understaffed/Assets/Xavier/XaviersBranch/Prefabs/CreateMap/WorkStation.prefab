@@ -119,6 +119,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7413298441200159709}
+  - {fileID: 2384884874257938318}
+  - {fileID: 7125921130809651981}
+  - {fileID: 7401751560907995948}
+  - {fileID: 3320507820564852612}
   - {fileID: 3680401195369772763}
   - {fileID: 4664218168942270424}
   - {fileID: 1989275383747955043}
@@ -1132,6 +1137,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &3498949687124643225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2384884874257938318}
+  m_Layer: 0
+  m_Name: PotHolderB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2384884874257938318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3498949687124643225}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
+  m_LocalPosition: {x: 1.238, y: 0.15, z: 2.466033}
+  m_LocalScale: {x: 40, y: 40, z: 40}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1025776336643815931}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!1 &3560015512207751250
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,6 +1476,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4277867364158507171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7401751560907995948}
+  m_Layer: 0
+  m_Name: MopHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7401751560907995948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4277867364158507171}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
+  m_LocalPosition: {x: 0.674, y: 1.026, z: -0.661}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1025776336643815931}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!1 &4475304813051526224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,7 +1700,7 @@ MonoBehaviour:
   stationUI: {fileID: 955939685181443686}
   stationName: 'Station: Cashier'
   stationText: {fileID: 4244765623615815440}
-  upgradeManager: {fileID: 0}
+  upgradeManager: {fileID: 7179886786387737580}
   workStationsList: []
 --- !u!114 &8213137659560168702
 MonoBehaviour:
@@ -1647,7 +1714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
   line: []
   lineStart: {fileID: 4760190826165912347}
   lineDirection: {fileID: 4760190826165912347}
@@ -1672,31 +1738,63 @@ MonoBehaviour:
   upgradeButton: {fileID: 7920418680548455428}
   currentWorker: {fileID: 0}
   workerName: {fileID: 9100573207069803312}
+  workerIndex: {fileID: 0}
+  defaultWorkerPrefab: {fileID: 0}
   upgrades:
   - upgradeName: Cashier lvl 1
     localWorkSpeed: 1
     localLineCapacity: 1
     localUpgradeCost: 0
+    upgradeAddVisuals: []
   - upgradeName: Cashier lvl 2
     localWorkSpeed: 2
     localLineCapacity: 1
     localUpgradeCost: 50
+    upgradeAddVisuals: []
   - upgradeName: Cashier lvl 3
     localWorkSpeed: 2
     localLineCapacity: 1
     localUpgradeCost: 100
+    upgradeAddVisuals:
+    - itemPrefab: {fileID: 7206036582729691422, guid: 624af5e33005632418eeed7646ea8663, type: 3}
+      itemTransform: {fileID: 7413298441200159709}
   - upgradeName: Cashier lvl 4
     localWorkSpeed: 3
     localLineCapacity: 2
     localUpgradeCost: 150
+    upgradeAddVisuals:
+    - itemPrefab: {fileID: 7206036582729691422, guid: 624af5e33005632418eeed7646ea8663, type: 3}
+      itemTransform: {fileID: 7413298441200159709}
+    - itemPrefab: {fileID: 919132149155446097, guid: 6632d3a178c9d5a46925c214848294b1, type: 3}
+      itemTransform: {fileID: 2384884874257938318}
   - upgradeName: Cashier lvl 5
     localWorkSpeed: 5
     localLineCapacity: 1
     localUpgradeCost: 200
+    upgradeAddVisuals:
+    - itemPrefab: {fileID: 7206036582729691422, guid: 624af5e33005632418eeed7646ea8663, type: 3}
+      itemTransform: {fileID: 7413298441200159709}
+    - itemPrefab: {fileID: 919132149155446097, guid: 6632d3a178c9d5a46925c214848294b1, type: 3}
+      itemTransform: {fileID: 2384884874257938318}
+    - itemPrefab: {fileID: 919132149155446097, guid: a714588108c13384291f6871268b98e1, type: 3}
+      itemTransform: {fileID: 7125921130809651981}
+    - itemPrefab: {fileID: 919132149155446097, guid: 372722df8c354634bbcfb1d4228eca9b, type: 3}
+      itemTransform: {fileID: 7401751560907995948}
   - upgradeName: Cashier lvl 6
     localWorkSpeed: 7
     localLineCapacity: 4
     localUpgradeCost: 500
+    upgradeAddVisuals:
+    - itemPrefab: {fileID: 7206036582729691422, guid: 624af5e33005632418eeed7646ea8663, type: 3}
+      itemTransform: {fileID: 7413298441200159709}
+    - itemPrefab: {fileID: 919132149155446097, guid: 6632d3a178c9d5a46925c214848294b1, type: 3}
+      itemTransform: {fileID: 2384884874257938318}
+    - itemPrefab: {fileID: 919132149155446097, guid: a714588108c13384291f6871268b98e1, type: 3}
+      itemTransform: {fileID: 7125921130809651981}
+    - itemPrefab: {fileID: 919132149155446097, guid: 372722df8c354634bbcfb1d4228eca9b, type: 3}
+      itemTransform: {fileID: 7401751560907995948}
+    - itemPrefab: {fileID: 919132149155446097, guid: 88fe59ec97eb5ee41a579bb0ce8bc49f, type: 3}
+      itemTransform: {fileID: 3320507820564852612}
   currentUpgradeLevel: 0
   speedFuture: {fileID: 5893322100253714051}
   speedCurrent: {fileID: 4566620245509454282}
@@ -2182,6 +2280,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6555084970968317088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7413298441200159709}
+  m_Layer: 0
+  m_Name: PotHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7413298441200159709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6555084970968317088}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
+  m_LocalPosition: {x: 1.139, y: 0.839, z: 1.244827}
+  m_LocalScale: {x: 30, y: 30, z: 30}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1025776336643815931}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!1 &6590286660812821488
 GameObject:
   m_ObjectHideFlags: 0
@@ -2450,6 +2579,37 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 15
+--- !u!1 &7266566296864118528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3320507820564852612}
+  m_Layer: 0
+  m_Name: CarHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3320507820564852612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7266566296864118528}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.52527124, z: 0, w: 0.85093486}
+  m_LocalPosition: {x: 1.473, y: 0.854, z: 2.107}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1025776336643815931}
+  m_LocalEulerAnglesHint: {x: 0, y: -63.373, z: 0}
 --- !u!1 &7470150507800780843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,6 +3336,37 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Line Capacity:'
+--- !u!1 &8366474238591732393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7125921130809651981}
+  m_Layer: 0
+  m_Name: MopBucketHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7125921130809651981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8366474238591732393}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.62111175, y: -0.3377065, z: -0.3378244, w: 0.6213286}
+  m_LocalPosition: {x: 1.88, y: 0.317, z: -0.386}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1025776336643815931}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: -57.067}
 --- !u!1 &8389004685891512240
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour
 
 
     [SerializeField]private TMP_Text timerText;
+    [SerializeField]private TMP_Text fundsText;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,8 @@ public class Timer : MonoBehaviour
     {
         if (pauseTimer) return;
 
+        fundsText.text = "$" + playerInfo.playerFunds.ToString() + " left";
+        
         if (currentTime > 0)
         {
             currentTime -= Time.deltaTime;

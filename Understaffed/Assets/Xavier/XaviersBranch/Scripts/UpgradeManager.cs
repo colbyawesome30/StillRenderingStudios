@@ -29,6 +29,13 @@ public class UpgradeManager : MonoBehaviour
     private void OnEnable() => AllStations.Add(this);
     private void OnDisable() => AllStations.Remove(this);
 
+    [System.Serializable]
+    public struct UpgradeItem
+    {
+        public GameObject itemPrefab;
+        public Transform itemTransform;
+    }
+
     //Possible Upgrades
     [System.Serializable]
     public struct Upgrades
@@ -41,7 +48,11 @@ public class UpgradeManager : MonoBehaviour
         public int localLineCapacity;
         //Upgrade cost
         public int localUpgradeCost;
+        public List<UpgradeItem>upgradeAddVisuals;
     }
+
+    //Visuals currently spawned for the active upgrade
+    private readonly List<GameObject> spawnedVisuals = new List<GameObject>();
 
     public List<Upgrades> upgrades;
 
@@ -99,6 +110,41 @@ public class UpgradeManager : MonoBehaviour
         PopulateDropdown();
     }
 
+    //Remove the previous upgrade's visuals, then spawn the current upgrade's visuals
+//Remove the previous upgrade's visuals, then spawn the current upgrade's visuals
+    private void RefreshUpgradeVisuals()
+    {
+        //Remove previous visuals
+        foreach (GameObject visual in spawnedVisuals)
+            if (visual != null) Destroy(visual);
+        spawnedVisuals.Clear();
+
+        if (currentUpgradeLevel < 0 || currentUpgradeLevel >= upgrades.Count) return;
+
+        List<UpgradeItem> items = upgrades[currentUpgradeLevel].upgradeAddVisuals;
+        if (items == null) return;
+
+        //Spawn under this object's parent (falls back to this object if it has no parent)
+        Transform root = transform.parent != null ? transform.parent : transform;
+
+        foreach (UpgradeItem item in items)
+        {
+            if (item.itemPrefab == null) continue;
+
+            GameObject spawned = Instantiate(item.itemPrefab, root);
+
+            if (item.itemTransform != null)
+            {
+                //Position relative to the parent's root
+                spawned.transform.localPosition = root.InverseTransformPoint(item.itemTransform.position);
+                spawned.transform.localRotation = Quaternion.Inverse(root.rotation) * item.itemTransform.rotation;
+                spawned.transform.localScale = item.itemTransform.localScale;
+            }
+
+            spawnedVisuals.Add(spawned);
+        }
+    }
+
     //Upgrade shop if player has enough funds
     public void UpgradeShop()
     {
@@ -133,7 +179,7 @@ public class UpgradeManager : MonoBehaviour
                 upgradeCostCurrent.text = upgradeCost + "$".ToString();
                 
                 RefreshStats();
-
+                RefreshUpgradeVisuals();
                 //Tutorial
                 if (tutorial != null && !tutorial.tutorialComplete && tutorial.TutorialStep == 3)
                 {

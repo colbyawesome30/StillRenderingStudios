@@ -168,5 +168,4 @@ public class PlayerInfo : MonoBehaviour
         fillImage.fillAmount = fillPercent;
     }
 
-
 }
