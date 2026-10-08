@@ -138,7 +138,7 @@ public class MoveScript : MonoBehaviour
         Gizmos.matrix = Matrix4x4.identity;
 
         Gizmos.DrawWireCube(
-            transform.position,
+            transform.position + new Vector3(0, 2, 0),
             boundarySize
         );
 

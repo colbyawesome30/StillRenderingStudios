@@ -1,0 +1,685 @@
+fileFormatVersion: 2
+guid: 4626914eeacabc34da496b2b85649dbb
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bird_WalkCycle_0
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 4094
+        width: 468
+        height: 1026
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0c63278a337f2f43a1b93212b01f1c5
+      internalID: 51227021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_1
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 4104
+        width: 484
+        height: 892
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b623505e97826504fbd7e198abb0f2c6
+      internalID: -1728851305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_2
+      rect:
+        serializedVersion: 2
+        x: 2354
+        y: 4094
+        width: 467
+        height: 1026
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a0434030469eb54f94a2f5a9c62d019
+      internalID: -1316697789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_3
+      rect:
+        serializedVersion: 2
+        x: 3379
+        y: 4101
+        width: 467
+        height: 928
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc8f3ca905100cf4cb95241791a52c23
+      internalID: -1570998534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_4
+      rect:
+        serializedVersion: 2
+        x: 4401
+        y: 4094
+        width: 468
+        height: 920
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ec6a1d7d85174e43b929d2a07ff5c1b
+      internalID: 666345535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_5
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 3081
+        width: 484
+        height: 890
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ffeb42652e00c54a932465a42e26757
+      internalID: -1983538685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_6
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 3069
+        width: 467
+        height: 927
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19eb63609b56ef84b852bb874071ca94
+      internalID: 1999259287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_7
+      rect:
+        serializedVersion: 2
+        x: 2354
+        y: 3076
+        width: 467
+        height: 930
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c576256bdbad9f641968f633bf7b5b95
+      internalID: -1495609177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_8
+      rect:
+        serializedVersion: 2
+        x: 3306
+        y: 3099
+        width: 575
+        height: 895
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d350795458927bc4ab469acc374576c7
+      internalID: 1054253229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_9
+      rect:
+        serializedVersion: 2
+        x: 4336
+        y: 3071
+        width: 568
+        height: 915
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aae163208501dd748abbdf8c5541ac9a
+      internalID: 1736005383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_10
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 2046
+        width: 580
+        height: 930
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1639adeb5d9ef2040a2a4c5129c32e06
+      internalID: -1864086774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_11
+      rect:
+        serializedVersion: 2
+        x: 1241
+        y: 2056
+        width: 590
+        height: 935
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85a09ccd6b34ef6418ce647e90f4e9fe
+      internalID: -735676414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_12
+      rect:
+        serializedVersion: 2
+        x: 2261
+        y: 2075
+        width: 577
+        height: 894
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa4aeb330582204f86c76a7d010c0fc
+      internalID: -1473378382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_13
+      rect:
+        serializedVersion: 2
+        x: 3289
+        y: 2046
+        width: 567
+        height: 915
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75b67ecb5bb81194191e7f0c23f1c460
+      internalID: -1709294631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_14
+      rect:
+        serializedVersion: 2
+        x: 4314
+        y: 2046
+        width: 579
+        height: 935
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c3a3cce242449b47b9369b08ef96f30
+      internalID: 418158087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_15
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 1034
+        width: 593
+        height: 932
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d41d1bdfa8b91804f8c5483377ec75a8
+      internalID: -1729131617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_17
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 1021
+        width: 467
+        height: 920
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 711b97a492fcb5347b4279b0955098fe
+      internalID: 291530896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_18
+      rect:
+        serializedVersion: 2
+        x: 2311
+        y: 1032
+        width: 484
+        height: 892
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef2c8c402bf633b489df556dc352f357
+      internalID: 896629008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_19
+      rect:
+        serializedVersion: 2
+        x: 3336
+        y: 1021
+        width: 468
+        height: 925
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f7c4ae354e298a40b919fc66c15387b
+      internalID: -321244606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_20
+      rect:
+        serializedVersion: 2
+        x: 4359
+        y: 1029
+        width: 467
+        height: 927
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5edf78dbb73761b4389cee9e922961b6
+      internalID: -1323718796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_21
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 0
+        width: 467
+        height: 916
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86bf04fc0a5013d4689edbb691094931
+      internalID: 663975407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_22
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 9
+        width: 484
+        height: 892
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eacd3e90ba9b3294697d2de0d50bd1c8
+      internalID: -1656641314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_23
+      rect:
+        serializedVersion: 2
+        x: 2311
+        y: 0
+        width: 468
+        height: 924
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41d45723f00aa4141bef8fe694996014
+      internalID: 1273100527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird_WalkCycle_24
+      rect:
+        serializedVersion: 2
+        x: 3336
+        y: 4
+        width: 468
+        height: 930
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25f4678b7cb3a54489d8cee5852802ed
+      internalID: -884564731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 77938bfb231d5cf4db19abeff2d815a6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":1.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":1,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Bird_WalkCycle_0: 51227021
+      Bird_WalkCycle_1: -1728851305
+      Bird_WalkCycle_10: -1864086774
+      Bird_WalkCycle_11: -735676414
+      Bird_WalkCycle_12: -1473378382
+      Bird_WalkCycle_13: -1709294631
+      Bird_WalkCycle_14: 418158087
+      Bird_WalkCycle_15: -1729131617
+      Bird_WalkCycle_16: 716220860
+      Bird_WalkCycle_17: 291530896
+      Bird_WalkCycle_18: 896629008
+      Bird_WalkCycle_19: -321244606
+      Bird_WalkCycle_2: -1316697789
+      Bird_WalkCycle_20: -1323718796
+      Bird_WalkCycle_21: 663975407
+      Bird_WalkCycle_22: -1656641314
+      Bird_WalkCycle_23: 1273100527
+      Bird_WalkCycle_24: -884564731
+      Bird_WalkCycle_3: -1570998534
+      Bird_WalkCycle_4: 666345535
+      Bird_WalkCycle_5: -1983538685
+      Bird_WalkCycle_6: 1999259287
+      Bird_WalkCycle_7: -1495609177
+      Bird_WalkCycle_8: 1054253229
+      Bird_WalkCycle_9: 1736005383
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

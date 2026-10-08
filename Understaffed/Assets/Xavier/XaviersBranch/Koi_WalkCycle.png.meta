@@ -1,0 +1,688 @@
+fileFormatVersion: 2
+guid: 0ddc357be8d040549972ef7302a39d36
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Koi_WalkCycle_0
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 4124
+        width: 527
+        height: 905
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97f6ccade498e8d4380e427eeace1d1e
+      internalID: 993449042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_1
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 4139
+        width: 524
+        height: 884
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d10217786643f314983fc465845b327d
+      internalID: -523258854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_2
+      rect:
+        serializedVersion: 2
+        x: 2344
+        y: 4121
+        width: 520
+        height: 918
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f255fb5d3d5a8994c9dea1dbe0cde459
+      internalID: -1819922190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_3
+      rect:
+        serializedVersion: 2
+        x: 3369
+        y: 4131
+        width: 512
+        height: 925
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bc79ec5b3f751c4585c17f7c7d1d9cb
+      internalID: -454937575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_4
+      rect:
+        serializedVersion: 2
+        x: 4391
+        y: 4124
+        width: 528
+        height: 905
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5775f43b7a43fd49ba32f9f36d461ae
+      internalID: -401400417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_5
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 3114
+        width: 523
+        height: 885
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47ea9d61666c72b4b975b51518fc4618
+      internalID: 595144460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_6
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 3099
+        width: 521
+        height: 915
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c0df44b2522ef645af0012e069be8f7
+      internalID: -2021563290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_7
+      rect:
+        serializedVersion: 2
+        x: 2344
+        y: 3106
+        width: 512
+        height: 925
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6970352189de0664689bef310a22e186
+      internalID: -230242680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_8
+      rect:
+        serializedVersion: 2
+        x: 3329
+        y: 3126
+        width: 510
+        height: 898
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82d40617a92d77643be153351aefdb48
+      internalID: 1044530980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_9
+      rect:
+        serializedVersion: 2
+        x: 4354
+        y: 3114
+        width: 492
+        height: 902
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f574fe61c1bf4046918d8eae1d5e5b5
+      internalID: 1216497585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_11
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 2081
+        width: 526
+        height: 933
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d77693bfb5525249b1be19e48a22cea
+      internalID: 1138985162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_13
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 2109
+        width: 538
+        height: 912
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f35b2f10fc4d8f448aa1d1814cbcce1e
+      internalID: -1394479536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_14
+      rect:
+        serializedVersion: 2
+        x: 2288
+        y: 2104
+        width: 528
+        height: 897
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0dc14973288e9d4d8faf133c8d2a46c
+      internalID: -1794269600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_15
+      rect:
+        serializedVersion: 2
+        x: 3336
+        y: 2089
+        width: 493
+        height: 905
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13007c78406ee6b419eaa6c7bd9b96b7
+      internalID: -112721409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_16
+      rect:
+        serializedVersion: 2
+        x: 4354
+        y: 2081
+        width: 510
+        height: 933
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd49a720f6d1cc489c6348337082d6e
+      internalID: 1068626168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_19
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 1084
+        width: 537
+        height: 915
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bf77dbfa186cc54193cb66a1d29a324
+      internalID: 1359665360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_20
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1054
+        width: 526
+        height: 902
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0486bf5179e48254a9dd1643f10dc5d7
+      internalID: -205662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_21
+      rect:
+        serializedVersion: 2
+        x: 2344
+        y: 1066
+        width: 524
+        height: 885
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 060ffcb18f7c4d7449dbd4a315bdd4e0
+      internalID: -1372349203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_22
+      rect:
+        serializedVersion: 2
+        x: 3369
+        y: 1050
+        width: 520
+        height: 916
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dc92dab6daf6d24cbca2fafb110e4e4
+      internalID: 851397855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_23
+      rect:
+        serializedVersion: 2
+        x: 4391
+        y: 1059
+        width: 515
+        height: 925
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7058677379610c547ab423a2d2d025c5
+      internalID: 1069273746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_24
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 29
+        width: 527
+        height: 904
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15055d87e9fcff3488a1ce5730050c19
+      internalID: -15340320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_25
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 42
+        width: 524
+        height: 884
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf37ecae8e9b7ba4d84c0106d54400cf
+      internalID: -1336211112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_26
+      rect:
+        serializedVersion: 2
+        x: 2344
+        y: 26
+        width: 520
+        height: 917
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a217c5b492db5ff48994b0cb5ece29d2
+      internalID: 169675726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Koi_WalkCycle_27
+      rect:
+        serializedVersion: 2
+        x: 3369
+        y: 34
+        width: 512
+        height: 925
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08fd722cb8634de48b900c7c6ce45aae
+      internalID: -1513375219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f49ab431485bcaa43b7d3e27903dfc99
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":1.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":1,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Koi_WalkCycle_0: 993449042
+      Koi_WalkCycle_1: -523258854
+      Koi_WalkCycle_10: -1198719341
+      Koi_WalkCycle_11: 1138985162
+      Koi_WalkCycle_12: 896221185
+      Koi_WalkCycle_13: -1394479536
+      Koi_WalkCycle_14: -1794269600
+      Koi_WalkCycle_15: -112721409
+      Koi_WalkCycle_16: 1068626168
+      Koi_WalkCycle_17: -118116348
+      Koi_WalkCycle_18: 279119290
+      Koi_WalkCycle_19: 1359665360
+      Koi_WalkCycle_2: -1819922190
+      Koi_WalkCycle_20: -205662
+      Koi_WalkCycle_21: -1372349203
+      Koi_WalkCycle_22: 851397855
+      Koi_WalkCycle_23: 1069273746
+      Koi_WalkCycle_24: -15340320
+      Koi_WalkCycle_25: -1336211112
+      Koi_WalkCycle_26: 169675726
+      Koi_WalkCycle_27: -1513375219
+      Koi_WalkCycle_3: -454937575
+      Koi_WalkCycle_4: -401400417
+      Koi_WalkCycle_5: 595144460
+      Koi_WalkCycle_6: -2021563290
+      Koi_WalkCycle_7: -230242680
+      Koi_WalkCycle_8: 1044530980
+      Koi_WalkCycle_9: 1216497585
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

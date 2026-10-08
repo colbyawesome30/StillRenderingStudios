@@ -9,7 +9,7 @@ public class averageCustomer : MonoBehaviour
 {
     // add references to line array, station spawn, difficulty
     public int difficulty;
-
+    [SerializeField]private Animator animator;
     public float patienceTimer;
     public int rageStep = 0; // for rage movement before leaving
     private float maxPatience; // used for the patience bar fill amount in decreasePatience
@@ -74,15 +74,87 @@ public class averageCustomer : MonoBehaviour
     private CustomerState currentState;
     private NavMeshAgent agent;
 
+    //Changes
+    [Tooltip("True if the side animation is drawn facing left (Koi).")]
+    [SerializeField] private bool sideSpriteFacesLeft = true;
+    [SerializeField] private float moveThreshold = 0.1f;
+    [Tooltip("How much stronger one axis must be before switching between side and front.")]
+    [SerializeField] private float axisSwitchBias = 1.3f;
+    [Tooltip("Time before switching between side and front.")]
+    [SerializeField] private float axisHoldTime = 0.25f;
+    [Tooltip("Sideways speed before the sprite flips.")]
+    [SerializeField] private float flipDeadzone = 0.3f;
+    private float nextAxisSwitchTime;
+    private static readonly int IsMovingSide = Animator.StringToHash("isMovingSide");
+    private static readonly int IsMovingFront = Animator.StringToHash("isMovingFront");
+    private bool wasMovingSide;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    private Camera cam;
+    //Changes
+
     private void OnEnable()
     {
         PlayerInfo.DifficultyChanged += OnDifficultyChanged;
+    }
+
+    private void LateUpdate() => UpdateAnimation();
+
+
+    //Update sprite anim
+    private void UpdateAnimation()
+    {
+        if (animator == null || agent == null) return;
+
+        Vector3 vel = agent.velocity;
+        vel.y = 0f;
+
+        // Not moving set both bools false
+        if (vel.magnitude < moveThreshold)
+        {
+            animator.SetBool(IsMovingSide, false);
+            animator.SetBool(IsMovingFront, false);
+            return;
+        }
+
+        //Movement relative to the camera, so "side" means left/right on screen
+        Vector3 right = cam != null ? cam.transform.right : Vector3.right;
+        Vector3 forward = cam != null ? cam.transform.forward : Vector3.forward;
+        right.y = 0f; forward.y = 0f;
+        right.Normalize(); forward.Normalize();
+
+        float sideAmount = Vector3.Dot(vel, right);
+        float frontAmount = Vector3.Dot(vel, forward);
+
+        //Pick moving side
+        bool wantSide = wasMovingSide
+            ? Mathf.Abs(sideAmount) * axisSwitchBias >= Mathf.Abs(frontAmount)
+            : Mathf.Abs(sideAmount) > Mathf.Abs(frontAmount) * axisSwitchBias;
+
+        //Only switch after time
+        bool movingSide = wasMovingSide;
+        if (wantSide != wasMovingSide && Time.time >= nextAxisSwitchTime)
+        {
+            movingSide = wantSide;
+            nextAxisSwitchTime = Time.time + axisHoldTime;
+        }
+        wasMovingSide = movingSide;
+
+        animator.SetBool(IsMovingSide, movingSide);
+        animator.SetBool(IsMovingFront, !movingSide);
+
+        // Flip only when clearly moving sideways, so small drift doesn't mirror the sprite
+        if (movingSide && spriteRenderer != null && Mathf.Abs(sideAmount) > flipDeadzone)
+            spriteRenderer.flipX = (sideAmount > 0f) == sideSpriteFacesLeft;
     }
 
     private void Start ()
     {
         if (playerInfo == null) playerInfo = FindFirstObjectByType<PlayerInfo>();
         agent = GetComponent<NavMeshAgent>();
+
+        cam = Camera.main;
+        if (animator == null) animator = GetComponentInChildren<Animator>();
+        if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         OnDifficultyChanged(PlayerInfo.CurrentDifficulty);
         rollDesire();

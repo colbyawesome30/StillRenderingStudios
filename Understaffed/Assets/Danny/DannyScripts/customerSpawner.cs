@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour
@@ -6,8 +7,15 @@ public class CustomerSpawner : MonoBehaviour
     public GameObject customerPrefab;
     public List<GameObject> customers;
     public Transform spawnPoint;
-    public GameObject storeFrontPoint;
-    public GameObject entryPoint;
+    [SerializeField] private ParkingManager parkingManager;
+
+    [System.Serializable] public struct StoreFronts
+    {
+        public GameObject storeFrontPoint;
+        public GameObject entryPoint;
+    }
+
+    public List<StoreFronts> entryList;
 
     //-----------------------------------------------------------------------
     //No longer needed: customers find stations through foodStation.AllStations
@@ -21,15 +29,6 @@ public class CustomerSpawner : MonoBehaviour
 
     public PlayerInfo playerInfo;
 
-    [System.Serializable]
-    public struct pathWays
-    {
-        public GameObject rageLeaving;
-        public GameObject exitPoint;
-        public GameObject despawnPoint;
-    }
-    public List <pathWays> customerPaths;
-
     public float spawnInterval = 5;
 
     [SerializeField]private int currentDifficulty = 1;
@@ -39,7 +38,6 @@ public class CustomerSpawner : MonoBehaviour
     {
         PlayerInfo.DifficultyChanged += OnDifficultyChanged;
     }
-
 
     private void OnDisable()
     {
@@ -56,16 +54,16 @@ public class CustomerSpawner : MonoBehaviour
                 spawnInterval = 10;
                 break;
             case 1:
-                spawnInterval = 7;
+                spawnInterval = 8;
                 break;
             case 2:
-                spawnInterval = 4;
+                spawnInterval = 6;
                 break;
             case 3:
-                spawnInterval = 1;
+                spawnInterval = 4;
                 break;
             case 4:
-                spawnInterval = 0.1f;
+                spawnInterval = 3;
                 break;
         }
 
@@ -97,28 +95,36 @@ public class CustomerSpawner : MonoBehaviour
 
     private void SpawnCustomer()
     {
+        parkingManager.TrySpawnCar();
+    }
+
+    // Called by the car when it finishes parking
+    public void SpawnCustomerAt(CarMovement car)
+    {
+        Transform spawn = car.CustomerSpawn;
+
+        if (customers.Count == 0 || entryList.Count == 0 || entryList.Count == 0) return;
+
         //Choose random customer
-        int randomIndex = Random.Range(0, customers.Count);
-        customerPrefab = customers[randomIndex];
+        customerPrefab = customers[Random.Range(0, customers.Count)];
+        GameObject customer = Instantiate(customerPrefab, spawn.position, Quaternion.identity);
 
-        GameObject customer = Instantiate(customerPrefab, spawnPoint.position, Quaternion.identity);
-
+        
         averageCustomer customerScript = customer.GetComponent<averageCustomer>();
+        if (customerScript == null)
+        {
+            Destroy(customer);
+            return;
+        }
+        //Set leaving, rage, and despawn to one gameobject
+        customerScript.exitPoint = spawn.gameObject;
+        customerScript.rageLeaving = spawn.gameObject;
+        customerScript.despawnPoint = spawn.gameObject; // walk back to their own car
 
-        // adds movement point refs from spawner to customers since i cant prefab it
-        int randomChosenPath = Random.Range(0, customerPaths.Count);
-        customerScript.exitPoint = customerPaths[randomChosenPath].exitPoint;
-        customerScript.despawnPoint = customerPaths[randomChosenPath].despawnPoint;
-        customerScript.rageLeaving = customerPaths[randomChosenPath].rageLeaving;
+        StoreFronts entry = entryList[Random.Range(0, entryList.Count)];
+        customerScript.storeFrontPoint = entry.storeFrontPoint;
+        customerScript.entryPoint = entry.entryPoint;
 
-        customerScript.storeFrontPoint = storeFrontPoint;
-        customerScript.entryPoint = entryPoint;
-
-        //-----------------------------------------------------------------------
-        //No longer needed
-        // customerScript.station1 = station1;
-        //-----------------------------------------------------------------------
-
-
+        customer.AddComponent<CustomerCarLink>().car = car;
     }
 }
