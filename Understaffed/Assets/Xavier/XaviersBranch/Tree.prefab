@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BushA
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ece31614afd17a342ba5df68f146e3b7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -129,6 +133,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c77fac46a5a259b4ea0ea4c3726d13bf, type: 3}
       propertyPath: m_Name
       value: Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c77fac46a5a259b4ea0ea4c3726d13bf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -216,6 +224,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BushB (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2a7178482ec52db46af7886311d6a142, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -290,6 +302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BushA (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ece31614afd17a342ba5df68f146e3b7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -363,6 +379,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2a7178482ec52db46af7886311d6a142, type: 3}
       propertyPath: m_Name
       value: BushB
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2a7178482ec52db46af7886311d6a142, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1613,6 +1613,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 902e81a1471b12b449bea4d39dceb75b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e68c289b26be8a4ea30f9fbe0515484, type: 2}
     - target: {fileID: 919132149155446097, guid: 902e81a1471b12b449bea4d39dceb75b, type: 3}
       propertyPath: m_Name
       value: Road C (1)
@@ -16692,6 +16696,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 902e81a1471b12b449bea4d39dceb75b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e68c289b26be8a4ea30f9fbe0515484, type: 2}
     - target: {fileID: 919132149155446097, guid: 902e81a1471b12b449bea4d39dceb75b, type: 3}
       propertyPath: m_Name
       value: Road C (2)
@@ -23917,13 +23925,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164009017}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.9030818, y: -0, z: -0, w: 0.4294687}
   m_LocalPosition: {x: -20.34, y: 27.78, z: -38.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 129.132, y: 0, z: 0}
 --- !u!114 &1164009020
 MonoBehaviour:
   m_ObjectHideFlags: 0
