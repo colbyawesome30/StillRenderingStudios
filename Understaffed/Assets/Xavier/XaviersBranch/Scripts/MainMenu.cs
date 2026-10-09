@@ -1,31 +1,59 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [System.Serializable]
+    public class LevelEntry
     {
-        
+        public string sceneName;   // exactly the scene name, e.g. "ArtScene"
+        public Image buttonImage;  // the Image on that level's button
     }
 
-    public void StartGame()
+    public GameObject levelsUI;
+    public GameObject mainMenuUI;
+    public GameObject settingsUI;
+
+    public List<LevelEntry> levels;
+    public Color completedColor = new Color(0.4f, 0.85f, 0.4f);
+    public Color defaultColor = Color.white;
+
+    private void Start()
     {
-        SceneManager.LoadScene("ArtScene");
+        ChangeUI("mainMenuUI");
+        RefreshLevelColors();
     }
 
-    public void ClickTutorial()
+    public void ChangeUI(string chosenUI)
     {
-        SceneManager.LoadScene("Tutorial");
+        levelsUI.SetActive(chosenUI == "levelsUI");
+        mainMenuUI.SetActive(chosenUI == "mainMenuUI");
+        settingsUI.SetActive(chosenUI == "settingsUI");
+
+        if (chosenUI == "levelsUI")
+            RefreshLevelColors();
     }
 
-    public void ClickSettings()
+    public void RefreshLevelColors()
     {
-        
+        foreach (LevelEntry level in levels)
+        {
+            if (level.buttonImage == null) continue;
+            level.buttonImage.color = LevelProgress.IsComplete(level.sceneName)
+                ? completedColor
+                : defaultColor;
+        }
     }
 
-    public void QuitGame()
+    public void OpenLevel() => SceneManager.LoadScene("ArtScene");
+    public void ChooseLevel(string levelName) => SceneManager.LoadScene(levelName);
+    public void QuitGame() => Application.Quit();
+
+    public void ResetSave()
     {
-        Application.Quit();
+        LevelProgress.ResetAll();
+        RefreshLevelColors();
     }
 }

@@ -3955,7 +3955,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164614060}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -22698,7 +22698,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120467539}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -45129,7 +45129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2672051852245350267, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: countdownTime
-      value: 360
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5652441464574398012, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: m_Name

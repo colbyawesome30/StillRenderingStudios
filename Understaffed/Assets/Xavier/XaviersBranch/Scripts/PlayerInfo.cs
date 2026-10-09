@@ -42,6 +42,11 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        Result(100);
+    }
+
     private void Awake()
     {
         CurrentDifficulty = _difficulty;
@@ -105,6 +110,12 @@ public class PlayerInfo : MonoBehaviour
         // your original check: more than 4 stars is a win
         bool won = stars > 4f;
 
+        if (won)
+        {
+            Debug.Log("LEVEL COMPLETE");
+            LevelProgress.MarkComplete(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
+
         // your original code put both screens inside the win check, so the lose screen could never show alone
         if (winScreen != null) winScreen.SetActive(won);
         if (loseScreen != null) loseScreen.SetActive(!won);
@@ -167,5 +178,4 @@ public class PlayerInfo : MonoBehaviour
         float fillPercent = stars/5;
         fillImage.fillAmount = fillPercent;
     }
-
 }
