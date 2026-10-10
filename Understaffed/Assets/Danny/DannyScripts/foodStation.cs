@@ -20,6 +20,9 @@ public class foodStation : MonoBehaviour
     private averageCustomer beingServed;
     //Time left till done
     private float serveTimer;
+    
+    public int stationNumber;          // must match the numbers customers order by (0 = burger, 1 = shake, etc.)
+    public string foodStationType;     // shown as the item name in the customer's order
     //Change end
 
     public void addCustomer(averageCustomer customer)
