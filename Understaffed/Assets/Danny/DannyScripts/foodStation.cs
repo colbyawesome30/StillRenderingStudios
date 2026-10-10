@@ -18,12 +18,16 @@ public class foodStation : MonoBehaviour
     public StationStats stats;
     public float baseServeTime = 0f; 
     private averageCustomer beingServed;
+    public int stationNumber;
     //Time left till done
     private float serveTimer;
     
     public int stationNumber;          // must match the numbers customers order by (0 = burger, 1 = shake, etc.)
     public string foodStationType;     // shown as the item name in the customer's order
     //Change end
+
+    [SerializeField]
+    public string foodStationType;
 
     public void addCustomer(averageCustomer customer)
     {
@@ -42,11 +46,6 @@ public class foodStation : MonoBehaviour
         }
         //Change end
 
-        //---------------------------------------------------------------------
-        //No longer needed
-        // line.Remove(customer);
-        //---------------------------------------------------------------------
-
         updateLinePositions();
     }
 
@@ -57,11 +56,6 @@ public class foodStation : MonoBehaviour
         //New Changes
         Vector3 position = SnapToNavMesh(lineStart.position + lineDirection.forward * (index * lineSpacing));
         //Change end
-
-        //---------------------------------------------------------------------
-        //No longer needed
-        // Vector3 position = lineStart.position + lineDirection.forward * (index * lineSpacing);
-        //---------------------------------------------------------------------
 
         return position;
     }
@@ -75,12 +69,7 @@ public class foodStation : MonoBehaviour
             //Change end
 
             line[i].moveToLinePosition(newPosition);
-
             
-            //---------------------------------------------------------------------
-            //No longer needed
-            // Vector3 newPosition = lineStart.position + lineDirection.forward * (i * lineSpacing);
-            //---------------------------------------------------------------------
         }
 
     } // should fix customers not filling in line when someone leaves
@@ -157,5 +146,10 @@ public class foodStation : MonoBehaviour
             return hit.position;
         return position;
     }
-    //Change end
+    
+    public void stationType()
+    {
+        // set type of station for customers to reference
+        // foodStationType;
+    }
 }

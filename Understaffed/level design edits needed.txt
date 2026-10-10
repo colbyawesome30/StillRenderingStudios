@@ -1,0 +1,7 @@
+300x300 cube should be 100x100 
+
+cafe 1900 x 750
+
+wall passage 1900 x 350
+
+kitchen 1900 x 750, 1200 x 300
