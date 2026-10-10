@@ -18,16 +18,20 @@ public class foodStation : MonoBehaviour
     public StationStats stats;
     public float baseServeTime = 0f; 
     private averageCustomer beingServed;
-    public int stationNumber;
     //Time left till done
     private float serveTimer;
     
-    public int stationNumber;          // must match the numbers customers order by (0 = burger, 1 = shake, etc.)
-    public string foodStationType;     // shown as the item name in the customer's order
-    //Change end
+    public enum StationType
+    {
+        Burger,
+        Shake,
+        Fries,
+    }
 
-    [SerializeField]
-    public string foodStationType;
+    public int stationNumber;          //Auto generated
+    public StationType stationType = StationType.Burger;    // pick this in the Inspector
+    public string foodStationType => stationType.ToString();   // "Burger", "Shake", "Fries"
+    //Change end
 
     public void addCustomer(averageCustomer customer)
     {
@@ -46,6 +50,11 @@ public class foodStation : MonoBehaviour
         }
         //Change end
 
+        //---------------------------------------------------------------------
+        //No longer needed
+        // line.Remove(customer);
+        //---------------------------------------------------------------------
+
         updateLinePositions();
     }
 
@@ -56,6 +65,11 @@ public class foodStation : MonoBehaviour
         //New Changes
         Vector3 position = SnapToNavMesh(lineStart.position + lineDirection.forward * (index * lineSpacing));
         //Change end
+
+        //---------------------------------------------------------------------
+        //No longer needed
+        // Vector3 position = lineStart.position + lineDirection.forward * (index * lineSpacing);
+        //---------------------------------------------------------------------
 
         return position;
     }
@@ -69,17 +83,33 @@ public class foodStation : MonoBehaviour
             //Change end
 
             line[i].moveToLinePosition(newPosition);
+
             
+            //---------------------------------------------------------------------
+            //No longer needed
+            // Vector3 newPosition = lineStart.position + lineDirection.forward * (i * lineSpacing);
+            //---------------------------------------------------------------------
         }
 
-    } // should fix customers not filling in line when someone leaves
+    }
 
     //New Changes
     private void Awake()
     {
-        // register once for the object's whole life, so toggling active state can't drop a lane
-        if (!AllStations.Contains(this)) AllStations.Add(this);
+        if (!AllStations.Contains(this))
+        {
+            // auto-assign the next free number
+            if (!isCheckout)
+            {
+                int next = 0;
+                foreach (foodStation s in AllStations)
+                    if (!s.isCheckout && s.stationNumber >= next) next = s.stationNumber + 1;
+                stationNumber = next;
+            }
 
+            AllStations.Add(this);
+        }
+    
         //Looks for stats
         if (stats == null && linkedStation != null) stats = linkedStation.upgradeManager as StationStats;
         if (stats == null) stats = GetComponentInParent<StationStats>();
@@ -146,10 +176,5 @@ public class foodStation : MonoBehaviour
             return hit.position;
         return position;
     }
-    
-    public void stationType()
-    {
-        // set type of station for customers to reference
-        // foodStationType;
-    }
+    //Change end
 }

@@ -1338,6 +1338,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 2
 --- !u!23 &41625361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3490,6 +3492,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 0
 --- !u!23 &144601270
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4271,6 +4275,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 0
 --- !u!23 &177858971
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7170,6 +7176,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 0
 --- !u!23 &326786685
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8993,6 +9001,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 0
 --- !u!23 &425094312
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13330,6 +13340,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 1
 --- !u!23 &629923405
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14002,6 +14014,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 0
 --- !u!23 &668323579
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19748,6 +19762,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 0
 --- !u!23 &983628409
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23472,6 +23488,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 1
+  stationType: 2
 --- !u!23 &1147924829
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23583,6 +23601,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 0
 --- !u!23 &1158020929
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30067,6 +30087,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 0
 --- !u!23 &1403337076
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32359,6 +32381,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 2
+  stationType: 0
 --- !u!23 &1478391898
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34864,6 +34888,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 0
 --- !u!23 &1595870499
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36466,6 +36492,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 0
 --- !u!23 &1658097731
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39282,6 +39310,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 0
 --- !u!23 &1860900252
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39393,6 +39423,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 2
 --- !u!23 &1861391233
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42267,6 +42299,8 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  stationNumber: 0
+  stationType: 0
 --- !u!23 &2008651688
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44464,7 +44498,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
   customerPrefab: {fileID: 0}
   customers:
-  - {fileID: 5519701519376992259, guid: d7721841616d3684c9975f918cab9b8f, type: 3}
   - {fileID: 5519701519376992259, guid: 68eb7ee229ddd8d439ba40811dfc25cb, type: 3}
   - {fileID: 5519701519376992259, guid: 7a2ea3af690d1f345baa4b7d40925028, type: 3}
   spawnPoint: {fileID: 2119763382}
@@ -45129,7 +45162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2672051852245350267, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: countdownTime
-      value: 10
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 5652441464574398012, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: m_Name

@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 2561216785661453401}
   - component: {fileID: 1176159858354220208}
   - component: {fileID: 3331813779909101090}
-  - component: {fileID: 7400562889776103005}
+  - component: {fileID: 3771005451072698371}
   m_Layer: 7
   m_Name: CustomerOrderDisplay
   m_TagString: Untagged
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d257aba037ad3f34982c5527e8b3e93f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::lookAtCamera
---- !u!114 &7400562889776103005
+--- !u!114 &3771005451072698371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8733437657598086812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d53e4ae571022804496bdd4d57ebf1d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 630894b9b08152f4baee1492760bc4b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::customerOrderDisplay
   orderText: {fileID: 1404203864660705144}
