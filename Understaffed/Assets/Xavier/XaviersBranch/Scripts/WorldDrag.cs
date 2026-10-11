@@ -53,6 +53,7 @@ public class WorldDrag : MonoBehaviour
     //Checks if clicked to try and drag
     private void TryStartDrag()
     {
+        if (WorkStation.UIOpen) return;
         if (!PressedThisFrame(out Vector2 screenPos)) return;
 
         Ray ray = _camera.ScreenPointToRay(screenPos);

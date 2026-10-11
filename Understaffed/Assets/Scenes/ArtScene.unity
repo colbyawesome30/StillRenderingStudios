@@ -1338,8 +1338,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 3
   stationNumber: 0
-  stationType: 2
+  stationType: 12
 --- !u!23 &41625361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3492,8 +3493,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 7
   stationNumber: 0
-  stationType: 0
+  stationType: 1
 --- !u!23 &144601270
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4275,8 +4277,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 5
   stationNumber: 0
-  stationType: 0
+  stationType: 9
 --- !u!23 &177858971
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6382,6 +6385,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: stationType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: itemSalePrice
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 7127868704779821041, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -7176,8 +7187,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 7
   stationNumber: 0
-  stationType: 0
+  stationType: 12
 --- !u!23 &326786685
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9001,8 +9013,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 5
   stationNumber: 0
-  stationType: 0
+  stationType: 7
 --- !u!23 &425094312
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9804,6 +9817,14 @@ PrefabInstance:
     - target: {fileID: 6988573472470174008, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: stationType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: itemSalePrice
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7127868704779821041, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13340,8 +13361,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 7
   stationNumber: 0
-  stationType: 1
+  stationType: 11
 --- !u!23 &629923405
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14014,8 +14036,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 3
   stationNumber: 0
-  stationType: 0
+  stationType: 1
 --- !u!23 &668323579
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19762,8 +19785,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 7
   stationNumber: 0
-  stationType: 0
+  stationType: 12
 --- !u!23 &983628409
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23488,8 +23512,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 3
   stationNumber: 1
-  stationType: 2
+  stationType: 3
 --- !u!23 &1147924829
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23601,8 +23626,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 3
   stationNumber: 0
-  stationType: 0
+  stationType: 4
 --- !u!23 &1158020929
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27693,6 +27719,14 @@ PrefabInstance:
       propertyPath: lineStart
       value: 
       objectReference: {fileID: 1245731220}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: stationType
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: itemSalePrice
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7127868704779821041, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -30087,8 +30121,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 7
   stationNumber: 0
-  stationType: 0
+  stationType: 8
 --- !u!23 &1403337076
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32381,8 +32416,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 5
   stationNumber: 2
-  stationType: 0
+  stationType: 8
 --- !u!23 &1478391898
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34888,8 +34924,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 5
   stationNumber: 0
-  stationType: 0
+  stationType: 10
 --- !u!23 &1595870499
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36492,8 +36529,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 5
   stationNumber: 0
-  stationType: 0
+  stationType: 6
 --- !u!23 &1658097731
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39310,8 +39348,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 7
   stationNumber: 0
-  stationType: 0
+  stationType: 7
 --- !u!23 &1860900252
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39423,8 +39462,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 3
   stationNumber: 0
-  stationType: 2
+  stationType: 5
 --- !u!23 &1861391233
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42299,8 +42339,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  itemSalePrice: 7
   stationNumber: 0
-  stationType: 0
+  stationType: 3
 --- !u!23 &2008651688
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45162,7 +45203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2672051852245350267, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: countdownTime
-      value: 600
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5652441464574398012, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: m_Name
@@ -45507,7 +45548,7 @@ PrefabInstance:
       objectReference: {fileID: 148652407}
     - target: {fileID: 5774840839917116033, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: _difficulty
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5774840839917116033, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: playerFunds

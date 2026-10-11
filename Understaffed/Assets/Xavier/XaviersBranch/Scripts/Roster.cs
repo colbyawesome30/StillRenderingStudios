@@ -65,6 +65,7 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     //Event happens when player clicks and drags
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (WorkStation.UIOpen) return;
         Debug.Log("Roster: begin drag");
         UIDragging = true;
         bool hit = RaycastGround(eventData.position, out Vector3 spawnPoint);
