@@ -47,7 +47,7 @@ public class CameraPan : MonoBehaviour
     //Handle drags and touches
     private void HandleInput()
     {   
-        if (WorldDrag.AnyDragging || Roster.UIDragging)
+        if (WorldDrag.AnyDragging || Roster.UIDragging || WorkStation.UIOpen)
         {
             pressing = false;
             panning = false;

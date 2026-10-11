@@ -33,8 +33,8 @@ public class Tutorial : MonoBehaviour
 
     protected void Start()
     {
-        playerInfo = GameObject.FindFirstObjectByType<PlayerInfo>();
-        timer = GameObject.FindFirstObjectByType<Timer>();
+        playerInfo = Object.FindAnyObjectByType<PlayerInfo>();
+        timer = Object.FindAnyObjectByType<Timer>();
 
         if (!playerInfo.TutorialComplete)
         {
@@ -86,7 +86,7 @@ public class Tutorial : MonoBehaviour
             tutorialSteps[i].stepID = i;
         }
     }
-
+    
     public void EndTutorial()
     {
         Time.timeScale = 1;
@@ -95,6 +95,7 @@ public class Tutorial : MonoBehaviour
         stepPreviousButton.interactable = false;
         stepNextButton.interactable = false;
         videoDisplay.enabled = false;
+        if (timer != null) timer.PauseTimer(false);   // start the countdown
     }
 
     public void NextStep()

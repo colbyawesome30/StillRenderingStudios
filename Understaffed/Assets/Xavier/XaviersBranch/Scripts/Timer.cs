@@ -39,10 +39,10 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        fundsText.text = "$" + playerInfo.playerFunds.ToString() + " left";
+
         if (pauseTimer) return;
 
-        fundsText.text = "$" + playerInfo.playerFunds.ToString() + " left";
-        
         if (currentTime > 0)
         {
             currentTime -= Time.deltaTime;

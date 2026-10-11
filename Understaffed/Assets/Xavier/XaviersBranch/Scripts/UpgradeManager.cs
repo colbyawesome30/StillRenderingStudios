@@ -81,7 +81,7 @@ public class UpgradeManager : MonoBehaviour
     //Set player info at start
     private void Start()
     {
-        playerInfo = FindFirstObjectByType<PlayerInfo>();
+        playerInfo = FindAnyObjectByType<PlayerInfo>();
         tutorial = FindAnyObjectByType<Tutorial>();
         workerIndex = FindAnyObjectByType<WorkerIndex>();
         defaultWorkerPrefab = WorkerIndex.Instance?.GetDefaultWorker()?.gameObject ?? defaultWorkerPrefab;
@@ -145,61 +145,44 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    // Upgrades are only allowed on the "Better Service" step
+    private bool UpgradesLockedByTutorial =>
+        tutorial != null && playerInfo != null &&
+        !playerInfo.TutorialComplete && tutorial.TutorialStep != 3;
+
     //Upgrade shop if player has enough funds
     public void UpgradeShop()
     {
-        //Upgrade shop
-        if (playerInfo.playerFunds >= upgradeCost)
+        if (UpgradesLockedByTutorial)
         {
-            playerInfo.playerFunds = playerInfo.playerFunds - upgradeCost;
-            Debug.Log("Shop Upgraded");
-
-            //If max level keep current stats
-            if (currentUpgradeLevel == upgrades.Count - 1)
-            {
-                Debug.Log("Max Level!!!");
-                upgradeButton.GetComponent<UnityEngine.UI.Button>().interactable = false;
-
-                speedCurrent.text = speedCurrent.ToString();
-                lineCapacityCurrent.text = lineCapacity.ToString();
-                upgradeCostCurrent.text = "Max";
-            }
-            else
-            {
-                //Set upgrade stats
-                currentUpgradeLevel++;
-                upgradeCost = upgradeCost + upgrades[currentUpgradeLevel].localUpgradeCost;
-                workSpeed = workSpeed + upgrades[currentUpgradeLevel].localWorkSpeed;
-                //Multiple difficulty eventually to make line shorter or longer
-                lineCapacity = lineCapacity + upgrades[currentUpgradeLevel].localLineCapacity;
-
-                //Set current variables for UI
-                speedCurrent.text = workSpeed.ToString();
-                lineCapacityCurrent.text = lineCapacity.ToString();
-                upgradeCostCurrent.text = upgradeCost + "$".ToString();
-                
-                RefreshStats();
-                RefreshUpgradeVisuals();
-                //Tutorial
-                if (tutorial != null && !tutorial.tutorialComplete && tutorial.TutorialStep == 3)
-                {
-                    tutorial.tutorialSteps[tutorial.TutorialStep].stepComplete = true;
-                    tutorial.NextStep();
-                    tutorial.CheckStepCompletion();
-                }
-                //Tutorial
-
-                if (!(currentUpgradeLevel + 1 < upgrades.Count))
-                {
-                    upgradeCostCurrent.text = "Max";
-                    upgradeButton.GetComponent<UnityEngine.UI.Button>().interactable = false;
-
-                }
-            }
+            Debug.Log("Upgrades are locked until the tutorial reaches the upgrade step.");
+            return;
         }
-        else
+
+        // Check max level BEFORE charging
+        if (currentUpgradeLevel >= upgrades.Count - 1)
+        {
+            Debug.Log("Max Level!!!");
+            return;
+        }
+
+        if (playerInfo.playerFunds < upgradeCost)
         {
             Debug.Log("Not enough funds to upgrade shop");
+            return;
+        }
+
+        // Charge, then apply
+        playerInfo.playerFunds -= upgradeCost;
+        Debug.Log("Shop Upgraded, paid " + upgradeCost);
+        ApplyNextUpgrade();
+
+        // Tutorial
+        if (tutorial != null && !playerInfo.TutorialComplete && tutorial.TutorialStep == 3)
+        {
+            tutorial.tutorialSteps[tutorial.TutorialStep].stepComplete = true;
+            tutorial.NextStep();
+            tutorial.CheckStepCompletion();
         }
     }
 
@@ -348,6 +331,25 @@ public class UpgradeManager : MonoBehaviour
         if (workerDropdown != null)
         {
             workerDropdown.onValueChanged.RemoveListener(OnWorkerDropdownChanged);
+        }
+    }
+    //Apply the next upgrade level to the station, updating stats and visuals
+    private void ApplyNextUpgrade()
+    {
+        if (currentUpgradeLevel >= upgrades.Count - 1) return;
+
+        currentUpgradeLevel++;
+        upgradeCost += upgrades[currentUpgradeLevel].localUpgradeCost;
+        workSpeed += upgrades[currentUpgradeLevel].localWorkSpeed;
+        lineCapacity += upgrades[currentUpgradeLevel].localLineCapacity;
+
+        RefreshStats();          // handles the "Max" text too
+        RefreshUpgradeVisuals();
+
+        if (upgradeButton != null)
+        {
+            bool hasNext = currentUpgradeLevel + 1 < upgrades.Count;
+            upgradeButton.GetComponent<UnityEngine.UI.Button>().interactable = hasNext;
         }
     }
 }

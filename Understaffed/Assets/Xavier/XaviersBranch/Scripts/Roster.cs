@@ -1,14 +1,25 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    //Set camera, layer for floorm and how high they will lift
+    //Set camera, layer for floor and how high they will lift
     [SerializeField] private Camera worldCamera;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float liftHeight = 1.5f;
+
+    //Roster tint
+    [SerializeField] private Image rosterImage;
+    [SerializeField] private Color notDeployedColor = new Color(0.6f, 1f, 0.6f);   // green
+    [SerializeField] private Color draggingColor    = new Color(1f, 0.92f, 0.4f);  // yellow
+    [SerializeField] private Color deployedColor    = new Color(1f, 0.5f, 0.5f);   // red
+
     private Tutorial tutorial;
     public static bool UIDragging { get; private set; }
+
+    //Which worker is currently being dragged (from the roster OR in the world)
+    public static Worker DraggedWorker { get; set; }
 
     //Specific worker
     public Worker worker;
@@ -18,13 +29,43 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     private void Awake()
     {
         if (worldCamera == null) worldCamera = Camera.main;
+        if (rosterImage == null) rosterImage = GetComponent<Image>();
 
         tutorial = FindAnyObjectByType<Tutorial>();
+    }
+
+    private void Update()
+    {
+        RefreshTint();
+    }
+
+    //Yellow = being dragged, red = deployed, green = not deployed
+    private void RefreshTint()
+    {
+        if (rosterImage == null || worker == null) return;
+
+        Color target;
+
+        if (DraggedWorker == worker)
+        {
+            target = draggingColor;
+        }
+        else if (WorkerIndex.Instance != null && WorkerIndex.Instance.GetCurrentStationFor(worker) != null)
+        {
+            target = deployedColor;
+        }
+        else
+        {
+            target = notDeployedColor;
+        }
+
+        if (rosterImage.color != target) rosterImage.color = target;
     }
 
     //Event happens when player clicks and drags
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (WorkStation.UIOpen) return;
         Debug.Log("Roster: begin drag");
         UIDragging = true;
         bool hit = RaycastGround(eventData.position, out Vector3 spawnPoint);
@@ -32,6 +73,8 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (!hit) return;
 
         draggedInstance = WorkerSpawnManager.Instance?.BeginManualControl(worker, spawnPoint + Vector3.up * liftHeight);
+
+        if (draggedInstance != null) DraggedWorker = worker;
     }
 
     //What happens when the player keeps on dragging
@@ -49,6 +92,7 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     public void OnEndDrag(PointerEventData eventData)
     {
         UIDragging = false;
+        if (DraggedWorker == worker) DraggedWorker = null;
         if (draggedInstance == null) return;
 
         Vector3 dropPosition = RaycastGround(eventData.position, out Vector3 point)
@@ -81,9 +125,11 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         hitPoint = Vector3.zero;
         return false;
     }
+
     //Upon disable cant drag
     private void OnDisable()
     {
         UIDragging = false;
+        if (DraggedWorker == worker) DraggedWorker = null;
     }
 }

@@ -13,6 +13,8 @@ public class WorkStation : MonoBehaviour, IInteractable
     private Tutorial tutorial;
 
     public List<WorkStation> workStationsList = new List<WorkStation>();
+    private static WorkStation selected;
+    public static bool UIOpen => selected != null && selected.stationUI != null && selected.stationUI.activeSelf;
 
     //Add other workstations refs and initialize basic variables
     public void Start()
@@ -21,7 +23,7 @@ public class WorkStation : MonoBehaviour, IInteractable
         stationUI.SetActive(false);
         stationOutline.SetActive(false);
 
-        workStationsList = new List<WorkStation>(FindObjectsByType<WorkStation>(FindObjectsSortMode.None));
+        workStationsList = new List<WorkStation>(FindObjectsByType<WorkStation>(FindObjectsInactive.Include));
         workStationsList.Remove(this);
 
         tutorial = FindAnyObjectByType<Tutorial>();
@@ -31,6 +33,8 @@ public class WorkStation : MonoBehaviour, IInteractable
     //What happens when interacted with
     public void Interact(RaycastHit hit)
     {
+        if (UIOpen && selected != this) return;
+
         Debug.Log($"{gameObject.name} was tapped at {hit.point}");
         ToggleSelected(true);
 
@@ -58,10 +62,17 @@ public class WorkStation : MonoBehaviour, IInteractable
         SetVisuals(isSelected);
     }
 
-    // Only sets this station's own visuals, never calls ToggleSelected on anyone
     private void SetVisuals(bool isSelected)
     {
         stationUI.SetActive(isSelected);
         stationOutline.SetActive(isSelected);
+
+        if (isSelected) selected = this;
+        else if (selected == this) selected = null;
+    }
+
+    private void OnDestroy()
+    {
+        if (selected == this) selected = null;
     }
 }
