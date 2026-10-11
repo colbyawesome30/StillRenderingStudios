@@ -53,6 +53,7 @@ public class averageCustomer : MonoBehaviour
     // Order / grocery list
     public customerOrderDisplay orderDisplay;
     public int desire; // random int that determines how many items customer wants
+    public int orderTotal; // total price of items in order 
     public List<CustomerOrderItem> order = new List<CustomerOrderItem>(); // list of items customer wants
     //-----------------------------------------------------------------------
 
@@ -373,8 +374,23 @@ public class averageCustomer : MonoBehaviour
         beingServed = served;
     }
 
-    // picks the station for the next item on the list, then the shortest checkout when the list is empty
-    private foodStation PickStation()
+	public int QuantityFor(foodStation station)
+	{
+		if (station.isCheckout) return desire; // total items in the order
+        int total = 0;
+        foreach (CustomerOrderItem item in order)
+        {
+            if (item.stationNumber == station.stationNumber)
+            {
+                total += item.quantity;
+            }
+        }
+
+		return Mathf.Max(1, total); // changed bc items only exist in station lists
+	} // returns the quantity of items a customer needs from a station
+
+	// picks the station for the next item on the list, then the shortest checkout when the list is empty
+	private foodStation PickStation()
     {
         Debug.Log("PickStation called, order.Count = " + order.Count);
 
@@ -461,10 +477,11 @@ public class averageCustomer : MonoBehaviour
     private void generateOrder()
     {
         order.Clear();
+        orderTotal = 0;
 
         List<foodStation> openStations = foodStation.AllStations.FindAll(
-            station => !station.isCheckout && station.gameObject.activeInHierarchy
-        );
+            station => !station.isCheckout && station.gameObject.activeInHierarchy && station.items.Count > 0
+		);
 
         if (openStations.Count == 0)
         {
@@ -476,10 +493,13 @@ public class averageCustomer : MonoBehaviour
         {
             foodStation pick = openStations[Random.Range(0, openStations.Count)];
 
-            CustomerOrderItem existingOrderItem =
-                order.Find(orderItem => orderItem.stationNumber == pick.stationNumber);
+            StationItem wanted = pick.items[Random.Range(0, pick.items.Count)];// takes from station lists for deli and bakery items
+            orderTotal += wanted.price; // add to order total for checkout and ui
 
-            if (existingOrderItem != null)
+			CustomerOrderItem existingOrderItem =
+                order.Find(orderItem => orderItem.stationNumber == pick.stationNumber && orderItem.itemName == wanted.itemName); // updated to match to item name as well for items from workstation lists
+
+			if (existingOrderItem != null)
             {
                 existingOrderItem.quantity++;
             }
@@ -488,7 +508,7 @@ public class averageCustomer : MonoBehaviour
                 order.Add(new CustomerOrderItem
                 {
                     stationNumber = pick.stationNumber,
-                    itemName = pick.foodStationType,
+                    itemName = wanted.itemName,
                     quantity = 1
                 });
             }

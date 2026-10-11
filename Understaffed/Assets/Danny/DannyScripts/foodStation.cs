@@ -1,6 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class StationItem
+{
+	public string itemName;
+	public int price = 5;
+} // give each station a list of items it can serve that customers can order from, with prices
+
 public class foodStation : MonoBehaviour
 {
     public List<averageCustomer> line = new List<averageCustomer>();
@@ -23,14 +30,16 @@ public class foodStation : MonoBehaviour
     
     public enum StationType
     {
-        Burger,
-        Shake,
-        Fries,
+		Shelf,
+        Deli,
+        Bakery
     }
 
-    public int stationNumber;          //Auto generated
-    public StationType stationType = StationType.Burger;    // pick this in the Inspector
-    public string foodStationType => stationType.ToString();   // "Burger", "Shake", "Fries"
+	public List<StationItem> items = new List<StationItem>();
+
+	public int stationNumber;          //Auto generated
+    public StationType stationType = StationType.Shelf;    // pick this in the Inspector
+    public string foodStationType => stationType.ToString();   // "Shelf", "Deli", "Bakery"
     //Change end
 
     public void addCustomer(averageCustomer customer)
@@ -154,8 +163,9 @@ public class foodStation : MonoBehaviour
         {
             beingServed = line[0];
             beingServed.SetBeingServed(true);
-            serveTimer = ServeTime;
-        }
+			serveTimer = ServeTime * beingServed.QuantityFor(this); // should time not mattering for orders
+			Debug.Log($"{name} serving {beingServed.name}: x{beingServed.QuantityFor(this)} = {serveTimer:F1}s");
+		}
 
         if (beingServed != null)
         {

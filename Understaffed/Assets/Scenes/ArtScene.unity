@@ -1338,6 +1338,17 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: Milk
+    price: 5
+  - itemName: Butter
+    price: 3
+  - itemName: Eggs
+    price: 3
+  - itemName: Juice
+    price: 8
+  - itemName: Ice Cream
+    price: 6
   stationNumber: 0
   stationType: 2
 --- !u!23 &41625361
@@ -3492,6 +3503,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: Red Soda
+    price: 3
   stationNumber: 0
   stationType: 0
 --- !u!23 &144601270
@@ -4275,6 +4289,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: Chips
+    price: 5
   stationNumber: 0
   stationType: 0
 --- !u!23 &177858971
@@ -6236,7 +6253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1975244328357621654, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_Name
-      value: WorkStation(Basic)
+      value: DeliStation
       objectReference: {fileID: 0}
     - target: {fileID: 1975244328357621654, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6381,6 +6398,54 @@ PrefabInstance:
     - target: {fileID: 6988573472470174008, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: stationType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[0].price
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[1].price
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[2].price
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[3].price
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[4].price
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[0].itemName
+      value: Burger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[1].itemName
+      value: Fries
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[2].itemName
+      value: Hot Dog
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[3].itemName
+      value: Deli Meat
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[4].itemName
+      value: Deli Cheese
       objectReference: {fileID: 0}
     - target: {fileID: 7127868704779821041, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7176,6 +7241,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: Candy
+    price: 2
   stationNumber: 0
   stationType: 0
 --- !u!23 &326786685
@@ -9001,6 +9069,11 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: N-RG Drink
+    price: 4
+  - itemName: Coffee
+    price: 5
   stationNumber: 0
   stationType: 0
 --- !u!23 &425094312
@@ -13340,6 +13413,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: Chocolate
+    price: 2
   stationNumber: 0
   stationType: 1
 --- !u!23 &629923405
@@ -14014,6 +14090,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: Crackers
+    price: 4
   stationNumber: 0
   stationType: 0
 --- !u!23 &668323579
@@ -19762,6 +19841,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: Soda
+    price: 2
   stationNumber: 0
   stationType: 0
 --- !u!23 &983628409
@@ -23488,6 +23570,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items: []
   stationNumber: 1
   stationType: 2
 --- !u!23 &1147924829
@@ -23601,6 +23684,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items: []
   stationNumber: 0
   stationType: 0
 --- !u!23 &1158020929
@@ -23872,7 +23956,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164009017}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
@@ -23924,7 +24008,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -27535,7 +27619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1975244328357621654, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_Name
-      value: WorkStation(Basic) (2)
+      value: BakeryStation
       objectReference: {fileID: 0}
     - target: {fileID: 1975244328357621654, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -27693,6 +27777,70 @@ PrefabInstance:
       propertyPath: lineStart
       value: 
       objectReference: {fileID: 1245731220}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: stationType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[0].price
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[1].price
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[2].price
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[3].price
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[4].price
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[5].price
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[6].price
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[0].itemName
+      value: Donut
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[1].itemName
+      value: Bread
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[2].itemName
+      value: Cookies
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[3].itemName
+      value: Cake
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[4].itemName
+      value: Pastries
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[5].itemName
+      value: Pastries
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: items.Array.data[6].itemName
+      value: Pretzels
+      objectReference: {fileID: 0}
     - target: {fileID: 7127868704779821041, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -30087,6 +30235,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: 
+    price: 0
   stationNumber: 0
   stationType: 0
 --- !u!23 &1403337076
@@ -32381,6 +32532,11 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: N-RG Drink
+    price: 4
+  - itemName: Coffee
+    price: 5
   stationNumber: 2
   stationType: 0
 --- !u!23 &1478391898
@@ -34888,6 +35044,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: 2-Liter Soda
+    price: 7
   stationNumber: 0
   stationType: 0
 --- !u!23 &1595870499
@@ -36492,6 +36651,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: Cereal
+    price: 5
   stationNumber: 0
   stationType: 0
 --- !u!23 &1658097731
@@ -39310,6 +39472,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: Cinnamon Gum
+    price: 2
   stationNumber: 0
   stationType: 0
 --- !u!23 &1860900252
@@ -39423,6 +39588,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items: []
   stationNumber: 0
   stationType: 2
 --- !u!23 &1861391233
@@ -42299,6 +42465,9 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.2
+  items:
+  - itemName: Mint Gum
+    price: 2
   stationNumber: 0
   stationType: 0
 --- !u!23 &2008651688
@@ -45763,13 +45932,13 @@ SceneRoots:
   - {fileID: 796707696}
   - {fileID: 4511153401691682223}
   - {fileID: 1358338426}
+  - {fileID: 1317659609}
   - {fileID: 273801224}
   - {fileID: 466542065}
   - {fileID: 1859115066}
   - {fileID: 1555070483}
   - {fileID: 1864016682}
   - {fileID: 1378436449}
-  - {fileID: 1317659609}
   - {fileID: 1576827121}
   - {fileID: 1336234897}
   - {fileID: 1798731951}
