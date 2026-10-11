@@ -10,6 +10,7 @@ public class CustomerOrderItem
     public int stationNumber; // 0 = burger 1 = shake etc or whatever we do
     public string itemName;
     public int quantity;
+    public int totalPriceOfItems; // total price of items in order, used for scoring
 }
 
 public class averageCustomer : MonoBehaviour
@@ -54,6 +55,9 @@ public class averageCustomer : MonoBehaviour
     public customerOrderDisplay orderDisplay;
     public int desire; // random int that determines how many items customer wants
     public List<CustomerOrderItem> order = new List<CustomerOrderItem>(); // list of items customer wants
+    [SerializeField] private int totalPriceOfItems; // total price of items in order, used for scoring
+    // averageCustomer.cs (anywhere in the class)
+    public int TotalPrice => totalPriceOfItems;
     //-----------------------------------------------------------------------
 
     private enum CustomerState
@@ -404,7 +408,7 @@ public class averageCustomer : MonoBehaviour
             changeState(CustomerState.leaving);
             float graceSeconds = 3f;
             float patienceRatio = Mathf.Clamp01((patienceTimer + graceSeconds) / maxPatience);
-            int scoreToAdd = Mathf.RoundToInt(patienceRatio * playerInfo.maxScorePerCustomer);
+            int scoreToAdd = Mathf.RoundToInt(patienceRatio * 10 * totalPriceOfItems);
             playerInfo.Result(scoreToAdd);
             Debug.Log("Added " + scoreToAdd + "score");
             int roll = _random.Next(1, 9);
@@ -461,6 +465,7 @@ public class averageCustomer : MonoBehaviour
     private void generateOrder()
     {
         order.Clear();
+        totalPriceOfItems = 0;   // reset
 
         List<foodStation> openStations = foodStation.AllStations.FindAll(
             station => !station.isCheckout && station.gameObject.activeInHierarchy
@@ -482,6 +487,7 @@ public class averageCustomer : MonoBehaviour
             if (existingOrderItem != null)
             {
                 existingOrderItem.quantity++;
+                existingOrderItem.totalPriceOfItems += pick.itemSalePrice;
             }
             else
             {
@@ -489,9 +495,12 @@ public class averageCustomer : MonoBehaviour
                 {
                     stationNumber = pick.stationNumber,
                     itemName = pick.foodStationType,
-                    quantity = 1
+                    quantity = 1,
+                    totalPriceOfItems = pick.itemSalePrice
                 });
             }
+
+            totalPriceOfItems += pick.itemSalePrice;   // customer's running total
         }
     }
 

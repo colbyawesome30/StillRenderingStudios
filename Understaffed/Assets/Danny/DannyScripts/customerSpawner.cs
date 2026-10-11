@@ -86,8 +86,11 @@ public class CustomerSpawner : MonoBehaviour
         return floor + (baseInterval - floor) * Mathf.Pow(dayDecay, Mathf.Max(0, day - 1));
     }
 
+    private Tutorial tutorial;
+
     private void Start()
     {
+        tutorial = FindAnyObjectByType<Tutorial>();
         OnDifficultyChanged(PlayerInfo.CurrentDifficulty);
         started = true;
         InvokeRepeating(nameof(SpawnCustomer), 1f, spawnInterval);
@@ -95,7 +98,15 @@ public class CustomerSpawner : MonoBehaviour
 
     private void SpawnCustomer()
     {
+        if (TutorialBlocksSpawning()) return;
         parkingManager.TrySpawnCar();
+    }
+
+    private bool TutorialBlocksSpawning()
+    {
+        if (playerInfo == null || tutorial == null) return false;
+        if (playerInfo.TutorialComplete) return false;   // tutorial finished on a previous run
+        return tutorial.TutorialStep < 6;                // step 6 = "End Tutorial"
     }
 
     // Called by the car when it finishes parking
