@@ -9,7 +9,6 @@ public class WorldDrag : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float liftHeight = 1.5f;
-    //New
     public static bool AnyDragging { get; private set; }
 
     private Worker worker;
@@ -24,6 +23,7 @@ public class WorldDrag : MonoBehaviour
         navigation = nav;
         agent = GetComponent<NavMeshAgent>();
     }
+
     //Get reference to camera
     private void Awake()
     {
@@ -67,6 +67,7 @@ public class WorldDrag : MonoBehaviour
     {
         isDragging = true;
         AnyDragging = true;
+        Roster.DraggedWorker = worker;   // roster turns yellow
         if (navigation != null) navigation.IsSuspended = true;
         if (agent != null) agent.enabled = false;
     }
@@ -87,6 +88,8 @@ public class WorldDrag : MonoBehaviour
     {
         isDragging = false;
         AnyDragging = false;
+        if (Roster.DraggedWorker == worker) Roster.DraggedWorker = null;   // roster goes back to red/green
+
         Ray ray = _camera.ScreenPointToRay(CurrentPointerPosition());
         Vector3 dropPosition = transform.position;
 
@@ -133,6 +136,10 @@ public class WorldDrag : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (isDragging) AnyDragging = false;
+        if (isDragging)
+        {
+            AnyDragging = false;
+            if (Roster.DraggedWorker == worker) Roster.DraggedWorker = null;
+        }
     }
 }
