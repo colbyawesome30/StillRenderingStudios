@@ -19,7 +19,8 @@ public class InteractScript : MonoBehaviour
 
     private void Update()
     {
-        // --- Touch input (mobile) ---
+        if (WorkStation.UIOpen) return;
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);

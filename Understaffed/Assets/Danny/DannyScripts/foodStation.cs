@@ -23,13 +23,26 @@ public class foodStation : MonoBehaviour
     
     public enum StationType
     {
-        Burger,
-        Shake,
-        Fries,
+        Deli_Meat,
+        Toilet_Paper,
+        Seafood,
+        Candy,
+        Frozen_Food,
+        Juice,
+        Canned_Items,
+        Fruits,
+        Vegetables,
+        Milk,
+        Meat,
+        Pasta,
+        Snacks,
+        Bakery
     }
 
+    public int itemSalePrice = 1; //Price of item sold at station
+
     public int stationNumber;          //Auto generated
-    public StationType stationType = StationType.Burger;    // pick this in the Inspector
+    public StationType stationType = StationType.Canned_Items;    // pick this in the Inspector
     public string foodStationType => stationType.ToString();   // "Burger", "Shake", "Fries"
     //Change end
 

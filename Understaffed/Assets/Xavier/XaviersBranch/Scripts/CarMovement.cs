@@ -251,7 +251,7 @@ public class CarMovement : MonoBehaviour
     {
         if (!otherCar.CanYield) return;
         bool bothBlockingEachOther = otherCar.blockingCar == this;
-        if (isReversing || (bothBlockingEachOther && GetInstanceID() > otherCar.GetInstanceID())) otherCar.Yield(this);
+        if (isReversing || (bothBlockingEachOther && GetHashCode() > otherCar.GetHashCode())) otherCar.Yield(this);
     }
     //Back up along the path to make room
     public void Yield(CarMovement requester)
