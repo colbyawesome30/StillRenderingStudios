@@ -23,7 +23,7 @@ public class WorkStation : MonoBehaviour, IInteractable
         stationUI.SetActive(false);
         stationOutline.SetActive(false);
 
-        workStationsList = new List<WorkStation>(FindObjectsByType<WorkStation>(FindObjectsSortMode.None));
+        workStationsList = new List<WorkStation>(FindObjectsByType<WorkStation>(FindObjectsInactive.Include));
         workStationsList.Remove(this);
 
         tutorial = FindAnyObjectByType<Tutorial>();
@@ -34,7 +34,7 @@ public class WorkStation : MonoBehaviour, IInteractable
     public void Interact(RaycastHit hit)
     {
         if (UIOpen && selected != this) return;
-        
+
         Debug.Log($"{gameObject.name} was tapped at {hit.point}");
         ToggleSelected(true);
 

@@ -16,7 +16,7 @@ public class ParkingManager : MonoBehaviour
 
     private void Awake()
     {
-        parkingLots = FindObjectsByType<ParkingLot>(FindObjectsSortMode.None).ToList();
+        parkingLots = FindObjectsByType<ParkingLot>().ToList();
         BuildRoute();
     }
 
@@ -25,7 +25,7 @@ public class ParkingManager : MonoBehaviour
     {
         IEnumerable<Transform> all = routeParent != null
             ? routeParent.GetComponentsInChildren<Transform>(true)
-            : FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            : FindObjectsByType<Transform>(FindObjectsInactive.Include);
 
         Transform spawn = null, leave = null;
         var middle = new List<(int index, Transform t)>();

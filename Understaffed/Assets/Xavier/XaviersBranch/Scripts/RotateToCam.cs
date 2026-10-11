@@ -6,7 +6,7 @@ public class RotateToCam : MonoBehaviour
 
     public void Awake()
     {
-        cameraTransform = FindFirstObjectByType<Camera>().transform;
+        cameraTransform = FindAnyObjectByType<Camera>().transform;
     }
 
     void Update()

@@ -153,7 +153,7 @@ public class averageCustomer : MonoBehaviour
 
     private void Start()
     {
-        if (playerInfo == null) playerInfo = FindFirstObjectByType<PlayerInfo>();
+        if (playerInfo == null) playerInfo = FindAnyObjectByType<PlayerInfo>();
         agent = GetComponent<NavMeshAgent>();
 
         cam = Camera.main;

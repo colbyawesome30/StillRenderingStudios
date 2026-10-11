@@ -81,7 +81,7 @@ public class UpgradeManager : MonoBehaviour
     //Set player info at start
     private void Start()
     {
-        playerInfo = FindFirstObjectByType<PlayerInfo>();
+        playerInfo = FindAnyObjectByType<PlayerInfo>();
         tutorial = FindAnyObjectByType<Tutorial>();
         workerIndex = FindAnyObjectByType<WorkerIndex>();
         defaultWorkerPrefab = WorkerIndex.Instance?.GetDefaultWorker()?.gameObject ?? defaultWorkerPrefab;
