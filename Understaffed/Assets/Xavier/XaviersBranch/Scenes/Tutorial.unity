@@ -1621,6 +1621,10 @@ PrefabInstance:
       propertyPath: loseScreen
       value: 
       objectReference: {fileID: 1263512473}
+    - target: {fileID: 5774840839917116033, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: playerFunds
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5960062390718804434, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: m_Name
       value: Main Camera (1)
@@ -2272,6 +2276,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ac6b360b73fe7d4298df757925dbe9d, type: 3}
+--- !u!1 &908538053 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 311727527173348245, guid: b46d688385de4d64ea97971e5d3d700f, type: 3}
+  m_PrefabInstance: {fileID: 64103425332311559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &908538058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908538053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b987bf68d3dcb4fa6357d17b69718e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonPop
+  popScale: 1.15
+  duration: 0.15
 --- !u!1 &911581896
 GameObject:
   m_ObjectHideFlags: 0
@@ -3123,6 +3146,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &1178343284 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 329082006820321291, guid: b46d688385de4d64ea97971e5d3d700f, type: 3}
+  m_PrefabInstance: {fileID: 64103425332311559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1178343289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178343284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b987bf68d3dcb4fa6357d17b69718e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonPop
+  popScale: 1.15
+  duration: 0.15
 --- !u!1001 &1183890351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3989,7 +4031,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320227694}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
@@ -4041,7 +4083,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -6372,7 +6414,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 329082006820321291, guid: b46d688385de4d64ea97971e5d3d700f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1178343289}
+    - targetCorrespondingSourceObject: {fileID: 311727527173348245, guid: b46d688385de4d64ea97971e5d3d700f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 908538058}
   m_SourcePrefab: {fileID: 100100000, guid: b46d688385de4d64ea97971e5d3d700f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
