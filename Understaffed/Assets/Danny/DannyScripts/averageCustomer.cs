@@ -159,7 +159,7 @@ public class averageCustomer : MonoBehaviour
         cam = Camera.main;
         if (animator == null) animator = GetComponentInChildren<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        if (orderDisplay == null) orderDisplay = GetComponentInChildren<customerOrderDisplay>();
+        if (orderDisplay == null) orderDisplay = GetComponentInChildren<customerOrderDisplay>(true);
 
         OnDifficultyChanged(PlayerInfo.CurrentDifficulty);
         rollDesire();
@@ -320,7 +320,7 @@ public class averageCustomer : MonoBehaviour
                 Debug.Log("Rage");
                 rageStep = 0;
                 rageSmoke.SetActive(true);
-                playerInfo.Result(-100);
+                playerInfo.Result(-100, 0f);
                 int roll = _random.Next(1, 4);
                 if (roll == 1)
                 {
@@ -409,7 +409,7 @@ public class averageCustomer : MonoBehaviour
             float graceSeconds = 3f;
             float patienceRatio = Mathf.Clamp01((patienceTimer + graceSeconds) / maxPatience);
             int scoreToAdd = Mathf.RoundToInt(patienceRatio * 10 * totalPriceOfItems);
-            playerInfo.Result(scoreToAdd);
+            playerInfo.Result(scoreToAdd, patienceRatio);
             Debug.Log("Added " + scoreToAdd + "score");
             int roll = _random.Next(1, 9);
             if (roll == 1 || roll == 2)

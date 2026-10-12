@@ -91,6 +91,7 @@ public class CustomerSpawner : MonoBehaviour
     private void Start()
     {
         tutorial = FindAnyObjectByType<Tutorial>();
+        playerInfo = FindAnyObjectByType<PlayerInfo>();
         OnDifficultyChanged(PlayerInfo.CurrentDifficulty);
         started = true;
         InvokeRepeating(nameof(SpawnCustomer), 1f, spawnInterval);
