@@ -24,7 +24,7 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] private Image fillImage;
     public GameObject winScreen;
     public GameObject loseScreen;
-
+    [SerializeField]private Rebake rebake;
     private bool _gameEnd = false;
 
     public static event Action<int> DifficultyChanged;
@@ -45,6 +45,8 @@ public class PlayerInfo : MonoBehaviour
 
     public void Start()
     {
+        rebake = FindAnyObjectByType<Rebake>();
+        rebake.RebakeMesh();
         Result(100, 1);
     }
 

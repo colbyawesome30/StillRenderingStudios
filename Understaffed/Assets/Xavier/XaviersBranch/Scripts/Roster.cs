@@ -90,7 +90,7 @@ public class Roster : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBe
     //Event happens when player clicks and drags
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (WorkStation.UIOpen) return;
+        if (WorkStation.UIOpen || PayWall.TabOpen) return;
         Debug.Log("Roster: begin drag");
         UIDragging = true;
         bool hit = RaycastGround(eventData.position, out Vector3 spawnPoint);
