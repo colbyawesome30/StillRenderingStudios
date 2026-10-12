@@ -1,8 +1,9 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class Roster : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     //Set camera, layer for floor and how high they will lift
     [SerializeField] private Camera worldCamera;
@@ -14,6 +15,16 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     [SerializeField] private Color notDeployedColor = new Color(0.6f, 1f, 0.6f);   // green
     [SerializeField] private Color draggingColor    = new Color(1f, 0.92f, 0.4f);  // yellow
     [SerializeField] private Color deployedColor    = new Color(1f, 0.5f, 0.5f);   // red
+
+    //Pop effect
+    [Header("Pop")]
+    [SerializeField] private float pressedScale = 1.15f;    // size while held or dragged
+    [SerializeField] private float growTime = 0.08f;
+    [SerializeField] private float returnTime = 0.12f;
+    [SerializeField] private float returnUndershoot = 0.95f; // dips under normal size, then settles
+
+    private Vector3 originalScale;
+    private Coroutine popRoutine;
 
     private Tutorial tutorial;
     public static bool UIDragging { get; private set; }
@@ -31,6 +42,7 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (worldCamera == null) worldCamera = Camera.main;
         if (rosterImage == null) rosterImage = GetComponent<Image>();
 
+        originalScale = transform.localScale;
         tutorial = FindAnyObjectByType<Tutorial>();
     }
 
@@ -60,6 +72,19 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         }
 
         if (rosterImage.color != target) rosterImage.color = target;
+    }
+
+    //Pop up when pressed
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (WorkStation.UIOpen) return;
+        StartPop(GrowTo(originalScale * pressedScale));
+    }
+
+    //Settle back when released (also fires after a drag ends)
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        StartPop(Release());
     }
 
     //Event happens when player clicks and drags
@@ -126,10 +151,54 @@ public class Roster : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         return false;
     }
 
+    //Pop animation helpers
+    private void StartPop(IEnumerator anim)
+    {
+        if (!gameObject.activeInHierarchy) return;
+        if (popRoutine != null) StopCoroutine(popRoutine);
+        popRoutine = StartCoroutine(anim);
+    }
+
+    private IEnumerator GrowTo(Vector3 target)
+    {
+        Vector3 from = transform.localScale;
+        for (float time = 0f; time < growTime; time += Time.unscaledDeltaTime)
+        {
+            transform.localScale = Vector3.Lerp(from, target, time / growTime);
+            yield return null;
+        }
+        transform.localScale = target;
+        popRoutine = null;
+    }
+
+    private IEnumerator Release()
+    {
+        Vector3 from = transform.localScale;
+        Vector3 under = originalScale * returnUndershoot;
+        float half = returnTime / 2f;
+
+        for (float time = 0f; time < half; time += Time.unscaledDeltaTime)
+        {
+            transform.localScale = Vector3.Lerp(from, under, time / half);
+            yield return null;
+        }
+        for (float time = 0f; time < half; time += Time.unscaledDeltaTime)
+        {
+            transform.localScale = Vector3.Lerp(under, originalScale, time / half);
+            yield return null;
+        }
+
+        transform.localScale = originalScale;
+        popRoutine = null;
+    }
+
     //Upon disable cant drag
     private void OnDisable()
     {
         UIDragging = false;
         if (DraggedWorker == worker) DraggedWorker = null;
+
+        popRoutine = null;
+        transform.localScale = originalScale;   // never leave it stuck big
     }
 }

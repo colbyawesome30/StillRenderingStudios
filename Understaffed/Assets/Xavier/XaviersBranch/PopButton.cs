@@ -2,62 +2,88 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public class ButtonPop : MonoBehaviour
+public class UIPop : MonoBehaviour
 {
-    [SerializeField] private float popScale = 1.15f;   // how big it gets
-    [SerializeField] private float duration = 0.15f;   // total time of the pop
+    [Header("When to pop")]
+    [SerializeField] private bool popOnEnable = true;
+    [SerializeField] private bool popOnClick = false;
+
+    [Header("Enable pop")]
+    [SerializeField] private float enableDuration = 0.25f;
+    [SerializeField] private float enableStartScale = 0.8f;
+    [SerializeField] private float enableOvershoot = 1.1f;
+
+    [Header("Click pop")]
+    [SerializeField] private float clickDuration = 0.15f;
+    [SerializeField] private float clickScale = 1.15f;
 
     private Button button;
     private Vector3 originalScale;
-    private Coroutine popRoutine;
+    private bool scaleCaptured;
+    private Coroutine routine;
 
     private void Awake()
     {
+        CaptureScale();
         button = GetComponent<Button>();
-        originalScale = transform.localScale;
     }
 
+    private void CaptureScale()
+    {
+        if (scaleCaptured) return;
+        originalScale = transform.localScale;
+        scaleCaptured = true;
+    }
+    
     private void OnEnable()
     {
-        button.onClick.AddListener(Pop);
+        CaptureScale();
+        if (button == null) button = GetComponent<Button>();
+
+        if (popOnClick)
+        {
+            if (button != null) button.onClick.AddListener(PopClick);
+        }
+
+        if (popOnEnable) PopEnable();
     }
 
     private void OnDisable()
     {
-        button.onClick.RemoveListener(Pop);
-        popRoutine = null;
+        if (button != null) button.onClick.RemoveListener(PopClick);
+        routine = null;
         transform.localScale = originalScale;
     }
 
-    public void Pop()
+    public void PopEnable() => Play(enableStartScale, enableOvershoot, enableDuration);
+    public void PopClick() => Play(1f, clickScale, clickDuration);
+
+    private void Play(float startScale, float peakScale, float duration)
     {
         if (!gameObject.activeInHierarchy) return;
-
-        if (popRoutine != null) StopCoroutine(popRoutine);
-        popRoutine = StartCoroutine(PopAnimation());
+        if (routine != null) StopCoroutine(routine);
+        routine = StartCoroutine(PopRoutine(startScale, peakScale, duration));
     }
 
-    private IEnumerator PopAnimation()
+    private IEnumerator PopRoutine(float startScale, float peakScale, float duration)
     {
-        float half = duration / 2f;
-        Vector3 big = originalScale * popScale;
+        Vector3 from = originalScale * startScale;
+        Vector3 peak = originalScale * peakScale;
+        float grow = duration * 0.6f;
+        float settle = duration * 0.4f;
 
-        // grow
-        for (float time = 0f; time < half; time += Time.unscaledDeltaTime)
+        for (float time = 0f; time < grow; time += Time.unscaledDeltaTime)
         {
-            transform.localScale = Vector3.Lerp(originalScale, big, time / half);
+            transform.localScale = Vector3.Lerp(from, peak, time / grow);
             yield return null;
         }
-
-        // shrink back
-        for (float time = 0f; time < half; time += Time.unscaledDeltaTime)
+        for (float time = 0f; time < settle; time += Time.unscaledDeltaTime)
         {
-            transform.localScale = Vector3.Lerp(big, originalScale, time / half);
+            transform.localScale = Vector3.Lerp(peak, originalScale, time / settle);
             yield return null;
         }
 
         transform.localScale = originalScale;
-        popRoutine = null;
+        routine = null;
     }
 }

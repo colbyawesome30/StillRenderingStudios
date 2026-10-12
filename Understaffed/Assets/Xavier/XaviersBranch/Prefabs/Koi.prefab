@@ -10720,8 +10720,24 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[0].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[1].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
       propertyPath: stationColors.Array.data[1].color.g
       value: 0.47199142
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[2].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[3].color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
       propertyPath: stationColors.Array.data[3].color.b
