@@ -11,6 +11,7 @@ public class PayWall : MonoBehaviour, IInteractable
     [SerializeField] private PlayerInfo playerInfo;
     [SerializeField] private int purchasePrice;
     [SerializeField] private Material hiddenMaterial;
+    [SerializeField] private GameObject questionMark;
     public bool purchasedLand;
     [SerializeField] private Text purchaseText;
     [SerializeField] private Text areaNameText;
@@ -36,8 +37,8 @@ public class PayWall : MonoBehaviour, IInteractable
 
         foreach (Renderer rend in GetComponentsInChildren<Renderer>(true))
         {
-            // Don't hide the purchase tab if it has renderers
             if (puchaseTab != null && rend.transform.IsChildOf(puchaseTab.transform)) continue;
+            if (questionMark != null && rend.transform.IsChildOf(questionMark.transform)) continue;
 
             originalMaterials[rend] = rend.sharedMaterials;
         }
@@ -50,6 +51,14 @@ public class PayWall : MonoBehaviour, IInteractable
             originalColliders[col] = col.enabled;
         }
         areaNameText.text = AreaName;
+
+        if (questionMark != null)
+        {
+            NavMeshModifier qmMod = questionMark.GetComponent<NavMeshModifier>();
+            if (qmMod == null) qmMod = questionMark.AddComponent<NavMeshModifier>();
+            qmMod.overrideArea = false;
+            qmMod.ignoreFromBuild = true;   // true = never part of the NavMesh
+        }
     }
 
     //Set references
@@ -126,6 +135,7 @@ public class PayWall : MonoBehaviour, IInteractable
             for (int i = 0; i < hidden.Length; i++) hidden[i] = hiddenMaterial;
             rend.sharedMaterials = hidden;
         }
+        if (questionMark != null) questionMark.SetActive(true);
     }
 
     // Restore every renderer's original materials and colliders
@@ -144,6 +154,7 @@ public class PayWall : MonoBehaviour, IInteractable
         Collider own = GetComponent<Collider>();
         if (own != null) own.enabled = false;
         if (NavRebake != null) NavRebake.RebakeMesh();
+        if (questionMark != null) questionMark.SetActive(false);
     }
 
     private void OnDestroy()
