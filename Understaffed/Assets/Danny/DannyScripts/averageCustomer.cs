@@ -522,4 +522,18 @@ public class averageCustomer : MonoBehaviour
     {
         moveToPosition(position);
     } // to move up in line when someone leaves
+
+    // number of items this customer needs from a station (all items at checkout)
+    public int QuantityFor(foodStation station)
+    {
+        if (station.isCheckout) return desire;
+
+        int total = 0;
+        foreach (CustomerOrderItem item in order)
+        {
+            if (item.stationNumber == station.stationNumber)
+                total += item.quantity;
+        }
+        return Mathf.Max(1, total);
+    }
 }

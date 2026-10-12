@@ -1337,7 +1337,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 3
   stationNumber: 0
   stationType: 12
@@ -3492,7 +3492,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 7
   stationNumber: 0
   stationType: 1
@@ -4276,7 +4276,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 5
   stationNumber: 0
   stationType: 9
@@ -7186,7 +7186,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 7
   stationNumber: 0
   stationType: 12
@@ -9012,7 +9012,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 5
   stationNumber: 0
   stationType: 7
@@ -13360,7 +13360,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 7
   stationNumber: 0
   stationType: 11
@@ -14035,7 +14035,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 3
   stationNumber: 0
   stationType: 1
@@ -19784,7 +19784,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 7
   stationNumber: 0
   stationType: 12
@@ -23511,7 +23511,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 3
   stationNumber: 1
   stationType: 3
@@ -23625,7 +23625,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 3
   stationNumber: 0
   stationType: 4
@@ -23898,7 +23898,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164009017}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
@@ -23950,7 +23950,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -30120,7 +30120,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 7
   stationNumber: 0
   stationType: 8
@@ -32415,7 +32415,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 5
   stationNumber: 2
   stationType: 8
@@ -34923,7 +34923,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 5
   stationNumber: 0
   stationType: 10
@@ -36528,7 +36528,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 5
   stationNumber: 0
   stationType: 6
@@ -39347,7 +39347,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 7
   stationNumber: 0
   stationType: 7
@@ -39461,7 +39461,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 3
   stationNumber: 0
   stationType: 5
@@ -42338,7 +42338,7 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
-  baseServeTime: 0.2
+  baseServeTime: 0.8
   itemSalePrice: 7
   stationNumber: 0
   stationType: 3
@@ -45552,7 +45552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5774840839917116033, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: playerFunds
-      value: 10000
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5960062390718804434, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: m_Name

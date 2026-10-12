@@ -167,7 +167,7 @@ public class foodStation : MonoBehaviour
         {
             beingServed = line[0];
             beingServed.SetBeingServed(true);
-            serveTimer = ServeTime;
+            serveTimer = ServeTime * beingServed.QuantityFor(this);
         }
 
         if (beingServed != null)
