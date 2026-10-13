@@ -158,6 +158,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   _drawDebugRay: 0
+  gridField: {fileID: 0}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &5774840839917116033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb44bc643155058469b2edef5352a246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerFunds: 10000
+  playerFunds: 100
   TutorialComplete: 0
   day: 0
   currentCustomers: 0
@@ -181,6 +185,7 @@ MonoBehaviour:
   fillImage: {fileID: 0}
   winScreen: {fileID: 0}
   loseScreen: {fileID: 0}
+  rebake: {fileID: 0}
   _difficulty: 2
 --- !u!114 &1383877216261282066
 MonoBehaviour:

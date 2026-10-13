@@ -14,6 +14,10 @@ public class DragWorker : MonoBehaviour
         Instance = this;
     }
 
+    public AudioSource audioSource;
+    [SerializeField] private AudioClip sucessSound;
+    public AudioClip clickSound;
+
     //When player releases picked up worker
     public void ResolveDrop(Worker worker, SimpleNavigation instance, Vector3 dropWorldPosition)
     {
@@ -55,6 +59,8 @@ public class DragWorker : MonoBehaviour
                 sourceStation.RefreshDropdownSelection();
             }
         }
+
+        audioSource.PlayOneShot(sucessSound);
     }
 
     //Find nearest station function

@@ -14,6 +14,7 @@ public class PlayerInfo : MonoBehaviour
     //Could expand to save unlocked workers
 
     public int currentCustomers;
+    private float satisfactionTotal;
     public event EventHandler CurrentDayScoreChanged;
     public float stars;
 
@@ -23,7 +24,7 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] private Image fillImage;
     public GameObject winScreen;
     public GameObject loseScreen;
-
+    [SerializeField]private Rebake rebake;
     private bool _gameEnd = false;
 
     public static event Action<int> DifficultyChanged;
@@ -44,7 +45,9 @@ public class PlayerInfo : MonoBehaviour
 
     public void Start()
     {
-        Result(100);
+        rebake = FindAnyObjectByType<Rebake>();
+        rebake.RebakeMesh();
+        Result(100, 1);
     }
 
     private void Awake()
@@ -88,14 +91,15 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
-    public void Result(int points)
+    public void Result(int points, float satisfaction)
     {
-        if (_gameEnd) return;                 // game over: nothing changes
+        if (_gameEnd) return;
 
-        currentCustomers++;                   // count first so the average uses the new total
-        currentDayScore += points;            // setter fires the event and refreshes stars if the score changed
+        currentCustomers++;
+        satisfactionTotal += Mathf.Clamp01(satisfaction);   // 0 = furious, 1 = perfect
+        currentDayScore += points;                           // money/score still tracked
         playerFunds = Mathf.Clamp(playerFunds + points, 0, int.MaxValue);
-        UpdateStarRating();                   // also refresh when points is 0, since the setter won't fire
+        UpdateStarRating();
     }
 
     public void EndGame()
@@ -169,7 +173,7 @@ public class PlayerInfo : MonoBehaviour
         }
 
         float averageScore = (float)_currentDayScore / currentCustomers;   // float cast stops integer division
-        float ratio = Mathf.Clamp01(averageScore / maxScorePerCustomer);
+        float ratio = Mathf.Clamp01(satisfactionTotal / currentCustomers);
 
         stars = Mathf.FloorToInt(ratio * maxStars * 10f) / 10f;   // one decimal place
         Debug.Log(ratio + " current rating, " + stars + " stars, customers " + currentCustomers);

@@ -33,6 +33,7 @@ public class WorkStation : MonoBehaviour, IInteractable
     //What happens when interacted with
     public void Interact(RaycastHit hit)
     {
+        if (PayWall.TabOpen) return; 
         if (UIOpen && selected != this) return;
 
         Debug.Log($"{gameObject.name} was tapped at {hit.point}");
@@ -58,6 +59,11 @@ public class WorkStation : MonoBehaviour, IInteractable
             {
                 station.SetVisuals(false);
             }
+            upgradeManager.audioSource.PlayOneShot(upgradeManager.openSound, 0.5f);
+        }
+        else
+        {
+            upgradeManager.audioSource.PlayOneShot(upgradeManager.closeSound, 0.5f);
         }
         SetVisuals(isSelected);
     }

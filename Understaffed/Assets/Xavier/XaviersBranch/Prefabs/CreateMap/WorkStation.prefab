@@ -188,6 +188,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1016,6 +1017,7 @@ GameObject:
   - component: {fileID: 6008031404921381350}
   - component: {fileID: 7162310972519266590}
   - component: {fileID: 1320764503049058860}
+  - component: {fileID: 1425738373740636639}
   m_Layer: 5
   m_Name: Button_Close
   m_TagString: Untagged
@@ -1137,6 +1139,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1425738373740636639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3288588345353730970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b987bf68d3dcb4fa6357d17b69718e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonPop
+  popOnEnable: 1
+  popOnClick: 0
+  enableDuration: 0.25
+  enableStartScale: 0.8
+  enableOvershoot: 1.1
+  clickDuration: 0.15
+  clickScale: 1.15
 --- !u!1 &3498949687124643225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,6 +1662,7 @@ GameObject:
   - component: {fileID: 6721489806230678653}
   - component: {fileID: 8213137659560168702}
   - component: {fileID: 7179886786387737580}
+  - component: {fileID: 6738842415871246452}
   m_Layer: 0
   m_Name: Scripts and Trigger
   m_TagString: Untagged
@@ -1722,6 +1744,9 @@ MonoBehaviour:
   linkedStation: {fileID: 6721489806230678653}
   stats: {fileID: 7179886786387737580}
   baseServeTime: 4
+  itemSalePrice: 1
+  stationNumber: 0
+  stationType: 0
 --- !u!114 &7179886786387737580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1736,6 +1761,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInfo: {fileID: 0}
   upgradeButton: {fileID: 7920418680548455428}
+  audioSource: {fileID: 6738842415871246452}
+  sucessSound: {fileID: 8300000, guid: 7324a0447cf157248836d47da3cfa245, type: 3}
+  failSound: {fileID: 8300000, guid: c26655fa8318c62449f732fc2b9e3594, type: 3}
+  openSound: {fileID: 8300000, guid: a5f34fc733c377348a81446a208640dc, type: 3}
+  closeSound: {fileID: 8300000, guid: c974826bbbeaa254db36c79c0ed104bf, type: 3}
   currentWorker: {fileID: 0}
   workerName: {fileID: 9100573207069803312}
   workerIndex: {fileID: 0}
@@ -1803,6 +1833,103 @@ MonoBehaviour:
   upgradeCostCurrent: {fileID: 864613013361418746}
   workerDropdown: {fileID: 3013396962455201664}
   workerStandPoint: {fileID: 7839188296882839054}
+--- !u!82 &6738842415871246452
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4882255037533943247}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -6998145486325228583, guid: 344eb524a44e8fa40bb060c39f9288d3, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5180876421743502509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,7 +2994,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &5651916982542427308
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2924,6 +3051,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!114 &1753201664244538826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3028,6 +3156,7 @@ GameObject:
   - component: {fileID: 7010236646940594287}
   - component: {fileID: 1088228721513482772}
   - component: {fileID: 556778848399292761}
+  - component: {fileID: 6980321320614830519}
   m_Layer: 5
   m_Name: Button_Upgrade
   m_TagString: Untagged
@@ -3149,6 +3278,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6980321320614830519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7920418680548455428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b987bf68d3dcb4fa6357d17b69718e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopButton
+  popOnEnable: 0
+  popOnClick: 1
+  enableDuration: 0.25
+  enableStartScale: 0.8
+  enableOvershoot: 1.1
+  clickDuration: 0.15
+  clickScale: 1.15
 --- !u!1 &8140980961446991340
 GameObject:
   m_ObjectHideFlags: 0
@@ -3660,6 +3808,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1582440803559829011}
+  - component: {fileID: 2859180652870973020}
   m_Layer: 0
   m_Name: Tab
   m_TagString: Untagged
@@ -3688,6 +3837,25 @@ Transform:
   - {fileID: 7225285293261965842}
   m_Father: {fileID: 1989275383747955043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2859180652870973020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9221439480005420842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b987bf68d3dcb4fa6357d17b69718e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopOnEnable
+  popOnEnable: 1
+  popOnClick: 0
+  enableDuration: 0.25
+  enableStartScale: 0.8
+  enableOvershoot: 1.1
+  clickDuration: 0.15
+  clickScale: 1.15
 --- !u!1001 &986573383040884380
 PrefabInstance:
   m_ObjectHideFlags: 0

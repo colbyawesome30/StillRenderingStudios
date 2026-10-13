@@ -9,7 +9,11 @@ public class UpgradeManager : MonoBehaviour
     //Reference to player info
     public PlayerInfo playerInfo;
     [SerializeField] private GameObject upgradeButton;
-
+    public AudioSource audioSource;
+    [SerializeField] private AudioClip sucessSound;
+    [SerializeField] private AudioClip failSound;
+    public AudioClip openSound;
+    public AudioClip closeSound;
     //Reference to worker
     public Worker currentWorker;
     public Text workerName;
@@ -156,6 +160,7 @@ public class UpgradeManager : MonoBehaviour
         if (UpgradesLockedByTutorial)
         {
             Debug.Log("Upgrades are locked until the tutorial reaches the upgrade step.");
+            audioSource.PlayOneShot(failSound);
             return;
         }
 
@@ -163,18 +168,21 @@ public class UpgradeManager : MonoBehaviour
         if (currentUpgradeLevel >= upgrades.Count - 1)
         {
             Debug.Log("Max Level!!!");
+            audioSource.PlayOneShot(failSound);
             return;
         }
 
         if (playerInfo.playerFunds < upgradeCost)
         {
             Debug.Log("Not enough funds to upgrade shop");
+            audioSource.PlayOneShot(failSound);
             return;
         }
 
         // Charge, then apply
         playerInfo.playerFunds -= upgradeCost;
         Debug.Log("Shop Upgraded, paid " + upgradeCost);
+        audioSource.PlayOneShot(sucessSound);
         ApplyNextUpgrade();
 
         // Tutorial

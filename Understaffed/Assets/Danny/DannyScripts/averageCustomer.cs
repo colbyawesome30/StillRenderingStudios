@@ -159,7 +159,7 @@ public class averageCustomer : MonoBehaviour
         cam = Camera.main;
         if (animator == null) animator = GetComponentInChildren<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        if (orderDisplay == null) orderDisplay = GetComponentInChildren<customerOrderDisplay>();
+        if (orderDisplay == null) orderDisplay = GetComponentInChildren<customerOrderDisplay>(true);
 
         OnDifficultyChanged(PlayerInfo.CurrentDifficulty);
         rollDesire();
@@ -320,7 +320,7 @@ public class averageCustomer : MonoBehaviour
                 Debug.Log("Rage");
                 rageStep = 0;
                 rageSmoke.SetActive(true);
-                playerInfo.Result(-100);
+                playerInfo.Result(-100, 0f);
                 int roll = _random.Next(1, 4);
                 if (roll == 1)
                 {
@@ -406,11 +406,14 @@ public class averageCustomer : MonoBehaviour
         {
             currentStation = null;
             changeState(CustomerState.leaving);
+
             float graceSeconds = 3f;
             float patienceRatio = Mathf.Clamp01((patienceTimer + graceSeconds) / maxPatience);
-            int scoreToAdd = Mathf.RoundToInt(patienceRatio * 10 * totalPriceOfItems);
-            playerInfo.Result(scoreToAdd);
-            Debug.Log("Added " + scoreToAdd + "score");
+
+            int payout = totalPriceOfItems * 10;   // matches the $ shown on the bubble
+            playerInfo.Result(payout, patienceRatio);
+            Debug.Log($"Checkout: paid={payout}, satisfaction={patienceRatio:F2}");
+
             int roll = _random.Next(1, 9);
             if (roll == 1 || roll == 2)
             {
@@ -522,4 +525,18 @@ public class averageCustomer : MonoBehaviour
     {
         moveToPosition(position);
     } // to move up in line when someone leaves
+
+    // number of items this customer needs from a station (all items at checkout)
+    public int QuantityFor(foodStation station)
+    {
+        if (station.isCheckout) return desire;
+
+        int total = 0;
+        foreach (CustomerOrderItem item in order)
+        {
+            if (item.stationNumber == station.stationNumber)
+                total += item.quantity;
+        }
+        return Mathf.Max(1, total);
+    }
 }
