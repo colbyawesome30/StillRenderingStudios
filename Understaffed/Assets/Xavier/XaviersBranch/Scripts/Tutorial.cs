@@ -17,6 +17,9 @@ public class Tutorial : MonoBehaviour
     [SerializeField]private RawImage videoDisplay;
     [SerializeField]private GameObject videoBorder;
 
+    public AudioSource audioSource;
+    [SerializeField] private AudioClip buttonClick;
+
     [System.Serializable]public class StepInformation
     {
         public string stepName;
@@ -115,6 +118,7 @@ public class Tutorial : MonoBehaviour
             CheckStepCompletion();
             UpdatePreviousButtonState();
             Debug.Log("Tutorial Step: " + TutorialStep);
+            audioSource.PlayOneShot(buttonClick);
         }
         if (TutorialStep == tutorialSteps.Count - 1)
         {
@@ -133,6 +137,7 @@ public class Tutorial : MonoBehaviour
         }
         UpdatePreviousButtonState();
         Debug.Log("Tutorial Step: " + TutorialStep);
+        audioSource.PlayOneShot(buttonClick);
     }
 
     public void SetText()

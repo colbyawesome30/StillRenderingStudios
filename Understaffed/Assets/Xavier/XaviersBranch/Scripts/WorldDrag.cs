@@ -9,6 +9,7 @@ public class WorldDrag : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float liftHeight = 1.5f;
+    public DragWorker dragWorker;
     public static bool AnyDragging { get; private set; }
 
     private Worker worker;
@@ -28,6 +29,7 @@ public class WorldDrag : MonoBehaviour
     private void Awake()
     {
         if (_camera == null) _camera = Camera.main;
+        dragWorker = FindAnyObjectByType<DragWorker>();
     }
 
     //Try to start dragging
@@ -71,6 +73,7 @@ public class WorldDrag : MonoBehaviour
         Roster.DraggedWorker = worker;   // roster turns yellow
         if (navigation != null) navigation.IsSuspended = true;
         if (agent != null) agent.enabled = false;
+        dragWorker.audioSource.PlayOneShot(dragWorker.clickSound);
     }
 
     //Continue dragging and drag character based on mouse position

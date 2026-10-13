@@ -1374,6 +1374,10 @@ PrefabInstance:
       value: Road A
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 452c25618191f1845a2a595521fc2fcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 452c25618191f1845a2a595521fc2fcc, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
