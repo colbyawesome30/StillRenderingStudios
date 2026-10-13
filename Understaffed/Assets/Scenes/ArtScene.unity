@@ -1350,7 +1350,7 @@ MonoBehaviour:
   - itemName: Ice Cream
     price: 6
   stationNumber: 0
-  stationType: 2
+  stationType: 0
 --- !u!23 &41625361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3504,7 +3504,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   baseServeTime: 0.2
   items:
-  - itemName: Red Soda
+  - itemName: Cherry Soda
     price: 3
   stationNumber: 0
   stationType: 0
@@ -6363,6 +6363,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 5566856899577540777, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: stationName
+      value: 'Station: Deli'
+      objectReference: {fileID: 0}
     - target: {fileID: 5727816746161135053, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -6401,7 +6405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: stationType
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: items.Array.size
@@ -9728,7 +9732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1975244328357621654, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_Name
-      value: WorkStation(Basic) (1)
+      value: Checkout5
       objectReference: {fileID: 0}
     - target: {fileID: 1975244328357621654, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -10238,6 +10242,32 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a23cb922c0f90a4bb3559dac03448e0, type: 3}
+--- !u!1 &478519848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5652441464574398012, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
+  m_PrefabInstance: {fileID: 629514897566594459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &478519849 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 185158526507488342, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
+  m_PrefabInstance: {fileID: 629514897566594459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &478519854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478519848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1b66ce844ab846408ecc3310f5c9d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::moneyPopupSpawner
+  uiPopupPrefab: {fileID: 4099954142945541876, guid: 4d2a481cb9393cc4db18b71b353f9956, type: 3}
+  worldPopupPrefab: {fileID: 7125926211330790263, guid: 0ae192e33d146fc45a4e9d93c8531861, type: 3}
+  uiAnchor: {fileID: 2062662772}
+  worldPopupHeight: 2
 --- !u!1 &479181711 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 72d4dd167676f4c4492bc9d75bb1979e, type: 3}
@@ -13417,7 +13447,7 @@ MonoBehaviour:
   - itemName: Chocolate
     price: 2
   stationNumber: 0
-  stationType: 1
+  stationType: 0
 --- !u!23 &629923405
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19842,7 +19872,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   baseServeTime: 0.2
   items:
-  - itemName: Soda
+  - itemName: Grape Soda
     price: 2
   stationNumber: 0
   stationType: 0
@@ -23572,7 +23602,7 @@ MonoBehaviour:
   baseServeTime: 0.2
   items: []
   stationNumber: 1
-  stationType: 2
+  stationType: 0
 --- !u!23 &1147924829
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27729,6 +27759,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 5566856899577540777, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: stationName
+      value: 'Station: Bakery'
+      objectReference: {fileID: 0}
     - target: {fileID: 5727816746161135053, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -27779,7 +27813,7 @@ PrefabInstance:
       objectReference: {fileID: 1245731220}
     - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: stationType
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: items.Array.size
@@ -29189,7 +29223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 824035340407141186, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_Name
-      value: WorkStation (1)
+      value: Checkout2
       objectReference: {fileID: 0}
     - target: {fileID: 824035340407141186, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -30236,8 +30270,8 @@ MonoBehaviour:
   stats: {fileID: 0}
   baseServeTime: 0.2
   items:
-  - itemName: 
-    price: 0
+  - itemName: Big Chew
+    price: 2
   stationNumber: 0
   stationType: 0
 --- !u!23 &1403337076
@@ -33629,7 +33663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 824035340407141186, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_Name
-      value: WorkStation (2)
+      value: Checkout4
       objectReference: {fileID: 0}
     - target: {fileID: 824035340407141186, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -39198,7 +39232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 824035340407141186, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_Name
-      value: WorkStation
+      value: Checkout3
       objectReference: {fileID: 0}
     - target: {fileID: 824035340407141186, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -39473,7 +39507,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   baseServeTime: 0.2
   items:
-  - itemName: Cinnamon Gum
+  - itemName: CinnaGum
     price: 2
   stationNumber: 0
   stationType: 0
@@ -39590,7 +39624,7 @@ MonoBehaviour:
   baseServeTime: 0.2
   items: []
   stationNumber: 0
-  stationType: 2
+  stationType: 0
 --- !u!23 &1861391233
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39686,7 +39720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 824035340407141186, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_Name
-      value: WorkStation (3)
+      value: Checkout1
       objectReference: {fileID: 0}
     - target: {fileID: 824035340407141186, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -43950,6 +43984,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062566095}
   m_Mesh: {fileID: 1606996404801566785, guid: 75e8a28c62a2cfb4fbc0b0c4039c555c, type: 3}
+--- !u!1 &2062662771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2062662772}
+  m_Layer: 5
+  m_Name: MoneyPopupAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2062662772
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062662771}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 478519849}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 270, y: 300}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2065669523
 GameObject:
   m_ObjectHideFlags: 0
@@ -45331,7 +45400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2672051852245350267, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: countdownTime
-      value: 600
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5652441464574398012, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: m_Name
@@ -45339,8 +45408,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 185158526507488342, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2062662772}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5652441464574398012, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 478519854}
   m_SourcePrefab: {fileID: 100100000, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
 --- !u!1001 &1705460925335090210
 PrefabInstance:
@@ -45676,11 +45751,11 @@ PrefabInstance:
       objectReference: {fileID: 148652407}
     - target: {fileID: 5774840839917116033, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: _difficulty
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5774840839917116033, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: playerFunds
-      value: 10000
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5960062390718804434, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: m_Name
@@ -45934,11 +46009,11 @@ SceneRoots:
   - {fileID: 1358338426}
   - {fileID: 1317659609}
   - {fileID: 273801224}
-  - {fileID: 466542065}
-  - {fileID: 1859115066}
-  - {fileID: 1555070483}
   - {fileID: 1864016682}
   - {fileID: 1378436449}
+  - {fileID: 1859115066}
+  - {fileID: 1555070483}
+  - {fileID: 466542065}
   - {fileID: 1576827121}
   - {fileID: 1336234897}
   - {fileID: 1798731951}

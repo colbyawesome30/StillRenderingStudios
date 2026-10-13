@@ -6,10 +6,10 @@ public class customerOrderDisplay : MonoBehaviour
     private averageCustomer customer; 
     [SerializeField] private TextMeshProUGUI orderText;
 
-	[Header("Text color by next station")]
+	[Header("Text color by station")]
 	[SerializeField] private Color shelfColor = Color.black;
-	[SerializeField] private Color deliColor = new Color(1.0f, 0.4f, 0.4f);
-	[SerializeField] private Color bakeryColor = new Color(0.5f, 0.2f, 0.1f);
+	[SerializeField] private Color deliColor = Color.yellow;
+	[SerializeField] private Color bakeryColor = Color.red;
 	[SerializeField] private Color checkoutColor = new Color(0.5f, 0.9f, 0.5f);
 
 

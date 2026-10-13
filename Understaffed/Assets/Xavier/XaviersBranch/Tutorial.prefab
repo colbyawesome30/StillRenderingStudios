@@ -1135,6 +1135,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1207,28 +1208,28 @@ MonoBehaviour:
     video: {fileID: 0}
     stepComplete: 1
     pauseTimer: 1
-    freezeGame: 1
+    freezeGame: 0
   - stepName: 'New Beginnings '
     stepID: 1
     stepDescription: Please drag a character from the roster on a work station.
     video: {fileID: 32900000, guid: 5df6b00c8be7ffc479cf3c4bd6fb10c8, type: 3}
     stepComplete: 0
     pauseTimer: 1
-    freezeGame: 1
+    freezeGame: 0
   - stepName: Upgrades People Upgrades!
     stepID: 2
     stepDescription: Select a workstation. Watch the green circle and pop up appear.
     video: {fileID: 32900000, guid: e0ce9a322bea51f4e9da8fb9665048aa, type: 3}
     stepComplete: 0
     pauseTimer: 1
-    freezeGame: 1
+    freezeGame: 0
   - stepName: Better Service
     stepID: 2
     stepDescription: Upgrade the work station.
     video: {fileID: 32900000, guid: 990b52855eb18954797e353fb2af0b45, type: 3}
     stepComplete: 0
     pauseTimer: 1
-    freezeGame: 1
+    freezeGame: 0
   - stepName: Role Shift
     stepID: 2
     stepDescription: Drag the worker to a different station.
@@ -1238,7 +1239,8 @@ MonoBehaviour:
     freezeGame: 0
   - stepName: The Customer Is Always Right
     stepID: 2
-    stepDescription: Do not let the customers become unhappy.
+    stepDescription: Do not let the customers become unhappy. Move employees based
+      on customer needs.
     video: {fileID: 0}
     stepComplete: 1
     pauseTimer: 1

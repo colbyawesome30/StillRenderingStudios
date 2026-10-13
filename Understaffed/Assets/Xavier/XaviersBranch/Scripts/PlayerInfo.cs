@@ -94,8 +94,14 @@ public class PlayerInfo : MonoBehaviour
 
         currentCustomers++;                   // count first so the average uses the new total
         currentDayScore += points;            // setter fires the event and refreshes stars if the score changed
-        playerFunds = Mathf.Clamp(playerFunds + points, 0, int.MaxValue);
+        // playerFunds = Mathf.Clamp(playerFunds + points, 0, int.MaxValue); ------------- money gained is now determined by orders -------------
         UpdateStarRating();                   // also refresh when points is 0, since the setter won't fire
+    }
+
+    public void AddFunds(int amount)
+    {
+        playerFunds = Mathf.Max(0, playerFunds + amount);
+        CurrentDayScoreChanged?.Invoke(this, EventArgs.Empty); // lets the UI refresh
     }
 
     public void EndGame()

@@ -423,6 +423,13 @@ public class averageCustomer : MonoBehaviour
             int scoreToAdd = Mathf.RoundToInt(patienceRatio * playerInfo.maxScorePerCustomer);
             playerInfo.Result(scoreToAdd);
             Debug.Log("Added " + scoreToAdd + "score");
+
+            moneyPopupSpawner.SpawnUIPopup(orderTotal);
+            moneyPopupSpawner.SpawnWorldPopup(orderTotal, station.transform.position);
+
+            playerInfo.AddFunds(orderTotal);
+            playerInfo.Result(scoreToAdd);
+
             int roll = _random.Next(1, 9);
             if (roll == 1 || roll == 2)
             {
