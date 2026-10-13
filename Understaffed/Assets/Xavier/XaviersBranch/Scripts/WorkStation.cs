@@ -59,6 +59,11 @@ public class WorkStation : MonoBehaviour, IInteractable
             {
                 station.SetVisuals(false);
             }
+            upgradeManager.audioSource.PlayOneShot(upgradeManager.openSound, 0.5f);
+        }
+        else
+        {
+            upgradeManager.audioSource.PlayOneShot(upgradeManager.closeSound, 0.5f);
         }
         SetVisuals(isSelected);
     }

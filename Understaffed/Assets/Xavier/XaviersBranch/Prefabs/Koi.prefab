@@ -5697,6 +5697,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   liftHeight: 1
+  dragWorker: {fileID: 0}
 --- !u!114 &8600456195269217826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10635,6 +10636,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 376101159915144232}
     m_Modifications:
+    - target: {fileID: 2561216785661453401, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2723901272870709410, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -17,6 +17,11 @@ public class PayWall : MonoBehaviour, IInteractable
     [SerializeField] private Text areaNameText;
     [SerializeField] private Rebake NavRebake;
     private NavMeshModifier navModifier;
+    public AudioSource audioSource;
+    [SerializeField] private AudioClip sucessSound;
+    [SerializeField] private AudioClip failSound;
+    [SerializeField] private AudioClip openSound;
+    [SerializeField] private AudioClip closeSound;
 
     private static PayWall openWall;
     public static bool TabOpen => openWall != null && openWall.puchaseTab != null && openWall.puchaseTab.activeSelf;
@@ -95,6 +100,10 @@ public class PayWall : MonoBehaviour, IInteractable
 
         if (Active) openWall = this;
         else if (openWall == this) openWall = null;
+
+        if (Active) audioSource.PlayOneShot(openSound, 0.5f);
+        if (!Active) audioSource.PlayOneShot(closeSound, 0.5f);
+
     }
 
     //close tab, return materials, and also check we have the right amound of funds before everything
@@ -103,9 +112,10 @@ public class PayWall : MonoBehaviour, IInteractable
         if (playerInfo.playerFunds < purchasePrice)
         {
             Debug.Log("Not enough funds to buy land");
+            audioSource.PlayOneShot(failSound);
             return;
         }
-
+        audioSource.PlayOneShot(sucessSound);
         playerInfo.playerFunds -= purchasePrice;
         purchasedLand = true;
         SetPurchasedLand();

@@ -23,6 +23,11 @@ public class Roster : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBe
     [SerializeField] private float returnTime = 0.12f;
     [SerializeField] private float returnUndershoot = 0.95f; // dips under normal size, then settles
 
+    public AudioSource audioSource;
+    [SerializeField] private AudioClip sucessSound;
+    [SerializeField] private AudioClip failSound;
+    [SerializeField] private AudioClip clickSound;
+
     private Vector3 originalScale;
     private Coroutine popRoutine;
 
@@ -95,7 +100,15 @@ public class Roster : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBe
         UIDragging = true;
         bool hit = RaycastGround(eventData.position, out Vector3 spawnPoint);
         Debug.Log("Roster: ground hit = " + hit);
-        if (!hit) return;
+        if (!hit)
+        {
+            audioSource.PlayOneShot(failSound);
+            return;
+        }
+        else
+        {
+            audioSource.PlayOneShot(clickSound);
+        }
 
         draggedInstance = WorkerSpawnManager.Instance?.BeginManualControl(worker, spawnPoint + Vector3.up * liftHeight);
 
@@ -126,6 +139,8 @@ public class Roster : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBe
 
         DragWorker.Instance.ResolveDrop(worker, draggedInstance, dropPosition);
         draggedInstance = null;
+
+        audioSource.PlayOneShot(sucessSound);
 
         //Tutorial
         if (tutorial != null && !tutorial.tutorialComplete && tutorial.TutorialStep == 1)

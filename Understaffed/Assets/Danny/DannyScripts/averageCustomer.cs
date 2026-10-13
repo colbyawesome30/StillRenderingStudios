@@ -406,11 +406,14 @@ public class averageCustomer : MonoBehaviour
         {
             currentStation = null;
             changeState(CustomerState.leaving);
+
             float graceSeconds = 3f;
             float patienceRatio = Mathf.Clamp01((patienceTimer + graceSeconds) / maxPatience);
-            int scoreToAdd = Mathf.RoundToInt(patienceRatio * 10 * totalPriceOfItems);
-            playerInfo.Result(scoreToAdd, patienceRatio);
-            Debug.Log("Added " + scoreToAdd + "score");
+
+            int payout = totalPriceOfItems * 10;   // matches the $ shown on the bubble
+            playerInfo.Result(payout, patienceRatio);
+            Debug.Log($"Checkout: paid={payout}, satisfaction={patienceRatio:F2}");
+
             int roll = _random.Next(1, 9);
             if (roll == 1 || roll == 2)
             {

@@ -20381,6 +20381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1003610335}
   - component: {fileID: 1003610336}
+  - component: {fileID: 1003610337}
   m_Layer: 0
   m_Name: Geometry
   m_TagString: Untagged
@@ -20523,6 +20524,21 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 1208f94ad74e396439a499b8dd35c4da, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &1003610337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003610334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a29fc286bc4c84cb76112177c5ab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Rebake
+  surface: {fileID: 0}
+  rebuildAsync: 1
+  ignoredObjects: []
 --- !u!1001 &1009686206
 PrefabInstance:
   m_ObjectHideFlags: 0
