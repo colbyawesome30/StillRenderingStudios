@@ -539,4 +539,39 @@ public class averageCustomer : MonoBehaviour
         }
         return Mathf.Max(1, total);
     }
+
+    //Repick the next station or checkout
+    public void OnStationRemoved(foodStation station)
+    {
+        if (currentStation != station) return;
+        beingServed = false;
+        currentStation = null;
+        if (currentState == CustomerState.inLine ||
+            currentState == CustomerState.toCurrentLineEnd ||
+            currentState == CustomerState.atStation)
+            changeState(CustomerState.toCurrentLineEnd);
+    }
+
+    //No order for station anymore drop the order
+    public void DropOrderFor(int stationNumber)
+    {
+        int removedPrice = 0, removedQty = 0;
+        order.RemoveAll(i =>
+        {
+            if (i.stationNumber != stationNumber) return false;
+            removedPrice += i.totalPriceOfItems;
+            removedQty += i.quantity;
+            return true;
+        });
+        totalPriceOfItems -= removedPrice;
+        desire = Mathf.Max(0, desire - removedQty);
+        if (orderDisplay != null) orderDisplay.UpdateDisplay();
+    }
+
+    //Change order items
+    public void RenameOrderItems(int stationNumber, string newName)
+    {
+        foreach (var i in order) if (i.stationNumber == stationNumber) i.itemName = newName;
+        if (orderDisplay != null) orderDisplay.UpdateDisplay();
+    }
 }

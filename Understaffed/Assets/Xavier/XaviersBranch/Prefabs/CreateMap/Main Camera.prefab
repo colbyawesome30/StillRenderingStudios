@@ -156,8 +156,8 @@ MonoBehaviour:
   _camera: {fileID: 3265683538097297081}
   _hitLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
-  _drawDebugRay: 0
+    m_Bits: 503
+  _drawDebugRay: 1
   gridField: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb44bc643155058469b2edef5352a246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerFunds: 100
+  playerFunds: 10000
   TutorialComplete: 0
   day: 0
   currentCustomers: 0

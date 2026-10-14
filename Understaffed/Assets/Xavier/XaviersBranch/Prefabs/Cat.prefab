@@ -75,9 +75,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workerName: Cat
-  affectsStation: 1
+  affectsStation: 0
   workSpeed: 0
-  affectsLine: 1
+  affectsLine: 0
   lineCapacity: 0
 --- !u!195 &7621663359778693790
 NavMeshAgent:
@@ -146,6 +146,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   liftHeight: 1
+  dragWorker: {fileID: 0}
 --- !u!114 &4908747318926749171
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -27,7 +27,7 @@ public class InteractScript : MonoBehaviour
 
     private void Update()
     {
-        if (WorkStation.UIOpen) return;
+        if (WorkStation.UIOpen || BuildMode.Active) return;
 
         UpdateGroundHover();
 
@@ -65,6 +65,7 @@ public class InteractScript : MonoBehaviour
                 interactable.Interact(hit);
             }
         }
+        Debug.Log(hit.collider.name);
     }
 
     private void UpdateGroundHover()

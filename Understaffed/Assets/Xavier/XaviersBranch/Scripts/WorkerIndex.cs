@@ -174,4 +174,23 @@ public class WorkerIndex : MonoBehaviour
         workerStationMap.TryGetValue(worker, out UpgradeManager station);
         return station;
     }
+
+    //Station released from build editor
+    public void ReleaseStation(UpgradeManager station)
+    {
+        if (station == null) return;
+
+        var assigned = new List<Worker>();
+        foreach (var keyvalue in workerStationMap)
+            if (keyvalue.Value == station) assigned.Add(keyvalue.Key);
+
+        foreach (var worker in assigned)
+        {
+            workerStationMap.Remove(worker);
+            WorkerSpawnManager.Instance?.UpdateWorkerDestination(worker, station, null);
+        }
+
+        //The default worker isn't in the map
+        WorkerSpawnManager.Instance?.UpdateWorkerDestination(GetDefaultWorker(), station, null);
+    }
 }

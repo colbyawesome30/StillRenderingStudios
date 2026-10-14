@@ -44,6 +44,10 @@ public class foodStation : MonoBehaviour
     public int stationNumber;          //Auto generated
     public StationType stationType = StationType.Canned_Items;    // pick this in the Inspector
     public string foodStationType => stationType.ToString();   // "Burger", "Shake", "Fries"
+
+    private static int nextStationNumber = 0;
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics() => nextStationNumber = 0;
     //Change end
 
     public void addCustomer(averageCustomer customer)
@@ -111,15 +115,7 @@ public class foodStation : MonoBehaviour
     {
         if (!AllStations.Contains(this))
         {
-            // auto-assign the next free number
-            if (!isCheckout)
-            {
-                int next = 0;
-                foreach (foodStation s in AllStations)
-                    if (!s.isCheckout && s.stationNumber >= next) next = s.stationNumber + 1;
-                stationNumber = next;
-            }
-
+            if (!isCheckout) stationNumber = nextStationNumber++;
             AllStations.Add(this);
         }
     
@@ -190,4 +186,23 @@ public class foodStation : MonoBehaviour
         return position;
     }
     //Change end
+
+    //Change lines
+    public void RefreshLine() => updateLinePositions();
+
+    //Destroying the station update everything
+    public void Decommission()
+    {
+        AllStations.Remove(this);
+        var waiting = line.ToArray();
+        line.Clear();
+        beingServed = null;
+
+        // Strip this station's items from every order, so no one pays for food they never got
+        if (!isCheckout)
+            foreach (var customer in FindObjectsByType<averageCustomer>())
+                customer.DropOrderFor(stationNumber);
+
+        foreach (var customer in waiting) customer.OnStationRemoved(this);
+    }
 }

@@ -32,6 +32,8 @@ public class PayWall : MonoBehaviour, IInteractable
     // Remembers whether each collider was enabled, so ones that were off stay off
     private readonly Dictionary<Collider, bool> originalColliders = new Dictionary<Collider, bool>();
 
+    public static void CloseOpen() { if (openWall != null) openWall.ToggleTab(false); }
+
     //On awake get children and add to disctionary as well as lists
     private void Awake()
     {
@@ -85,7 +87,8 @@ public class PayWall : MonoBehaviour, IInteractable
     //Interact with hidden area
     public void Interact(RaycastHit hit)
     {
-        if (PayWall.TabOpen|| WorkStation.UIOpen) return;   // a workstation is selected, ignore the paywall
+        
+        if (BuildMode.Active || PayWall.TabOpen || WorkStation.UIOpen) return;
 
         if (!purchasedLand)
         {

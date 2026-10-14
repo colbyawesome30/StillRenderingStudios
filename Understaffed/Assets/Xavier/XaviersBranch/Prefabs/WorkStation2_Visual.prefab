@@ -134,7 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 824035340407141186, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_Name
-      value: WorkStation(Basic)
+      value: WorkStation_Visual
       objectReference: {fileID: 0}
     - target: {fileID: 1025776336643815931, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_LocalPosition.x
@@ -324,22 +324,6 @@ PrefabInstance:
       propertyPath: upgrades.Array.data[5].upgradeAddVisuals.Array.data[3].itemPrefab
       value: 
       objectReference: {fileID: 919132149155446097, guid: 88fe59ec97eb5ee41a579bb0ce8bc49f, type: 3}
-    - target: {fileID: 7179886786387737580, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
-      propertyPath: upgrades.Array.data[4].upgradeAddVisuals.Array.data[3].itemTransform
-      value: 
-      objectReference: {fileID: 4472678903502418768}
-    - target: {fileID: 7179886786387737580, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
-      propertyPath: upgrades.Array.data[4].upgradeAddVisuals.Array.data[4].itemTransform
-      value: 
-      objectReference: {fileID: 4472678903502418768}
-    - target: {fileID: 7179886786387737580, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
-      propertyPath: upgrades.Array.data[4].upgradeAddVisuals.Array.data[5].itemTransform
-      value: 
-      objectReference: {fileID: 4472678903502418768}
-    - target: {fileID: 7179886786387737580, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
-      propertyPath: upgrades.Array.data[5].upgradeAddVisuals.Array.data[3].itemTransform
-      value: 
-      objectReference: {fileID: 4472678903502418768}
     - target: {fileID: 7839188296882839054, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.75
@@ -376,6 +360,16 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 9093523331838678971, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
     - {fileID: 103699967483110349, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+    - {fileID: 9127320404343882028, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+    - {fileID: 4475304813051526224, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+    - {fileID: 955939685181443686, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+    - {fileID: 4882255037533943247, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+    - {fileID: 7266566296864118528, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+    - {fileID: 4277867364158507171, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+    - {fileID: 8366474238591732393, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+    - {fileID: 3498949687124643225, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+    - {fileID: 6555084970968317088, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+    - {fileID: 5429928895914988005, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4664218168942270424, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       insertIndex: 2
@@ -388,11 +382,6 @@ PrefabInstance:
       addedObject: {fileID: 5508950459170847754}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
---- !u!4 &4472678903502418768 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3320507820564852612, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
-  m_PrefabInstance: {fileID: 1154880314284809428}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5817617385967029004 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4664218168942270424, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}

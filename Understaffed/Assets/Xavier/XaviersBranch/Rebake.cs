@@ -41,20 +41,24 @@ public class Rebake : MonoBehaviour
     }
 
     //Rebake nav mesh
+    public event System.Action Rebaked;
+
     private IEnumerator RebakeNextFrame()
     {
         yield return null;
 
-        //Rebuild with the latest areas purchased
         while (buildOperation != null && !buildOperation.isDone) yield return null;
 
-        //Rebuild nav mesh component
         if (!rebuildAsync || surface.navMeshData == null)
         {
             surface.BuildNavMesh();
-            yield break;
+        }
+        else
+        {
+            buildOperation = surface.UpdateNavMesh(surface.navMeshData);
+            yield return buildOperation;
         }
 
-        buildOperation = surface.UpdateNavMesh(surface.navMeshData);
+        Rebaked?.Invoke();
     }
 }
