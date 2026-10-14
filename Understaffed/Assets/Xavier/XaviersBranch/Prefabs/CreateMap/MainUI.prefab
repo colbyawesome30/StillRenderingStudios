@@ -137,6 +137,41 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &412519768391507832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4723085879687884151}
+  m_Layer: 5
+  m_Name: MoneyPopupAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4723085879687884151
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412519768391507832}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 185158526507488342}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 270, y: 300}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &898881786304123337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,6 +1052,14 @@ MonoBehaviour:
   notDeployedColor: {r: 0.6, g: 1, b: 0.6, a: 1}
   draggingColor: {r: 1, g: 0.92, b: 0.4, a: 1}
   deployedColor: {r: 1, g: 0.5, b: 0.5, a: 1}
+  pressedScale: 1.15
+  growTime: 0.08
+  returnTime: 0.12
+  returnUndershoot: 0.95
+  audioSource: {fileID: 0}
+  sucessSound: {fileID: 0}
+  failSound: {fileID: 0}
+  clickSound: {fileID: 0}
   worker: {fileID: 4486769449451301319, guid: f6ae11793c3fd2041a55029ead663928, type: 3}
 --- !u!1 &4686080658174758618
 GameObject:
@@ -1351,6 +1394,7 @@ GameObject:
   - component: {fileID: 7650861668978513041}
   - component: {fileID: 6028243826022513343}
   - component: {fileID: 2672051852245350267}
+  - component: {fileID: 6549740733255051626}
   m_Layer: 5
   m_Name: MainUI
   m_TagString: Untagged
@@ -1374,6 +1418,7 @@ RectTransform:
   - {fileID: 1875174626876212696}
   - {fileID: 303915445005971099}
   - {fileID: 5535470361293501701}
+  - {fileID: 4723085879687884151}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1399,6 +1444,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1456,11 +1502,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3433e13c00cbb4792864e2445297b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 60
+  countdownTime: 150
   pauseTimer: 0
   tutorial: {fileID: 0}
   timerText: {fileID: 2888154999441318416}
   fundsText: {fileID: 3811180501422077486}
+--- !u!114 &6549740733255051626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652441464574398012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1b66ce844ab846408ecc3310f5c9d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::moneyPopupSpawner
+  uiPopupPrefab: {fileID: 4099954142945541876, guid: 4d2a481cb9393cc4db18b71b353f9956, type: 3}
+  worldPopupPrefab: {fileID: 7125926211330790263, guid: 0ae192e33d146fc45a4e9d93c8531861, type: 3}
+  uiAnchor: {fileID: 4723085879687884151}
+  worldPopupHeight: 2
 --- !u!1 &6127404499382529854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,6 +1834,14 @@ MonoBehaviour:
   notDeployedColor: {r: 0.6, g: 1, b: 0.6, a: 1}
   draggingColor: {r: 1, g: 0.92, b: 0.4, a: 1}
   deployedColor: {r: 1, g: 0.5, b: 0.5, a: 1}
+  pressedScale: 1.15
+  growTime: 0.08
+  returnTime: 0.12
+  returnUndershoot: 0.95
+  audioSource: {fileID: 0}
+  sucessSound: {fileID: 0}
+  failSound: {fileID: 0}
+  clickSound: {fileID: 0}
   worker: {fileID: 4486769449451301319, guid: 2ef65f8ff15409c408f6362ffdc10bde, type: 3}
 --- !u!1 &8662126950758457397
 GameObject:
