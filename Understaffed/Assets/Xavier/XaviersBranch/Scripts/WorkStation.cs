@@ -20,6 +20,7 @@ public class WorkStation : MonoBehaviour, IInteractable
     [SerializeField] private Transform stationRoot;
     private Transform runtimeRoot;
     public bool HasRoot => runtimeRoot != null || stationRoot != null;
+    public bool lockedInBuildMode = false;
 
     //Station root
     public Transform Root

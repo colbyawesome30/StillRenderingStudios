@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
 
 public class StationMover : MonoBehaviour
 {
@@ -45,6 +46,7 @@ public class StationMover : MonoBehaviour
     private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
     private MaterialPropertyBlock block;
     private List<Renderer> tinted;
+    private Coroutine blinkRoutine;
 
     //Set references
     private void Awake()
@@ -136,6 +138,14 @@ public class StationMover : MonoBehaviour
         }
 
         if (hitStation == null) { Select(null); return; }
+
+        Transform hitRoot = ResolveRoot(hitStation);
+        if (IsLocked(hitRoot))
+        {
+            Select(null);
+            BlinkRed(hitRoot);
+            return;
+        }
 
         Select(hitStation);
         if (BuildMode.MoveMode)
@@ -428,4 +438,43 @@ public class StationMover : MonoBehaviour
         (Input.touchCount > 0
             ? EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)
             : EventSystem.current.IsPointerOverGameObject());
+
+    //Check is station is locked
+    private bool IsLocked(Transform stationRoot)
+    {
+        foreach (var ws in stationRoot.GetComponentsInChildren<WorkStation>(true))
+            if (ws.lockedInBuildMode) return true;
+        foreach (var fs in stationRoot.GetComponentsInChildren<foodStation>(true))
+            if (fs.lockedInBuildMode) return true;
+        return false;
+    }
+
+    //Call blink red when selected
+    private void BlinkRed(Transform target)
+    {
+        if (blinkRoutine != null) return;   // already blinking
+        if (audioSource != null) audioSource.PlayOneShot(failSound);
+        blinkRoutine = StartCoroutine(BlinkRoutine(target));
+    }
+
+    //Blink red
+    private IEnumerator BlinkRoutine(Transform target)
+    {
+        var renderers = new List<Renderer>();
+        foreach (var r in target.GetComponentsInChildren<Renderer>(true))
+            if (r is MeshRenderer || r is SkinnedMeshRenderer) renderers.Add(r);
+
+        var redBlock = new MaterialPropertyBlock();
+        redBlock.SetColor(ColorId, invalidColor);
+        redBlock.SetColor(BaseColorId, invalidColor);
+
+        for (int i = 0; i < 2; i++)
+        {
+            foreach (var r in renderers) if (r != null) r.SetPropertyBlock(redBlock);
+            yield return new WaitForSecondsRealtime(0.15f);
+            foreach (var r in renderers) if (r != null) r.SetPropertyBlock(null);
+            yield return new WaitForSecondsRealtime(0.15f);
+        }
+        blinkRoutine = null;
+    }
 }

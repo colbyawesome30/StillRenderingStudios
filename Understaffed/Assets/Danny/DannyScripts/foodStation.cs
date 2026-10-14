@@ -20,7 +20,8 @@ public class foodStation : MonoBehaviour
     private averageCustomer beingServed;
     //Time left till done
     private float serveTimer;
-    
+    private float serveTotal;   // saved when serving starts so the conveyor belt can work out progress
+    public bool lockedInBuildMode = false;
     public enum StationType
     {
         Deli_Meat,
@@ -67,11 +68,6 @@ public class foodStation : MonoBehaviour
         }
         //Change end
 
-        //---------------------------------------------------------------------
-        //No longer needed
-        // line.Remove(customer);
-        //---------------------------------------------------------------------
-
         updateLinePositions();
     }
 
@@ -82,11 +78,6 @@ public class foodStation : MonoBehaviour
         //New Changes
         Vector3 position = SnapToNavMesh(lineStart.position + lineDirection.forward * (index * lineSpacing));
         //Change end
-
-        //---------------------------------------------------------------------
-        //No longer needed
-        // Vector3 position = lineStart.position + lineDirection.forward * (index * lineSpacing);
-        //---------------------------------------------------------------------
 
         return position;
     }
@@ -100,12 +91,6 @@ public class foodStation : MonoBehaviour
             //Change end
 
             line[i].moveToLinePosition(newPosition);
-
-            
-            //---------------------------------------------------------------------
-            //No longer needed
-            // Vector3 newPosition = lineStart.position + lineDirection.forward * (i * lineSpacing);
-            //---------------------------------------------------------------------
         }
 
     }
@@ -164,6 +149,7 @@ public class foodStation : MonoBehaviour
             beingServed = line[0];
             beingServed.SetBeingServed(true);
             serveTimer = ServeTime * beingServed.QuantityFor(this);
+            serveTotal = serveTimer;
         }
 
         if (beingServed != null)
@@ -186,6 +172,11 @@ public class foodStation : MonoBehaviour
         return position;
     }
     //Change end
+
+    // conveyor belt uses these to know how many items to send down
+    public bool IsServing => beingServed != null;
+    public int ServeItemCount => beingServed == null ? 0 : beingServed.QuantityFor(this);
+    public float ServeProgress => (beingServed == null || serveTotal <= 0f) ? 0f : 1f - Mathf.Clamp01(serveTimer / serveTotal);   // 0 at start, 1 when done
 
     //Change lines
     public void RefreshLine() => updateLinePositions();

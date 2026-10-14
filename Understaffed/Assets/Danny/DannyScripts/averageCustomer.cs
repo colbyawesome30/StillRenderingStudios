@@ -7,10 +7,10 @@ using System.Linq;
 [System.Serializable]
 public class CustomerOrderItem
 {
-    public int stationNumber; // 0 = burger 1 = shake etc or whatever we do
+    public int stationNumber; // which station this item comes from
     public string itemName;
     public int quantity;
-    public int totalPriceOfItems; // total price of items in order, used for scoring
+    public int totalPriceOfItems; // total price of this line of the order, used for scoring and refunds
 }
 
 public class averageCustomer : MonoBehaviour
@@ -56,8 +56,8 @@ public class averageCustomer : MonoBehaviour
     public int desire; // random int that determines how many items customer wants
     public List<CustomerOrderItem> order = new List<CustomerOrderItem>(); // list of items customer wants
     [SerializeField] private int totalPriceOfItems; // total price of items in order, used for scoring
-    // averageCustomer.cs (anywhere in the class)
     public int TotalPrice => totalPriceOfItems;
+
     //-----------------------------------------------------------------------
 
     private enum CustomerState
@@ -339,6 +339,7 @@ public class averageCustomer : MonoBehaviour
                 agent.autoBraking = false;
                 Debug.Log("Leaving");
                 patienceBar.SetActive(false);
+                if (orderDisplay != null) orderDisplay.gameObject.SetActive(false);   // order is finished, hide the bubble
                 rageStep = 1;   // skips rageLeaving: goes exitPoint then despawnPoint
                 moveTo(exitPoint.transform);
                 break;
@@ -413,6 +414,10 @@ public class averageCustomer : MonoBehaviour
             int payout = totalPriceOfItems * 10;   // matches the $ shown on the bubble
             playerInfo.Result(payout, patienceRatio);
             Debug.Log($"Checkout: paid={payout}, satisfaction={patienceRatio:F2}");
+
+            // Money visuals at the cashier
+            moneyPopupSpawner.SpawnUIPopup(payout);
+            moneyPopupSpawner.SpawnWorldPopup(payout, station.transform.position);
 
             int roll = _random.Next(1, 9);
             if (roll == 1 || roll == 2)
