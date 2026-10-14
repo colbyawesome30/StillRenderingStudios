@@ -16,10 +16,8 @@ public class foodStation : MonoBehaviour
     public Transform lineDirection; // point the z axis of this in the direction the line goes
     public float lineSpacing = 1.5f; 
 
-    //New Changes
     public static readonly List<foodStation> AllStations = new List<foodStation>();
 
-    //Establish basic items
     public bool isCheckout;
     public WorkStation linkedStation;
     public StationStats stats;
@@ -27,7 +25,8 @@ public class foodStation : MonoBehaviour
     private averageCustomer beingServed;
     //Time left till done
     private float serveTimer;
-    
+    private float serveTotal; // saved when serving current customer begins so conveyor belt can be worked out
+
     public enum StationType
     {
 		Shelf,
@@ -37,10 +36,9 @@ public class foodStation : MonoBehaviour
 
 	public List<StationItem> items = new List<StationItem>();
 
-	public int stationNumber;          //Auto generated
-    public StationType stationType = StationType.Shelf;    // pick this in the Inspector
-    public string foodStationType => stationType.ToString();   // "Shelf", "Deli", "Bakery"
-    //Change end
+	public int stationNumber;
+    public StationType stationType = StationType.Shelf;
+    public string foodStationType => stationType.ToString();
 
     public void addCustomer(averageCustomer customer)
     {
@@ -49,7 +47,6 @@ public class foodStation : MonoBehaviour
 
     public void removeCustomer(averageCustomer customer)
     {
-        //New Changes
         if (!line.Remove(customer)) return;
 
         if (beingServed == customer)
@@ -57,13 +54,6 @@ public class foodStation : MonoBehaviour
             beingServed = null;
             customer.SetBeingServed(false);
         }
-        //Change end
-
-        //---------------------------------------------------------------------
-        //No longer needed
-        // line.Remove(customer);
-        //---------------------------------------------------------------------
-
         updateLinePositions();
     }
 
@@ -163,8 +153,9 @@ public class foodStation : MonoBehaviour
         {
             beingServed = line[0];
             beingServed.SetBeingServed(true);
-			serveTimer = ServeTime * beingServed.QuantityFor(this); // should time not mattering for orders
-			Debug.Log($"{name} serving {beingServed.name}: x{beingServed.QuantityFor(this)} = {serveTimer:F1}s");
+			serveTimer = ServeTime * beingServed.QuantityFor(this); // should fix time not mattering for orders
+            serveTotal = serveTimer;
+            Debug.Log($"{name} serving {beingServed.name}: x{beingServed.QuantityFor(this)} = {serveTimer:F1}s");
 		}
 
         if (beingServed != null)
@@ -186,5 +177,8 @@ public class foodStation : MonoBehaviour
             return hit.position;
         return position;
     }
-    //Change end
+    // conveyor belt will use these to know how many items to send down
+    public bool IsServing => beingServed != null;
+    public int ServeItemCount => beingServed == null ? 0 : beingServed.QuantityFor(this);
+    public float ServeProgress => (beingServed == null || serveTotal <= 0f) ? 0f : 1f - Mathf.Clamp01(serveTimer / serveTotal); // 0 at start, 1 when done
 }

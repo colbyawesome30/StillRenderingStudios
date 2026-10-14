@@ -248,6 +248,9 @@ public class averageCustomer : MonoBehaviour
                 break;
 
             case CustomerState.leaving:
+                if (orderDisplay != null) orderDisplay.gameObject.SetActive(false);
+                break;
+
             case CustomerState.rage:
                 agent.autoBraking = false;
                 if (hasReachedDestination())
