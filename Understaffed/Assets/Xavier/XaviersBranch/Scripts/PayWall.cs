@@ -120,11 +120,14 @@ public class PayWall : MonoBehaviour, IInteractable
         }
         audioSource.PlayOneShot(sucessSound);
         playerInfo.playerFunds -= purchasePrice;
+
+        moneyPopupSpawner.SpawnUIPopup(-purchasePrice);
+        moneyPopupSpawner.SpawnWorldPopup(-purchasePrice, transform.position);
+
         purchasedLand = true;
         SetPurchasedLand();
         ToggleTab(false);
     }
-
     //Put the hidden material on every material slot of every renderer
     private void SetHidden()
     {

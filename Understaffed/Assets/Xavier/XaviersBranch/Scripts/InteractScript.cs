@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public interface IInteractable
 {
     void Interact(RaycastHit hit);
@@ -27,7 +27,7 @@ public class InteractScript : MonoBehaviour
 
     private void Update()
     {
-        if (WorkStation.UIOpen || BuildMode.Active) return;
+        if (WorkStation.UIOpen || BuildMode.Active || Roster.UIDragging) return;
 
         UpdateGroundHover();
 
@@ -35,14 +35,14 @@ public class InteractScript : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            // Only fire on the first frame of contact, i.e. an actual "tap".
-            if (touch.phase == TouchPhase.Began)
+            // Only fire on the first frame of contact, and not through UI
+            if (touch.phase == TouchPhase.Began && !IsOverUI(touch.fingerId))
             {
                 TryInteract(touch.position);
             }
         }
         // --- Mouse fallback (editor / desktop testing) ---
-        else if (Input.GetMouseButtonDown(0))
+        else if (Input.GetMouseButtonDown(0) && !IsOverUI(-1))
         {
             TryInteract(Input.mousePosition);
         }
@@ -65,7 +65,6 @@ public class InteractScript : MonoBehaviour
                 interactable.Interact(hit);
             }
         }
-        Debug.Log(hit.collider.name);
     }
 
     private void UpdateGroundHover()
@@ -89,7 +88,7 @@ public class InteractScript : MonoBehaviour
         if (float.IsInfinity(pointer.x) || float.IsInfinity(pointer.y) ||
             float.IsNaN(pointer.x) || float.IsNaN(pointer.y)) return;
 
-        // Skip positions outside the camera's viewport
+        //Skip positions outside the camera's viewport
         if (!_camera.pixelRect.Contains(pointer)) return;
 
         Ray ray = _camera.ScreenPointToRay(pointer);
@@ -99,5 +98,13 @@ public class InteractScript : MonoBehaviour
             // World-space position, slightly above the surface along its normal
             gridField.transform.position = hit.point + hit.normal * 0.02f;
         }
+    }
+
+    private bool IsOverUI(int fingerId)
+    {
+        if (EventSystem.current == null) return false;
+        return fingerId >= 0
+            ? EventSystem.current.IsPointerOverGameObject(fingerId)
+            : EventSystem.current.IsPointerOverGameObject();
     }
 }

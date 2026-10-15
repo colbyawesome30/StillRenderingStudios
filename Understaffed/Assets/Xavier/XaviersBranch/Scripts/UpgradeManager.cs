@@ -180,8 +180,11 @@ public class UpgradeManager : MonoBehaviour
         }
 
         // Charge, then apply
-        playerInfo.playerFunds -= upgradeCost;
-        Debug.Log("Shop Upgraded, paid " + upgradeCost);
+        int paid = upgradeCost;
+        playerInfo.playerFunds -= paid;
+        moneyPopupSpawner.SpawnUIPopup(-paid);
+        moneyPopupSpawner.SpawnWorldPopup(-paid, transform.position);
+        Debug.Log("Shop Upgraded, paid " + paid);
         audioSource.PlayOneShot(sucessSound);
         ApplyNextUpgrade();
 

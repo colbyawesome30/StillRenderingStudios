@@ -228,6 +228,9 @@ public class StationMover : MonoBehaviour
         {
             if (playerInfo.playerFunds < newCost) { audioSource.PlayOneShot(failSound); return; }
             playerInfo.playerFunds -= newCost;
+
+            moneyPopupSpawner.SpawnUIPopup(-newCost);
+            moneyPopupSpawner.SpawnWorldPopup(-newCost, root.position);
         }
 
         Finish(editing);
@@ -360,7 +363,12 @@ public class StationMover : MonoBehaviour
         if (upgradeManager != null) WorkerIndex.Instance.ReleaseStation(upgradeManager);
         foreach (var f in root.GetComponentsInChildren<foodStation>(true)) f.Decommission();
 
-        playerInfo.playerFunds += Mathf.RoundToInt(editing.buildCost * refundPercent);
+        int refund = Mathf.RoundToInt(editing.buildCost * refundPercent);
+        playerInfo.playerFunds += refund;
+
+        moneyPopupSpawner.SpawnUIPopup(refund);
+        moneyPopupSpawner.SpawnWorldPopup(refund, root.position);
+
         audioSource.PlayOneShot(sellSound);
 
         GameObject toDestroy = root.gameObject;
