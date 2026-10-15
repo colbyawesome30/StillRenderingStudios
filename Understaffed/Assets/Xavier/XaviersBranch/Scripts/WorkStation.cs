@@ -11,21 +11,43 @@ public class WorkStation : MonoBehaviour, IInteractable
     [SerializeField]private Text stationText;
     public UpgradeManager upgradeManager;
     private Tutorial tutorial;
+    public int buildCost = 100;
 
     public List<WorkStation> workStationsList = new List<WorkStation>();
     private static WorkStation selected;
     public static bool UIOpen => selected != null && selected.stationUI != null && selected.stationUI.activeSelf;
 
+    [SerializeField] private Transform stationRoot;
+    private Transform runtimeRoot;
+    public bool HasRoot => runtimeRoot != null || stationRoot != null;
+    public bool lockedInBuildMode = false;
+
+    //Station root
+    public Transform Root
+    {
+        get
+        {
+            if (runtimeRoot != null) return runtimeRoot;
+            if (stationRoot != null) return stationRoot;
+            Debug.LogWarning("WorkStation: Station Root not set on " + name + ", guessing the parent.", this);
+            return transform.parent != null ? transform.parent : transform;
+        }
+    }
+
+    public void SetRoot(Transform t) => runtimeRoot = t;
+
+    public static readonly List<WorkStation> All = new List<WorkStation>();
+    private void OnEnable()  => All.Add(this);
+    private void OnDisable() => All.Remove(this);
+    //Close upgrade tab
+    public static void CloseSelected() { if (selected != null) selected.ToggleSelected(false); }
     //Add other workstations refs and initialize basic variables
     public void Start()
     {
         stationText.text = stationName.ToString();
         stationUI.SetActive(false);
         stationOutline.SetActive(false);
-
-        workStationsList = new List<WorkStation>(FindObjectsByType<WorkStation>(FindObjectsInactive.Include));
-        workStationsList.Remove(this);
-
+        
         tutorial = FindAnyObjectByType<Tutorial>();
     }
 
@@ -55,10 +77,9 @@ public class WorkStation : MonoBehaviour, IInteractable
         if (isSelected)
         {
             // Deselect every other station's visuals directly (no recursion)
-            foreach (var station in workStationsList)
-            {
-                station.SetVisuals(false);
-            }
+            foreach (var station in All)
+                if (station != this) station.SetVisuals(false);
+            
             upgradeManager.audioSource.PlayOneShot(upgradeManager.openSound, 0.5f);
         }
         else
@@ -80,5 +101,10 @@ public class WorkStation : MonoBehaviour, IInteractable
     private void OnDestroy()
     {
         if (selected == this) selected = null;
+    }
+
+    public void SetHighlight(bool on)
+    {
+        if (stationOutline != null) stationOutline.SetActive(on);
     }
 }

@@ -75,9 +75,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workerName: Rat
-  affectsStation: 1
+  affectsStation: 0
   workSpeed: 0
-  affectsLine: 1
+  affectsLine: 0
   lineCapacity: 0
 --- !u!195 &7621663359778693790
 NavMeshAgent:
@@ -146,6 +146,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   liftHeight: 1
+  dragWorker: {fileID: 0}
 --- !u!114 &1526411687968790372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +194,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -20, y: 0, z: 0}
 --- !u!212 &1874500044932896094
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -250,3 +251,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []

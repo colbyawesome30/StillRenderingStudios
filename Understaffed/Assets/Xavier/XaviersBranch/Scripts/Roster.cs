@@ -82,7 +82,7 @@ public class Roster : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBe
     //Pop up when pressed
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (WorkStation.UIOpen) return;
+        if (WorkStation.UIOpen || BuildMode.Active) return;
         StartPop(GrowTo(originalScale * pressedScale));
     }
 
@@ -95,7 +95,7 @@ public class Roster : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBe
     //Event happens when player clicks and drags
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (WorkStation.UIOpen || PayWall.TabOpen) return;
+        if (WorkStation.UIOpen || PayWall.TabOpen || BuildMode.Active) return;
         Debug.Log("Roster: begin drag");
         UIDragging = true;
         bool hit = RaycastGround(eventData.position, out Vector3 spawnPoint);

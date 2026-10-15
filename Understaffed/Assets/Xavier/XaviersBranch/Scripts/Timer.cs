@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
     private PlayerInfo playerInfo;
     private float currentTime;
     public bool pauseTimer = false;
+    public bool pauseTime = false;
     public Tutorial tutorial;
 
 
@@ -34,6 +35,11 @@ public class Timer : MonoBehaviour
     public void PauseTimer(bool pause)
     {
         pauseTimer = pause;
+    }
+
+    public void PauseTime(bool pause)
+    {
+        pauseTime = pause;
     }
 
     // Update is called once per frame

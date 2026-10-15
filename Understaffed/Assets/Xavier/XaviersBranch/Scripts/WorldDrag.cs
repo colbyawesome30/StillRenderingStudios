@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
+using UnityEngine.EventSystems;
 
 //Requires both components to work so put in worker prefab
 [RequireComponent(typeof(Collider))]
@@ -55,13 +57,18 @@ public class WorldDrag : MonoBehaviour
     //Checks if clicked to try and drag
     private void TryStartDrag()
     {
-        if (WorkStation.UIOpen) return;
+        if (WorkStation.UIOpen || BuildMode.Active) return;
         if (!PressedThisFrame(out Vector2 screenPos)) return;
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
 
         Ray ray = _camera.ScreenPointToRay(screenPos);
-        if (Physics.Raycast(ray, out RaycastHit hit, 1000f) && hit.collider.GetComponentInParent<WorldDrag>() == this)
+        foreach (var hit in Physics.RaycastAll(ray, 1000f, ~0, QueryTriggerInteraction.Ignore).OrderBy(hit => hit.distance))
         {
-            BeginDrag();
+            if (hit.collider.GetComponentInParent<WorldDrag>() == this)
+            {
+                BeginDrag();
+                return;
+            }
         }
     }
 
