@@ -1719,6 +1719,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 3
   stationNumber: 0
   stationType: 12
@@ -4636,6 +4637,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 7
   stationNumber: 0
   stationType: 1
@@ -5833,6 +5835,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 5
   stationNumber: 0
   stationType: 9
@@ -9474,6 +9477,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 7
   stationNumber: 0
   stationType: 12
@@ -16557,6 +16561,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 7
   stationNumber: 0
   stationType: 11
@@ -17084,6 +17089,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 3
   stationNumber: 0
   stationType: 1
@@ -26294,6 +26300,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 7
   stationNumber: 0
   stationType: 12
@@ -31225,6 +31232,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 3
   stationNumber: 1
   stationType: 3
@@ -31697,6 +31705,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 3
   stationNumber: 0
   stationType: 4
@@ -37993,6 +38002,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 7
   stationNumber: 0
   stationType: 8
@@ -44281,6 +44291,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 5
   stationNumber: 0
   stationType: 10
@@ -46917,6 +46928,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 5
   stationNumber: 0
   stationType: 6
@@ -50647,6 +50659,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 7
   stationNumber: 0
   stationType: 7
@@ -50761,6 +50774,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 3
   stationNumber: 0
   stationType: 5
@@ -54573,6 +54587,7 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  lockedInBuildMode: 0
   itemSalePrice: 7
   stationNumber: 0
   stationType: 3
@@ -58378,8 +58393,6 @@ MonoBehaviour:
   spawnPoint: {fileID: 2119763382}
   parkingManager: {fileID: 3745736}
   entryList:
-  - storeFrontPoint: {fileID: 0}
-    entryPoint: {fileID: 0}
   - storeFrontPoint: {fileID: 1059618800}
     entryPoint: {fileID: 796707693}
   minSpawnInterval: 1.5
