@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 503
   m_UseGeometry: 1
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -3428,6 +3428,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 185158526507488342, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781975758659982831, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781975758659982831, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781975758659982831, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781975758659982831, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5652441464574398012, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}

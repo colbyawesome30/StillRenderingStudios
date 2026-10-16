@@ -7,9 +7,10 @@ using System.Linq;
 [System.Serializable]
 public class CustomerOrderItem
 {
-    public int stationNumber; // 0 = burger 1 = shake etc or whatever we do
+    public int stationNumber; // which station this item comes from
     public string itemName;
     public int quantity;
+    public int totalPriceOfItems; // total price of this line of the order, used for scoring and refunds
 }
 
 public class averageCustomer : MonoBehaviour
@@ -53,8 +54,10 @@ public class averageCustomer : MonoBehaviour
     // Order / grocery list
     public customerOrderDisplay orderDisplay;
     public int desire; // random int that determines how many items customer wants
-    public int orderTotal; // total price of items in order 
     public List<CustomerOrderItem> order = new List<CustomerOrderItem>(); // list of items customer wants
+    [SerializeField] private int totalPriceOfItems; // total price of items in order, used for scoring
+    public int TotalPrice => totalPriceOfItems;
+
     //-----------------------------------------------------------------------
 
     private enum CustomerState
@@ -150,13 +153,13 @@ public class averageCustomer : MonoBehaviour
 
     private void Start()
     {
-        if (playerInfo == null) playerInfo = FindFirstObjectByType<PlayerInfo>();
+        if (playerInfo == null) playerInfo = FindAnyObjectByType<PlayerInfo>();
         agent = GetComponent<NavMeshAgent>();
 
         cam = Camera.main;
         if (animator == null) animator = GetComponentInChildren<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        if (orderDisplay == null) orderDisplay = GetComponentInChildren<customerOrderDisplay>();
+        if (orderDisplay == null) orderDisplay = GetComponentInChildren<customerOrderDisplay>(true);
 
         OnDifficultyChanged(PlayerInfo.CurrentDifficulty);
         rollDesire();
@@ -248,9 +251,6 @@ public class averageCustomer : MonoBehaviour
                 break;
 
             case CustomerState.leaving:
-                if (orderDisplay != null) orderDisplay.gameObject.SetActive(false);
-                break;
-
             case CustomerState.rage:
                 agent.autoBraking = false;
                 if (hasReachedDestination())
@@ -320,7 +320,7 @@ public class averageCustomer : MonoBehaviour
                 Debug.Log("Rage");
                 rageStep = 0;
                 rageSmoke.SetActive(true);
-                playerInfo.Result(-100);
+                playerInfo.Result(-100, 0f);
                 int roll = _random.Next(1, 4);
                 if (roll == 1)
                 {
@@ -339,6 +339,7 @@ public class averageCustomer : MonoBehaviour
                 agent.autoBraking = false;
                 Debug.Log("Leaving");
                 patienceBar.SetActive(false);
+                if (orderDisplay != null) orderDisplay.gameObject.SetActive(false);   // order is finished, hide the bubble
                 rageStep = 1;   // skips rageLeaving: goes exitPoint then despawnPoint
                 moveTo(exitPoint.transform);
                 break;
@@ -377,23 +378,8 @@ public class averageCustomer : MonoBehaviour
         beingServed = served;
     }
 
-	public int QuantityFor(foodStation station)
-	{
-		if (station.isCheckout) return desire; // total items in the order
-        int total = 0;
-        foreach (CustomerOrderItem item in order)
-        {
-            if (item.stationNumber == station.stationNumber)
-            {
-                total += item.quantity;
-            }
-        }
-
-		return Mathf.Max(1, total); // changed bc items only exist in station lists
-	} // returns the quantity of items a customer needs from a station
-
-	// picks the station for the next item on the list, then the shortest checkout when the list is empty
-	private foodStation PickStation()
+    // picks the station for the next item on the list, then the shortest checkout when the list is empty
+    private foodStation PickStation()
     {
         Debug.Log("PickStation called, order.Count = " + order.Count);
 
@@ -421,17 +407,17 @@ public class averageCustomer : MonoBehaviour
         {
             currentStation = null;
             changeState(CustomerState.leaving);
+
             float graceSeconds = 3f;
             float patienceRatio = Mathf.Clamp01((patienceTimer + graceSeconds) / maxPatience);
-            int scoreToAdd = Mathf.RoundToInt(patienceRatio * playerInfo.maxScorePerCustomer);
-            playerInfo.Result(scoreToAdd);
-            Debug.Log("Added " + scoreToAdd + "score");
 
-            moneyPopupSpawner.SpawnUIPopup(orderTotal);
-            moneyPopupSpawner.SpawnWorldPopup(orderTotal, station.transform.position);
+            int payout = totalPriceOfItems * 10;   // matches the $ shown on the bubble
+            playerInfo.Result(payout, patienceRatio);
+            Debug.Log($"Checkout: paid={payout}, satisfaction={patienceRatio:F2}");
 
-            playerInfo.AddFunds(orderTotal);
-            playerInfo.Result(scoreToAdd);
+            // Money visuals at the cashier
+            moneyPopupSpawner.SpawnUIPopup(payout);
+            moneyPopupSpawner.SpawnWorldPopup(payout, station.transform.position);
 
             int roll = _random.Next(1, 9);
             if (roll == 1 || roll == 2)
@@ -487,11 +473,11 @@ public class averageCustomer : MonoBehaviour
     private void generateOrder()
     {
         order.Clear();
-        orderTotal = 0;
+        totalPriceOfItems = 0;   // reset
 
         List<foodStation> openStations = foodStation.AllStations.FindAll(
-            station => !station.isCheckout && station.gameObject.activeInHierarchy && station.items.Count > 0
-		);
+            station => !station.isCheckout && station.gameObject.activeInHierarchy
+        );
 
         if (openStations.Count == 0)
         {
@@ -503,25 +489,26 @@ public class averageCustomer : MonoBehaviour
         {
             foodStation pick = openStations[Random.Range(0, openStations.Count)];
 
-            StationItem wanted = pick.items[Random.Range(0, pick.items.Count)];// takes from station lists for deli and bakery items
-            orderTotal += wanted.price; // add to order total for checkout and ui
+            CustomerOrderItem existingOrderItem =
+                order.Find(orderItem => orderItem.stationNumber == pick.stationNumber);
 
-			CustomerOrderItem existingOrderItem =
-                order.Find(orderItem => orderItem.stationNumber == pick.stationNumber && orderItem.itemName == wanted.itemName); // updated to match to item name as well for items from workstation lists
-
-			if (existingOrderItem != null)
+            if (existingOrderItem != null)
             {
                 existingOrderItem.quantity++;
+                existingOrderItem.totalPriceOfItems += pick.itemSalePrice;
             }
             else
             {
                 order.Add(new CustomerOrderItem
                 {
                     stationNumber = pick.stationNumber,
-                    itemName = wanted.itemName,
-                    quantity = 1
+                    itemName = pick.foodStationType,
+                    quantity = 1,
+                    totalPriceOfItems = pick.itemSalePrice
                 });
             }
+
+            totalPriceOfItems += pick.itemSalePrice;   // customer's running total
         }
     }
 
@@ -543,4 +530,53 @@ public class averageCustomer : MonoBehaviour
     {
         moveToPosition(position);
     } // to move up in line when someone leaves
+
+    // number of items this customer needs from a station (all items at checkout)
+    public int QuantityFor(foodStation station)
+    {
+        if (station.isCheckout) return desire;
+
+        int total = 0;
+        foreach (CustomerOrderItem item in order)
+        {
+            if (item.stationNumber == station.stationNumber)
+                total += item.quantity;
+        }
+        return Mathf.Max(1, total);
+    }
+
+    //Repick the next station or checkout
+    public void OnStationRemoved(foodStation station)
+    {
+        if (currentStation != station) return;
+        beingServed = false;
+        currentStation = null;
+        if (currentState == CustomerState.inLine ||
+            currentState == CustomerState.toCurrentLineEnd ||
+            currentState == CustomerState.atStation)
+            changeState(CustomerState.toCurrentLineEnd);
+    }
+
+    //No order for station anymore drop the order
+    public void DropOrderFor(int stationNumber)
+    {
+        int removedPrice = 0, removedQty = 0;
+        order.RemoveAll(i =>
+        {
+            if (i.stationNumber != stationNumber) return false;
+            removedPrice += i.totalPriceOfItems;
+            removedQty += i.quantity;
+            return true;
+        });
+        totalPriceOfItems -= removedPrice;
+        desire = Mathf.Max(0, desire - removedQty);
+        if (orderDisplay != null) orderDisplay.UpdateDisplay();
+    }
+
+    //Change order items
+    public void RenameOrderItems(int stationNumber, string newName)
+    {
+        foreach (var i in order) if (i.stationNumber == stationNumber) i.itemName = newName;
+        if (orderDisplay != null) orderDisplay.UpdateDisplay();
+    }
 }

@@ -1,13 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[System.Serializable]
-public class StationItem
-{
-	public string itemName;
-	public int price = 5;
-} // give each station a list of items it can serve that customers can order from, with prices
-
 public class foodStation : MonoBehaviour
 {
     public List<averageCustomer> line = new List<averageCustomer>();
@@ -16,8 +9,10 @@ public class foodStation : MonoBehaviour
     public Transform lineDirection; // point the z axis of this in the direction the line goes
     public float lineSpacing = 1.5f; 
 
+    //New Changes
     public static readonly List<foodStation> AllStations = new List<foodStation>();
 
+    //Establish basic items
     public bool isCheckout;
     public WorkStation linkedStation;
     public StationStats stats;
@@ -25,20 +20,36 @@ public class foodStation : MonoBehaviour
     private averageCustomer beingServed;
     //Time left till done
     private float serveTimer;
-    private float serveTotal; // saved when serving current customer begins so conveyor belt can be worked out
-
+    private float serveTotal;   // saved when serving starts so the conveyor belt can work out progress
+    public bool lockedInBuildMode = false;
     public enum StationType
     {
-		Shelf,
-        Deli,
+        Deli_Meat,
+        Toilet_Paper,
+        Seafood,
+        Candy,
+        Frozen_Food,
+        Juice,
+        Canned_Items,
+        Fruits,
+        Vegetables,
+        Milk,
+        Meat,
+        Pasta,
+        Snacks,
         Bakery
     }
 
-	public List<StationItem> items = new List<StationItem>();
+    public int itemSalePrice = 1; //Price of item sold at station
 
-	public int stationNumber;
-    public StationType stationType = StationType.Shelf;
-    public string foodStationType => stationType.ToString();
+    public int stationNumber;          //Auto generated
+    public StationType stationType = StationType.Canned_Items;    // pick this in the Inspector
+    public string foodStationType => stationType.ToString();   // "Burger", "Shake", "Fries"
+
+    private static int nextStationNumber = 0;
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics() => nextStationNumber = 0;
+    //Change end
 
     public void addCustomer(averageCustomer customer)
     {
@@ -47,6 +58,7 @@ public class foodStation : MonoBehaviour
 
     public void removeCustomer(averageCustomer customer)
     {
+        //New Changes
         if (!line.Remove(customer)) return;
 
         if (beingServed == customer)
@@ -54,6 +66,8 @@ public class foodStation : MonoBehaviour
             beingServed = null;
             customer.SetBeingServed(false);
         }
+        //Change end
+
         updateLinePositions();
     }
 
@@ -64,11 +78,6 @@ public class foodStation : MonoBehaviour
         //New Changes
         Vector3 position = SnapToNavMesh(lineStart.position + lineDirection.forward * (index * lineSpacing));
         //Change end
-
-        //---------------------------------------------------------------------
-        //No longer needed
-        // Vector3 position = lineStart.position + lineDirection.forward * (index * lineSpacing);
-        //---------------------------------------------------------------------
 
         return position;
     }
@@ -82,12 +91,6 @@ public class foodStation : MonoBehaviour
             //Change end
 
             line[i].moveToLinePosition(newPosition);
-
-            
-            //---------------------------------------------------------------------
-            //No longer needed
-            // Vector3 newPosition = lineStart.position + lineDirection.forward * (i * lineSpacing);
-            //---------------------------------------------------------------------
         }
 
     }
@@ -97,15 +100,7 @@ public class foodStation : MonoBehaviour
     {
         if (!AllStations.Contains(this))
         {
-            // auto-assign the next free number
-            if (!isCheckout)
-            {
-                int next = 0;
-                foreach (foodStation s in AllStations)
-                    if (!s.isCheckout && s.stationNumber >= next) next = s.stationNumber + 1;
-                stationNumber = next;
-            }
-
+            if (!isCheckout) stationNumber = nextStationNumber++;
             AllStations.Add(this);
         }
     
@@ -153,10 +148,9 @@ public class foodStation : MonoBehaviour
         {
             beingServed = line[0];
             beingServed.SetBeingServed(true);
-			serveTimer = ServeTime * beingServed.QuantityFor(this); // should fix time not mattering for orders
+            serveTimer = ServeTime * beingServed.QuantityFor(this);
             serveTotal = serveTimer;
-            Debug.Log($"{name} serving {beingServed.name}: x{beingServed.QuantityFor(this)} = {serveTimer:F1}s");
-		}
+        }
 
         if (beingServed != null)
         {
@@ -177,8 +171,29 @@ public class foodStation : MonoBehaviour
             return hit.position;
         return position;
     }
-    // conveyor belt will use these to know how many items to send down
+    //Change end
+
+    // conveyor belt uses these to know how many items to send down
     public bool IsServing => beingServed != null;
     public int ServeItemCount => beingServed == null ? 0 : beingServed.QuantityFor(this);
-    public float ServeProgress => (beingServed == null || serveTotal <= 0f) ? 0f : 1f - Mathf.Clamp01(serveTimer / serveTotal); // 0 at start, 1 when done
+    public float ServeProgress => (beingServed == null || serveTotal <= 0f) ? 0f : 1f - Mathf.Clamp01(serveTimer / serveTotal);   // 0 at start, 1 when done
+
+    //Change lines
+    public void RefreshLine() => updateLinePositions();
+
+    //Destroying the station update everything
+    public void Decommission()
+    {
+        AllStations.Remove(this);
+        var waiting = line.ToArray();
+        line.Clear();
+        beingServed = null;
+
+        // Strip this station's items from every order, so no one pays for food they never got
+        if (!isCheckout)
+            foreach (var customer in FindObjectsByType<averageCustomer>())
+                customer.DropOrderFor(stationNumber);
+
+        foreach (var customer in waiting) customer.OnStationRemoved(this);
+    }
 }

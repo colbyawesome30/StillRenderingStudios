@@ -179,10 +179,11 @@ public class UpgradeManager : MonoBehaviour
             return;
         }
 
-        // Charge, then apply --- changed references and added UI popup ---
+        // Charge, then apply
         int paid = upgradeCost;
-        playerInfo.AddFunds(-paid);
+        playerInfo.playerFunds -= paid;
         moneyPopupSpawner.SpawnUIPopup(-paid);
+        moneyPopupSpawner.SpawnWorldPopup(-paid, transform.position);
         Debug.Log("Shop Upgraded, paid " + paid);
         audioSource.PlayOneShot(sucessSound);
         ApplyNextUpgrade();
