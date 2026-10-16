@@ -24,7 +24,7 @@ public class foodStation : MonoBehaviour
     public bool lockedInBuildMode = false;
     public enum StationType
     {
-        Deli_Meat,
+        Deli,
         Toilet_Paper,
         Seafood,
         Candy,

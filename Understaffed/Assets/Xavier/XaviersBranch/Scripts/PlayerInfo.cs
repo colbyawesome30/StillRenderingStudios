@@ -44,7 +44,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void Start()
     {
-        Result(100);
+        Result(100, 1f);
     }
 
     private void Awake()
@@ -88,13 +88,13 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
-    public void Result(int points)
+    public void Result(int points, float patienceRatio)
     {
         if (_gameEnd) return;                 // game over: nothing changes
 
         currentCustomers++;                   // count first so the average uses the new total
         currentDayScore += points;            // setter fires the event and refreshes stars if the score changed
-        // playerFunds = Mathf.Clamp(playerFunds + points, 0, int.MaxValue); ------------- money gained is now determined by orders -------------
+        playerFunds = Mathf.Clamp(playerFunds + points, 0, int.MaxValue); // ------------- money gained is now determined by orders -------------
         UpdateStarRating();                   // also refresh when points is 0, since the setter won't fire
     }
 
