@@ -419,6 +419,9 @@ public class averageCustomer : MonoBehaviour
             moneyPopupSpawner.SpawnUIPopup(payout);
             moneyPopupSpawner.SpawnWorldPopup(payout, station.transform.position);
 
+            // add item visuals on register conveyor for each item on list * quantity
+
+
             int roll = _random.Next(1, 9);
             if (roll == 1 || roll == 2)
             {
