@@ -29,6 +29,7 @@ public class PlayerInfo : MonoBehaviour
     public static event Action<int> DifficultyChanged;
     public static int CurrentDifficulty { get; private set; }
     [SerializeField] private int _difficulty = 1;
+
     public int difficulty
     {
         get => _difficulty;
@@ -114,7 +115,7 @@ public class PlayerInfo : MonoBehaviour
     private void decideWin()
     {
         // your original check: more than 4 stars is a win
-        bool won = stars > 4f;
+        bool won = stars >= LevelSettings.StarsToWin;
 
         if (won)
         {
