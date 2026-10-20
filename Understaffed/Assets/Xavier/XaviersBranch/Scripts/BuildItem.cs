@@ -98,12 +98,19 @@ public class BuildItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         new Vector3(Mathf.Round(p.x / gridSize) * gridSize, p.y, Mathf.Round(p.z / gridSize) * gridSize);
 
     //Check if position for validity
-    private bool IsValid(Vector3 pos, Quaternion r)
+    private float navSampleRadius = 3f;
+
+    private bool IsValid(Vector3 pos, Quaternion rotation)
     {
         Vector3 center = pos + Vector3.up * footprintHalfExtents.y;
-        if (Physics.CheckBox(center, footprintHalfExtents, r, blockingLayers, QueryTriggerInteraction.Ignore))
+        Collider[] hits = Physics.OverlapBox(center, footprintHalfExtents, rotation, blockingLayers, QueryTriggerInteraction.Ignore);
+        if (hits.Length > 0)
+        {
             return false;
-        return NavMesh.SamplePosition(pos, out _, 1f, NavMesh.AllAreas);
+        }
+
+        bool onMesh = NavMesh.SamplePosition(pos, out _, navSampleRadius, NavMesh.AllAreas);
+        return onMesh;
     }
 
     //Change color of item

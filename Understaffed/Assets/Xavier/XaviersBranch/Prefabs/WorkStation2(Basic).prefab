@@ -217,6 +217,30 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: markerImage
+      value: 
+      objectReference: {fileID: 21300000, guid: a05697e57e16fce4c9da6e701d2e371e, type: 3}
+    - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: stationName
+      value: 'Station: Food Station'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: markerTint.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: markerTint.g
+      value: 0.5567724
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: markerTint.r
+      value: 0.43867922
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: markerLabelOverride
+      value: 'Station: Food Station'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: workStationsList.Array.size
       value: 0
       objectReference: {fileID: 0}

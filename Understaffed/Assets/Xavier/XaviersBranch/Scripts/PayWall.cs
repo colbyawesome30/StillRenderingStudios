@@ -88,7 +88,7 @@ public class PayWall : MonoBehaviour, IInteractable
     public void Interact(RaycastHit hit)
     {
         
-        if (BuildMode.Active || PayWall.TabOpen || WorkStation.UIOpen) return;
+        if (BuildMode.Active || PayWall.TabOpen || WorkStation.UIOpen|| InGameSettings.SettingsIsOpen) return;
 
         if (!purchasedLand)
         {

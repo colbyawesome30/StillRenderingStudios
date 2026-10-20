@@ -47,7 +47,7 @@ public class CameraPan : MonoBehaviour
     //Handle drags and touches
     private void HandleInput()
     {   
-        if (BuildMode.Active || WorldDrag.AnyDragging || Roster.UIDragging || WorkStation.UIOpen || PayWall.TabOpen)
+        if (BuildMode.Active || WorldDrag.AnyDragging || Roster.UIDragging || WorkStation.UIOpen || PayWall.TabOpen || InGameSettings.SettingsIsOpen)
         {
             pressing = false;
             panning = false;
