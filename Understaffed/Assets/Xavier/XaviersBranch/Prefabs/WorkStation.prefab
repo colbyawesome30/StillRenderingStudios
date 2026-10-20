@@ -1619,9 +1619,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea537422592f444a9657b10e7bc36a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stationName: 'Station: Cashier'
+  markerTint: {r: 0, g: 1, b: 0.09055519, a: 1}
+  markerLabelOverride: Cashier
   stationOutline: {fileID: 7809248844782898009}
   stationUI: {fileID: 955939685181443686}
-  stationName: 'Station: Cashier'
   stationText: {fileID: 4244765623615815440}
   upgradeManager: {fileID: 7179886786387737580}
   buildCost: 1000

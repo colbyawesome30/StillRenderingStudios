@@ -217,6 +217,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: stationName
+      value: 'Station: Food Station'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: markerTint.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: markerTint.g
+      value: 0.23918962
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: markerLabelOverride
+      value: 'Station: Food Station'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: workStationsList.Array.size
       value: 0
       objectReference: {fileID: 0}

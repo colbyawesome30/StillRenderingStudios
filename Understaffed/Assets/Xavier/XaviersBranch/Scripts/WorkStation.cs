@@ -5,9 +5,15 @@ using UnityEngine.UI;
 
 public class WorkStation : MonoBehaviour, IInteractable
 {
+    public string stationName;
+    public Color markerTint = Color.white;
+    public string markerLabelOverride;
+
+    public string MarkerLabel =>
+        string.IsNullOrEmpty(markerLabelOverride) ? stationName : markerLabelOverride;
+
     public GameObject stationOutline;
     public GameObject stationUI;
-    public string stationName;
     [SerializeField]private Text stationText;
     public UpgradeManager upgradeManager;
     private Tutorial tutorial;
