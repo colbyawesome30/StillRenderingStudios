@@ -28,13 +28,13 @@ public class StationMover : MonoBehaviour
     //Buttons
     [SerializeField] private GameObject confirmPanel;   // holds the Confirm and Cancel buttons
     [SerializeField] private Button confirmButton;      // disabled while the spot is invalid
-    [SerializeField] private GameObject sellButton;     // shown while a station is selected or being edited
+    [SerializeField] private GameObject sellButton;     // shown while something is selected or being edited
     [SerializeField] private Color validColor = new Color(0.4f, 1f, 0.4f, 1f);
     [SerializeField] private Color invalidColor = new Color(1f, 0.35f, 0.35f, 1f);
     private bool isNew;
     private int newCost;
-    private WorkStation selected;
-    private WorkStation editing;
+    private Placeable selected;
+    private Placeable editing;
     private bool dragging;
     private Transform root;
     private Vector3 startPos, grabOffset;
@@ -90,13 +90,13 @@ public class StationMover : MonoBehaviour
         if (PressedThisFrame(out Vector2 pos) && !PointerOverUI()) HandlePress(pos);
     }
 
-    //Find root of stations
-    private Transform ResolveRoot(WorkStation station)
+    //Find root of a WorkStation (used when a station has no Placeable yet)
+    public Transform ResolveRoot(WorkStation station)
     {
         if (station.HasRoot)
         {
-            Transform rot = station.Root;
-            if (station.transform.IsChildOf(rot)) return rot;
+            Transform r = station.Root;
+            if (station.transform.IsChildOf(r)) return r;
         }
 
         // Fallback: climb to the top object of this station, stopping below the container
@@ -105,41 +105,61 @@ public class StationMover : MonoBehaviour
         return trans;
     }
 
-    //Select stations
-    private void Select(WorkStation s)
+    //Get the Placeable for anything hit. Stations without one get one added automatically.
+    private Placeable GetPlaceable(Component c)
+    {
+        var p = c.GetComponentInParent<Placeable>();
+        if (p != null) return p;
+
+        var ws = c.GetComponentInParent<WorkStation>();
+        if (ws != null) return AddPlaceableFor(ws);
+
+        return null;
+    }
+
+    private Placeable AddPlaceableFor(WorkStation ws)
+    {
+        Transform stationRoot = ResolveRoot(ws);
+        var p = stationRoot.GetComponent<Placeable>();
+        if (p == null) p = stationRoot.gameObject.AddComponent<Placeable>();
+        p.buildCost = ws.buildCost;
+        p.lockedInBuildMode = ws.lockedInBuildMode;
+        return p;
+    }
+
+    //Select placeables
+    private void Select(Placeable selectable)
     {
         if (editing != null) return;
-        if (selected == s) return;
-        if (selected != null) selected.SetHighlight(false);
-        selected = s;
-        if (selected != null) selected.SetHighlight(true);
+        if (selected == selectable) return;
+        selected = selectable;
     }
 
     //Check click and player touch
     private void HandlePress(Vector2 screenPos)
     {
         Ray ray = worldCamera.ScreenPointToRay(screenPos);
-        WorkStation hitStation = null;
+        Placeable hitPlaceable = null;
 
-        foreach (var hit in Physics.RaycastAll(ray, 1000f, ~0, QueryTriggerInteraction.Ignore).OrderBy(hit => hit.distance))
+        foreach (var hit in Physics.RaycastAll(ray, 1000f, ~0, QueryTriggerInteraction.Ignore).OrderBy(h => h.distance))
         {
-            var station = hit.collider.GetComponentInParent<WorkStation>();
-            if (station != null) { hitStation = station; break; }
+            var p = GetPlaceable(hit.collider);
+            if (p != null) { hitPlaceable = p; break; }
         }
 
-        //Only the edited station can be moved
+        //Only the edited object can be moved
         if (editing != null)
         {
             if (isNew)
                 StartDrag(ray);
-            else if (BuildMode.MoveMode && hitStation != null && ResolveRoot(hitStation) == root)
+            else if (BuildMode.MoveMode && hitPlaceable != null && hitPlaceable.transform == root)
                 StartDrag(ray);
             return;
         }
 
-        if (hitStation == null) { Select(null); return; }
+        if (hitPlaceable == null) { Select(null); return; }
 
-        Transform hitRoot = ResolveRoot(hitStation);
+        Transform hitRoot = hitPlaceable.transform;
         if (IsLocked(hitRoot))
         {
             Select(null);
@@ -147,19 +167,19 @@ public class StationMover : MonoBehaviour
             return;
         }
 
-        Select(hitStation);
+        Select(hitPlaceable);
         if (BuildMode.MoveMode)
         {
-            BeginEdit(hitStation);
+            BeginEdit(hitPlaceable);
             StartDrag(ray);
         }
     }
 
-    //Start editing transform of station and rotation
-    private void BeginEdit(WorkStation station)
+    //Start editing transform and rotation
+    private void BeginEdit(Placeable placeable)
     {
-        editing = station;
-        root = ResolveRoot(station);
+        editing = placeable;
+        root = placeable.transform;
         foreach (var ws in root.GetComponentsInChildren<WorkStation>(true))
             ws.SetRoot(root);
 
@@ -206,7 +226,7 @@ public class StationMover : MonoBehaviour
         }
     }
 
-    //Stopped dragging object and station is set down
+    //Stopped dragging object and it is set down
     private void Drop()
     {
         dragging = false;
@@ -239,7 +259,7 @@ public class StationMover : MonoBehaviour
 
     public void Cancel() => Cancel(true);
 
-    //Sell station
+    //Sell
     public void Sell()
     {
         if (editing == null)
@@ -254,12 +274,19 @@ public class StationMover : MonoBehaviour
     public void BeginPlacement(GameObject placed, int cost)
     {
         if (editing != null) Cancel(false);
-        var ws = placed.GetComponentInChildren<WorkStation>(true);
-        if (ws == null) { Destroy(placed); return; }
+
+        // Shelves have a Placeable. Stations get one added if they don't.
+        var p = placed.GetComponentInChildren<Placeable>(true);
+        if (p == null)
+        {
+            var ws = placed.GetComponentInChildren<WorkStation>(true);
+            if (ws != null) p = AddPlaceableFor(ws);
+        }
+        if (p == null) { Destroy(placed); return; }
 
         isNew = true;
         newCost = cost;
-        BeginEdit(ws);
+        BeginEdit(p);
         Revalidate();
         if (confirmPanel != null) confirmPanel.SetActive(true);
     }
@@ -292,7 +319,7 @@ public class StationMover : MonoBehaviour
             BeginEdit(selected);
         }
 
-        rot *= Quaternion.Euler(0f, 90f * dir, 0f);
+        rot *= Quaternion.Euler(0f, 45f * dir, 0f);
         if (dragging) return;   // Drag() applies it next frame
 
         root.rotation = rot;
@@ -307,6 +334,7 @@ public class StationMover : MonoBehaviour
         valid = IsValid(root);
         ApplyFeedback();
     }
+
     //Show placement visual
     private void ApplyFeedback()
     {
@@ -326,17 +354,19 @@ public class StationMover : MonoBehaviour
         tinted.Clear();
     }
 
-    //Finish making changes in station
-    private void Finish(WorkStation station)
+    //Finish making changes
+    private void Finish(Placeable placeable)
     {
-        UpgradeManager upgradeManager = station.upgradeManager;
+        // Shelves have no WorkStation/upgradeManager, so these can be null
+        var ws = root.GetComponentInChildren<WorkStation>(true);
+        UpgradeManager upgradeManager = ws != null ? ws.upgradeManager : null;
         foodStation[] stations = root.GetComponentsInChildren<foodStation>(true);
 
         System.Action onRebaked = null;
         onRebaked = () =>
         {
             rebake.Rebaked -= onRebaked;   // one-shot
-            foreach (var foodStation in stations) if (foodStation != null) foodStation.RefreshLine();
+            foreach (var fs in stations) if (fs != null) fs.RefreshLine();
             if (upgradeManager != null && upgradeManager.currentWorker != null)
                 WorkerIndex.Instance.Task(upgradeManager.currentWorker, upgradeManager);
         };
@@ -346,24 +376,27 @@ public class StationMover : MonoBehaviour
         audioSource.PlayOneShot(placeSound);
     }
 
-    //Try to sell the station
+    //Try to sell
     private void TrySell()
     {
         if (isNew) { Cancel(true); return; }
 
-        var foodStation = root.GetComponentInChildren<foodStation>(true);
+        var checkoutCheck = root.GetComponentInChildren<foodStation>(true);
 
-        if (foodStation != null && foodStation.isCheckout && foodStation.AllStations.Count(s => s.isCheckout) <= 1)
+        if (checkoutCheck != null && checkoutCheck.isCheckout && foodStation.AllStations.Count(s => s.isCheckout) <= 1)
         {
             Cancel(true);
             return;
         }
 
-        UpgradeManager upgradeManager = editing.upgradeManager;
+        var ws = root.GetComponentInChildren<WorkStation>(true);
+        UpgradeManager upgradeManager = ws != null ? ws.upgradeManager : null;
         if (upgradeManager != null) WorkerIndex.Instance.ReleaseStation(upgradeManager);
         foreach (var f in root.GetComponentsInChildren<foodStation>(true)) f.Decommission();
 
-        int refund = Mathf.RoundToInt(editing.buildCost * refundPercent);
+        // Stations use their WorkStation cost, shelves use the Placeable cost
+        int cost = ws != null ? ws.buildCost : editing.buildCost;
+        int refund = Mathf.RoundToInt(cost * refundPercent);
         playerInfo.playerFunds += refund;
 
         moneyPopupSpawner.SpawnUIPopup(refund);
@@ -409,7 +442,8 @@ public class StationMover : MonoBehaviour
         if (!onMesh && debugValidity) Debug.Log("Invalid: no nav mesh within " + navSampleRadius + " of " + self.position);
         return onMesh;
     }
-    //station is blocked during move
+
+    //Blocked during move
     private bool Blocked(Vector3 center, Vector3 half, Quaternion orientation, Transform self)
     {
         int count = Physics.OverlapBoxNonAlloc(center, half, overlapBuffer, orientation,
@@ -447,9 +481,11 @@ public class StationMover : MonoBehaviour
             ? EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)
             : EventSystem.current.IsPointerOverGameObject());
 
-    //Check is station is locked
+    //Check if locked
     private bool IsLocked(Transform stationRoot)
     {
+        var p = stationRoot.GetComponent<Placeable>();
+        if (p != null && p.lockedInBuildMode) return true;
         foreach (var ws in stationRoot.GetComponentsInChildren<WorkStation>(true))
             if (ws.lockedInBuildMode) return true;
         foreach (var fs in stationRoot.GetComponentsInChildren<foodStation>(true))

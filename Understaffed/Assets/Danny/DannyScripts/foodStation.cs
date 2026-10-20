@@ -22,6 +22,9 @@ public class foodStation : MonoBehaviour
     private float serveTimer;
     private float serveTotal;   // saved when serving starts so the conveyor belt can work out progress
     public bool lockedInBuildMode = false;
+    private WorkStation alertTarget;
+    private bool alerting;
+
     public enum StationType
     {
         Deli_Meat,
@@ -41,8 +44,7 @@ public class foodStation : MonoBehaviour
     }
 
     public int itemSalePrice = 1; //Price of item sold at station
-
-    public int stationNumber;          //Auto generated
+    public int stationNumber;
     public StationType stationType = StationType.Canned_Items;    // pick this in the Inspector
     public string foodStationType => stationType.ToString();   // "Burger", "Shake", "Fries"
 
@@ -109,11 +111,30 @@ public class foodStation : MonoBehaviour
         if (stats == null) stats = GetComponentInParent<StationStats>();
         if (stats == null) stats = GetComponentInChildren<StationStats>();
         if (stats == null && linkedStation != null) stats = linkedStation.GetComponentInChildren<StationStats>();
+
+        //Alert: which WorkStation blinks for this food station
+        alertTarget = linkedStation != null ? linkedStation : GetComponentInParent<WorkStation>();
+    }
+
+    //Blink while customers are waiting and nobody is working here
+    private void UpdateAlert()
+    {
+        bool need = stats != null && !stats.HasRealWorker && line.Count > 0;
+        if (need == alerting) return;
+        alerting = need;
+        if (alertTarget != null) alertTarget.SetNeedsAttention(this, need);
+    }
+
+    private void OnDisable()
+    {
+        if (alerting && alertTarget != null) alertTarget.SetNeedsAttention(this, false);
+        alerting = false;
     }
 
     private void OnDestroy() 
     {
         AllStations.Remove(this); 
+        if (alertTarget != null) alertTarget.SetNeedsAttention(this, false);
     }
 
     //Counts customer line
@@ -143,6 +164,8 @@ public class foodStation : MonoBehaviour
     // start serving whoever is at the front
     private void Update()
     {
+        UpdateAlert();
+
         if (stats != null && !stats.HasRealWorker) return;
         if (beingServed == null && line.Count > 0 && line[0].IsAtLineSpot)
         {
@@ -188,6 +211,7 @@ public class foodStation : MonoBehaviour
         var waiting = line.ToArray();
         line.Clear();
         beingServed = null;
+        UpdateAlert();   //Alert: line is empty now, stop blinking
 
         // Strip this station's items from every order, so no one pays for food they never got
         if (!isCheckout)

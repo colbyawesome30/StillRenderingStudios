@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.U2D;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,6 @@ public class StationNavMarkers : MonoBehaviour
     [SerializeField] private StationNavMarker markerPrefab;
     [SerializeField] private float edgePadding = 60f;
     [SerializeField] private float onScreenMargin = 0f;
-    [SerializeField] private bool arrowArtFacesUp = true;
     [SerializeField] private bool showLabels = true;
 
     private RectTransform rect;
@@ -49,16 +49,22 @@ public class StationNavMarkers : MonoBehaviour
 
             //One marker per station
             Transform key = station.HasRoot ? station.Root : station.transform;
-            if (key == null || !seen.Add(key)) continue;
+            if (key == null) continue;
 
             if (!markers.TryGetValue(key, out StationNavMarker marker) || marker == null)
             {
                 marker = CreateMarker();
                 markers[key] = marker;
             }
+
+            station.Marker = marker;
+            if (!seen.Add(key)) continue;
+
             //Update marker position and label
             marker.SetLabel(station.stationName);
+            marker.SetArrow(station.markerImage);
             marker.SetTint(station.markerTint);
+
             if (marker.label != null) marker.label.gameObject.SetActive(showLabels);
 
             UpdateMarker(marker, key.position, hideAll);

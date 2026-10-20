@@ -99,6 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1025776336643815931}
+  - component: {fileID: 4543816497961505450}
   m_Layer: 0
   m_Name: WorkStation
   m_TagString: Untagged
@@ -132,6 +133,21 @@ Transform:
   - {fileID: 8591431320079612252}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4543816497961505450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824035340407141186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c7534124b707645a187408adb4ecd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Placeable
+  buildCost: 500
+  lockedInBuildMode: 0
+  outline: {fileID: 7809248844782898009}
 --- !u!1 &955939685181443686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,6 +1638,7 @@ MonoBehaviour:
   stationName: 'Station: Cashier'
   markerTint: {r: 0, g: 1, b: 0.09055519, a: 1}
   markerLabelOverride: Cashier
+  markerImage: {fileID: 21300000, guid: d90e6f5554786ad4b9d8a2c5a31052cd, type: 3}
   stationOutline: {fileID: 7809248844782898009}
   stationUI: {fileID: 955939685181443686}
   stationText: {fileID: 4244765623615815440}
