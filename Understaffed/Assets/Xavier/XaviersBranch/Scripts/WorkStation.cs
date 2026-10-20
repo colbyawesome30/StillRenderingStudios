@@ -154,7 +154,7 @@ public class WorkStation : MonoBehaviour, IInteractable
     //What happens when interacted with
     public void Interact(RaycastHit hit)
     {
-        if (PayWall.TabOpen) return; 
+        if (PayWall.TabOpen|| InGameSettings.SettingsIsOpen) return; 
         if (UIOpen && selected != this) return;
 
         Debug.Log($"{gameObject.name} was tapped at {hit.point}");
