@@ -1,63 +1,61 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class customerOrderDisplay : MonoBehaviour
 {
-    private averageCustomer customer; 
+    [System.Serializable]
+    public struct StationColor
+    {
+        public foodStation.StationType stationType;
+        public Color color;
+    }
+
+    private averageCustomer customer;
     [SerializeField] private TextMeshProUGUI orderText;
 
-	[Header("Text color by station")]
-	[SerializeField] private Color shelfColor = Color.black;
-	[SerializeField] private Color deliColor = Color.yellow;
-	[SerializeField] private Color bakeryColor = Color.red;
-	[SerializeField] private Color checkoutColor = new Color(0.5f, 0.9f, 0.5f);
+    [Header("Text color by station")]
+    [SerializeField] private List<StationColor> stationColors = new List<StationColor>();
+    [SerializeField] private Color defaultColor = Color.black;   // used when a type isn't in the list
+    [SerializeField] private Color checkoutColor = new Color(0.5f, 0.9f, 0.5f);
 
-
-	void Awake()
+    void Awake()
     {
         customer = GetComponentInParent<averageCustomer>();
     }
 
     public void UpdateDisplay()
     {
-        if (customer == null)
-        {
-            customer = GetComponentInParent<averageCustomer>();
-        }
+        if (customer == null) customer = GetComponentInParent<averageCustomer>();
         gameObject.SetActive(true);
 
-		// for if a customer gets all the items in their order and so it doesnt return a null and break stuff
-		if (customer.order == null || customer.order.Count == 0)
+        // only checkout is left: show everything they are paying for
+        if (customer.order == null || customer.order.Count == 0)
         {
-            orderText.text = "Checkout";
-			orderText.color = checkoutColor;
-			return;
+            orderText.text = "Checkout $" + (customer.TotalPrice * 10);
+            orderText.color = checkoutColor;
+            return;
         }
 
-		// displays all items in the order that are for the station they are going to
-		int nextStation = customer.order[0].stationNumber;
-		var sb = new System.Text.StringBuilder();
-		foreach (CustomerOrderItem item in customer.order)
-			if (item.stationNumber == nextStation)
-				sb.AppendLine(item.itemName + " x " + item.quantity);
-		orderText.text = sb.ToString().TrimEnd();
+        // items for the station they are heading to, each with its price
+        int nextStation = customer.order[0].stationNumber;
+        var sb = new System.Text.StringBuilder();
+        foreach (CustomerOrderItem item in customer.order)
+            if (item.stationNumber == nextStation)
+                sb.AppendLine(item.itemName + " x" + item.quantity + " $" + (item.totalPriceOfItems * 10));
+        orderText.text = sb.ToString().TrimEnd();
 
-		// colors ordertext based on next station
-		foodStation station = foodStation.AllStations.Find(s => !s.isCheckout && s.stationNumber == nextStation);
-		orderText.color = colorFor(station);
-	}
+        foodStation station = foodStation.AllStations.Find(s => !s.isCheckout && s.stationNumber == nextStation);
+        orderText.color = ColorFor(station);
+    }
 
-	private Color colorFor(foodStation station)
-	{
-		if (station == null) return checkoutColor;
-		switch (station.stationType)
-		{
-			case foodStation.StationType.Deli:
-				return deliColor;
-			case foodStation.StationType.Bakery:
-				return bakeryColor;
-			default:
-				return shelfColor;
-		}
-	}
+    private Color ColorFor(foodStation station)
+    {
+        if (station == null) return checkoutColor;
+
+        foreach (var entry in stationColors)
+            if (entry.stationType == station.stationType) return entry.color;
+
+        return defaultColor;
+    }
 }
