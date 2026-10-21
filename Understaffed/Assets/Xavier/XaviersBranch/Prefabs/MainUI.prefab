@@ -282,7 +282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3047458799209583375
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3998,6 +3998,7 @@ MonoBehaviour:
   builder: {fileID: 5897407824893102925}
   header: {fileID: 1132440565856197929}
   timer: {fileID: 2672051852245350267}
+  blur: {fileID: 0}
 --- !u!1 &5790226158658556645
 GameObject:
   m_ObjectHideFlags: 0
