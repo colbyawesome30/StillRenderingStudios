@@ -421,7 +421,6 @@ public class averageCustomer : MonoBehaviour
 
             // add item visuals on register conveyor for each item on list * quantity
 
-
             int roll = _random.Next(1, 9);
             if (roll == 1 || roll == 2)
             {
@@ -491,27 +490,29 @@ public class averageCustomer : MonoBehaviour
         for (int i = 0; i < desire; i++)
         {
             foodStation pick = openStations[Random.Range(0, openStations.Count)];
+            Debug.Log($"Picked {pick.name}, items: {pick.items.Count}", pick);
+            StationItem wanted = pick.items[Random.Range(0, pick.items.Count)]; // finds a random item from the station's list of items
 
             CustomerOrderItem existingOrderItem =
-                order.Find(orderItem => orderItem.stationNumber == pick.stationNumber);
+                order.Find(orderItem => orderItem.stationNumber == pick.stationNumber && orderItem.itemName == wanted.itemName);
 
             if (existingOrderItem != null)
             {
                 existingOrderItem.quantity++;
-                existingOrderItem.totalPriceOfItems += pick.itemSalePrice;
+                existingOrderItem.totalPriceOfItems += wanted.price;
             }
             else
             {
                 order.Add(new CustomerOrderItem
                 {
                     stationNumber = pick.stationNumber,
-                    itemName = pick.foodStationType,
+                    itemName = wanted.itemName,
                     quantity = 1,
-                    totalPriceOfItems = pick.itemSalePrice
+                    totalPriceOfItems = wanted.price
                 });
             }
 
-            totalPriceOfItems += pick.itemSalePrice;   // customer's running total
+            totalPriceOfItems += wanted.price;   // customer's running total --- changed pick.itemSalePrice to wanted.price
         }
     }
 

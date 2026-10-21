@@ -1,6 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class StationItem
+{
+    public string itemName;
+    public int price = 5;
+} // gives each station a unique list of items it can serve that customers can order from, with prices
 public class foodStation : MonoBehaviour
 {
     public List<averageCustomer> line = new List<averageCustomer>();
@@ -20,7 +26,10 @@ public class foodStation : MonoBehaviour
     private averageCustomer beingServed;
     //Time left till done
     private float serveTimer;
-    private float serveTotal;   // saved when serving starts so the conveyor belt can work out progress
+    private float serveTotal; // saved when serving starts so the conveyor belt can work out progress
+    public averageCustomer CurrentCustomer => beingServed;
+
+    public List<StationItem> items = new List<StationItem>(); // what this station sells
     public bool lockedInBuildMode = false;
     private WorkStation alertTarget;
     private bool alerting;
@@ -28,24 +37,13 @@ public class foodStation : MonoBehaviour
     public enum StationType
     {
         Deli,
-        Toilet_Paper,
-        Seafood,
-        Candy,
-        Frozen_Food,
-        Juice,
-        Canned_Items,
-        Fruits,
-        Vegetables,
-        Milk,
-        Meat,
-        Pasta,
-        Snacks,
-        Bakery
+        Bakery,
+        Shelf
     }
 
-    public int itemSalePrice = 1; //Price of item sold at station
+    // public int itemSalePrice = 1; //Price of item sold at station --- now set by wanted.price in avgCust
     public int stationNumber;
-    public StationType stationType = StationType.Canned_Items;    // pick this in the Inspector
+    public StationType stationType = StationType.Shelf;    // pick this in the Inspector
     public string foodStationType => stationType.ToString();   // "Burger", "Shake", "Fries"
 
     private static int nextStationNumber = 0;
