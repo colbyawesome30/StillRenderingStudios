@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 
 public class InGameSettings : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class InGameSettings : MonoBehaviour
     [SerializeField] private GameObject builder;
     [SerializeField] private GameObject header;
     [SerializeField] private Timer timer;
-
+    [SerializeField] private Volume blur;
     private static bool _settingsIsOpen;
     public static bool SettingsIsOpen => _settingsIsOpen;
 
@@ -16,6 +18,7 @@ public class InGameSettings : MonoBehaviour
     {
         if (timer == null) timer = GetComponent<Timer>();
         if (timer == null) timer = FindAnyObjectByType<Timer>();
+        if (blur == null) blur = FindAnyObjectByType<Volume>();
     }
 
     private void Start()
@@ -41,6 +44,11 @@ public class InGameSettings : MonoBehaviour
         builder.SetActive(!Toggle);
         roster.SetActive(!Toggle);
         _settingsIsOpen = Toggle;
+
+        if (blur.profile.TryGet(out DepthOfField dof))
+        {
+            dof.active = Toggle;
+        }
 
         if (timer == null) return;
 

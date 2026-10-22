@@ -48,8 +48,13 @@ public class CarMovement : MonoBehaviour
     private Vector3 Heading => transform.rotation * Quaternion.Euler(0f, 90, 0f) * Vector3.forward;
     // Direction the car is actually travelling in (opposite to Heading while reversing)
     private Vector3 MoveDirection { get { Vector3 heading = Heading; heading.y = 0f; return targetDistance < distanceAlongPath ? -heading : heading; } }
-    // True while sitting out after backing up for another car
-    private bool IsHolding
+	// True while sitting out after backing up for another car
+
+	// fix deprecated warnings
+	private static int nextCarId;
+	private int carId;
+
+	private bool IsHolding
     {
         get
         {
@@ -65,7 +70,8 @@ public class CarMovement : MonoBehaviour
     private void OnDisable() => allCars.Remove(this);
     private void Awake()
     {
-        foreach (Transform child in GetComponentsInChildren<Transform>(true))
+		carId = nextCarId++; // assign unique ID to each car
+		foreach (Transform child in GetComponentsInChildren<Transform>(true))
             if (child.name.Replace(" ", "").Replace("_", "").ToLower().StartsWith("customerspawn")) { CustomerSpawn = child; break; }
     }
     //Establish parking information and route for car
@@ -251,7 +257,7 @@ public class CarMovement : MonoBehaviour
     {
         if (!otherCar.CanYield) return;
         bool bothBlockingEachOther = otherCar.blockingCar == this;
-        if (isReversing || (bothBlockingEachOther && GetHashCode() > otherCar.GetHashCode())) otherCar.Yield(this);
+        if (isReversing || (bothBlockingEachOther && carId > otherCar.carId)) otherCar.Yield(this);
     }
     //Back up along the path to make room
     public void Yield(CarMovement requester)

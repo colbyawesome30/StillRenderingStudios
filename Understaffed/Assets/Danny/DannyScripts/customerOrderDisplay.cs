@@ -5,85 +5,47 @@ using System.Collections.Generic;
 public class customerOrderDisplay : MonoBehaviour
 {
     [System.Serializable]
-    public class StationColor
+    public struct StationColor
     {
         public foodStation.StationType stationType;
-        public Color color = Color.white;
+        public Color color;
     }
 
     private averageCustomer customer;
     [SerializeField] private TextMeshProUGUI orderText;
 
-    [Header("Text color by next station")]
+    [Header("Text color by station")]
     [SerializeField] private List<StationColor> stationColors = new List<StationColor>();
-    [SerializeField] private Color defaultColor = Color.black;   // used when a type has no entry
+    [SerializeField] private Color defaultColor = Color.black;   // used when a type isn't in the list
     [SerializeField] private Color checkoutColor = new Color(0.5f, 0.9f, 0.5f);
-
-    private Dictionary<foodStation.StationType, Color> colorLookup;
 
     void Awake()
     {
         customer = GetComponentInParent<averageCustomer>();
-        BuildLookup();
-    }
-
-    private void BuildLookup()
-    {
-        colorLookup = new Dictionary<foodStation.StationType, Color>();
-        foreach (StationColor entry in stationColors)
-            colorLookup[entry.stationType] = entry.color;
     }
 
     public void UpdateDisplay()
     {
-        if (colorLookup == null) BuildLookup();
+        if (customer == null) customer = GetComponentInParent<averageCustomer>();
+        gameObject.SetActive(true);
 
-        if (customer == null)
-            customer = GetComponentInParent<averageCustomer>();
-
-        if (customer == null || customer.order == null)
+        // only checkout is left: show everything they are paying for
+        if (customer.order == null || customer.order.Count == 0)
         {
-            gameObject.SetActive(false);
-            return;
-        }
-
-        //Order finished: show the total in the checkout color
-        if (customer.order.Count == 0)
-        {
-            if (customer.TotalPrice <= 0)
-            {
-                gameObject.SetActive(false);
-                return;
-            }
-
-            gameObject.SetActive(true);
-            orderText.text = "$" + (customer.TotalPrice * 10);
+            orderText.text = "Checkout $" + (customer.TotalPrice * 10);
             orderText.color = checkoutColor;
             return;
         }
 
-        gameObject.SetActive(true);
-
-        // List every item for the station the customer is heading to next, on one line
+        // items for the station they are heading to, each with its price
         int nextStation = customer.order[0].stationNumber;
-        var items = new List<string>();
+        var sb = new System.Text.StringBuilder();
         foreach (CustomerOrderItem item in customer.order)
-        {
             if (item.stationNumber == nextStation)
-                items.Add(item.itemName + " x " + item.quantity);
-        }
+                sb.AppendLine(item.itemName + " x" + item.quantity + " $" + (item.totalPriceOfItems * 10));
+        orderText.text = sb.ToString().TrimEnd();
 
-        // Money collected so far, on the same line
-        int remaining = 0;
-        foreach (var item in customer.order)
-            remaining += item.totalPriceOfItems;
-        int collectedSoFar = (customer.TotalPrice - remaining) * 10;
-
-        orderText.text = string.Join(", ", items) + " $" + collectedSoFar;
-
-        // Color by the type of the next station
-        foodStation station = foodStation.AllStations.Find(
-            stationCheck => !stationCheck.isCheckout && stationCheck.stationNumber == nextStation);
+        foodStation station = foodStation.AllStations.Find(s => !s.isCheckout && s.stationNumber == nextStation);
         orderText.color = ColorFor(station);
     }
 
@@ -91,6 +53,9 @@ public class customerOrderDisplay : MonoBehaviour
     {
         if (station == null) return checkoutColor;
 
-        return colorLookup.TryGetValue(station.stationType, out Color color) ? color : defaultColor;
+        foreach (var entry in stationColors)
+            if (entry.stationType == station.stationType) return entry.color;
+
+        return defaultColor;
     }
 }

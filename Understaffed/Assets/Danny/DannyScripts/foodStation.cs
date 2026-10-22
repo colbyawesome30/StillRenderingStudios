@@ -27,7 +27,7 @@ public class foodStation : MonoBehaviour
 
     public enum StationType
     {
-        Deli_Meat,
+        Deli,
         Toilet_Paper,
         Seafood,
         Candy,

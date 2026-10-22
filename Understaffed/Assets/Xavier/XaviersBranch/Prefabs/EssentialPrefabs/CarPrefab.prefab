@@ -79,7 +79,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5975646103924826005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -207,7 +207,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParkingCar
   carMoveVar: {fileID: 8228862308735777322}
-  stopDistance: 3
 --- !u!65 &6805342298513600775
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -251,12 +250,13 @@ MonoBehaviour:
   backOutDistance: 12
   mergeAhead: 6
   mergeClearRadius: 3
-  retreatRadius: 10
-  retreatSpeed: 8
-  retreatMinWait: 6
+  backoutRadius: 10
+  backoutSpeed: 5
+  backoutMinWait: 1
   mergeMaxWait: 15
   castRadius: 1
   yieldDistance: 12
   yieldSpeed: 20
   yieldClearDistance: 6
   yieldMaxHold: 3
+  stopDistance: 3
