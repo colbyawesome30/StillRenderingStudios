@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 
 public class BuildMode : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class BuildMode : MonoBehaviour
     private float previousTimeScale = 1f;
 
     private bool timerWasPaused;
+
 
     //Find timer
     private void Awake()

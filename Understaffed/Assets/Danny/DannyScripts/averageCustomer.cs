@@ -73,25 +73,6 @@ public class averageCustomer : MonoBehaviour
     private CustomerState currentState;
     private NavMeshAgent agent;
 
-    //-----------------------------------------------------------------------
-    // Sprite animation / camera facing
-    [Tooltip("True if the side animation is drawn facing left (Koi).")]
-    [SerializeField] private bool sideSpriteFacesLeft = true;
-    [SerializeField] private float moveThreshold = 0.1f;
-    [Tooltip("How much stronger one axis must be before switching between side and front.")]
-    [SerializeField] private float axisSwitchBias = 1.3f;
-    [Tooltip("Time before switching between side and front.")]
-    [SerializeField] private float axisHoldTime = 0.25f;
-    [Tooltip("Sideways speed before the sprite flips.")]
-    [SerializeField] private float flipDeadzone = 0.3f;
-    private float nextAxisSwitchTime;
-    private static readonly int IsMovingSide = Animator.StringToHash("isMovingSide");
-    private static readonly int IsMovingFront = Animator.StringToHash("isMovingFront");
-    private bool wasMovingSide;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    private Camera cam;
-    //-----------------------------------------------------------------------
-
     private void OnEnable()
     {
         PlayerInfo.DifficultyChanged += OnDifficultyChanged;
