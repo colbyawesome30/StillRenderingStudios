@@ -44221,6 +44221,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105319490903223505, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
+      propertyPath: worker
+      value: 
+      objectReference: {fileID: 4486769449451301319, guid: 9c54efd1936894b4ea9403c96d69805a, type: 3}
     - target: {fileID: 185158526507488342, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -44309,6 +44313,10 @@ PrefabInstance:
       propertyPath: countdownTime
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 2888761980446900960, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
+      propertyPath: blur
+      value: 
+      objectReference: {fileID: 776896449}
     - target: {fileID: 5652441464574398012, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: m_Name
       value: MainUI
@@ -44653,7 +44661,7 @@ PrefabInstance:
     - target: {fileID: 1383877216261282066, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: availableWorkers.Array.data[2].workerPrefab
       value: 
-      objectReference: {fileID: 5127787832729579379, guid: f6ae11793c3fd2041a55029ead663928, type: 3}
+      objectReference: {fileID: 5127787832729579379, guid: 9c54efd1936894b4ea9403c96d69805a, type: 3}
     - target: {fileID: 1383877216261282066, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: availableWorkers.Array.data[3].workerPrefab
       value: 
@@ -44831,7 +44839,7 @@ PrefabInstance:
     - target: {fileID: 1719111128854957474, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
       propertyPath: spawnPoints.Array.data[2].worker
       value: 
-      objectReference: {fileID: 4486769449451301319, guid: f6ae11793c3fd2041a55029ead663928, type: 3}
+      objectReference: {fileID: 4486769449451301319, guid: 9c54efd1936894b4ea9403c96d69805a, type: 3}
     - target: {fileID: 1719111128854957474, guid: 3bddd47bb5f41294799ba564f1522df4, type: 3}
       propertyPath: spawnPoints.Array.data[3].worker
       value: 

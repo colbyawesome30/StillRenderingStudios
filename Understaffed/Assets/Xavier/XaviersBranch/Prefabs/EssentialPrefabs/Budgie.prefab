@@ -5577,7 +5577,7 @@ MonoBehaviour:
   desire: 0
   order: []
   totalPriceOfItems: 0
-  sideSpriteFacesLeft: 0
+  sideSpriteFacesLeft: 1
   moveThreshold: 0.1
   axisSwitchBias: 1.3
   axisHoldTime: 0.25
