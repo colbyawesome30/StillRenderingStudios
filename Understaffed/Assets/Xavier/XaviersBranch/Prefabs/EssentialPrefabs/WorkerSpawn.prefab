@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &171033170374091242
 Transform:
@@ -110,7 +110,7 @@ MonoBehaviour:
     spawnPoint: {fileID: 171033170374091242}
   - worker: {fileID: 4486769449451301319, guid: 2ef65f8ff15409c408f6362ffdc10bde, type: 3}
     spawnPoint: {fileID: 171033170374091242}
-  - worker: {fileID: 4486769449451301319, guid: f6ae11793c3fd2041a55029ead663928, type: 3}
+  - worker: {fileID: 4486769449451301319, guid: 9c54efd1936894b4ea9403c96d69805a, type: 3}
     spawnPoint: {fileID: 171033170374091242}
 --- !u!114 &2241369579658037956
 MonoBehaviour:
