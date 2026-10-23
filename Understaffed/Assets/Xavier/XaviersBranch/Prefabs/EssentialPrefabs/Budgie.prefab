@@ -232,13 +232,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636679424531421182}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.17364825, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 1, z: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 376101159915144232}
-  m_LocalEulerAnglesHint: {x: -20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2939512714764635389
 SpriteRenderer:
   serializedVersion: 3
@@ -5553,7 +5553,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::averageCustomer
   difficulty: 1
-  animator: {fileID: 6034517353276078671}
   patienceTimer: 30
   rageStep: 0
   lineCapacity: 3
@@ -5711,6 +5710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotateToCam
   cameraTransform: {fileID: 0}
+  changeRot: 1
 --- !u!1 &6642057217613621755
 GameObject:
   m_ObjectHideFlags: 0

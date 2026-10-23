@@ -19,35 +19,59 @@ public class SpriteAgentAnimator : MonoBehaviour
     [Tooltip("Higher = snappier, lower = smoother velocity for animation decisions.")]
     [SerializeField] private float velocitySmoothing = 10f;
 
+    //Animation state references
     private static readonly int IsMovingSide = Animator.StringToHash("isMovingSide");
     private static readonly int IsMovingFront = Animator.StringToHash("isMovingFront");
 
+    //Runtime variables
     private NavMeshAgent agent;
     private Camera cam;
     private Vector3 smoothedVel;
     private bool wasMovingSide;
     private float nextAxisSwitchTime;
 
+
+    //Find nav mesh agaent, animator, and sprite render
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false; // sprites are billboarded, don't let the agent spin the transform
+        agent.updateRotation = false;
 
         if (animator == null) animator = GetComponentInChildren<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
+    //Update animation based on movement
     private void LateUpdate()
     {
         if (animator == null) return;
         if (cam == null) cam = Camera.main;
 
-        // Smooth velocity so avoidance jitter / corner spikes don't flip animations
-        Vector3 vel = agent.velocity;
+        Vector3 vel = agent.desiredVelocity;
         vel.y = 0f;
-        float t = 1f - Mathf.Exp(-velocitySmoothing * Time.deltaTime);
-        smoothedVel = Vector3.Lerp(smoothedVel, vel, t);
 
+        //Has arrived?
+        bool arrived = !agent.pathPending
+                    && agent.hasPath
+                    && agent.remainingDistance <= agent.stoppingDistance + 0.05f;
+
+        if (vel.magnitude < moveThreshold || arrived)
+        {
+            smoothedVel = Vector3.zero;
+            animator.SetBool(IsMovingSide, false);
+            animator.SetBool(IsMovingFront, false);
+            return;
+        }
+
+        //Check speed
+        if (smoothedVel == Vector3.zero) smoothedVel = vel;
+        else
+        {
+            float time = 1f - Mathf.Exp(-velocitySmoothing * Time.deltaTime);
+            smoothedVel = Vector3.Lerp(smoothedVel, vel, time);
+        }
+
+        //Stop moving and idle
         if (smoothedVel.magnitude < moveThreshold)
         {
             animator.SetBool(IsMovingSide, false);
@@ -63,6 +87,7 @@ public class SpriteAgentAnimator : MonoBehaviour
         float sideAmount = Vector3.Dot(smoothedVel, right);
         float frontAmount = Vector3.Dot(smoothedVel, forward);
 
+        //Switch sprite side
         bool wantSide = wasMovingSide
             ? Mathf.Abs(sideAmount) * axisSwitchBias >= Mathf.Abs(frontAmount)
             : Mathf.Abs(sideAmount) > Mathf.Abs(frontAmount) * axisSwitchBias;
@@ -75,6 +100,7 @@ public class SpriteAgentAnimator : MonoBehaviour
         }
         wasMovingSide = movingSide;
 
+        //Change animation state
         animator.SetBool(IsMovingSide, movingSide);
         animator.SetBool(IsMovingFront, !movingSide);
 

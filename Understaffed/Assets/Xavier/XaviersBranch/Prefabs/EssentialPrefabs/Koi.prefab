@@ -233,13 +233,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636679424531421182}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.17364825, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 1, z: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 376101159915144232}
-  m_LocalEulerAnglesHint: {x: -20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2939512714764635389
 SpriteRenderer:
   serializedVersion: 3
@@ -313,7 +313,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 24279cb38d63f904a9d3993afd14075c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -335,6 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotateToCam
   cameraTransform: {fileID: 0}
+  changeRot: 1
 --- !u!1 &892596404273632164
 GameObject:
   m_ObjectHideFlags: 0
@@ -5545,7 +5546,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5519701519376992259}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dcad34783bff6d043a2550046880fd7e, type: 3}
   m_Name: 
@@ -5723,8 +5724,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4155ff2bb70ee184082f5609ad239b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAgentAnimator
-  animator: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  animator: {fileID: 5157512615573726353}
+  spriteRenderer: {fileID: 2939512714764635389}
   sideSpriteFacesLeft: 0
   moveThreshold: 0.1
   axisSwitchBias: 1.3
