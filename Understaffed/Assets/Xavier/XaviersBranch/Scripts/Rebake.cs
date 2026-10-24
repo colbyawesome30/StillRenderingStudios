@@ -26,6 +26,8 @@ public class Rebake : MonoBehaviour
             mod.ignoreFromBuild = true;
             mod.applyToChildren = true;
         }
+
+        RebakeMesh();
     }
 
     public void RebakeMesh()

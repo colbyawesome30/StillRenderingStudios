@@ -509,12 +509,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879564934795035175}
   serializedVersion: 2
-  m_LocalRotation: {x: 1, y: -0, z: -0, w: -0.00000005960465}
-  m_LocalPosition: {x: -0.01, y: 0, z: -0.00816}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
+  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: -0.01, y: -0.008159998, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.010000002, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4023131808201155373}
+  m_Father: {fileID: 539722138568073179}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &6015605940028232136
 SpriteRenderer:
@@ -706,7 +706,7 @@ Transform:
   m_GameObject: {fileID: 993696399120477343}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.081999995, y: 0.8359999, z: 0.20484184}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.001, z: 0.010000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -724,9 +724,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea537422592f444a9657b10e7bc36a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stationName: 'Station: Food Station'
+  stationName: Los Ros Health
   markerTint: {r: 0.43867922, g: 0.5567724, b: 1, a: 1}
-  markerLabelOverride: 'Station: Food Station'
+  markerLabelOverride: Los Ros Health
   markerImage: {fileID: 21300000, guid: a05697e57e16fce4c9da6e701d2e371e, type: 3}
   stationOutline: {fileID: 879564934795035175}
   stationUI: {fileID: 850353095539236226}
@@ -757,9 +757,9 @@ MonoBehaviour:
   isCheckout: 0
   linkedStation: {fileID: 2599933766657133621}
   stats: {fileID: 4317687057755748140}
-  baseServeTime: 4
+  baseServeTime: 8
   lockedInBuildMode: 0
-  itemSalePrice: 1
+  itemSalePrice: 9
   stationNumber: 0
   stationType: 0
 --- !u!114 &4317687057755748140
@@ -940,8 +940,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 1, z: 4}
-  m_Center: {x: 1, y: 0, z: 0.5}
+  m_Size: {x: 9, y: 1, z: 4}
+  m_Center: {x: -1, y: -4, z: 0.5}
 --- !u!1 &1335714486927501232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,7 +1353,7 @@ Transform:
   m_GameObject: {fileID: 3495908848796657261}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.072, y: 0.8309999, z: 0.20484184}
+  m_LocalPosition: {x: -0.0145, y: -0.0015, z: 0.0065}
   m_LocalScale: {x: 0.01, y: 0.010000002, z: 0.010000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1378,7 +1378,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 4, z: 4}
+  m_Size: {x: 11, y: 3, z: 7}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3496027933503186042
 GameObject:
@@ -1964,7 +1964,7 @@ Transform:
   m_GameObject: {fileID: 4421122289864164892}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.072, y: 0.8309999, z: 0.20484184}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.001, z: 0.010000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2133,12 +2133,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4728145693803113495}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.01595, y: -0.00397, z: 0.00106}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.01595, y: 0.0010600002, z: 0.0039699986}
   m_LocalScale: {x: 0.005, y: 0.001, z: 0.005}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4023131808201155373}
+  m_Father: {fileID: 539722138568073179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3088130546909377222
 MeshFilter:
@@ -2612,12 +2612,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5738928376946014622}
   serializedVersion: 2
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -0.0175, y: -0.0275, z: -0.00724}
-  m_LocalScale: {x: 0.01, y: 0.001, z: 0.010000002}
+  m_LocalRotation: {x: 0.7071067, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.0175, y: -0.0072399955, z: 0.027499994}
+  m_LocalScale: {x: 0.01, y: 0.0010000002, z: 0.0100000035}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4023131808201155373}
+  m_Father: {fileID: 539722138568073179}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!33 &6018834089151031312
 MeshFilter:
@@ -2899,6 +2899,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6073447137126012907}
+  - {fileID: 862414395189098837}
+  - {fileID: 820389814364889070}
+  - {fileID: 8594593244138492123}
   - {fileID: 2603219855047383425}
   - {fileID: 6372877144069688484}
   - {fileID: 7866937951467720228}
@@ -3178,7 +3182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6625140084094490986}
   - component: {fileID: 815377366127294165}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MeshCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3248,12 +3252,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7614251399203488905}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.0175, y: -0.0275, z: -0.00724}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0175, y: -0.0072399955, z: 0.027499994}
   m_LocalScale: {x: 0.01, y: 0.001, z: 0.010000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4023131808201155373}
+  m_Father: {fileID: 539722138568073179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1229697946822058659
 MeshFilter:
@@ -3797,6 +3801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Burger.001
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0106eb8d941b63747865df764def7a0b, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3870,6 +3878,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
       propertyPath: m_Name
       value: Fries.001 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3945,6 +3957,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FriedFoodTray (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f53330e236621b2428658331c77f2479, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4018,6 +4034,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
       propertyPath: m_Name
       value: Fries.001 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4093,6 +4113,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patty Cooked
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 923c3af73cd571e41ade8bdf56864c6f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4166,6 +4190,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
       propertyPath: m_Name
       value: Fries.001 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4241,6 +4269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patty Raw (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 616761091423435408e3876e43d3f3d1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4314,6 +4346,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
       propertyPath: m_Name
       value: Fries.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4389,6 +4425,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patty Cooked (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 923c3af73cd571e41ade8bdf56864c6f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4462,6 +4502,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: be51e2c6a51e95b4398f9f469e1d49e8, type: 3}
       propertyPath: m_Name
       value: Stove
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: be51e2c6a51e95b4398f9f469e1d49e8, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4561,6 +4605,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ApplePay
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 301240786aa824645a19c4fc06d95d5d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4635,6 +4683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NapkinDispenser
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ffff36ef81b7f50438031c14c21a934e, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4693,6 +4745,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6167482964710004479, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -1761682191513992404, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.92807984
@@ -4716,6 +4772,26 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
       propertyPath: m_Name
       value: FoodTruckA
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735130515427064503, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788845593105122680, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3009737767740366255, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4782077647605447152, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5166839344541642223, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4741,6 +4817,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -120
       objectReference: {fileID: 0}
+    - target: {fileID: 6893451599655894215, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893451599655894215, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864515976239365984, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913666597599832015, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -4752,30 +4844,18 @@ PrefabInstance:
       addedObject: {fileID: 2233083370475956656}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
       insertIndex: 2
-      addedObject: {fileID: 6073447137126012907}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 862414395189098837}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 820389814364889070}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
-      insertIndex: 5
-      addedObject: {fileID: 8594593244138492123}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
-      insertIndex: 6
       addedObject: {fileID: 539722138568073179}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
-      insertIndex: 7
+      insertIndex: 3
       addedObject: {fileID: 1100532067514300954}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
-      insertIndex: 8
+      insertIndex: 4
       addedObject: {fileID: 6431658313123770413}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
-      insertIndex: 9
+      insertIndex: 5
       addedObject: {fileID: 4360615454571799618}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
-      insertIndex: 10
+      insertIndex: 6
       addedObject: {fileID: 6154695913763515378}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
       insertIndex: -1
@@ -4851,6 +4931,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d28e91b8a93555c4ea8b961e03c77e5c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4924,6 +5008,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 616761091423435408e3876e43d3f3d1, type: 3}
       propertyPath: m_Name
       value: Patty Raw
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 616761091423435408e3876e43d3f3d1, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4999,6 +5087,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patty Cooked (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 923c3af73cd571e41ade8bdf56864c6f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5072,6 +5164,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 55bc5a6ddab244e4bbb611e3604d1cf7, type: 3}
       propertyPath: m_Name
       value: ChickenTenders (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55bc5a6ddab244e4bbb611e3604d1cf7, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5147,6 +5243,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pan
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 780e293a57baa664cae3367e0e13fff9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5220,6 +5320,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
       propertyPath: m_Name
       value: Fries.001 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5295,6 +5399,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fries.001 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5368,6 +5476,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7f950a8fcd5b2ea49a465312e7937a41, type: 3}
       propertyPath: m_Name
       value: StovePot-Empty
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7f950a8fcd5b2ea49a465312e7937a41, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5443,6 +5555,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StovePot-Filled
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6e7132d1a72443f498d7b3bf22fe5c31, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5516,6 +5632,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 55bc5a6ddab244e4bbb611e3604d1cf7, type: 3}
       propertyPath: m_Name
       value: ChickenTenders
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 55bc5a6ddab244e4bbb611e3604d1cf7, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5610,6 +5730,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bf12e5211b529564b96bc8d98d784682, type: 3}
       propertyPath: m_Name
       value: Ramp
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bf12e5211b529564b96bc8d98d784682, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5743,6 +5867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patty Raw (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 616761091423435408e3876e43d3f3d1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5816,6 +5944,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ffff36ef81b7f50438031c14c21a934e, type: 3}
       propertyPath: m_Name
       value: NapkinDispenser (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ffff36ef81b7f50438031c14c21a934e, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5891,6 +6023,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fries.001 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5965,6 +6101,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pan (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 780e293a57baa664cae3367e0e13fff9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6038,6 +6178,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5d9a9cfafc9331c43b056202e85c7b67, type: 3}
       propertyPath: m_Name
       value: Grill
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5d9a9cfafc9331c43b056202e85c7b67, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6137,6 +6281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 87836cc2f7bbec6498bec037d178fae9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6211,6 +6359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fries.001 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a84e7cc0353628c409e8c78533393be4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6284,6 +6436,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d661bd44295bde745b9b40419a2947cb, type: 3}
       propertyPath: m_Name
       value: DishWasher
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d661bd44295bde745b9b40419a2947cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6383,6 +6539,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patty Raw (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 616761091423435408e3876e43d3f3d1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6456,6 +6616,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8035b4f702a1013408539d2cfce81993, type: 3}
       propertyPath: m_Name
       value: Soda
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8035b4f702a1013408539d2cfce81993, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6531,6 +6695,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FriedFoodTray
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f53330e236621b2428658331c77f2479, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6604,6 +6772,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 616761091423435408e3876e43d3f3d1, type: 3}
       propertyPath: m_Name
       value: Patty Raw (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 616761091423435408e3876e43d3f3d1, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
