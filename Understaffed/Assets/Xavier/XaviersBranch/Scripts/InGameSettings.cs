@@ -41,7 +41,8 @@ public class InGameSettings : MonoBehaviour
         inGameSettings.SetActive(Toggle);
 
         header.SetActive(!Toggle);
-        builder.SetActive(!Toggle);
+        //temp
+        builder.SetActive(false);
         roster.SetActive(!Toggle);
         _settingsIsOpen = Toggle;
 
