@@ -36,7 +36,7 @@ public class conveyorBelt : MonoBehaviour
             float distanceToEnd = Vector3.Distance(item.position, endPoint.position);
             float totalPathLength = Vector3.Distance(startPoint.position, endPoint.position);
             float distanceFromStart = Vector3.Distance(startPoint.position, item.position);
-
+            
             if (distanceFromStart >= totalPathLength)
             {
                 itemsOnBelt.RemoveAt(i);
@@ -45,9 +45,9 @@ public class conveyorBelt : MonoBehaviour
         }
     }
 
-    public void RegisterItem(GameObject newItem)
+    public void CurrentRegisterItem(GameObject newItem)
     {
         newItem.transform.position = startPoint.position;
         itemsOnBelt.Add(newItem.transform);
-    }
+    } // changes currently displayed item on conveyor belt
 }
