@@ -6,6 +6,8 @@ public class StationItem
 {
     public string itemName;
     public int price = 5;
+    public GameObject itemModel;
+    // OR we could use "public Sprite itemSprite;" if we want to use images instead
 } // gives each station a unique list of items it can serve that customers can order from, with prices
 public class foodStation : MonoBehaviour
 {

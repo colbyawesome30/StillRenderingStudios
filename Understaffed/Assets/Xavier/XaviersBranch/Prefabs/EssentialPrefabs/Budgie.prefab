@@ -5575,13 +5575,8 @@ MonoBehaviour:
   orderDisplay: {fileID: 8695791581071215667}
   desire: 0
   order: []
+  collectedItems: []
   totalPriceOfItems: 0
-  sideSpriteFacesLeft: 1
-  moveThreshold: 0.1
-  axisSwitchBias: 1.3
-  axisHoldTime: 0.25
-  flipDeadzone: 0.3
-  spriteRenderer: {fileID: 2939512714764635389}
 --- !u!82 &8682110451783221504
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10722,6 +10717,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3331813779909101090, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[0].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[0].color.b
+      value: 0.05731578
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[0].color.g
+      value: 0.32143742
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[0].color.r
+      value: 0.5283019
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[1].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[1].color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[1].color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[1].color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[2].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771005451072698371, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}
+      propertyPath: stationColors.Array.data[0].stationType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8733437657598086812, guid: fa42e0e3d607d4b458c7145be34248b8, type: 3}

@@ -15,8 +15,8 @@ TagManager:
   - Entity
   - VFX
   - Block
-  - 
-  - 
+  - PassThrough
+  - HiddenInGame
   - 
   - 
   - 

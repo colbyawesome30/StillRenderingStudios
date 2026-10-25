@@ -10,12 +10,17 @@ public class SimpleNavigation : MonoBehaviour
     private Transform spawnPoint;
     private System.Action onArrivedAtSpawn;
     public bool IsSuspended { get; set; }
+    
 
     //path state
     public enum NavState { MovingToStation, MovingToSpawn, Idle }
     public NavState State { get; private set; } = NavState.Idle;
 
-    private void Awake() => agent = GetComponent<NavMeshAgent>();
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.stoppingDistance = 0.1f;
+    }
 
     //Start journey
     public void Initialize(Transform spawn) => spawnPoint = spawn;
