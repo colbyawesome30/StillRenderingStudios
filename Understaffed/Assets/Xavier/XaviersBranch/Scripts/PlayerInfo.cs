@@ -16,7 +16,7 @@ public class PlayerInfo : MonoBehaviour
     public int currentCustomers;
     public event EventHandler CurrentDayScoreChanged;
     public float stars;
-
+    private float _totalSatisfaction;
     public int maxScorePerCustomer = 100;
     public float maxStars = 5f;
     [SerializeField] private TMP_Text starsText;
@@ -91,12 +91,13 @@ public class PlayerInfo : MonoBehaviour
 
     public void Result(int points, float patienceRatio)
     {
-        if (_gameEnd) return;                 // game over: nothing changes
+        if (_gameEnd) return;
 
-        currentCustomers++;                   // count first so the average uses the new total
-        currentDayScore += points;            // setter fires the event and refreshes stars if the score changed
-        playerFunds = Mathf.Clamp(playerFunds + points, 0, int.MaxValue); // ------------- money gained is now determined by orders -------------
-        UpdateStarRating();                   // also refresh when points is 0, since the setter won't fire
+        currentCustomers++;
+        _totalSatisfaction += Mathf.Clamp01(patienceRatio);
+        currentDayScore += points;
+        playerFunds = Mathf.Clamp(playerFunds + points, 0, int.MaxValue);
+        UpdateStarRating();
     }
 
     public void AddFunds(int amount)
@@ -171,18 +172,16 @@ public class PlayerInfo : MonoBehaviour
     {
         if (currentCustomers <= 0)
         {
-            stars = 0f;   // nobody finished yet, and this avoids dividing by zero
+            stars = 0f;
             return;
         }
 
-        float averageScore = (float)_currentDayScore / currentCustomers;   // float cast stops integer division
-        float ratio = Mathf.Clamp01(averageScore / maxScorePerCustomer);
+        float averageSatisfaction = _totalSatisfaction / currentCustomers;
 
-        stars = Mathf.FloorToInt(ratio * maxStars * 10f) / 10f;   // one decimal place
-        Debug.Log(ratio + " current rating, " + stars + " stars, customers " + currentCustomers);
+        stars = Mathf.FloorToInt(averageSatisfaction * maxStars * 10f) / 10f;
+        Debug.Log(averageSatisfaction + " current satisfaction, " + stars + " stars, customers " + currentCustomers);
 
         starsText.text = stars + " Stars";
-        float fillPercent = stars/5;
-        fillImage.fillAmount = fillPercent;
+        fillImage.fillAmount = stars / maxStars;
     }
 }

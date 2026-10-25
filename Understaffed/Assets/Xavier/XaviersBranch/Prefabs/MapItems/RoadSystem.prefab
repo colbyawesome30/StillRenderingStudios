@@ -722,7 +722,7 @@ MonoBehaviour:
   customerPrefab: {fileID: 0}
   customers:
   - {fileID: 5519701519376992259, guid: 68eb7ee229ddd8d439ba40811dfc25cb, type: 3}
-  - {fileID: 5519701519376992259, guid: 7a2ea3af690d1f345baa4b7d40925028, type: 3}
+  - {fileID: 5519701519376992259, guid: f0f20a75c926f544d83dd1a228ec5289, type: 3}
   spawnPoint: {fileID: 2626866846152627182}
   parkingManager: {fileID: 7835219467618440063}
   entryList:

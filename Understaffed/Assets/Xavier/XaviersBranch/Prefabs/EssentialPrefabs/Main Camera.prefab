@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5774840839917116033}
   - component: {fileID: 1383877216261282066}
   - component: {fileID: 6409775862833545243}
+  - component: {fileID: 3825567452274081103}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -224,3 +225,40 @@ MonoBehaviour:
   useBounds: 1
   minOffset: {x: -15, y: -15}
   maxOffset: {x: 15, y: 40}
+  minZoom: 3
+  maxZoom: 8
+  scrollZoomSpeed: 0.1
+  pinchZoomSensitivity: 1
+  zoomSmoothTime: 0.08
+--- !u!114 &3825567452274081103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5960062390718804434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37851c42f5c58c4ea047a172de2b0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DitherZoom
+  _camera: {fileID: 3265683538097297081}
+  ditherMaterials:
+  - material: {fileID: 2100000, guid: 0daadf31c4176bd4ab690601e13fac4a, type: 2}
+    ditherZoomedIn: 0
+    ditherZoomedOut: 1
+  - material: {fileID: 2100000, guid: f2d71d70fab2dc04bafeddaae6b79e96, type: 2}
+    ditherZoomedIn: 0
+    ditherZoomedOut: 1
+  - material: {fileID: 2100000, guid: 9360eb0923d942949a1f58285b20d1c9, type: 2}
+    ditherZoomedIn: 0
+    ditherZoomedOut: 1
+  - material: {fileID: 2100000, guid: 55410f145c57e7e449e74d49b0d4da90, type: 2}
+    ditherZoomedIn: 0.1
+    ditherZoomedOut: 0.6
+  - material: {fileID: 2100000, guid: 9b7db266cce951b44b1464b16101bdfe, type: 2}
+    ditherZoomedIn: 0
+    ditherZoomedOut: 1
+  - material: {fileID: 2100000, guid: b34ed50dbb9738446ae1158cb279ccca, type: 2}
+    ditherZoomedIn: 0
+    ditherZoomedOut: 1
