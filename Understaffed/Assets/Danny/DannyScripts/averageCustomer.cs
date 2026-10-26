@@ -50,6 +50,9 @@ public class averageCustomer : MonoBehaviour
     public Slider patienceSlider;
     public GameObject rageSmoke;
 
+    public static int ActiveCount { get; private set; }
+    private bool counted;
+
     //-----------------------------------------------------------------------
     // Order / grocery list
     public customerOrderDisplay orderDisplay;
@@ -81,10 +84,14 @@ public class averageCustomer : MonoBehaviour
     private void OnDestroy()
     {
         PlayerInfo.DifficultyChanged -= OnDifficultyChanged;
+        if (counted) ActiveCount = Mathf.Max(0, ActiveCount - 1);
     }
 
     private void Start()
     {
+        ActiveCount++;
+        counted = true;
+
         if (playerInfo == null) playerInfo = FindAnyObjectByType<PlayerInfo>();
         agent = GetComponent<NavMeshAgent>();
 
