@@ -18,6 +18,7 @@ public class conveyorBelt : MonoBehaviour
 
     public float beltItemScale = 0.5f; // scale of items on the belt
     public float beltItemSpacing = 0.3f; // how far apart items are on the belt
+    public float beltItemRotation = 90; // rotate items on conveyor to face the employee
 
     private class BeltItem
     {
@@ -77,14 +78,20 @@ public class conveyorBelt : MonoBehaviour
 
             item.itemObject.transform.position = endPoint.position - moveDirection * distanceToEnd;
 
-            // items further back on belt are hidden untit they reach the start
-            item.itemObject.SetActive(distanceToEnd <= totalPathLength);
+            // items further back on belt are hidden until they reach the start
+            if (distanceToEnd <= totalPathLength)
+            {
+                item.itemObject.SetActive(false);
+            }
         }
     }
 
     private void SpawnItems(averageCustomer customer)
     {
+        // currently spawns in all items at once, not one by one. also dont move along the line
+        Debug.Log("SpawnItems Called");
         List<CustomerOrderItem> individualItems = new List<CustomerOrderItem>();
+
         foreach (CustomerOrderItem line in customer.ItemsFor(linkedStation))
         {
             for (int q = 0; q < line.quantity; q++)
@@ -104,8 +111,7 @@ public class conveyorBelt : MonoBehaviour
             obj.transform.localScale = prefab.transform.localScale * beltItemScale;
 
             // disable item collision on belt
-
-            obj.SetActive(false);
+            // obj.SetActive(false);
             itemsOnBelt.Add(new BeltItem { itemObject = obj, beltIndex = i });
         }
     }
