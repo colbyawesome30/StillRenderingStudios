@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 4317687057755748140}
   - component: {fileID: 7879257659048822644}
   - component: {fileID: 2477518391660037870}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Scripts and Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4745,10 +4745,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: 'm_Materials.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9360eb0923d942949a1f58285b20d1c9, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: 'm_Materials.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f2d71d70fab2dc04bafeddaae6b79e96, type: 2}
     - target: {fileID: -6167482964710004479, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -5042815493928742401, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f2d71d70fab2dc04bafeddaae6b79e96, type: 2}
     - target: {fileID: -1761682191513992404, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.92807984
@@ -4781,6 +4793,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1761303104694603475, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0daadf31c4176bd4ab690601e13fac4a, type: 2}
     - target: {fileID: 1788845593105122680, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -4789,6 +4805,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3930232755256957238, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9b7db266cce951b44b1464b16101bdfe, type: 2}
     - target: {fileID: 4782077647605447152, guid: 31dc92fde689e0745a1ccdad73812157, type: 3}
       propertyPath: m_Layer
       value: 10

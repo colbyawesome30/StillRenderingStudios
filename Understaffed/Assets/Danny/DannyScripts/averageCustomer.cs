@@ -252,7 +252,7 @@ public class averageCustomer : MonoBehaviour
                 Debug.Log("Rage");
                 rageStep = 0;
                 rageSmoke.SetActive(true);
-                //playerInfo.Result(-100, 0f);
+                playerInfo.Result(0, 0f);
                 int roll = _random.Next(1, 4);
                 if (roll == 1)
                 {

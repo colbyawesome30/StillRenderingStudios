@@ -3333,7 +3333,7 @@ GameObject:
   - component: {fileID: 1328832116576743122}
   - component: {fileID: 5260418622378820511}
   - component: {fileID: 2987671132608587154}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Scripts and Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
