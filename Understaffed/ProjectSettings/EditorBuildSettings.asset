@@ -14,5 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ArtScene.unity
     guid: 60ad05c54110bea438499342404c2fad
+  - enabled: 1
+    path: Assets/Joseph/Level 2 - Joseph.unity
+    guid: 20f919de96065d64faff497ede6689f4
+  - enabled: 1
+    path: Assets/Ian/Level 3 - Ian.unity
+    guid: cd79285cce5193a4f9a768c4b9d9d9aa
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

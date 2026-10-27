@@ -20,10 +20,14 @@ public class foodStation : MonoBehaviour
     private averageCustomer beingServed;
     //Time left till done
     private float serveTimer;
-    
+    private float serveTotal;   // saved when serving starts so the conveyor belt can work out progress
+    public bool lockedInBuildMode = false;
+    private WorkStation alertTarget;
+    private bool alerting;
+
     public enum StationType
     {
-        Deli_Meat,
+        Deli,
         Toilet_Paper,
         Seafood,
         Candy,
@@ -40,10 +44,13 @@ public class foodStation : MonoBehaviour
     }
 
     public int itemSalePrice = 1; //Price of item sold at station
-
-    public int stationNumber;          //Auto generated
+    public int stationNumber;
     public StationType stationType = StationType.Canned_Items;    // pick this in the Inspector
     public string foodStationType => stationType.ToString();   // "Burger", "Shake", "Fries"
+
+    private static int nextStationNumber = 0;
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics() => nextStationNumber = 0;
     //Change end
 
     public void addCustomer(averageCustomer customer)
@@ -63,11 +70,6 @@ public class foodStation : MonoBehaviour
         }
         //Change end
 
-        //---------------------------------------------------------------------
-        //No longer needed
-        // line.Remove(customer);
-        //---------------------------------------------------------------------
-
         updateLinePositions();
     }
 
@@ -78,11 +80,6 @@ public class foodStation : MonoBehaviour
         //New Changes
         Vector3 position = SnapToNavMesh(lineStart.position + lineDirection.forward * (index * lineSpacing));
         //Change end
-
-        //---------------------------------------------------------------------
-        //No longer needed
-        // Vector3 position = lineStart.position + lineDirection.forward * (index * lineSpacing);
-        //---------------------------------------------------------------------
 
         return position;
     }
@@ -96,12 +93,6 @@ public class foodStation : MonoBehaviour
             //Change end
 
             line[i].moveToLinePosition(newPosition);
-
-            
-            //---------------------------------------------------------------------
-            //No longer needed
-            // Vector3 newPosition = lineStart.position + lineDirection.forward * (i * lineSpacing);
-            //---------------------------------------------------------------------
         }
 
     }
@@ -111,15 +102,7 @@ public class foodStation : MonoBehaviour
     {
         if (!AllStations.Contains(this))
         {
-            // auto-assign the next free number
-            if (!isCheckout)
-            {
-                int next = 0;
-                foreach (foodStation s in AllStations)
-                    if (!s.isCheckout && s.stationNumber >= next) next = s.stationNumber + 1;
-                stationNumber = next;
-            }
-
+            if (!isCheckout) stationNumber = nextStationNumber++;
             AllStations.Add(this);
         }
     
@@ -128,11 +111,30 @@ public class foodStation : MonoBehaviour
         if (stats == null) stats = GetComponentInParent<StationStats>();
         if (stats == null) stats = GetComponentInChildren<StationStats>();
         if (stats == null && linkedStation != null) stats = linkedStation.GetComponentInChildren<StationStats>();
+
+        //Alert: which WorkStation blinks for this food station
+        alertTarget = linkedStation != null ? linkedStation : GetComponentInParent<WorkStation>();
+    }
+
+    //Blink while customers are waiting and nobody is working here
+    private void UpdateAlert()
+    {
+        bool need = stats != null && !stats.HasRealWorker && line.Count > 0;
+        if (need == alerting) return;
+        alerting = need;
+        if (alertTarget != null) alertTarget.SetNeedsAttention(this, need);
+    }
+
+    private void OnDisable()
+    {
+        if (alerting && alertTarget != null) alertTarget.SetNeedsAttention(this, false);
+        alerting = false;
     }
 
     private void OnDestroy() 
     {
         AllStations.Remove(this); 
+        if (alertTarget != null) alertTarget.SetNeedsAttention(this, false);
     }
 
     //Counts customer line
@@ -162,12 +164,15 @@ public class foodStation : MonoBehaviour
     // start serving whoever is at the front
     private void Update()
     {
+        UpdateAlert();
+
         if (stats != null && !stats.HasRealWorker) return;
         if (beingServed == null && line.Count > 0 && line[0].IsAtLineSpot)
         {
             beingServed = line[0];
             beingServed.SetBeingServed(true);
             serveTimer = ServeTime * beingServed.QuantityFor(this);
+            serveTotal = serveTimer;
         }
 
         if (beingServed != null)
@@ -190,4 +195,29 @@ public class foodStation : MonoBehaviour
         return position;
     }
     //Change end
+
+    // conveyor belt uses these to know how many items to send down
+    public bool IsServing => beingServed != null;
+    public int ServeItemCount => beingServed == null ? 0 : beingServed.QuantityFor(this);
+    public float ServeProgress => (beingServed == null || serveTotal <= 0f) ? 0f : 1f - Mathf.Clamp01(serveTimer / serveTotal);   // 0 at start, 1 when done
+
+    //Change lines
+    public void RefreshLine() => updateLinePositions();
+
+    //Destroying the station update everything
+    public void Decommission()
+    {
+        AllStations.Remove(this);
+        var waiting = line.ToArray();
+        line.Clear();
+        beingServed = null;
+        UpdateAlert();   //Alert: line is empty now, stop blinking
+
+        // Strip this station's items from every order, so no one pays for food they never got
+        if (!isCheckout)
+            foreach (var customer in FindObjectsByType<averageCustomer>())
+                customer.DropOrderFor(stationNumber);
+
+        foreach (var customer in waiting) customer.OnStationRemoved(this);
+    }
 }

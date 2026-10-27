@@ -7,17 +7,17 @@ using System.Linq;
 [System.Serializable]
 public class CustomerOrderItem
 {
-    public int stationNumber; // 0 = burger 1 = shake etc or whatever we do
+    public int stationNumber; // which station this item comes from
     public string itemName;
     public int quantity;
-    public int totalPriceOfItems; // total price of items in order, used for scoring
+    public int totalPriceOfItems; // total price of this line of the order, used for scoring and refunds
 }
 
 public class averageCustomer : MonoBehaviour
 {
     // add references to line array, station spawn, difficulty
     public int difficulty;
-    [SerializeField] private Animator animator;
+
     public float patienceTimer;
     public int rageStep = 0; // for rage movement before leaving
     private float maxPatience; // used for the patience bar fill amount in decreasePatience
@@ -56,8 +56,8 @@ public class averageCustomer : MonoBehaviour
     public int desire; // random int that determines how many items customer wants
     public List<CustomerOrderItem> order = new List<CustomerOrderItem>(); // list of items customer wants
     [SerializeField] private int totalPriceOfItems; // total price of items in order, used for scoring
-    // averageCustomer.cs (anywhere in the class)
     public int TotalPrice => totalPriceOfItems;
+
     //-----------------------------------------------------------------------
 
     private enum CustomerState
@@ -73,25 +73,6 @@ public class averageCustomer : MonoBehaviour
     private CustomerState currentState;
     private NavMeshAgent agent;
 
-    //-----------------------------------------------------------------------
-    // Sprite animation / camera facing
-    [Tooltip("True if the side animation is drawn facing left (Koi).")]
-    [SerializeField] private bool sideSpriteFacesLeft = true;
-    [SerializeField] private float moveThreshold = 0.1f;
-    [Tooltip("How much stronger one axis must be before switching between side and front.")]
-    [SerializeField] private float axisSwitchBias = 1.3f;
-    [Tooltip("Time before switching between side and front.")]
-    [SerializeField] private float axisHoldTime = 0.25f;
-    [Tooltip("Sideways speed before the sprite flips.")]
-    [SerializeField] private float flipDeadzone = 0.3f;
-    private float nextAxisSwitchTime;
-    private static readonly int IsMovingSide = Animator.StringToHash("isMovingSide");
-    private static readonly int IsMovingFront = Animator.StringToHash("isMovingFront");
-    private bool wasMovingSide;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    private Camera cam;
-    //-----------------------------------------------------------------------
-
     private void OnEnable()
     {
         PlayerInfo.DifficultyChanged += OnDifficultyChanged;
@@ -102,63 +83,11 @@ public class averageCustomer : MonoBehaviour
         PlayerInfo.DifficultyChanged -= OnDifficultyChanged;
     }
 
-    private void LateUpdate() => UpdateAnimation();
-
-    //Update sprite anim
-    private void UpdateAnimation()
-    {
-        if (animator == null || agent == null) return;
-
-        Vector3 vel = agent.velocity;
-        vel.y = 0f;
-
-        // Not moving set both bools false
-        if (vel.magnitude < moveThreshold)
-        {
-            animator.SetBool(IsMovingSide, false);
-            animator.SetBool(IsMovingFront, false);
-            return;
-        }
-
-        //Movement relative to the camera, so "side" means left/right on screen
-        Vector3 right = cam != null ? cam.transform.right : Vector3.right;
-        Vector3 forward = cam != null ? cam.transform.forward : Vector3.forward;
-        right.y = 0f; forward.y = 0f;
-        right.Normalize(); forward.Normalize();
-
-        float sideAmount = Vector3.Dot(vel, right);
-        float frontAmount = Vector3.Dot(vel, forward);
-
-        //Pick moving side
-        bool wantSide = wasMovingSide
-            ? Mathf.Abs(sideAmount) * axisSwitchBias >= Mathf.Abs(frontAmount)
-            : Mathf.Abs(sideAmount) > Mathf.Abs(frontAmount) * axisSwitchBias;
-
-        //Only switch after time
-        bool movingSide = wasMovingSide;
-        if (wantSide != wasMovingSide && Time.time >= nextAxisSwitchTime)
-        {
-            movingSide = wantSide;
-            nextAxisSwitchTime = Time.time + axisHoldTime;
-        }
-        wasMovingSide = movingSide;
-
-        animator.SetBool(IsMovingSide, movingSide);
-        animator.SetBool(IsMovingFront, !movingSide);
-
-        // Flip only when clearly moving sideways, so small drift doesn't mirror the sprite
-        if (movingSide && spriteRenderer != null && Mathf.Abs(sideAmount) > flipDeadzone)
-            spriteRenderer.flipX = (sideAmount > 0f) == sideSpriteFacesLeft;
-    }
-
     private void Start()
     {
         if (playerInfo == null) playerInfo = FindAnyObjectByType<PlayerInfo>();
         agent = GetComponent<NavMeshAgent>();
 
-        cam = Camera.main;
-        if (animator == null) animator = GetComponentInChildren<Animator>();
-        if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (orderDisplay == null) orderDisplay = GetComponentInChildren<customerOrderDisplay>(true);
 
         OnDifficultyChanged(PlayerInfo.CurrentDifficulty);
@@ -320,7 +249,7 @@ public class averageCustomer : MonoBehaviour
                 Debug.Log("Rage");
                 rageStep = 0;
                 rageSmoke.SetActive(true);
-                playerInfo.Result(-100, 0f);
+                playerInfo.Result(0, 0f);
                 int roll = _random.Next(1, 4);
                 if (roll == 1)
                 {
@@ -339,6 +268,7 @@ public class averageCustomer : MonoBehaviour
                 agent.autoBraking = false;
                 Debug.Log("Leaving");
                 patienceBar.SetActive(false);
+                if (orderDisplay != null) orderDisplay.gameObject.SetActive(false);   // order is finished, hide the bubble
                 rageStep = 1;   // skips rageLeaving: goes exitPoint then despawnPoint
                 moveTo(exitPoint.transform);
                 break;
@@ -413,6 +343,13 @@ public class averageCustomer : MonoBehaviour
             int payout = totalPriceOfItems * 10;   // matches the $ shown on the bubble
             playerInfo.Result(payout, patienceRatio);
             Debug.Log($"Checkout: paid={payout}, satisfaction={patienceRatio:F2}");
+
+            // Money visuals at the cashier
+            moneyPopupSpawner.SpawnUIPopup(payout);
+            moneyPopupSpawner.SpawnWorldPopup(payout, station.transform.position);
+
+            // add item visuals on register conveyor for each item on list * quantity
+
 
             int roll = _random.Next(1, 9);
             if (roll == 1 || roll == 2)
@@ -538,5 +475,40 @@ public class averageCustomer : MonoBehaviour
                 total += item.quantity;
         }
         return Mathf.Max(1, total);
+    }
+
+    //Repick the next station or checkout
+    public void OnStationRemoved(foodStation station)
+    {
+        if (currentStation != station) return;
+        beingServed = false;
+        currentStation = null;
+        if (currentState == CustomerState.inLine ||
+            currentState == CustomerState.toCurrentLineEnd ||
+            currentState == CustomerState.atStation)
+            changeState(CustomerState.toCurrentLineEnd);
+    }
+
+    //No order for station anymore drop the order
+    public void DropOrderFor(int stationNumber)
+    {
+        int removedPrice = 0, removedQty = 0;
+        order.RemoveAll(i =>
+        {
+            if (i.stationNumber != stationNumber) return false;
+            removedPrice += i.totalPriceOfItems;
+            removedQty += i.quantity;
+            return true;
+        });
+        totalPriceOfItems -= removedPrice;
+        desire = Mathf.Max(0, desire - removedQty);
+        if (orderDisplay != null) orderDisplay.UpdateDisplay();
+    }
+
+    //Change order items
+    public void RenameOrderItems(int stationNumber, string newName)
+    {
+        foreach (var i in order) if (i.stationNumber == stationNumber) i.itemName = newName;
+        if (orderDisplay != null) orderDisplay.UpdateDisplay();
     }
 }

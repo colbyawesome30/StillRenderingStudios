@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
@@ -9,11 +10,15 @@ public class Timer : MonoBehaviour
     private PlayerInfo playerInfo;
     private float currentTime;
     public bool pauseTimer = false;
+    public bool pauseTime = false;
     public Tutorial tutorial;
-
-
     [SerializeField]private TMP_Text timerText;
     [SerializeField]private TMP_Text fundsText;
+
+    [SerializeField] private TMP_Text starsToWinText;
+    [SerializeField] private Image starsToWinImage;
+    [SerializeField] private Color losingColor = new Color(0.9f, 0.25f, 0.25f);
+    [SerializeField] private Color winningColor = new Color(0.4f, 0.85f, 0.4f);
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +28,24 @@ public class Timer : MonoBehaviour
         currentTime = countdownTime;
         Time.timeScale = 1f;
 
+        if (starsToWinText != null)
+            starsToWinText.text = LevelSettings.StarsToWin + " Stars to Win";
+
         if (tutorial != null && !playerInfo.TutorialComplete)
         {
             pauseTimer = true;
         }
 
+
         UpdateTimerDisplay(); 
+    }
+
+    void UpdateStarsToWinTint()
+    {
+        if (starsToWinImage == null) return;
+
+        bool winning = playerInfo.stars >= LevelSettings.StarsToWin;
+        starsToWinImage.color = winning ? winningColor : losingColor;
     }
 
     public void PauseTimer(bool pause)
@@ -36,10 +53,17 @@ public class Timer : MonoBehaviour
         pauseTimer = pause;
     }
 
+    public void PauseTime(bool pause)
+    {
+        pauseTime = pause;
+    }
+
     // Update is called once per frame
     void Update()
     {
         fundsText.text = "$" + playerInfo.playerFunds.ToString() + " left";
+
+        UpdateStarsToWinTint();
 
         if (pauseTimer) return;
 

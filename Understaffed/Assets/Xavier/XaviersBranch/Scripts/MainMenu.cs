@@ -3,6 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+public static class LevelSettings
+{
+    public static float StarsToWin = 4f;
+}
+
 public class MainMenu : MonoBehaviour
 {
     [System.Serializable]
@@ -10,6 +15,7 @@ public class MainMenu : MonoBehaviour
     {
         public string sceneName;   // exactly the scene name, e.g. "ArtScene"
         public Image buttonImage;  // the Image on that level's button
+        [Range(0.5f, 5f)] public float starsToWin = 4f;   // set per level in the inspector
     }
 
     public GameObject levelsUI;
@@ -48,7 +54,18 @@ public class MainMenu : MonoBehaviour
     }
 
     public void OpenLevel() => SceneManager.LoadScene("ArtScene");
-    public void ChooseLevel(string levelName) => SceneManager.LoadScene(levelName);
+    public void ChooseLevel(string levelName)
+    {
+        foreach (LevelEntry level in levels)
+        {
+            if (level.sceneName == levelName)
+            {
+                LevelSettings.StarsToWin = level.starsToWin;
+                break;
+            }
+        }
+        SceneManager.LoadScene(levelName);
+    }
     public void QuitGame() => Application.Quit();
 
     public void ResetSave()

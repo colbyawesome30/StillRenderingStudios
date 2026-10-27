@@ -41,7 +41,7 @@ public class Tutorial : MonoBehaviour
 
         if (!playerInfo.TutorialComplete)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 1;
             StartTutorial();
         }
     }
@@ -114,7 +114,7 @@ public class Tutorial : MonoBehaviour
             TutorialStep++;
             SetText();
             CheckTimerPause();
-            CheckGameFreeze();
+            // CheckGameFreeze();
             CheckStepCompletion();
             UpdatePreviousButtonState();
             Debug.Log("Tutorial Step: " + TutorialStep);
@@ -132,7 +132,7 @@ public class Tutorial : MonoBehaviour
             TutorialStep--;
             SetText();
             CheckTimerPause();
-            CheckGameFreeze();
+            // CheckGameFreeze();
             CheckStepCompletion();
         }
         UpdatePreviousButtonState();

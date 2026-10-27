@@ -13,6 +13,14 @@ public class CameraPan : MonoBehaviour
     [SerializeField] private Vector2 minOffset = new Vector2(-10f, -10f);
     [SerializeField] private Vector2 maxOffset = new Vector2(10f, 10f);
 
+    //Zoom settings
+    [Header("Zoom")]
+    public float minZoom = 3f;            // closest
+    public float maxZoom = 8f;            // farthest
+    [SerializeField] private float scrollZoomSpeed = 0.1f;  // per mouse wheel notch
+    [SerializeField] private float pinchZoomSensitivity = 1f;
+    [SerializeField] private float zoomSmoothTime = 0.08f;
+
     private Vector3 startPosition;
 
     private bool pressing;
@@ -25,6 +33,9 @@ public class CameraPan : MonoBehaviour
     private Vector3 targetPosition;
     private Vector3 velocity;
 
+    private float targetZoom;
+    private float zoomVelocity;
+
     private void Awake()
     {
         if (_camera == null) _camera = Camera.main;
@@ -35,19 +46,64 @@ public class CameraPan : MonoBehaviour
     {
         startPosition = transform.position;
         targetPosition = transform.position;
+        targetZoom = Mathf.Clamp(_camera.orthographicSize, minZoom, maxZoom);
     }
+
     private void Update()
     {
         HandleInput();
+        HandleZoom();
 
         // Glide toward the target instead of jumping
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime, Mathf.Infinity, Time.unscaledDeltaTime);
+        _camera.orthographicSize = Mathf.SmoothDamp(_camera.orthographicSize, targetZoom, ref zoomVelocity, zoomSmoothTime, Mathf.Infinity, Time.unscaledDeltaTime);
+    }
+
+    //Anything that should stop the camera from taking input
+    private bool InputBlocked =>
+        BuildMode.Active || WorldDrag.AnyDragging || Roster.UIDragging || WorkStation.UIOpen || PayWall.TabOpen || InGameSettings.SettingsIsOpen;
+
+    //Pinch with two fingers or scroll the mouse wheel
+    private void HandleZoom()
+    {
+        if (InputBlocked)
+        {
+            targetZoom = _camera.orthographicSize;
+            zoomVelocity = 0f;
+            return;
+        }
+
+        if (Input.touchCount == 2)
+        {
+            Touch t0 = Input.GetTouch(0);
+            Touch t1 = Input.GetTouch(1);
+
+            if (IsFingerOverUI(t0.fingerId) || IsFingerOverUI(t1.fingerId)) return;
+
+            float prevDist = ((t0.position - t0.deltaPosition) - (t1.position - t1.deltaPosition)).magnitude;
+            float currDist = (t0.position - t1.position).magnitude;
+            if (prevDist < 1f || currDist < 1f) return;
+
+            // Fingers spreading apart (curr > prev) shrinks the size, which zooms in
+            targetZoom *= Mathf.Pow(prevDist / currDist, pinchZoomSensitivity);
+        }
+        else
+        {
+            float scroll = Input.mouseScrollDelta.y;
+            if (Mathf.Abs(scroll) > 0.01f && !IsOverUI())
+            {
+                // Scroll up zooms in
+                targetZoom *= 1f - scroll * scrollZoomSpeed;
+            }
+        }
+
+        targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
     }
 
     //Handle drags and touches
     private void HandleInput()
     {   
-        if (WorldDrag.AnyDragging || Roster.UIDragging || WorkStation.UIOpen || PayWall.TabOpen)
+        if (InputBlocked)
         {
             pressing = false;
             panning = false;
@@ -93,6 +149,9 @@ public class CameraPan : MonoBehaviour
             return;
         }
 
+        // Zoom can change while dragging with the mouse wheel, so keep the scale current
+        CalculateScale();
+
         Vector2 pixelDelta = pos - lastScreen;
         lastScreen = pos;
 
@@ -136,6 +195,12 @@ public class CameraPan : MonoBehaviour
             return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
 
         return EventSystem.current.IsPointerOverGameObject();
+    }
+
+    // True if a specific finger is on UI
+    private bool IsFingerOverUI(int fingerId)
+    {
+        return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(fingerId);
     }
 
     private bool PressedThisFrame(out Vector2 pos)

@@ -14,22 +14,22 @@ public class PlayerInfo : MonoBehaviour
     //Could expand to save unlocked workers
 
     public int currentCustomers;
-    private float satisfactionTotal;
     public event EventHandler CurrentDayScoreChanged;
     public float stars;
-
+    private float _totalSatisfaction;
     public int maxScorePerCustomer = 100;
     public float maxStars = 5f;
     [SerializeField] private TMP_Text starsText;
     [SerializeField] private Image fillImage;
     public GameObject winScreen;
     public GameObject loseScreen;
-    [SerializeField]private Rebake rebake;
+
     private bool _gameEnd = false;
 
     public static event Action<int> DifficultyChanged;
     public static int CurrentDifficulty { get; private set; }
     [SerializeField] private int _difficulty = 1;
+
     public int difficulty
     {
         get => _difficulty;
@@ -45,9 +45,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void Start()
     {
-        rebake = FindAnyObjectByType<Rebake>();
-        rebake.RebakeMesh();
-        Result(100, 1);
+        Result(100, 1f);
     }
 
     private void Awake()
@@ -91,15 +89,21 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
-    public void Result(int points, float satisfaction)
+    public void Result(int points, float patienceRatio)
     {
         if (_gameEnd) return;
 
         currentCustomers++;
-        satisfactionTotal += Mathf.Clamp01(satisfaction);   // 0 = furious, 1 = perfect
-        currentDayScore += points;                           // money/score still tracked
+        _totalSatisfaction += Mathf.Clamp01(patienceRatio);
+        currentDayScore += points;
         playerFunds = Mathf.Clamp(playerFunds + points, 0, int.MaxValue);
         UpdateStarRating();
+    }
+
+    public void AddFunds(int amount)
+    {
+        playerFunds = Mathf.Max(0, playerFunds + amount);
+        CurrentDayScoreChanged?.Invoke(this, EventArgs.Empty); // lets the UI refresh
     }
 
     public void EndGame()
@@ -112,7 +116,7 @@ public class PlayerInfo : MonoBehaviour
     private void decideWin()
     {
         // your original check: more than 4 stars is a win
-        bool won = stars > 4f;
+        bool won = stars >= LevelSettings.StarsToWin;
 
         if (won)
         {
@@ -168,18 +172,16 @@ public class PlayerInfo : MonoBehaviour
     {
         if (currentCustomers <= 0)
         {
-            stars = 0f;   // nobody finished yet, and this avoids dividing by zero
+            stars = 0f;
             return;
         }
 
-        float averageScore = (float)_currentDayScore / currentCustomers;   // float cast stops integer division
-        float ratio = Mathf.Clamp01(satisfactionTotal / currentCustomers);
+        float averageSatisfaction = _totalSatisfaction / currentCustomers;
 
-        stars = Mathf.FloorToInt(ratio * maxStars * 10f) / 10f;   // one decimal place
-        Debug.Log(ratio + " current rating, " + stars + " stars, customers " + currentCustomers);
+        stars = Mathf.FloorToInt(averageSatisfaction * maxStars * 10f) / 10f;
+        Debug.Log(averageSatisfaction + " current satisfaction, " + stars + " stars, customers " + currentCustomers);
 
         starsText.text = stars + " Stars";
-        float fillPercent = stars/5;
-        fillImage.fillAmount = fillPercent;
+        fillImage.fillAmount = stars / maxStars;
     }
 }
