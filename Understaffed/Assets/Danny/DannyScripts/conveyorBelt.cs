@@ -16,8 +16,8 @@ public class conveyorBelt : MonoBehaviour
 
     public GameObject fallbackPrefab; // used if the item doesn't have a model prefab yet
 
-    public float beltItemScale = 0.5f; // scale of items on the belt
-    public float beltItemSpacing = 0.3f; // how far apart items are on the belt
+    public float beltItemScale = 1.5f; // scale of items on the belt
+    public float beltItemSpacing = 0.8f; // how far apart items are on the belt
 
     private class BeltItem
     {
@@ -32,7 +32,7 @@ public class conveyorBelt : MonoBehaviour
     {
         if (linkedStation == null)
         {
-            GetComponentInParent<foodStation>();
+            linkedStation = GetComponentInParent<foodStation>();
         }
     }
 
@@ -49,7 +49,7 @@ public class conveyorBelt : MonoBehaviour
             if (customer != null) SpawnItems(customer);
         }
 
-        if (currentCustomer != null) return;
+        if (currentCustomer == null) return;
 
         Vector3 moveDirection = (endPoint.position - startPoint.position).normalized;
         float totalPathLength = Vector3.Distance(startPoint.position, endPoint.position);
@@ -77,14 +77,18 @@ public class conveyorBelt : MonoBehaviour
 
             item.itemObject.transform.position = endPoint.position - moveDirection * distanceToEnd;
 
-            // items further back on belt are hidden untit they reach the start
+            // items further back on belt are hidden until they reach the start
             item.itemObject.SetActive(distanceToEnd <= totalPathLength);
         }
     }
 
     private void SpawnItems(averageCustomer customer)
     {
+        // currently spawns in all items at once, not one by one. also dont move along the line
+        // debug shows spawnitems only being called once
+
         List<CustomerOrderItem> individualItems = new List<CustomerOrderItem>();
+
         foreach (CustomerOrderItem line in customer.ItemsFor(linkedStation))
         {
             for (int q = 0; q < line.quantity; q++)
@@ -100,11 +104,17 @@ public class conveyorBelt : MonoBehaviour
             GameObject prefab = model != null ? model : fallbackPrefab;
             if (prefab == null) continue;
 
-            GameObject obj = Instantiate(prefab, startPoint.position, Quaternion.identity);
+            // face items on conveyor towards the register
+            Quaternion faceRegister = Quaternion.LookRotation(endPoint.position - startPoint.position);
+            GameObject obj = Instantiate(prefab, startPoint.position, faceRegister);
+
             obj.transform.localScale = prefab.transform.localScale * beltItemScale;
 
             // disable item collision on belt
-
+            foreach (Collider collider in obj.GetComponentsInChildren<Collider>())
+            {
+                collider.enabled = false;
+            }
             obj.SetActive(false);
             itemsOnBelt.Add(new BeltItem { itemObject = obj, beltIndex = i });
         }
