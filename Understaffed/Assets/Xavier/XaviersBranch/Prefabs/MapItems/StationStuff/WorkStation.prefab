@@ -1842,8 +1842,8 @@ Transform:
   m_GameObject: {fileID: 4924049710383360381}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.469}
-  m_LocalScale: {x: 1.7630409, y: 7.8988066, z: 0.6595592}
+  m_LocalPosition: {x: 0, y: 0.54, z: -0.475}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1799337891303157020}
@@ -2381,8 +2381,8 @@ Transform:
   m_GameObject: {fileID: 6552080249932039557}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.4943}
-  m_LocalScale: {x: 1.7630409, y: 7.8988066, z: 0.6595592}
+  m_LocalPosition: {x: 0, y: 0.54, z: 0.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1799337891303157020}
@@ -3594,7 +3594,7 @@ Transform:
   m_GameObject: {fileID: 8496420251043889164}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -0.38389787, y: -0.005383089, z: 0.6115826}
+  m_LocalPosition: {x: -0.457, y: -0.005383089, z: 0.6115826}
   m_LocalScale: {x: 0.7273091, y: 0.12589794, z: 1.4371744}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3696,8 +3696,8 @@ MonoBehaviour:
   startPoint: {fileID: 8755159200314106866}
   endPoint: {fileID: 5812823714753781411}
   fallbackPrefab: {fileID: 6886537745960876485, guid: 0fb99e5be82c7734093ae24815640f4c, type: 3}
-  beltItemScale: 1
-  beltItemSpacing: 0.3
+  beltItemScale: 2
+  beltItemSpacing: 0.5
 --- !u!1 &8643575453644402705
 GameObject:
   m_ObjectHideFlags: 0
