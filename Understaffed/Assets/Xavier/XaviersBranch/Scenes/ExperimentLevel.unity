@@ -938,7 +938,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.083333336
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 96f61350c105f22448a38071a3cc4f6f, type: 2}
   m_BuildHeightMesh: 0
@@ -2756,9 +2756,57 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
+      propertyPath: endlessMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
+      propertyPath: waves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
       propertyPath: 'customers.Array.data[1]'
       value: 
       objectReference: {fileID: 5519701519376992259, guid: f0f20a75c926f544d83dd1a228ec5289, type: 3}
+    - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
+      propertyPath: waves.Array.data[0].name
+      value: Wave One
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
+      propertyPath: waves.Array.data[0].items.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
+      propertyPath: waves.Array.data[0].items.Array.data[0].cost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
+      propertyPath: waves.Array.data[0].items.Array.data[1].cost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
+      propertyPath: waves.Array.data[0].items.Array.data[0].customer
+      value: 
+      objectReference: {fileID: 5519701519376992259, guid: 68eb7ee229ddd8d439ba40811dfc25cb, type: 3}
+    - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
+      propertyPath: waves.Array.data[0].items.Array.data[1].customer
+      value: 
+      objectReference: {fileID: 5519701519376992259, guid: f0f20a75c926f544d83dd1a228ec5289, type: 3}
+    - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
+      propertyPath: waves.Array.data[0].items.Array.data[0].spawnChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
+      propertyPath: waves.Array.data[0].items.Array.data[1].spawnChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
+      propertyPath: waves.Array.data[0].items.Array.data[0].amountToBeSpawned
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004521535832807401, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
+      propertyPath: waves.Array.data[0].items.Array.data[1].amountToBeSpawned
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3180343440943204316, guid: 1ee9555b6f995b6498a68f949bb1467e, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.01

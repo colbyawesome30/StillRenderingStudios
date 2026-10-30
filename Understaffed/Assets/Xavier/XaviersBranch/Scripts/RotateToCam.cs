@@ -10,6 +10,8 @@ public class RotateToCam : MonoBehaviour
         cameraTransform = FindAnyObjectByType<Camera>().transform;
     }
 
+    
+
     void Update()
     {
         if (cameraTransform != null)

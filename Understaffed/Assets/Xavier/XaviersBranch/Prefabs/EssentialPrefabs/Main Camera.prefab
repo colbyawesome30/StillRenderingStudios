@@ -255,10 +255,13 @@ MonoBehaviour:
     ditherZoomedOut: 1
   - material: {fileID: 2100000, guid: 55410f145c57e7e449e74d49b0d4da90, type: 2}
     ditherZoomedIn: 0.1
-    ditherZoomedOut: 0.6
+    ditherZoomedOut: 1
   - material: {fileID: 2100000, guid: 9b7db266cce951b44b1464b16101bdfe, type: 2}
     ditherZoomedIn: 0
     ditherZoomedOut: 1
   - material: {fileID: 2100000, guid: b34ed50dbb9738446ae1158cb279ccca, type: 2}
     ditherZoomedIn: 0
+    ditherZoomedOut: 1
+  - material: {fileID: 2100000, guid: 115f8e808ffb39c4d959813db123e509, type: 2}
+    ditherZoomedIn: 0.1
     ditherZoomedOut: 1
