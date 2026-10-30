@@ -213,7 +213,7 @@ RectTransform:
   m_GameObject: {fileID: 53394621}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.42670715, y: 0.42670715, z: 0.42670715}
+  m_LocalScale: {x: 0.38490018, y: 0.38490018, z: 0.38490018}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 141727465}
@@ -225,8 +225,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 409.5, y: 230.5}
-  m_SizeDelta: {x: 1919.3491, y: 0}
+  m_AnchoredPosition: {x: 320, y: 240}
+  m_SizeDelta: {x: 1662.7688, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &53394626
 MonoBehaviour:
@@ -455,7 +455,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 1079.6339}
+  m_SizeDelta: {x: 0, y: 935.30743}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &141727466
 MonoBehaviour:
@@ -560,7 +560,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 143, y: 0}
-  m_SizeDelta: {x: -0.10876465, y: 1043.1661}
+  m_SizeDelta: {x: 256.47156, y: 1043.1661}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &351325044
 MonoBehaviour:
@@ -1031,7 +1031,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Level: 2'
+  m_text: Level 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10a53bb4931c3274f8d69039a542eef4, type: 2}
   m_sharedMaterial: {fileID: -7725215088787075208, guid: 10a53bb4931c3274f8d69039a542eef4, type: 2}
@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Level: 3'
+  m_text: Level 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10a53bb4931c3274f8d69039a542eef4, type: 2}
   m_sharedMaterial: {fileID: -7725215088787075208, guid: 10a53bb4931c3274f8d69039a542eef4, type: 2}
@@ -1968,7 +1968,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Level: 1'
+  m_text: Level 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10a53bb4931c3274f8d69039a542eef4, type: 2}
   m_sharedMaterial: {fileID: -7725215088787075208, guid: 10a53bb4931c3274f8d69039a542eef4, type: 2}

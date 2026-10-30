@@ -6026,6 +6026,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 3503528528630353500, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503528528630353500, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.151
+      objectReference: {fileID: 0}
     - target: {fileID: 4041181786436084787, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -6108,7 +6116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: items.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: items.Array.data[0].price
@@ -23109,7 +23117,7 @@ MonoBehaviour:
     itemModel: {fileID: 0}
   - itemName: Butter
     price: 5
-    itemModel: {fileID: 0}
+    itemModel: {fileID: 3826391815600839763, guid: 20a02dc85a9330d4f84c26257be4ec21, type: 3}
   lockedInBuildMode: 0
   stationNumber: 1
   stationType: 2
@@ -25226,11 +25234,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3169809976537691628, guid: fa68f93400ebc7540bde31606237afe9, type: 3}
   m_PrefabInstance: {fileID: 1241940541}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1245731220 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5911376739236896719, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
-  m_PrefabInstance: {fileID: 1317659609}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1247172815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26985,7 +26988,7 @@ PrefabInstance:
     - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: lineStart
       value: 
-      objectReference: {fileID: 1245731220}
+      objectReference: {fileID: 0}
     - target: {fileID: 7060545431456845866, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
       propertyPath: stationType
       value: 1
@@ -27099,7 +27102,8 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4311308302165595366, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36dcf4dd09f944b4fa5fd401b4859a48, type: 3}
