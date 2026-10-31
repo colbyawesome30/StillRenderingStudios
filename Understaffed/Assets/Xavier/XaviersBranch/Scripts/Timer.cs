@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,6 +23,8 @@ public class Timer : MonoBehaviour
     private CustomerSpawner spawner;
     private bool timeUp;
     private bool dayEnded;
+
+    public List<GameObject> hideOnEnd; // UI to turn off when the day ends
 
     // Start is called before the first frame update
     void Start()
@@ -95,11 +98,11 @@ public class Timer : MonoBehaviour
 
     public void EndTimeEvent()
     {
-        if (tutorial != null && tutorial.tutorialComplete)
+        foreach (GameObject obj in hideOnEnd)
         {
-            StartCoroutine(DelaySwitchScene(2f, "MainMenu"));
-        }
-        
+            if (obj != null) obj.SetActive(false);
+        } // hides specified UI on game end
+
         playerInfo.EndGame();
         
     }
@@ -116,10 +119,10 @@ public class Timer : MonoBehaviour
         timerText.text = "Time Left: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    IEnumerator DelaySwitchScene(float delay, string sceneName)
+/*    IEnumerator DelaySwitchScene(float delay, string sceneName)
     {
         yield return new WaitForSecondsRealtime(delay);
         Debug.Log("Attempting to load scene: " + sceneName);
         SceneManager.LoadScene(sceneName);
-    }
+    } method replaced by hideOnEnd*/
 }
