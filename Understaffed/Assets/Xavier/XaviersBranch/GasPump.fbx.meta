@@ -3,7 +3,17 @@ guid: d4bbb5b8d953a8240bef07a583e07cdb
 ModelImporter:
   serializedVersion: 24501
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Food
+    second: {fileID: 2100000, guid: 436a2a82f4b273d408cd2db8c8f0d27a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GasMenu
+    second: {fileID: 2100000, guid: 3479b3e0e635e6440add8cd6df9e57d6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

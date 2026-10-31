@@ -3,7 +3,6 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 
 [System.Serializable]
 public class CustomerOrderItem
@@ -52,6 +51,7 @@ public class averageCustomer : MonoBehaviour
     public Slider patienceSlider;
     public GameObject rageSmoke;
 
+    // number of customers currently alive in the scene
     public static int ActiveCount { get; private set; }
     private bool counted;
 
@@ -144,7 +144,7 @@ public class averageCustomer : MonoBehaviour
                 maxPatience = 15;
                 break;
             case 4:
-                overflowAngerMultiplier = 5f;
+                overflowAngerMultiplier = 10f;
                 maxPatience = 10;
                 break;
         }
@@ -454,7 +454,7 @@ public class averageCustomer : MonoBehaviour
                 });
             }
 
-            totalPriceOfItems += wanted.price;   // customer's running total --- changed pick.itemSalePrice to wanted.price
+            totalPriceOfItems += wanted.price;   // customer's running total
         }
     }
 
@@ -497,7 +497,6 @@ public class averageCustomer : MonoBehaviour
         if (station.isCheckout) return collectedItems;
         return order.FindAll(item => item.stationNumber == station.stationNumber);
     }
-
 
     //Repick the next station or checkout
     public void OnStationRemoved(foodStation station)
