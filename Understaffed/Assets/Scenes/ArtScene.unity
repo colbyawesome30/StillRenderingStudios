@@ -22897,7 +22897,7 @@ MonoBehaviour:
     itemModel: {fileID: 3826391815600839763, guid: 75e617e8e31f174428893e3b85bd54a1, type: 3}
   - itemName: Cheese
     price: 10
-    itemModel: {fileID: 0}
+    itemModel: {fileID: 919132149155446097, guid: 523bccfb4158f5e488cc6455eb57247f, type: 3}
   - itemName: Butter
     price: 5
     itemModel: {fileID: 3826391815600839763, guid: 20a02dc85a9330d4f84c26257be4ec21, type: 3}
@@ -23114,7 +23114,7 @@ MonoBehaviour:
     itemModel: {fileID: 3826391815600839763, guid: 75e617e8e31f174428893e3b85bd54a1, type: 3}
   - itemName: Cheese
     price: 10
-    itemModel: {fileID: 0}
+    itemModel: {fileID: 919132149155446097, guid: 523bccfb4158f5e488cc6455eb57247f, type: 3}
   - itemName: Butter
     price: 5
     itemModel: {fileID: 3826391815600839763, guid: 20a02dc85a9330d4f84c26257be4ec21, type: 3}
@@ -43404,10 +43404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62c0e7247a4fdf4093a5c0c73771baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
-  customerPrefab: {fileID: 0}
-  customers:
-  - {fileID: 5519701519376992259, guid: 68eb7ee229ddd8d439ba40811dfc25cb, type: 3}
-  - {fileID: 5519701519376992259, guid: f0f20a75c926f544d83dd1a228ec5289, type: 3}
   spawnPoint: {fileID: 2119763382}
   parkingManager: {fileID: 3745736}
   entryList:
@@ -43415,6 +43411,12 @@ MonoBehaviour:
     entryPoint: {fileID: 2000465166}
   - storeFrontPoint: {fileID: 1059618800}
     entryPoint: {fileID: 796707693}
+  waves: []
+  timeBetweenWaves: 5
+  endlessMode: 0
+  endlessPool: []
+  startingBudget: 10
+  budgetPerWave: 5
   minSpawnInterval: 1.5
   dayDecay: 0.9
   playerInfo: {fileID: 918962301}
@@ -44098,6 +44100,10 @@ PrefabInstance:
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 2888761980446900960, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
+      propertyPath: blur
+      value: 
+      objectReference: {fileID: 776896449}
+    - target: {fileID: 2888761980446900960, guid: cda46969f02692c4cbdab8ca526349ee, type: 3}
       propertyPath: header
       value: 
       objectReference: {fileID: 367530656}
@@ -44513,7 +44519,7 @@ PrefabInstance:
     - target: {fileID: 1383877216261282066, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: availableWorkers.Array.data[2].workerPrefab
       value: 
-      objectReference: {fileID: 5127787832729579379, guid: f6ae11793c3fd2041a55029ead663928, type: 3}
+      objectReference: {fileID: 5127787832729579379, guid: 9c54efd1936894b4ea9403c96d69805a, type: 3}
     - target: {fileID: 1383877216261282066, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: availableWorkers.Array.data[3].workerPrefab
       value: 

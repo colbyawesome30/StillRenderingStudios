@@ -157,7 +157,7 @@ MonoBehaviour:
   _camera: {fileID: 3265683538097297081}
   _hitLayers:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 2551
   _drawDebugRay: 0
   gridField: {fileID: 0}
   _groundLayer:

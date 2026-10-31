@@ -55297,7 +55297,27 @@ MonoBehaviour:
   entryList:
   - storeFrontPoint: {fileID: 1059618800}
     entryPoint: {fileID: 796707693}
-  waves: []
+  waves:
+  - name: Wave One
+    items:
+    - customer: {fileID: 5519701519376992259, guid: 68eb7ee229ddd8d439ba40811dfc25cb, type: 3}
+      amountToBeSpawned: 1
+      cost: 0
+      spawnChance: 0.5
+    - customer: {fileID: 5519701519376992259, guid: f0f20a75c926f544d83dd1a228ec5289, type: 3}
+      amountToBeSpawned: 1
+      cost: 0
+      spawnChance: 0.5
+  - name: Wave Two
+    items:
+    - customer: {fileID: 5519701519376992259, guid: 68eb7ee229ddd8d439ba40811dfc25cb, type: 3}
+      amountToBeSpawned: 2
+      cost: 0
+      spawnChance: 0.5
+    - customer: {fileID: 5519701519376992259, guid: f0f20a75c926f544d83dd1a228ec5289, type: 3}
+      amountToBeSpawned: 2
+      cost: 0
+      spawnChance: 0.5
   timeBetweenWaves: 5
   endlessMode: 0
   endlessPool: []

@@ -3398,7 +3398,7 @@ GameObject:
   - component: {fileID: 2227808595633301511}
   - component: {fileID: 5380272466518484252}
   - component: {fileID: 2388260309789381354}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Scripts and Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3466,8 +3466,8 @@ MonoBehaviour:
   linkedStation: {fileID: 4895672489880215830}
   stats: {fileID: 2227808595633301511}
   baseServeTime: 4
+  items: []
   lockedInBuildMode: 0
-  itemSalePrice: 1
   stationNumber: 0
   stationType: 0
 --- !u!114 &2227808595633301511

@@ -139,7 +139,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156203721232741700}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -201,10 +201,16 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  items:
+  - itemName: Cheese
+    price: 200
+    itemModel: {fileID: 919132149155446097, guid: 523bccfb4158f5e488cc6455eb57247f, type: 3}
+  - itemName: Milk
+    price: 4
+    itemModel: {fileID: 5574025170967245241, guid: 3303e890f15b5df459dd0c5a781dfe28, type: 3}
   lockedInBuildMode: 0
-  itemSalePrice: 3
   stationNumber: 1
-  stationType: 11
+  stationType: 2
 --- !u!1 &2867454919554372712
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,7 +483,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Placeable
   buildCost: 500
   lockedInBuildMode: 0
-  outline: {fileID: 0}
 --- !u!1 &6328869308524997641
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +622,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6867602042520042423}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -679,10 +684,16 @@ MonoBehaviour:
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
+  items:
+  - itemName: Cheese
+    price: 200
+    itemModel: {fileID: 919132149155446097, guid: 523bccfb4158f5e488cc6455eb57247f, type: 3}
+  - itemName: Milk
+    price: 4
+    itemModel: {fileID: 5574025170967245241, guid: 3303e890f15b5df459dd0c5a781dfe28, type: 3}
   lockedInBuildMode: 0
-  itemSalePrice: 3
   stationNumber: 1
-  stationType: 12
+  stationType: 2
 --- !u!1 &8002690319003932952
 GameObject:
   m_ObjectHideFlags: 0
