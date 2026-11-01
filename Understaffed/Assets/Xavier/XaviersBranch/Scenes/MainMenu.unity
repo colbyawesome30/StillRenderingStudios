@@ -833,7 +833,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 1
+  m_Looping: 0
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -1096,14 +1096,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455899694}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: OpenLevel
-        m_Mode: 1
+        m_MethodName: ChooseLevel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ArtScene
+          m_StringArgument: Level 1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &400249051
@@ -2913,6 +2913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1455899695}
   - component: {fileID: 1455899694}
+  - component: {fileID: 1455899696}
   m_Layer: 0
   m_Name: MainMenuManager
   m_TagString: Untagged
@@ -2962,6 +2963,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1455899696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455899693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4854128249240924997d20e94cc9345c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StartupMenu
+  startVideoPlayer: {fileID: 32900000, guid: 39a24974db41fb04cba300751619118b, type: 3}
+  normalVideoPlayer: {fileID: 32900000, guid: 460aa3e700ab31e4e8017107dc697826, type: 3}
+  videoPlayers:
+  - {fileID: 351325049}
+  - {fileID: 1808756124}
 --- !u!1 &1544516046
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,7 +3365,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 1
+  m_Looping: 0
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -3554,7 +3572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1959947049
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4099,6 +4117,30 @@ PrefabInstance:
     - target: {fileID: 1817815819796289747, guid: 47c81af27ae1550489ef1e319c64bbb1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398709263259569775, guid: 47c81af27ae1550489ef1e319c64bbb1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398709263259569775, guid: 47c81af27ae1550489ef1e319c64bbb1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398709263259569775, guid: 47c81af27ae1550489ef1e319c64bbb1, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398709263259569775, guid: 47c81af27ae1550489ef1e319c64bbb1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398709263259569775, guid: 47c81af27ae1550489ef1e319c64bbb1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398709263259569775, guid: 47c81af27ae1550489ef1e319c64bbb1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2614504318639959132, guid: 47c81af27ae1550489ef1e319c64bbb1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
