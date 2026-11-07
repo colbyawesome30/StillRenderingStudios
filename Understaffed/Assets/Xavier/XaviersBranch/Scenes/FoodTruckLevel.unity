@@ -8005,6 +8005,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2061539451051892247, guid: 647879e8426b0234e8dc4aea5fb2163b, type: 3}
+      propertyPath: stationType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3338266980551571240, guid: 647879e8426b0234e8dc4aea5fb2163b, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.2588214
