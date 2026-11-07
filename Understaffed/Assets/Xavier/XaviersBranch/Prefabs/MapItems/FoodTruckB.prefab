@@ -3401,8 +3401,14 @@ MonoBehaviour:
   linkedStation: {fileID: 765720360648687135}
   stats: {fileID: 1328832116576743122}
   baseServeTime: 8
+  items:
+  - itemName: Soda
+    price: 3
+    itemModel: {fileID: 4845633622349613352, guid: 9ff16301a89f41e428018601a3ac8266, type: 3}
+  - itemName: Cereal
+    price: 2
+    itemModel: {fileID: 5574025170967245241, guid: 0bdf0e524147ccb49b6de85b6a78ed4d, type: 3}
   lockedInBuildMode: 0
-  itemSalePrice: 9
   stationNumber: 0
   stationType: 0
 --- !u!114 &1328832116576743122
