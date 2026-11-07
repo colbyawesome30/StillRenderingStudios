@@ -10,7 +10,7 @@ public class CarMovement : MonoBehaviour
     public Transform CustomerSpawn { get; private set; }
     public bool IsMoving => currentPath != null;
     // Straight lines with rounded corners, sampled into small points
-    private class Path
+    public class Path
     {
         public List<Vector3> points = new List<Vector3>();
         public List<int> controlPointIndices = new List<int>();   // sample index at the middle of each corner
@@ -21,6 +21,7 @@ public class CarMovement : MonoBehaviour
         public float ArcStartDistance(int index) => cumulativeDistance[arcStartIndices[Mathf.Clamp(index, 0, arcStartIndices.Count - 1)]];
     }
     private static readonly List<CarMovement> allCars = new List<CarMovement>();
+    public static IReadOnlyList<CarMovement> AllCars => allCars;
     private static readonly Collider[] overlapBuffer = new Collider[16];
     private IList<Transform> route;
     private int branchSegmentIndex, branchControlIndex;
@@ -87,7 +88,7 @@ public class CarMovement : MonoBehaviour
         branchControlIndex = waypoints.Count - 1;
         foreach (var approachPoint in lot.approachPoints) waypoints.Add(approachPoint.position);
         waypoints.Add(lot.parkPoint.position);
-        arrivePath = BuildPath(waypoints, branchControlIndex);
+        arrivePath = BuildPath(waypoints, carMoveVar.cornerRadius, carMoveVar.parkCornerRadius, branchControlIndex);
         StartMove(arrivePath, 0f, arrivePath.Length, carMoveVar.speed, true, () => Parked?.Invoke(this));
     }
 
@@ -145,7 +146,7 @@ public class CarMovement : MonoBehaviour
             }
             for (int i = nextRouteIndex; i < route.Count; i++) waypoints.Add(route[i].position);
         }
-        Path leavePath = BuildPath(waypoints);
+        Path leavePath = BuildPath(waypoints, carMoveVar.cornerRadius);
         StartMove(leavePath, 0f, leavePath.Length, carMoveVar.speed, false, () => { Lot.Occupied = false; Destroy(gameObject); });
     }
     //Find point where the car merge back into the main path
@@ -166,7 +167,9 @@ public class CarMovement : MonoBehaviour
             if (sqrDistance < bestSqrDistance) { bestSqrDistance = sqrDistance; branchSegmentIndex = segmentIndex; branchPosition = closestPoint; }
         }
     }
-    private Path BuildPath(IList<Vector3> rawPoints, int wideTurnsFromIndex = int.MaxValue)
+
+    // Static so DriveThruCar can build its own paths with the same rounded corners
+    public static Path BuildPath(IList<Vector3> rawPoints, float cornerRadius, float wideRadius = 0f, int wideTurnsFromIndex = int.MaxValue)
     {
         //Build path to parking lot
         var corners = new List<Vector3>();
@@ -180,7 +183,7 @@ public class CarMovement : MonoBehaviour
             Vector3 corner = corners[cornerIndex];
             Vector3 incomingVector = corner - corners[cornerIndex - 1], outgoingVector = corners[cornerIndex + 1] - corner;
             float incomingLength = incomingVector.magnitude, outgoingLength = outgoingVector.magnitude;
-            float radiusLimit = cornerIndex >= wideTurnsFromIndex ? carMoveVar.parkCornerRadius : carMoveVar.cornerRadius;
+            float radiusLimit = cornerIndex >= wideTurnsFromIndex ? wideRadius : cornerRadius;
             float curveRadius = Mathf.Min(radiusLimit, incomingLength * 0.5f, outgoingLength * 0.5f);
             Vector3 arcEntry = corner - incomingVector / incomingLength * curveRadius;
             Vector3 arcExit = corner + outgoingVector / outgoingLength * curveRadius;
@@ -205,7 +208,7 @@ public class CarMovement : MonoBehaviour
         return path;
     }
     //Check current path
-    private static void SamplePath(Path path, float distance, out Vector3 position, out Vector3 tangent)
+    public static void SamplePath(Path path, float distance, out Vector3 position, out Vector3 tangent)
     {
         distance = Mathf.Clamp(distance, 0f, path.Length);
         int segmentIndex = Array.BinarySearch(path.cumulativeDistance, distance);
@@ -319,6 +322,10 @@ public class CarMovement : MonoBehaviour
             return;
         }
         blockedTime = 0f;
+
+        if (DriveThruCar.MergingAhead(transform.position, MoveDirection, carMoveVar.stopDistance + 4f))
+        { currentSpeed = 0f; return; }
+
         //Car heading
         SamplePath(currentPath, distanceAlongPath - carMoveVar.headingWindow * 0.5f, out Vector3 positionBehind, out _);
         SamplePath(currentPath, distanceAlongPath + carMoveVar.headingWindow * 0.5f, out Vector3 positionAhead, out _);

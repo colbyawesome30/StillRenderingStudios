@@ -11,7 +11,7 @@ public class StationItem
 } // gives each station a unique list of items it can serve that customers can order from, with prices
 public class foodStation : MonoBehaviour
 {
-    public List<averageCustomer> line = new List<averageCustomer>();
+    public List<IStationCustomer> line = new List<IStationCustomer>();
 
     public Transform lineStart;
     public Transform lineDirection; // point the z axis of this in the direction the line goes
@@ -22,14 +22,15 @@ public class foodStation : MonoBehaviour
 
     //Establish basic items
     public bool isCheckout;
+    public bool isDriveThru;
     public WorkStation linkedStation;
     public StationStats stats;
     public float baseServeTime = 0f; 
-    private averageCustomer beingServed;
+    private IStationCustomer beingServed;
     //Time left till done
     private float serveTimer;
     private float serveTotal; // saved when serving starts so the conveyor belt can work out progress
-    public averageCustomer CurrentCustomer => beingServed;
+    public averageCustomer CurrentCustomer => beingServed as averageCustomer;
 
     public List<StationItem> items = new List<StationItem>(); // what this station sells
     public bool lockedInBuildMode = false;
@@ -53,12 +54,12 @@ public class foodStation : MonoBehaviour
     private static void ResetStatics() => nextStationNumber = 0;
     //Change end
 
-    public void addCustomer(averageCustomer customer)
+    public void addCustomer(IStationCustomer customer)
     {
         line.Add(customer);
     }
 
-    public void removeCustomer(averageCustomer customer)
+    public void removeCustomer(IStationCustomer customer)
     {
         //New Changes
         if (!line.Remove(customer)) return;
@@ -73,7 +74,7 @@ public class foodStation : MonoBehaviour
         updateLinePositions();
     }
 
-    public Vector3 GetPositionForCustomer(averageCustomer customer)
+    public Vector3 GetPositionForCustomer(IStationCustomer customer)
     {
         int index = line.IndexOf(customer);
 
@@ -159,7 +160,7 @@ public class foodStation : MonoBehaviour
 
     public int Count => line.Count;
     public bool IsFull => line.Count >= Capacity;
-    public bool IsOverflowing(averageCustomer customer) => line.IndexOf(customer) >= Capacity;
+    public bool IsOverflowing(IStationCustomer customer) => line.IndexOf(customer) >= Capacity;
 
     // start serving whoever is at the front
     private void Update()
@@ -180,7 +181,7 @@ public class foodStation : MonoBehaviour
             serveTimer -= Time.deltaTime;
             if (serveTimer <= 0f)
             {
-                averageCustomer done = beingServed;
+                IStationCustomer done = beingServed;
                 removeCustomer(done);
                 done.OnServiceFinished(this);
             }

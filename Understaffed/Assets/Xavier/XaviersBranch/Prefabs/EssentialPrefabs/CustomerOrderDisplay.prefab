@@ -268,7 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::customerOrderDisplay
   orderText: {fileID: 1404203864660705144}
   stationColors:
-  - stationType: 13
+  - stationType: 1
     color: {r: 1, g: 0.5592139, b: 0, a: 0}
   - stationType: 2
     color: {r: 0, g: 0.8013717, b: 1, a: 0}

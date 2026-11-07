@@ -7,6 +7,10 @@ public class CustomerSpawner : MonoBehaviour
     public Transform spawnPoint;
     [SerializeField] private ParkingManager parkingManager;
 
+    [Header("Drive-thru")]
+    public DriveThruLane driveThruLane;
+    private readonly Queue<GameObject> driveThruQueue = new Queue<GameObject>();
+
     [Serializable]
     public struct StoreFronts
     {
@@ -111,7 +115,8 @@ public class CustomerSpawner : MonoBehaviour
 
         if (waveActive)
         {
-            bool finished = spawnQueue.Count == 0 && pendingCars == 0 && averageCustomer.ActiveCount == 0;
+            bool finished = spawnQueue.Count == 0 && driveThruQueue.Count == 0 && pendingCars == 0
+                         && averageCustomer.ActiveCount == 0 && DriveThruCar.ActiveCount == 0;
             if (!finished) return;
 
             waveActive = false;
@@ -147,7 +152,15 @@ public class CustomerSpawner : MonoBehaviour
 
         CurrentWave = index;
         spawnQueue.Clear();
-        foreach (GameObject c in roll) spawnQueue.Enqueue(c);
+        driveThruQueue.Clear();
+        foreach (GameObject car in roll)
+        {
+            if (car.GetComponent<DriveThruCar>() != null)
+            {
+                if (driveThruLane != null) driveThruQueue.Enqueue(car);   // no lane = skipped so the wave can still finish
+            }
+            else spawnQueue.Enqueue(car);
+        }
 
         waveActive = true;
         WaveStarted?.Invoke(CurrentWave);
@@ -218,11 +231,19 @@ public class CustomerSpawner : MonoBehaviour
     {
         if (spawningStopped || !waveActive || TutorialBlocksSpawning()) return;
 
+        TrySpawnDriveThru();
+
         //don't send more cars than there are customers left in the queue
         if (spawnQueue.Count - pendingCars <= 0) return;
 
         pendingCars++;
         if (!parkingManager.TrySpawnCar()) pendingCars--;   // lot full, try again next tick
+    }
+
+    private void TrySpawnDriveThru()
+    {
+        if (driveThruQueue.Count == 0 || driveThruLane == null || !driveThruLane.CanSpawn()) return;
+        driveThruLane.Spawn(driveThruQueue.Dequeue());
     }
 
     private bool TutorialBlocksSpawning()

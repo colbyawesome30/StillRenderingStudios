@@ -14,7 +14,7 @@ public class CustomerOrderItem
     public GameObject model; // for conveyor belt
 }
 
-public class averageCustomer : MonoBehaviour
+public class averageCustomer : MonoBehaviour, IStationCustomer
 {
     // add references to line array, station spawn, difficulty
     public int difficulty;
@@ -331,8 +331,9 @@ public class averageCustomer : MonoBehaviour
             if (orderedStation != null) return orderedStation;
         }
 
+        // drive-thru checkouts are for cars only
         return foodStation.AllStations
-            .Where(s => s.isCheckout)
+            .Where(s => s.isCheckout && !s.isDriveThru)
             .OrderBy(s => s.Count)
             .FirstOrDefault();
     }
