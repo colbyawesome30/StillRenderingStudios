@@ -78,7 +78,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4087
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   _camera: {fileID: 3265683538097297081}
   _hitLayers:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 2551
   _drawDebugRay: 0
   gridField: {fileID: 0}
   _groundLayer:
@@ -255,10 +255,13 @@ MonoBehaviour:
     ditherZoomedOut: 1
   - material: {fileID: 2100000, guid: 55410f145c57e7e449e74d49b0d4da90, type: 2}
     ditherZoomedIn: 0.1
-    ditherZoomedOut: 0.6
+    ditherZoomedOut: 1
   - material: {fileID: 2100000, guid: 9b7db266cce951b44b1464b16101bdfe, type: 2}
     ditherZoomedIn: 0
     ditherZoomedOut: 1
   - material: {fileID: 2100000, guid: b34ed50dbb9738446ae1158cb279ccca, type: 2}
     ditherZoomedIn: 0
+    ditherZoomedOut: 1
+  - material: {fileID: 2100000, guid: 115f8e808ffb39c4d959813db123e509, type: 2}
+    ditherZoomedIn: 0.1
     ditherZoomedOut: 1

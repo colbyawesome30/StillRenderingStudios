@@ -134,7 +134,7 @@ public class PlayerInfo : MonoBehaviour
         TMP_Text text = screen.GetComponentInChildren<TMP_Text>(true);
         if (text != null) StartCoroutine(PopText(text, 1f, 250f));
 
-        StartCoroutine(DelaySwitchScene(2f, "MainMenu"));
+        // StartCoroutine(DelaySwitchScene(2f, "MainMenu")); game ending will spawn the win/loss buttons instead now
     }
 
     private IEnumerator PopText(TMP_Text text, float duration, float targetSize)
@@ -160,12 +160,12 @@ public class PlayerInfo : MonoBehaviour
         text.fontSize = targetSize; //Target size is 250
     }
 
-    private IEnumerator DelaySwitchScene(float delay, string sceneName)
+/*    private IEnumerator DelaySwitchScene(float delay, string sceneName)
     {
         yield return new WaitForSecondsRealtime(delay);
         Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-    }
+    } no longer used*/
 
 
     public void UpdateStarRating()

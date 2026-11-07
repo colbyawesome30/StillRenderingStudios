@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,12 +20,18 @@ public class Timer : MonoBehaviour
     [SerializeField] private Image starsToWinImage;
     [SerializeField] private Color losingColor = new Color(0.9f, 0.25f, 0.25f);
     [SerializeField] private Color winningColor = new Color(0.4f, 0.85f, 0.4f);
+    private CustomerSpawner spawner;
+    private bool timeUp;
+    private bool dayEnded;
+
+    public List<GameObject> hideOnEnd; // UI to turn off when the day ends
 
     // Start is called before the first frame update
     void Start()
     {
         playerInfo = FindAnyObjectByType<PlayerInfo>();
         tutorial = FindAnyObjectByType<Tutorial>();
+        spawner = FindAnyObjectByType<CustomerSpawner>();
         currentTime = countdownTime;
         Time.timeScale = 1f;
 
@@ -56,6 +63,7 @@ public class Timer : MonoBehaviour
     public void PauseTime(bool pause)
     {
         pauseTime = pause;
+        Time.timeScale = pause ? 0f : 1f;
     }
 
     // Update is called once per frame
@@ -67,15 +75,22 @@ public class Timer : MonoBehaviour
 
         if (pauseTimer) return;
 
-        if (currentTime > 0)
+        if (!timeUp)
         {
             currentTime -= Time.deltaTime;
 
-            if (currentTime < 0)
+            if (currentTime <= 0)
             {
                 currentTime = 0;
-                EndTimeEvent();
+                timeUp = true;
+                if (spawner != null) spawner.StopSpawning();   // no new customers
             }
+        }
+        else if (!dayEnded && averageCustomer.ActiveCount == 0)
+        {
+            // last customer has left: now do the end-of-day calculations
+            dayEnded = true;
+            EndTimeEvent();
         }
 
         UpdateTimerDisplay();
@@ -83,11 +98,11 @@ public class Timer : MonoBehaviour
 
     public void EndTimeEvent()
     {
-        if (tutorial != null && tutorial.tutorialComplete)
+        foreach (GameObject obj in hideOnEnd)
         {
-            StartCoroutine(DelaySwitchScene(2f, "MainMenu"));
-        }
-        
+            if (obj != null) obj.SetActive(false);
+        } // hides specified UI on game end
+
         playerInfo.EndGame();
         
     }
@@ -104,10 +119,10 @@ public class Timer : MonoBehaviour
         timerText.text = "Time Left: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    IEnumerator DelaySwitchScene(float delay, string sceneName)
+/*    IEnumerator DelaySwitchScene(float delay, string sceneName)
     {
         yield return new WaitForSecondsRealtime(delay);
         Debug.Log("Attempting to load scene: " + sceneName);
         SceneManager.LoadScene(sceneName);
-    }
+    } method replaced by hideOnEnd*/
 }

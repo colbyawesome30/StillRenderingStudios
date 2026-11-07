@@ -11,6 +11,7 @@ public class CustomerOrderItem
     public string itemName;
     public int quantity;
     public int totalPriceOfItems; // total price of this line of the order, used for scoring and refunds
+    public GameObject model; // for conveyor belt
 }
 
 public class averageCustomer : MonoBehaviour
@@ -18,7 +19,7 @@ public class averageCustomer : MonoBehaviour
     // add references to line array, station spawn, difficulty
     public int difficulty;
 
-    public float patienceTimer;
+    private float patienceTimer;
     public int rageStep = 0; // for rage movement before leaving
     private float maxPatience; // used for the patience bar fill amount in decreasePatience
     public int lineCapacity; // xavier had idea to change line cap based on difficulty
@@ -35,7 +36,7 @@ public class averageCustomer : MonoBehaviour
     [SerializeField] private AudioClip angrySound;
     [SerializeField] private AudioClip moneySound;
 
-    public float overflowAngerMultiplier = 2f;    // patience drains faster when over line capacity
+    public float overflowAngerMultiplier;    // patience drains faster when over line capacity -- SCALES OFF DIFFICULTY PROPERLY NOW
     public bool refillPatienceAfterStation = false;
     public PlayerInfo playerInfo;
     public float waypointArriveRadius = 2;
@@ -50,11 +51,16 @@ public class averageCustomer : MonoBehaviour
     public Slider patienceSlider;
     public GameObject rageSmoke;
 
+    // number of customers currently alive in the scene
+    public static int ActiveCount { get; private set; }
+    private bool counted;
+
     //-----------------------------------------------------------------------
     // Order / grocery list
     public customerOrderDisplay orderDisplay;
     public int desire; // random int that determines how many items customer wants
     public List<CustomerOrderItem> order = new List<CustomerOrderItem>(); // list of items customer wants
+    public List<CustomerOrderItem> collectedItems = new List<CustomerOrderItem>(); // order lines collected so far for conveyor
     [SerializeField] private int totalPriceOfItems; // total price of items in order, used for scoring
     public int TotalPrice => totalPriceOfItems;
 
@@ -81,10 +87,14 @@ public class averageCustomer : MonoBehaviour
     private void OnDestroy()
     {
         PlayerInfo.DifficultyChanged -= OnDifficultyChanged;
+        if (counted) ActiveCount = Mathf.Max(0, ActiveCount - 1);
     }
 
     private void Start()
     {
+        ActiveCount++;
+        counted = true;
+
         if (playerInfo == null) playerInfo = FindAnyObjectByType<PlayerInfo>();
         agent = GetComponent<NavMeshAgent>();
 
@@ -350,7 +360,6 @@ public class averageCustomer : MonoBehaviour
 
             // add item visuals on register conveyor for each item on list * quantity
 
-
             int roll = _random.Next(1, 9);
             if (roll == 1 || roll == 2)
             {
@@ -362,6 +371,9 @@ public class averageCustomer : MonoBehaviour
             }
             return;
         }
+
+        // remember item models before clearing order
+        collectedItems.AddRange(order.FindAll(item => item.stationNumber == station.stationNumber));
 
         // remove the finished item(s) from the list and refresh the display
         order.RemoveAll(orderItem => orderItem.stationNumber == station.stationNumber);
@@ -408,7 +420,7 @@ public class averageCustomer : MonoBehaviour
         totalPriceOfItems = 0;   // reset
 
         List<foodStation> openStations = foodStation.AllStations.FindAll(
-            station => !station.isCheckout && station.gameObject.activeInHierarchy
+            station => !station.isCheckout && station.gameObject.activeInHierarchy && station.items.Count > 0
         );
 
         if (openStations.Count == 0)
@@ -420,27 +432,29 @@ public class averageCustomer : MonoBehaviour
         for (int i = 0; i < desire; i++)
         {
             foodStation pick = openStations[Random.Range(0, openStations.Count)];
+            StationItem wanted = pick.items[Random.Range(0, pick.items.Count)]; // finds a random item from the station's list of items
 
             CustomerOrderItem existingOrderItem =
-                order.Find(orderItem => orderItem.stationNumber == pick.stationNumber);
+                order.Find(orderItem => orderItem.stationNumber == pick.stationNumber && orderItem.itemName == wanted.itemName);
 
             if (existingOrderItem != null)
             {
                 existingOrderItem.quantity++;
-                existingOrderItem.totalPriceOfItems += pick.itemSalePrice;
+                existingOrderItem.totalPriceOfItems += wanted.price;
             }
             else
             {
                 order.Add(new CustomerOrderItem
                 {
                     stationNumber = pick.stationNumber,
-                    itemName = pick.foodStationType,
+                    itemName = wanted.itemName,
                     quantity = 1,
-                    totalPriceOfItems = pick.itemSalePrice
+                    totalPriceOfItems = wanted.price,
+                    model = wanted.itemModel
                 });
             }
 
-            totalPriceOfItems += pick.itemSalePrice;   // customer's running total
+            totalPriceOfItems += wanted.price;   // customer's running total
         }
     }
 
@@ -477,6 +491,13 @@ public class averageCustomer : MonoBehaviour
         return Mathf.Max(1, total);
     }
 
+    // items a conveyor at this station will show
+    public List<CustomerOrderItem> ItemsFor(foodStation station)
+    {
+        if (station.isCheckout) return collectedItems;
+        return order.FindAll(item => item.stationNumber == station.stationNumber);
+    }
+
     //Repick the next station or checkout
     public void OnStationRemoved(foodStation station)
     {
@@ -492,6 +513,7 @@ public class averageCustomer : MonoBehaviour
     //No order for station anymore drop the order
     public void DropOrderFor(int stationNumber)
     {
+        collectedItems.AddRange(order.FindAll(item => item.stationNumber == stationNumber));
         int removedPrice = 0, removedQty = 0;
         order.RemoveAll(i =>
         {
