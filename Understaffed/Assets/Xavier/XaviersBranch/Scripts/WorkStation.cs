@@ -9,6 +9,7 @@ public class WorkStation : MonoBehaviour, IInteractable
     public Color markerTint = Color.white;
     public string markerLabelOverride;
     public Sprite markerImage;
+    public bool workerLeftOrRight;
 
     public string MarkerLabel =>
         string.IsNullOrEmpty(markerLabelOverride) ? stationName : markerLabelOverride;

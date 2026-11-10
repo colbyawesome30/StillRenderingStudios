@@ -19,6 +19,7 @@ public class UpgradeManager : MonoBehaviour
     public Text workerName;
     public WorkerIndex workerIndex;
     [SerializeField] private GameObject defaultWorkerPrefab;
+    public bool workerLeftOrRight;
     public bool HasRealWorker => !IsDefaultWorker;
     private bool IsDefaultWorker =>
     currentWorker == null || currentWorker == WorkerIndex.Instance?.GetDefaultWorker();
@@ -239,7 +240,7 @@ public class UpgradeManager : MonoBehaviour
             speedCurrent.text = workSpeed.ToString();
         }
         
-        workerName.text = "Clerk Name: " + currentWorker.workerName;  
+        workerName.text = "Clerk Name: " + currentWorker.workerName;
     }
     
     //Swap this station's worker out for a new one
@@ -286,6 +287,10 @@ public class UpgradeManager : MonoBehaviour
             tutorial.CheckStepCompletion();
         }
         //Tutorial
+
+        GameObject workerObject = currentWorker.transform.gameObject;
+        workerObject.GetComponent<SimpleNavigation>().workerLeftOrRight = workerLeftOrRight;
+        workerObject.GetComponent<SimpleNavigation>().SetIdleOrientation();
     }
 
     //Pick a random name for worker

@@ -10,7 +10,7 @@ public class SimpleNavigation : MonoBehaviour
     private Transform spawnPoint;
     private System.Action onArrivedAtSpawn;
     public bool IsSuspended { get; set; }
-    
+    public bool workerLeftOrRight { get; set; }
 
     //path state
     public enum NavState { MovingToStation, MovingToSpawn, Idle }
@@ -30,6 +30,7 @@ public class SimpleNavigation : MonoBehaviour
     {
         onArrivedAtSpawn = null;
         State = NavState.MovingToStation;
+        ResetIdleOrientation();
         agent.isStopped = false;
         agent.SetDestination(stationTarget.position);
     }
@@ -39,6 +40,7 @@ public class SimpleNavigation : MonoBehaviour
     {
         onArrivedAtSpawn = onArrived;
         State = NavState.MovingToSpawn;
+        ResetIdleOrientation();
         agent.isStopped = false;
         agent.SetDestination(spawnPoint.position);
     }
@@ -48,13 +50,13 @@ public class SimpleNavigation : MonoBehaviour
     {
 
         if (IsSuspended) return;
-        if (agent.pathPending || State == NavState.Idle) return;
+        if (agent.pathPending || State == NavState.Idle){ return;}
 
         //Check if worker is at station and the diostance they are at.
         bool arrived = agent.remainingDistance <= agent.stoppingDistance
                         && (!agent.hasPath || agent.velocity.sqrMagnitude < 0.01f);
 
-        if (!arrived) return;
+        if (!arrived) {return;}
 
         //If worker has arrived keep them
         if (State == NavState.MovingToSpawn)
@@ -66,6 +68,22 @@ public class SimpleNavigation : MonoBehaviour
         else
         {
             State = NavState.Idle;
+            SetIdleOrientation();
         }
+    }
+    public void SetIdleOrientation()
+    {
+        if (workerLeftOrRight)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+    }
+    public void ResetIdleOrientation()
+    {
+        transform.localScale = new Vector3(1f, 1f, 1f);
     }
 }

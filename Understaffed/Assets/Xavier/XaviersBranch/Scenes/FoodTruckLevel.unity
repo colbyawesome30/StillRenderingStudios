@@ -22580,7 +22580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GrassField
   grassMaterial: {fileID: 2100000, guid: d7c75a85dd6ebba4fb0d90cf8f20cd61, type: 2}
   areaSize: {x: 20, y: 18}
-  count: 3200
+  count: 400
   scaleRange: {x: 0.2, y: 0.4}
   groundMask:
     serializedVersion: 2
