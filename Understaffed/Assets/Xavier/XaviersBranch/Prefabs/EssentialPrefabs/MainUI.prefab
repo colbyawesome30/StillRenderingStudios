@@ -5358,7 +5358,7 @@ GameObject:
   - component: {fileID: 4343286581717318668}
   - component: {fileID: 8353026200329022773}
   m_Layer: 5
-  m_Name: Button
+  m_Name: FastForwardButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5444,9 +5444,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5479,6 +5479,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::debugFastForward
   fastForward: 4
+  toggleButton: {fileID: 4343286581717318668}
+  activeColor: {r: 0.368325, g: 0.8396226, b: 0.36832502, a: 1}
+  inactiveColor: {r: 0.7830189, g: 0.0110804355, b: 0.0110804355, a: 1}
 --- !u!1 &6007954712982222194
 GameObject:
   m_ObjectHideFlags: 0
