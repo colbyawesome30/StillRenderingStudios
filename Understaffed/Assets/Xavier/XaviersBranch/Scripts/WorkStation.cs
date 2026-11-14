@@ -9,6 +9,7 @@ public class WorkStation : MonoBehaviour, IInteractable
     public Color markerTint = Color.white;
     public string markerLabelOverride;
     public Sprite markerImage;
+    public bool workerLeftOrRight;
 
     public string MarkerLabel =>
         string.IsNullOrEmpty(markerLabelOverride) ? stationName : markerLabelOverride;
@@ -32,6 +33,7 @@ public class WorkStation : MonoBehaviour, IInteractable
     //Unmanned station.. get to it!!!
     public Color alertColor = new Color(1f, 0.25f, 0.25f, 1f);
     public float blinkInterval = 0.4f;
+    [SerializeField] private List<GameObject> extraBlinkObjects = new List<GameObject>();
 
     // set by whatever spawns the nav marker for this station
     public StationNavMarker Marker { get; set; }
@@ -110,11 +112,23 @@ public class WorkStation : MonoBehaviour, IInteractable
         // gather now so upgrade visuals spawned later are included
         blinkRenderers.Clear();
         Transform rootT = BlinkRoot();
-        foreach (var root in rootT.GetComponentsInChildren<Renderer>(true))
+        foreach (var r in rootT.GetComponentsInChildren<Renderer>(true))
         {
-            if (!(root is MeshRenderer || root is SkinnedMeshRenderer)) continue;
-            if (stationOutline != null && root.transform.IsChildOf(stationOutline.transform)) continue;
-            blinkRenderers.Add(root);
+            if (!(r is MeshRenderer || r is SkinnedMeshRenderer)) continue;
+            if (stationOutline != null && r.transform.IsChildOf(stationOutline.transform)) continue;
+            if (!blinkRenderers.Contains(r)) blinkRenderers.Add(r);
+        }
+
+        // Specific extra objects (skips duplicates already found from the root)
+        foreach (var obj in extraBlinkObjects)
+        {
+            if (obj == null) continue;
+            foreach (var render in obj.GetComponentsInChildren<Renderer>(true))
+            {
+                if (!(render is MeshRenderer || render is SkinnedMeshRenderer)) continue;
+                if (stationOutline != null && render.transform.IsChildOf(stationOutline.transform)) continue;
+                if (!blinkRenderers.Contains(render)) blinkRenderers.Add(render);
+            }
         }
     }
     //Blinking come from

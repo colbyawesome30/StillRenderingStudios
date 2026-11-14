@@ -39924,8 +39924,12 @@ PrefabInstance:
       value: Checkout 1
       objectReference: {fileID: 0}
     - target: {fileID: 1025776336643815931, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025776336643815931, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.1
+      value: -8.6
       objectReference: {fileID: 0}
     - target: {fileID: 1025776336643815931, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_LocalPosition.y
@@ -39970,6 +39974,14 @@ PrefabInstance:
     - target: {fileID: 2352464242801522037, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: beltItemSpacing
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: workerLeftOrRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7179886786387737580, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: workerLeftOrRight
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

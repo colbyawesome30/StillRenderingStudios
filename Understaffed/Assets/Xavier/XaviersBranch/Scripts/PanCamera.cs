@@ -118,12 +118,14 @@ public class CameraPan : MonoBehaviour
         if (PressedThisFrame(out Vector2 pressPos))
         {
             // Only start if the press was not on a worker or on UI
-            pressing = !IsOverUI() && !IsOverWorker(pressPos);
+            pressing = !IsOverUI();
             panning = false;
             startScreen = pressPos;
             lastScreen = pressPos;
             return;
         }
+
+        //old changes && !IsOverWorker(pressPos)
 
         if (!pressing) return;
 

@@ -40,23 +40,19 @@ public class WorkerSpawnManager : MonoBehaviour
     {
         if (worker == null) return;
 
-        //Check if this is the same worker
         bool isDefault = worker == WorkerIndex.Instance?.GetDefaultWorker();
 
-        //Default workers have their location changed differently, one per station
         if (isDefault)
         {
             UpdateDefaultWorkerDestination(worker, station, stationTarget);
             return;
         }
 
-        //Spawn or find the worker and send them to new station
         if (stationTarget != null)
         {
             SimpleNavigation agent = GetOrSpawnAgent(worker);
-            agent?.GoToStation(stationTarget);
+            agent?.GoToStation(stationTarget, station);
         }
-        //None means they go to spawn and despawn
         else if (activeAgents.TryGetValue(worker, out SimpleNavigation agent))
         {
             agent.ReturnToSpawnAndDespawn(() =>
@@ -76,7 +72,6 @@ public class WorkerSpawnManager : MonoBehaviour
             return;
         }
 
-        //Update station and find a path
         if (stationTarget != null)
         {
             if (!defaultAgents.TryGetValue(station, out SimpleNavigation agent))
@@ -85,9 +80,8 @@ public class WorkerSpawnManager : MonoBehaviour
                 if (agent == null) return;
                 defaultAgents[station] = agent;
             }
-            agent.GoToStation(stationTarget);
+            agent.GoToStation(stationTarget, station);
         }
-        //None means they go to spawn and despawn
         else if (defaultAgents.TryGetValue(station, out SimpleNavigation agent))
         {
             agent.ReturnToSpawnAndDespawn(() =>
@@ -158,6 +152,7 @@ public class WorkerSpawnManager : MonoBehaviour
         if (agent != null) agent.enabled = false;
 
         nav.IsSuspended = true;
+        nav.DetachFromStation();
         nav.transform.position = initialWorldPosition;
 
         return nav;

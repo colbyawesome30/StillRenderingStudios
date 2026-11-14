@@ -18,6 +18,7 @@ public class SpriteAgentAnimator : MonoBehaviour
     [SerializeField] private float flipDeadzone = 0.3f;
     [Tooltip("Higher = snappier, lower = smoother velocity for animation decisions.")]
     [SerializeField] private float velocitySmoothing = 10f;
+    private SimpleNavigation nav;
 
     //Animation state references
     private static readonly int IsMovingSide = Animator.StringToHash("isMovingSide");
@@ -36,7 +37,7 @@ public class SpriteAgentAnimator : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
-
+        nav = GetComponent<SimpleNavigation>();
         if (animator == null) animator = GetComponentInChildren<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
@@ -104,7 +105,8 @@ public class SpriteAgentAnimator : MonoBehaviour
         animator.SetBool(IsMovingSide, movingSide);
         animator.SetBool(IsMovingFront, !movingSide);
 
-        if (movingSide && spriteRenderer != null && Mathf.Abs(sideAmount) > flipDeadzone)
-            spriteRenderer.flipX = (sideAmount > 0f) == sideSpriteFacesLeft;
-    }
+        //Only flip while actually walking, never while idle at a station
+        bool walking = nav == null || nav.State != SimpleNavigation.NavState.Idle;
+        if (walking && movingSide && spriteRenderer != null && Mathf.Abs(sideAmount) > flipDeadzone)
+            spriteRenderer.flipX = (sideAmount > 0f) == sideSpriteFacesLeft;}
 }
