@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Xavier/XaviersBranch/Intro.unity
+    guid: 40d8f4afcd763ea449e3db2361a18705
+  - enabled: 1
     path: Assets/Xavier/XaviersBranch/Scenes/MainMenu.unity
     guid: 758aa9bdbd5394b468ce3652f70a50fb
   - enabled: 1
