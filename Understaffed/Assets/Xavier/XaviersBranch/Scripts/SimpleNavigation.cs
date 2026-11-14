@@ -1,18 +1,21 @@
-using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class SimpleNavigation : MonoBehaviour
 {
-    //Apply to characters
     private NavMeshAgent agent;
     private Transform spawnPoint;
     private System.Action onArrivedAtSpawn;
+    private UpgradeManager targetStation;
+    private float stoppedTimer;
+    private SpriteRenderer spriteRenderer;
     public bool IsSuspended { get; set; }
     public bool workerLeftOrRight { get; set; }
 
-    //path state
+    private const float arriveTolerance = 0.1f;
+    private const float stuckTime = 0.75f;
+
     public enum NavState { MovingToStation, MovingToSpawn, Idle }
     public NavState State { get; private set; } = NavState.Idle;
 
@@ -20,45 +23,66 @@ public class SimpleNavigation : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = 0.1f;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    //Start journey
     public void Initialize(Transform spawn) => spawnPoint = spawn;
 
     //Go to work station
-    public void GoToStation(Transform stationTarget)
+    public void GoToStation(Transform stationTarget, UpgradeManager station)
     {
+        targetStation = station;
         onArrivedAtSpawn = null;
         State = NavState.MovingToStation;
+        stoppedTimer = 0f;
         ResetIdleOrientation();
         agent.isStopped = false;
         agent.SetDestination(stationTarget.position);
     }
 
+    //Called when the worker is picked up: forget the old station completely
+    public void DetachFromStation()
+    {
+        targetStation = null;
+        State = NavState.Idle;
+        workerLeftOrRight = false;
+        ResetIdleOrientation();
+    }
+
     //Go back and despawn
     public void ReturnToSpawnAndDespawn(System.Action onArrived)
     {
+        targetStation = null;
         onArrivedAtSpawn = onArrived;
         State = NavState.MovingToSpawn;
+        stoppedTimer = 0f;
         ResetIdleOrientation();
         agent.isStopped = false;
         agent.SetDestination(spawnPoint.position);
     }
 
-    //Per frame update
     private void Update()
     {
-
         if (IsSuspended) return;
-        if (agent.pathPending || State == NavState.Idle){ return;}
 
-        //Check if worker is at station and the diostance they are at.
-        bool arrived = agent.remainingDistance <= agent.stoppingDistance
-                        && (!agent.hasPath || agent.velocity.sqrMagnitude < 0.01f);
+        //While idle at a station, always match the station's current facing
+        if (State == NavState.Idle)
+        {
+            if (targetStation != null) SetIdleOrientation();
+            return;
+        }
 
-        if (!arrived) {return;}
+        if (agent.pathPending) return;
 
-        //If worker has arrived keep them
+        bool stopped = !agent.hasPath || agent.velocity.sqrMagnitude < 0.01f;
+        stoppedTimer = stopped ? stoppedTimer + Time.deltaTime : 0f;
+
+        bool arrived = stopped &&
+                       (agent.remainingDistance <= Mathf.Max(agent.stoppingDistance, arriveTolerance)
+                        || stoppedTimer >= stuckTime);
+
+        if (!arrived) return;
+
         if (State == NavState.MovingToSpawn)
         {
             State = NavState.Idle;
@@ -71,17 +95,18 @@ public class SimpleNavigation : MonoBehaviour
             SetIdleOrientation();
         }
     }
+
     public void SetIdleOrientation()
     {
-        if (workerLeftOrRight)
-        {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
-        else
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
+        if (targetStation != null)
+            workerLeftOrRight = targetStation.workerLeftOrRight;
+
+        //Clear any leftover walking flip so only the station flag decides facing
+        if (spriteRenderer != null) spriteRenderer.flipX = false;
+
+        transform.localScale = new Vector3(workerLeftOrRight ? -1f : 1f, 1f, 1f);
     }
+
     public void ResetIdleOrientation()
     {
         transform.localScale = new Vector3(1f, 1f, 1f);

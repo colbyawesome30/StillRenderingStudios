@@ -138,12 +138,21 @@ public class WorkerIndex : MonoBehaviour
     {
         Worker defaultWorker = GetDefaultWorker();
 
+        //Same worker re-dropped on the same station: just re-send them, don't despawn
+        if (oldWorker == newWorker && newWorker != null)
+        {
+            if (newWorker != defaultWorker)
+                workerStationMap[newWorker] = station;
+
+            WorkerSpawnManager.Instance?.UpdateWorkerDestination(newWorker, station, station.WorkerStandPoint);
+            return;
+        }
+
         //Worker leaving
         if (oldWorker != null)
         {
             if (oldWorker != defaultWorker)
             {
-                //Remove if this station still owns them
                 if (workerStationMap.TryGetValue(oldWorker, out UpgradeManager mappedStation) && mappedStation == station)
                 {
                     workerStationMap.Remove(oldWorker);
@@ -152,7 +161,6 @@ public class WorkerIndex : MonoBehaviour
             }
             else
             {
-                // Default worker leaving this station
                 WorkerSpawnManager.Instance?.UpdateWorkerDestination(oldWorker, station, null);
             }
         }
@@ -163,7 +171,6 @@ public class WorkerIndex : MonoBehaviour
             if (newWorker != defaultWorker)
                 workerStationMap[newWorker] = station;
 
-            //Send worker to walk to this station
             WorkerSpawnManager.Instance?.UpdateWorkerDestination(newWorker, station, station.WorkerStandPoint);
         }
     }

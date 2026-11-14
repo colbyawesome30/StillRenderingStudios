@@ -286,11 +286,6 @@ public class UpgradeManager : MonoBehaviour
             tutorial.NextStep();
             tutorial.CheckStepCompletion();
         }
-        //Tutorial
-
-        GameObject workerObject = currentWorker.transform.gameObject;
-        workerObject.GetComponent<SimpleNavigation>().workerLeftOrRight = workerLeftOrRight;
-        workerObject.GetComponent<SimpleNavigation>().SetIdleOrientation();
     }
 
     //Pick a random name for worker

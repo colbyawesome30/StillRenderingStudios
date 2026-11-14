@@ -78,7 +78,11 @@ public class WorldDrag : MonoBehaviour
         isDragging = true;
         AnyDragging = true;
         Roster.DraggedWorker = worker;   // roster turns yellow
-        if (navigation != null) navigation.IsSuspended = true;
+        if (navigation != null)
+        {
+            navigation.IsSuspended = true;
+            navigation.DetachFromStation();   // don't carry the old station's facing
+        }
         if (agent != null) agent.enabled = false;
         dragWorker.audioSource.PlayOneShot(dragWorker.clickSound);
     }

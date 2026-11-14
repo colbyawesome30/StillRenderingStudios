@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Dirt
+    second: {fileID: 2100000, guid: d32b78637083931488ae3dfed9de1f2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Food
     second: {fileID: 2100000, guid: b34ed50dbb9738446ae1158cb279ccca, type: 2}
   materials:

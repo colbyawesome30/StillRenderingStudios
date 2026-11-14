@@ -1086,11 +1086,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 41625363}
   lineDirection: {fileID: 41625363}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -3445,11 +3445,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 144601272}
   lineDirection: {fileID: 144601272}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -4453,11 +4453,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 177858973}
   lineDirection: {fileID: 177858973}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -7190,11 +7190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 326786687}
   lineDirection: {fileID: 326786687}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -9009,11 +9009,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 425094314}
   lineDirection: {fileID: 425094314}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -12950,11 +12950,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 629923407}
   lineDirection: {fileID: 629923407}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -13722,11 +13722,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 668323581}
   lineDirection: {fileID: 668323581}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -19606,11 +19606,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 983628411}
   lineDirection: {fileID: 983628411}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -23763,11 +23763,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 1147924831}
   lineDirection: {fileID: 1147924831}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -24049,11 +24049,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 1147924831}
   lineDirection: {fileID: 1147924831}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -32088,11 +32088,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 1478391900}
   lineDirection: {fileID: 1478391900}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -34272,11 +34272,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 1595870501}
   lineDirection: {fileID: 1595870501}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -36686,11 +36686,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 1658097733}
   lineDirection: {fileID: 1658097733}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -39599,11 +39599,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 1860900254}
   lineDirection: {fileID: 1860900254}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -39717,11 +39717,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 1861391235}
   lineDirection: {fileID: 1861391235}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -39825,8 +39825,12 @@ PrefabInstance:
       value: Checkout 1
       objectReference: {fileID: 0}
     - target: {fileID: 1025776336643815931, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025776336643815931, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.1
+      value: -8.6
       objectReference: {fileID: 0}
     - target: {fileID: 1025776336643815931, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: m_LocalPosition.y
@@ -39871,6 +39875,14 @@ PrefabInstance:
     - target: {fileID: 2352464242801522037, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
       propertyPath: beltItemSpacing
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721489806230678653, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: workerLeftOrRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7179886786387737580, guid: 743fe2288d73cb04c8d330acffb9de36, type: 3}
+      propertyPath: workerLeftOrRight
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -42783,11 +42795,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 2008651690}
   lineDirection: {fileID: 2008651690}
   lineSpacing: 1
   isCheckout: 0
+  isDriveThru: 0
   linkedStation: {fileID: 0}
   stats: {fileID: 0}
   baseServeTime: 0.8
@@ -44842,6 +44854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
   spawnPoint: {fileID: 2119763382}
   parkingManager: {fileID: 3745736}
+  driveThruLane: {fileID: 0}
   entryList:
   - storeFrontPoint: {fileID: 1446443270}
     entryPoint: {fileID: 2000465166}
