@@ -5657,7 +5657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAgentAnimator
   animator: {fileID: 5157512615573726353}
   spriteRenderer: {fileID: 2939512714764635389}
-  sideSpriteFacesLeft: 0
+  sideSpriteFacesLeft: 1
   moveThreshold: 0.1
   axisSwitchBias: 1.3
   axisHoldTime: 0.25

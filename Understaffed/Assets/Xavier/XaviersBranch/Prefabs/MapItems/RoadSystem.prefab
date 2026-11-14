@@ -719,15 +719,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62c0e7247a4fdf4093a5c0c73771baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
-  customerPrefab: {fileID: 0}
-  customers:
-  - {fileID: 5519701519376992259, guid: 68eb7ee229ddd8d439ba40811dfc25cb, type: 3}
-  - {fileID: 5519701519376992259, guid: f0f20a75c926f544d83dd1a228ec5289, type: 3}
   spawnPoint: {fileID: 2626866846152627182}
   parkingManager: {fileID: 7835219467618440063}
+  driveThruLane: {fileID: 0}
   entryList:
   - storeFrontPoint: {fileID: 3308949194671166192}
     entryPoint: {fileID: 5817438698862393233}
+  waves: []
+  timeBetweenWaves: 5
+  endlessMode: 0
+  endlessPool: []
+  startingBudget: 10
+  budgetPerWave: 5
   minSpawnInterval: 1.5
   dayDecay: 0.9
   playerInfo: {fileID: 0}
@@ -1369,6 +1372,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 452c25618191f1845a2a595521fc2fcc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cb4bd901d8e6e14419caf9b516485d1c, type: 2}
     - target: {fileID: 919132149155446097, guid: 452c25618191f1845a2a595521fc2fcc, type: 3}
       propertyPath: m_Name
       value: Road A
