@@ -1,47 +1,58 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class debugFastForward : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
+public class debugFastForward : MonoBehaviour
 {
     [SerializeField] private float fastForward = 2f;
 
-    private bool holding = false; 
     private bool spedUp = false;
+    public Button toggleButton;
+    public Color activeColor = Color.green;
+    public Color inactiveColor = Color.red;
 
-    public void OnPointerDown(PointerEventData eventData)
+    void Start()
     {
-        holding = true;
+        toggleButton.onClick.AddListener(ToggleState);
+        UpdateVisuals();
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    void Update()
     {
-        holding = false;
+        if (spedUp && Time.timeScale == 1f) Time.timeScale = fastForward; // accounts for timescale changing when pausing and unpausing while game is sped up
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    void ToggleState()
     {
-        holding = false;
-    }
-
-    private void Update()
-    {
-
-        if (holding == true && spedUp == false && Time.timeScale == 1f)
+        if (!spedUp && Time.timeScale == 1f)
         {
             Time.timeScale = fastForward;
             spedUp = true;
         }
-        else if (holding == false && spedUp == true)
+        else if (spedUp)
         {
             if (Time.timeScale == fastForward) Time.timeScale = 1f;
             spedUp = false;
         }
+
+        UpdateVisuals();
+    }
+
+    void UpdateVisuals()
+    {
+        ColorBlock colors = toggleButton.colors;
+        colors.normalColor = spedUp ? activeColor : inactiveColor;
+        colors.selectedColor = colors.normalColor;
+        toggleButton.colors = colors;
     }
 
     void OnDisable()
     {
-        if (spedUp == true && Time.timeScale == fastForward) Time.timeScale = 1f;
+        if (spedUp && Time.timeScale == fastForward)
+        {
+            Time.timeScale = 1f;
+        }
         spedUp = false;
-        holding = false;
+        UpdateVisuals();
     }
 }
