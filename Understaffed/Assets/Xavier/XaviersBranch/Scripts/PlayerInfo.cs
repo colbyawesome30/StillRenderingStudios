@@ -24,6 +24,11 @@ public class PlayerInfo : MonoBehaviour
     public GameObject winScreen;
     public GameObject loseScreen;
 
+    //Trash settings
+    public float starPenaltyPerTrash = 0.1f;
+    public float maxTrashPenalty = 1.5f;
+    private float _trashLoad;
+
     private bool _gameEnd = false;
 
     public static event Action<int> DifficultyChanged;
@@ -100,6 +105,15 @@ public class PlayerInfo : MonoBehaviour
         UpdateStarRating();
     }
 
+    //Called by TrashItem whenever trash is dropped or cleaned up
+    public void SetTrashLoad(float load)
+    {
+        if (_gameEnd) return;
+
+        _trashLoad = Mathf.Max(0f, load);
+        UpdateStarRating();
+    }
+
     public void AddFunds(int amount)
     {
         playerFunds = Mathf.Max(0, playerFunds + amount);
@@ -160,13 +174,6 @@ public class PlayerInfo : MonoBehaviour
         text.fontSize = targetSize; //Target size is 250
     }
 
-/*    private IEnumerator DelaySwitchScene(float delay, string sceneName)
-    {
-        yield return new WaitForSecondsRealtime(delay);
-        Time.timeScale = 1f;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-    } no longer used*/
-
 
     public void UpdateStarRating()
     {
@@ -178,10 +185,13 @@ public class PlayerInfo : MonoBehaviour
 
         float averageSatisfaction = _totalSatisfaction / currentCustomers;
 
-        stars = Mathf.FloorToInt(averageSatisfaction * maxStars * 10f) / 10f;
-        Debug.Log(averageSatisfaction + " current satisfaction, " + stars + " stars, customers " + currentCustomers);
+        //Trash on the floor takes stars off
+        float trashPenalty = Mathf.Min(_trashLoad * starPenaltyPerTrash, maxTrashPenalty);
+        float rawStars = Mathf.Max(0f, averageSatisfaction * maxStars - trashPenalty);
 
-        starsText.text = stars + " Stars";
-        fillImage.fillAmount = stars / maxStars;
+        stars = Mathf.FloorToInt(rawStars * 10f) / 10f;
+
+        if (starsText != null) starsText.text = stars + " Stars";
+        if (fillImage != null) fillImage.fillAmount = stars / maxStars;
     }
 }

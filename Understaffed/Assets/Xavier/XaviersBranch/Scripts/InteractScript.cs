@@ -13,12 +13,16 @@ public class InteractScript : MonoBehaviour
 
     [Tooltip("Which layers the ray is allowed to hit. Defaults to Everything.")]
     [SerializeField] private LayerMask _hitLayers = ~0;
+    [SerializeField] private float dragThreshold = 10f;
 
     [Header("Debug")]
     [SerializeField] private bool _drawDebugRay = false;
 
     [SerializeField] private GameObject gridField;
-    [SerializeField] private LayerMask _groundLayer;  
+    [SerializeField] private LayerMask _groundLayer;
+
+    private bool pressing;
+    private Vector2 pressStart;
 
     private void Awake()
     {
@@ -27,24 +31,43 @@ public class InteractScript : MonoBehaviour
 
     private void Update()
     {
-        if (WorkStation.UIOpen || BuildMode.Active || Roster.UIDragging) return;
+        if (WorkStation.UIOpen || BuildMode.Active || Roster.UIDragging)
+        {
+            pressing = false;
+            return;
+        }
 
         UpdateGroundHover();
+        HandleTap();
+    }
 
-        if (Input.touchCount > 0)
+    //Only interact on release
+    private void HandleTap()
+    {
+        if (Input.touchCount > 1) { pressing = false; return; }
+
+        if (PressedThisFrame(out Vector2 pressPos))
         {
-            Touch touch = Input.GetTouch(0);
-
-            // Only fire on the first frame of contact, and not through UI
-            if (touch.phase == TouchPhase.Began && !IsOverUI(touch.fingerId))
-            {
-                TryInteract(touch.position);
-            }
+            int fingerId = Input.touchCount > 0 ? Input.GetTouch(0).fingerId : -1;
+            pressing = !IsOverUI(fingerId);
+            pressStart = pressPos;
+            return;
         }
-        // --- Mouse fallback (editor / desktop testing) ---
-        else if (Input.GetMouseButtonDown(0) && !IsOverUI(-1))
+
+        if (!pressing) return;
+
+        //Moved too far and this is a drag
+        Vector2 pos = CurrentPointerPosition();
+        if ((pos - pressStart).magnitude >= dragThreshold)
         {
-            TryInteract(Input.mousePosition);
+            pressing = false;
+            return;
+        }
+
+        if (ReleasedThisFrame())
+        {
+            pressing = false;
+            TryInteract(pressStart);
         }
     }
 
@@ -98,6 +121,35 @@ public class InteractScript : MonoBehaviour
             // World-space position, slightly above the surface along its normal
             gridField.transform.position = hit.point + hit.normal * 0.02f;
         }
+    }
+
+    private bool PressedThisFrame(out Vector2 pos)
+    {
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            pos = Input.GetTouch(0).position;
+            return true;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            pos = Input.mousePosition;
+            return true;
+        }
+        pos = default;
+        return false;
+    }
+
+    private bool ReleasedThisFrame()
+    {
+        if (Input.touchCount > 0)
+            return Input.GetTouch(0).phase == TouchPhase.Ended;
+        return Input.GetMouseButtonUp(0);
+    }
+
+    private Vector2 CurrentPointerPosition()
+    {
+        if (Input.touchCount > 0) return Input.GetTouch(0).position;
+        return Input.mousePosition;
     }
 
     private bool IsOverUI(int fingerId)

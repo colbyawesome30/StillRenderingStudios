@@ -3489,7 +3489,7 @@ GameObject:
   - component: {fileID: 2227808595633301511}
   - component: {fileID: 5380272466518484252}
   - component: {fileID: 2388260309789381354}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Scripts and Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3527,6 +3527,7 @@ MonoBehaviour:
   markerTint: {r: 0, g: 1, b: 0.09055519, a: 1}
   markerLabelOverride: Cashier
   markerImage: {fileID: 21300000, guid: d90e6f5554786ad4b9d8a2c5a31052cd, type: 3}
+  workerLeftOrRight: 0
   stationOutline: {fileID: 5026319042994775701}
   stationUI: {fileID: 2465070677657980224}
   stationText: {fileID: 3041346831831685477}
@@ -3537,6 +3538,7 @@ MonoBehaviour:
   lockedInBuildMode: 0
   alertColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   blinkInterval: 0.4
+  extraBlinkObjects: []
 --- !u!114 &2212071264632123910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3549,11 +3551,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84548a5e425208341a42ce694d4f6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: []
   lineStart: {fileID: 7256601040755827326}
   lineDirection: {fileID: 4631616691008835276}
   lineSpacing: 1.5
   isCheckout: 1
+  isDriveThru: 0
   linkedStation: {fileID: 4895672489880215830}
   stats: {fileID: 2227808595633301511}
   baseServeTime: 4
@@ -3584,6 +3586,7 @@ MonoBehaviour:
   workerName: {fileID: 6728916780295850443}
   workerIndex: {fileID: 0}
   defaultWorkerPrefab: {fileID: 0}
+  workerLeftOrRight: 0
   upgrades:
   - upgradeName: Cashier lvl 1
     localWorkSpeed: 1

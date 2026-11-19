@@ -5354,6 +5354,7 @@ GameObject:
   - component: {fileID: 8682110451783221504}
   - component: {fileID: 4420730501899192578}
   - component: {fileID: 8340818340423129736}
+  - component: {fileID: 6503741407013674990}
   m_Layer: 7
   m_Name: Budgie2
   m_TagString: Untagged
@@ -5477,6 +5478,9 @@ MonoBehaviour:
   happySound: {fileID: 8300000, guid: cde87146b7fe5254d98d0d6d6685f6f1, type: 3}
   angrySound: {fileID: 8300000, guid: f8fd55b9fafe2bd4cb6788bc22ceac27, type: 3}
   moneySound: {fileID: 8300000, guid: 22f47616c6e3ecb49a65f5c736d07174, type: 3}
+  isBoss: 0
+  bossServeTimeMultiplier: 2.5
+  bossRatingWeight: 3
   overflowAngerMultiplier: 2
   refillPatienceAfterStation: 0
   playerInfo: {fileID: 0}
@@ -5624,6 +5628,32 @@ MonoBehaviour:
   axisHoldTime: 0.25
   flipDeadzone: 0.3
   velocitySmoothing: 10
+--- !u!114 &6503741407013674990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519701519376992259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95aece1a2023ed04d947d5084f5d114f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrashDropper
+  trashPrefabs:
+  - {fileID: 4042098150108938033, guid: d2951bc72bf612f40825ec9a3025a90d, type: 3}
+  dropChance: 0.75
+  minDelay: 2
+  maxDelay: 6
+  maxDrops: 4
+  maxTrashInStore: 18
+  dropRadius: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  yOffset: 0.05
+  dropDuringTutorial: 0
+  debugLog: 0
 --- !u!1 &8616304034295552988
 GameObject:
   m_ObjectHideFlags: 0

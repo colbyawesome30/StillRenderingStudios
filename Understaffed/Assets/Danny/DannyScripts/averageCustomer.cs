@@ -319,6 +319,11 @@ public class averageCustomer : MonoBehaviour, IStationCustomer
         }
     }
 
+    public bool IsInStore =>
+        currentState == CustomerState.toCurrentLineEnd ||
+        currentState == CustomerState.inLine ||
+        currentState == CustomerState.atStation;
+
     // used by foodStation to know when the front customer has actually arrived
     public bool IsAtLineSpot => currentState == CustomerState.inLine && hasReachedDestination();
 
