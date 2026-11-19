@@ -13,6 +13,7 @@ public class DriveThruCar : MonoBehaviour, IStationCustomer
     [SerializeField] private GameObject patienceBar;
     [SerializeField] private Slider patienceSlider;
     [SerializeField] private GameObject rageSmoke;
+    [Tooltip("Same yaw offset CarMovement uses to line the model up with the path")]
     [SerializeField] private float modelYawOffset = -90f;
 
     //car move var
@@ -21,8 +22,10 @@ public class DriveThruCar : MonoBehaviour, IStationCustomer
 
     public List<CustomerOrderItem> order = new List<CustomerOrderItem>();
     private int desire, totalPrice;
+
     private float patience, maxPatience, overflowAnger;
     private bool beingServed, joinedLine, enraged;
+
     private enum State { Queueing, Leaving }
     private State state = State.Queueing;
     private DriveThruLane lane;
@@ -30,6 +33,7 @@ public class DriveThruCar : MonoBehaviour, IStationCustomer
     private CarMovement.Path entryPath, exitPath, path;
     private float dist, speed, slotDistance, holdDistance, groundY;
     private bool mergeOpen;
+
     public bool IsMerging => state == State.Leaving && mergeOpen;
     private bool AtSpot => Mathf.Abs(dist - slotDistance) < 0.15f && speed < 0.1f;
 
@@ -47,7 +51,6 @@ public class DriveThruCar : MonoBehaviour, IStationCustomer
     private void OnEnable() => All.Add(this);
     private void OnDisable() => All.Remove(this);
     private void OnDestroy() { if (station != null) station.removeCustomer(this); }
-
     //Initialize car
     public void Init(DriveThruLane driveThruLane)
     {
@@ -95,7 +98,6 @@ public class DriveThruCar : MonoBehaviour, IStationCustomer
         }
         patience = maxPatience;
     }
-
     //Dannys make oreder
     private void GenerateOrder()
     {
@@ -121,12 +123,11 @@ public class DriveThruCar : MonoBehaviour, IStationCustomer
         if (orderText != null)
         {
             var sb = new System.Text.StringBuilder();
-            foreach (var order in order) sb.AppendLine(order.itemName + " x" + order.quantity);
+            foreach (var o in order) sb.AppendLine(o.itemName + " x" + o.quantity);
             sb.Append("$" + totalPrice * 10);
             orderText.text = sb.ToString();
         }
     }
-
     //Dannys drain patience
     private void DrainPatience()
     {
@@ -148,6 +149,8 @@ public class DriveThruCar : MonoBehaviour, IStationCustomer
     }
 
     public bool IsAtLineSpot => !enraged && state == State.Queueing && AtSpot;
+    public bool SkipsLine => false;
+    public float ServeTimeMultiplier => 1f;
     public void SetBeingServed(bool served) => beingServed = served;
     public int QuantityFor(foodStation station) => Mathf.Max(1, desire);
     public void moveToLinePosition(Vector3 ignored) => RefreshSlot();   // slots come from the path, not the station's line positions
@@ -166,9 +169,7 @@ public class DriveThruCar : MonoBehaviour, IStationCustomer
 
         StartLeaving();
     }
-
     //Refresh point
-
     private void RefreshSlot()
     {
         int index = station.line.IndexOf(this);
@@ -189,13 +190,13 @@ public class DriveThruCar : MonoBehaviour, IStationCustomer
     {
         if (state == State.Queueing) TickQueueing(); else TickLeaving();
     }
-
     //Check if car is angry and leave
     private void TickQueueing()
     {
         if (AtSpot) joinedLine = true;
         if (joinedLine && !beingServed && !enraged) DrainPatience();
 
+        //Angry car reached the front leave without being served
         if (enraged && AtSpot && station.line.IndexOf(this) == 0)
         {
             station.removeCustomer(this);
@@ -207,12 +208,12 @@ public class DriveThruCar : MonoBehaviour, IStationCustomer
 
     private void TickLeaving()
     {
+        //Wait before the merge corner until the road is clear, then commit
         if (!mergeOpen && dist >= holdDistance - 1f && lane.IsMergeClear(this)) mergeOpen = true;
 
         Drive(mergeOpen ? exitPath.Length : holdDistance, !mergeOpen);
         if (mergeOpen && Mathf.Approximately(dist, exitPath.Length)) Destroy(gameObject);
     }
-
     //Follow path like parking lots
     private void Drive(float target, bool easeIn)
     {
@@ -266,8 +267,8 @@ public class DriveThruCar : MonoBehaviour, IStationCustomer
         {
             if (!car.IsMerging) continue;
             Vector3 off = car.transform.position - position; off.y = 0f;
-            float dis = off.magnitude;
-            if (dis > 0.01f && dis < range && Vector3.Dot(off / dis, heading) > 0.5f) return true;
+            float distance = off.magnitude;
+            if (distance > 0.01f && distance < range && Vector3.Dot(off / distance, heading) > 0.5f) return true;
         }
         return false;
     }

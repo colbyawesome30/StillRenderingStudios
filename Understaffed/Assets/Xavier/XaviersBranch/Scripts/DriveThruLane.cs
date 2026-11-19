@@ -12,6 +12,13 @@ public class DriveThruLane : MonoBehaviour
     public float carSpacing = 5f;
     public float spawnClearRadius = 4f;
     public float mergeClearRadius = 8f;
+
+    //Seconds between drive thru cars
+    public float spawnCooldown = 2f;
+    //0 = as many cars as physically fit in the entry path
+    public int maxQueueOverride = 0;
+    private float nextSpawnTime;
+
     public int MergeCornerIndex => Mathf.Clamp(mergeExitIndex, 0, Mathf.Max(0, exitPoints.Count - 1)) + 1;
     public Vector3 MergePosition => exitPoints[MergeCornerIndex - 1].position;
 
@@ -34,17 +41,21 @@ public class DriveThruLane : MonoBehaviour
     //How many cars physically fit between the spawn point and the window
     private int MaxQueue()
     {
+        if (maxQueueOverride > 0) return maxQueueOverride;
+
         var points = EntryWaypoints();
         float length = 0f;
         for (int i = 1; i < points.Count; i++) length += Vector3.Distance(points[i - 1], points[i]);
         return Mathf.Max(1, Mathf.FloorToInt(length / carSpacing));
     }
 
-    //Cab spawn car
+    //Can spawn car
     public bool CanSpawn()
     {
         if (station == null || spawnPoint == null || station.lineStart == null || exitPoints.Count == 0) return false;
-        if (station.items.Count == 0 || station.IsFull || station.Count >= MaxQueue()) return false;
+        if (Time.time < nextSpawnTime) return false;
+        //Line capacity only affects anger, not spawning
+        if (station.items.Count == 0 || station.Count >= MaxQueue()) return false;
 
         Vector3 spawn = spawnPoint.position;
         float r2 = spawnClearRadius * spawnClearRadius;
@@ -66,12 +77,14 @@ public class DriveThruLane : MonoBehaviour
             if (dis != self && dis.IsMerging && Flat(dis.transform.position - pos).sqrMagnitude < r2) return false;
         return true;
     }
+
     //Actual spawn car
     public void Spawn(GameObject prefab)
     {
         GameObject go = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
         DriveThruCar car = go.GetComponent<DriveThruCar>();
         if (car == null) { Destroy(go); return; }
+        nextSpawnTime = Time.time + spawnCooldown;
         car.Init(this);
     }
 

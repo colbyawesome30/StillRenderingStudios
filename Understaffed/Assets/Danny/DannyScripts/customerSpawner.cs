@@ -115,6 +115,8 @@ public class CustomerSpawner : MonoBehaviour
 
         if (waveActive)
         {
+            TrySpawnDriveThru();
+
             bool finished = spawnQueue.Count == 0 && driveThruQueue.Count == 0 && pendingCars == 0
                          && averageCustomer.ActiveCount == 0 && DriveThruCar.ActiveCount == 0;
             if (!finished) return;
@@ -153,13 +155,13 @@ public class CustomerSpawner : MonoBehaviour
         CurrentWave = index;
         spawnQueue.Clear();
         driveThruQueue.Clear();
-        foreach (GameObject car in roll)
+        foreach (GameObject c in roll)
         {
-            if (car.GetComponent<DriveThruCar>() != null)
+            if (c.GetComponent<DriveThruCar>() != null)
             {
-                if (driveThruLane != null) driveThruQueue.Enqueue(car);   // no lane = skipped so the wave can still finish
+                if (driveThruLane != null) driveThruQueue.Enqueue(c);   // no lane = skipped so the wave can still finish
             }
-            else spawnQueue.Enqueue(car);
+            else spawnQueue.Enqueue(c);
         }
 
         waveActive = true;
@@ -231,8 +233,6 @@ public class CustomerSpawner : MonoBehaviour
     {
         if (spawningStopped || !waveActive || TutorialBlocksSpawning()) return;
 
-        TrySpawnDriveThru();
-
         //don't send more cars than there are customers left in the queue
         if (spawnQueue.Count - pendingCars <= 0) return;
 
@@ -242,6 +242,7 @@ public class CustomerSpawner : MonoBehaviour
 
     private void TrySpawnDriveThru()
     {
+        if (spawningStopped || TutorialBlocksSpawning()) return;
         if (driveThruQueue.Count == 0 || driveThruLane == null || !driveThruLane.CanSpawn()) return;
         driveThruLane.Spawn(driveThruQueue.Dequeue());
     }

@@ -11,6 +11,7 @@ public class StationItem
 } // gives each station a unique list of items it can serve that customers can order from, with prices
 public class foodStation : MonoBehaviour
 {
+    //New list of customers waiting in line for this station, in order of arrival
     public List<IStationCustomer> line = new List<IStationCustomer>();
 
     public Transform lineStart;
@@ -22,6 +23,7 @@ public class foodStation : MonoBehaviour
 
     //Establish basic items
     public bool isCheckout;
+    [Tooltip("Tick together with isCheckout. Walk-in customers ignore this station; only DriveThruCar uses it.")]
     public bool isDriveThru;
     public WorkStation linkedStation;
     public StationStats stats;
@@ -56,7 +58,17 @@ public class foodStation : MonoBehaviour
 
     public void addCustomer(IStationCustomer customer)
     {
-        line.Add(customer);
+        if (!customer.SkipsLine)
+        {
+            line.Add(customer);
+            return;
+        }
+
+        //Boss = jump the line, but never interrupt whoever is already being served,
+        int index = beingServed != null ? 1 : 0;
+        while (index < line.Count && line[index].SkipsLine) index++;
+        line.Insert(index, customer);
+        updateLinePositions();   // everyone behind the boss shuffles back
     }
 
     public void removeCustomer(IStationCustomer customer)
@@ -172,7 +184,7 @@ public class foodStation : MonoBehaviour
         {
             beingServed = line[0];
             beingServed.SetBeingServed(true);
-            serveTimer = ServeTime * beingServed.QuantityFor(this);
+            serveTimer = ServeTime * beingServed.QuantityFor(this) * beingServed.ServeTimeMultiplier;
             serveTotal = serveTimer;
         }
 

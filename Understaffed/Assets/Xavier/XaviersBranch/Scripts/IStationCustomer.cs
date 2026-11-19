@@ -3,6 +3,8 @@ using UnityEngine;
 public interface IStationCustomer
 {
     bool IsAtLineSpot { get; }
+    bool SkipsLine { get; }
+    float ServeTimeMultiplier { get; }
     void moveToLinePosition(Vector3 position);
     void SetBeingServed(bool served);
     int QuantityFor(foodStation station);

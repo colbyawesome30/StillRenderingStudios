@@ -36,6 +36,17 @@ public class averageCustomer : MonoBehaviour, IStationCustomer
     [SerializeField] private AudioClip angrySound;
     [SerializeField] private AudioClip moneySound;
 
+    [Header("Boss")]
+    public bool isBoss;
+    [Tooltip("Serve time is multiplied by this at every station")]
+    public float bossServeTimeMultiplier = 2.5f;
+    [Tooltip("How many customers' worth of rating this one counts as (happy or angry)")]
+    public int bossRatingWeight = 3;
+
+    public bool SkipsLine => isBoss;
+    public float ServeTimeMultiplier => isBoss ? Mathf.Max(0.1f, bossServeTimeMultiplier) : 1f;
+    private int RatingWeight => isBoss ? Mathf.Max(1, bossRatingWeight) : 1;
+
     public float overflowAngerMultiplier;    // patience drains faster when over line capacity -- SCALES OFF DIFFICULTY PROPERLY NOW
     public bool refillPatienceAfterStation = false;
     public PlayerInfo playerInfo;
@@ -259,7 +270,7 @@ public class averageCustomer : MonoBehaviour, IStationCustomer
                 Debug.Log("Rage");
                 rageStep = 0;
                 rageSmoke.SetActive(true);
-                playerInfo.Result(0, 0f);
+                for (int w = 0; w < RatingWeight; w++) playerInfo.Result(0, 0f);   // boss counts extra
                 int roll = _random.Next(1, 4);
                 if (roll == 1)
                 {
@@ -353,6 +364,7 @@ public class averageCustomer : MonoBehaviour, IStationCustomer
 
             int payout = totalPriceOfItems * 10;   // matches the $ shown on the bubble
             playerInfo.Result(payout, patienceRatio);
+            for (int w = 1; w < RatingWeight; w++) playerInfo.Result(0, patienceRatio);   // boss counts extra
             Debug.Log($"Checkout: paid={payout}, satisfaction={patienceRatio:F2}");
 
             // Money visuals at the cashier
