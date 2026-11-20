@@ -1774,6 +1774,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 3825567452274081103, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: innerRadius
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825567452274081103, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: outerRadius
+      value: 1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825567452274081103, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: ditherMaterials.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825567452274081103, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: ditherMaterials.Array.data[7].material
+      value: 
+      objectReference: {fileID: 2100000, guid: 2031c7240d9433c47879910abbb329ba, type: 2}
+    - target: {fileID: 3825567452274081103, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: ditherMaterials.Array.data[0].ditherMin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825567452274081103, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: ditherMaterials.Array.data[1].ditherMin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825567452274081103, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: ditherMaterials.Array.data[2].ditherMin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825567452274081103, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: ditherMaterials.Array.data[3].ditherMin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825567452274081103, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: ditherMaterials.Array.data[4].ditherMin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825567452274081103, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: ditherMaterials.Array.data[5].ditherMin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825567452274081103, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: ditherMaterials.Array.data[6].ditherMin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825567452274081103, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
+      propertyPath: ditherMaterials.Array.data[7].ditherMax
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5774840839917116033, guid: 6c3f0cda457361a4986542b97ad05dbf, type: 3}
       propertyPath: fillImage
       value: 
@@ -48873,7 +48921,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ac73616f9fa79344eaa3004d47a8ac58, type: 3}
       propertyPath: m_LocalScale.x
-      value: 194
+      value: 1188.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac73616f9fa79344eaa3004d47a8ac58, type: 3}
       propertyPath: m_LocalScale.y
@@ -48885,7 +48933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac73616f9fa79344eaa3004d47a8ac58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.0715027
+      value: -16.943
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac73616f9fa79344eaa3004d47a8ac58, type: 3}
       propertyPath: m_LocalPosition.y
@@ -48930,7 +48978,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: ac73616f9fa79344eaa3004d47a8ac58, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 88ca58ee780ec764e8428cd38a76501f, type: 2}
+      objectReference: {fileID: 2100000, guid: 2031c7240d9433c47879910abbb329ba, type: 2}
     - target: {fileID: -5754084199372789682, guid: ac73616f9fa79344eaa3004d47a8ac58, type: 3}
       propertyPath: m_Mesh
       value: 

@@ -3,83 +3,94 @@ using UnityEngine;
 
 public class DitherZoom : MonoBehaviour
 {
-    //A material and the dither range it uses at each end of the zoom
     [System.Serializable]
     public class DitherEntry
     {
         public Material material;
-        //Dither amount when the camera is fully zoomed in
-        [Range(0f, 1f)] public float ditherZoomedIn = 0.2f;
-        //Dither amount when the camera is fully zoomed out
-        [Range(0f, 1f)] public float ditherZoomedOut = 1f;
+        [Range(0f, 1f)] public float ditherMin = 0.2f;
+        [Range(0f, 1f)] public float ditherMax = 1f;
     }
 
-    [SerializeField] private Camera _camera;
     [SerializeField] private List<DitherEntry> ditherMaterials = new List<DitherEntry>();
-    private CameraPan cameraPan;
-    private float zoomedInSize = 3f;
-    private float zoomedOutSize = 8f;
+    [Range(0f, 2f)] [SerializeField] private float innerRadius = 0.5f;
+    [Range(0f, 2f)] [SerializeField] private float outerRadius = 0.8f;
+    [SerializeField] private Vector2 centerOffset = Vector2.zero;
 
-    private static readonly int DitherAmountId = Shader.PropertyToID("_DitherAmount");
-    private float[] originalValues;
-    private float lastZoomT = -1f;
+    private static readonly int DitherCenterId = Shader.PropertyToID("_DitherCenter");
+    private static readonly int DitherInnerId = Shader.PropertyToID("_DitherInner");
+    private static readonly int DitherOuterId = Shader.PropertyToID("_DitherOuter");
+    private static readonly int DitherMinId = Shader.PropertyToID("_DitherMin");
+    private static readonly int DitherMaxId = Shader.PropertyToID("_DitherMax");
 
-    //Set references and read the zoom limits from the camera pan
-    private void Awake()
-    {
-        if (_camera == null) _camera = Camera.main;
-        cameraPan = FindAnyObjectByType<CameraPan>();
-        if (cameraPan != null)
-        {
-            zoomedInSize = cameraPan.minZoom;
-            zoomedOutSize = cameraPan.maxZoom;
-        }
-    }
+    private float[] originalMin;
+    private float[] originalMax;
 
     //Save each material's starting dither on set active true
     private void OnEnable()
     {
-        originalValues = new float[ditherMaterials.Count];
+        originalMin = new float[ditherMaterials.Count];
+        originalMax = new float[ditherMaterials.Count];
+
         for (int i = 0; i < ditherMaterials.Count; i++)
         {
             Material mat = ditherMaterials[i].material;
-            if (mat != null && mat.HasProperty(DitherAmountId))
-                originalValues[i] = mat.GetFloat(DitherAmountId);
+            if (mat == null) continue;
+
+            if (mat.HasProperty(DitherMinId)) originalMin[i] = mat.GetFloat(DitherMinId);
+            if (mat.HasProperty(DitherMaxId)) originalMax[i] = mat.GetFloat(DitherMaxId);
         }
-        lastZoomT = -1f;
     }
 
     //Put each material back to its starting dither on set active false
     private void OnDisable()
     {
-        if (originalValues == null) return;
-        for (int i = 0; i < ditherMaterials.Count && i < originalValues.Length; i++)
+        if (originalMin == null || originalMax == null) return;
+
+        for (int i = 0; i < ditherMaterials.Count && i < originalMin.Length; i++)
         {
             Material mat = ditherMaterials[i].material;
-            if (mat != null && mat.HasProperty(DitherAmountId))
-                mat.SetFloat(DitherAmountId, originalValues[i]);
+            if (mat == null) continue;
+
+            if (mat.HasProperty(DitherMinId)) mat.SetFloat(DitherMinId, originalMin[i]);
+            if (mat.HasProperty(DitherMaxId)) mat.SetFloat(DitherMaxId, originalMax[i]);
         }
-        lastZoomT = -1f;
     }
 
-    //Based on zoom set each material's dither
     private void LateUpdate()
     {
-        if (_camera == null || ditherMaterials.Count == 0) return;
+        float inner = Mathf.Min(innerRadius, outerRadius) * 0.5f;
+        float outer = Mathf.Max(innerRadius, outerRadius) * 0.5f;
+        Vector2 center = new Vector2(0.5f + centerOffset.x, 0.5f + centerOffset.y);
 
-        // 0 = fully zoomed in, 1 = fully zoomed out
-        float zoomT = Mathf.InverseLerp(zoomedInSize, zoomedOutSize, _camera.orthographicSize);
-
-        //Skip if the zoom hasn't changed
-        if (Mathf.Approximately(zoomT, lastZoomT)) return;
-        lastZoomT = zoomT;
+        Shader.SetGlobalVector(DitherCenterId, center);
+        Shader.SetGlobalFloat(DitherInnerId, inner);
+        Shader.SetGlobalFloat(DitherOuterId, outer);
 
         foreach (DitherEntry entry in ditherMaterials)
         {
             Material mat = entry.material;
-            if (mat == null || !mat.HasProperty(DitherAmountId)) continue;
+            if (mat == null) continue;
 
-            mat.SetFloat(DitherAmountId, Mathf.Lerp(entry.ditherZoomedIn, entry.ditherZoomedOut, zoomT));
+            if (mat.HasProperty(DitherCenterId)) mat.SetVector(DitherCenterId, center);
+            if (mat.HasProperty(DitherInnerId)) mat.SetFloat(DitherInnerId, inner);
+            if (mat.HasProperty(DitherOuterId)) mat.SetFloat(DitherOuterId, outer);
+            if (mat.HasProperty(DitherMinId)) mat.SetFloat(DitherMinId, entry.ditherMin);
+            if (mat.HasProperty(DitherMaxId)) mat.SetFloat(DitherMaxId, entry.ditherMax);
+        }
+    }
+
+    private void OnValidate()
+    {
+        if (Application.isEditor)
+        {
+            foreach (DitherEntry entry in ditherMaterials)
+            {
+                if (entry.material == null) continue;
+
+                //Set max alpha for when in editor
+                if (entry.material.HasProperty(DitherMinId)) entry.material.SetFloat(DitherMinId, entry.ditherMax);
+                if (entry.material.HasProperty(DitherMaxId)) entry.material.SetFloat(DitherMaxId, entry.ditherMax);
+            }
         }
     }
 }

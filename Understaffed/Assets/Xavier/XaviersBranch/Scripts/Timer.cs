@@ -1,50 +1,78 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public float countdownTime = 60f;
     private PlayerInfo playerInfo;
-    private float currentTime;
     public bool pauseTimer = false;
     public bool pauseTime = false;
     public Tutorial tutorial;
-    [SerializeField]private TMP_Text timerText;
-    [SerializeField]private TMP_Text fundsText;
+
+    [SerializeField] private TMP_Text waveText;
+    [SerializeField] private TMP_Text fundsText;
 
     [SerializeField] private TMP_Text starsToWinText;
     [SerializeField] private Image starsToWinImage;
     [SerializeField] private Color losingColor = new Color(0.9f, 0.25f, 0.25f);
     [SerializeField] private Color winningColor = new Color(0.4f, 0.85f, 0.4f);
+
     private CustomerSpawner spawner;
-    private bool timeUp;
     private bool dayEnded;
+    private bool endPending;   //all waves finished while paused
 
-    public List<GameObject> hideOnEnd; // UI to turn off when the day ends
+    public List<GameObject> hideOnEnd; //UI to turn off when the day ends
 
-    // Start is called before the first frame update
     void Start()
     {
         playerInfo = FindAnyObjectByType<PlayerInfo>();
         tutorial = FindAnyObjectByType<Tutorial>();
         spawner = FindAnyObjectByType<CustomerSpawner>();
-        currentTime = countdownTime;
         Time.timeScale = 1f;
 
         if (starsToWinText != null)
             starsToWinText.text = LevelSettings.StarsToWin + " Stars to Win";
 
         if (tutorial != null && !playerInfo.TutorialComplete)
-        {
             pauseTimer = true;
+
+        if (spawner != null)
+        {
+            spawner.WaveStarted += OnWaveStarted;
+            spawner.AllWavesCompleted += OnAllWavesCompleted;
         }
 
+        if (waveText != null) waveText.text = "";
+    }
 
-        UpdateTimerDisplay(); 
+    void OnDestroy()
+    {
+        if (spawner != null)
+        {
+            spawner.WaveStarted -= OnWaveStarted;
+            spawner.AllWavesCompleted -= OnAllWavesCompleted;
+        }
+    }
+
+    void OnWaveStarted(int index)
+    {
+        if (waveText == null || spawner == null) return;
+
+        waveText.text = spawner.endlessMode
+            ? "Wave " + (index + 1)
+            : "Wave " + (index + 1) + "/" + spawner.waves.Count;
+    }
+
+    //Fired by the spawner once the last wave's customers have all left
+    void OnAllWavesCompleted()
+    {
+        if (dayEnded) return;
+
+        if (pauseTimer) { endPending = true; return; }
+
+        dayEnded = true;
+        EndTimeEvent();
     }
 
     void UpdateStarsToWinTint()
@@ -66,34 +94,17 @@ public class Timer : MonoBehaviour
         Time.timeScale = pause ? 0f : 1f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         fundsText.text = "$" + playerInfo.playerFunds.ToString() + " left";
-
         UpdateStarsToWinTint();
 
-        if (pauseTimer) return;
-
-        if (!timeUp)
+        if (endPending && !pauseTimer && !dayEnded)
         {
-            currentTime -= Time.deltaTime;
-
-            if (currentTime <= 0)
-            {
-                currentTime = 0;
-                timeUp = true;
-                if (spawner != null) spawner.StopSpawning();   // no new customers
-            }
-        }
-        else if (!dayEnded && averageCustomer.ActiveCount == 0)
-        {
-            // last customer has left: now do the end-of-day calculations
             dayEnded = true;
+            endPending = false;
             EndTimeEvent();
         }
-
-        UpdateTimerDisplay();
     }
 
     public void EndTimeEvent()
@@ -101,28 +112,8 @@ public class Timer : MonoBehaviour
         foreach (GameObject obj in hideOnEnd)
         {
             if (obj != null) obj.SetActive(false);
-        } // hides specified UI on game end
+        }
 
         playerInfo.EndGame();
-        
     }
-
-    void UpdateTimerDisplay()
-    {
-        // Use Mathf.Max to prevent displaying negative numbers while rounding
-        float timeToDisplay = Mathf.Max(0, currentTime); 
-        
-        int minutes = Mathf.FloorToInt(timeToDisplay / 60);
-        int seconds = Mathf.FloorToInt(timeToDisplay % 60);
-
-        // {0:00}:{1:00} forces a two-digit layout for both minutes and seconds
-        timerText.text = "Time Left: " + string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
-
-/*    IEnumerator DelaySwitchScene(float delay, string sceneName)
-    {
-        yield return new WaitForSecondsRealtime(delay);
-        Debug.Log("Attempting to load scene: " + sceneName);
-        SceneManager.LoadScene(sceneName);
-    } method replaced by hideOnEnd*/
 }
