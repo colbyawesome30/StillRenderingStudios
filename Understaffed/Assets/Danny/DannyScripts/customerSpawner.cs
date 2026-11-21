@@ -69,6 +69,24 @@ public class CustomerSpawner : MonoBehaviour
 
     private Tutorial tutorial;
 
+    private bool holdSpawning;
+    public bool HoldSpawning
+    {
+        get => holdSpawning;
+        set
+        {
+            if (holdSpawning == value) return;
+            holdSpawning = value;
+
+            // restart the spawn timer so the first customer arrives soon after the cutscene
+            if (!value && started && !spawningStopped)
+            {
+                CancelInvoke(nameof(SpawnCustomer));
+                InvokeRepeating(nameof(SpawnCustomer), 0.5f, spawnInterval);
+            }
+        }
+    }
+
     private void OnEnable()  { PlayerInfo.DifficultyChanged += OnDifficultyChanged; }
     private void OnDisable() { PlayerInfo.DifficultyChanged -= OnDifficultyChanged; }
 
@@ -249,6 +267,7 @@ public class CustomerSpawner : MonoBehaviour
 
     private bool TutorialBlocksSpawning()
     {
+        if (holdSpawning) return true;   // <-- new
         if (playerInfo == null || tutorial == null) return false;
         if (playerInfo.TutorialComplete) return false;
         return tutorial.TutorialStep < 6;

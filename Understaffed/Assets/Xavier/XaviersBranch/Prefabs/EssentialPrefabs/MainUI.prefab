@@ -4647,11 +4647,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3433e13c00cbb4792864e2445297b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 180
   pauseTimer: 0
   pauseTime: 0
   tutorial: {fileID: 0}
-  timerText: {fileID: 2888154999441318416}
+  waveText: {fileID: 2888154999441318416}
   fundsText: {fileID: 3811180501422077486}
   starsToWinText: {fileID: 6726174312879932959}
   starsToWinImage: {fileID: 7079184370414073885}

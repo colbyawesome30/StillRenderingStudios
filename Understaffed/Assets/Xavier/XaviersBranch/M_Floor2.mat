@@ -103,10 +103,10 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DitherAmount: 1
-    - _DitherInner: 0.37
+    - _DitherInner: 0.25
     - _DitherMax: 1
     - _DitherMin: 1
-    - _DitherOuter: 0.555
+    - _DitherOuter: 0.4
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1

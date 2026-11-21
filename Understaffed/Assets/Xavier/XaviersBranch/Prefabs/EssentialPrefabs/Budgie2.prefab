@@ -5355,6 +5355,7 @@ GameObject:
   - component: {fileID: 4420730501899192578}
   - component: {fileID: 8340818340423129736}
   - component: {fileID: 6503741407013674990}
+  - component: {fileID: 2298691075560844598}
   m_Layer: 7
   m_Name: Budgie2
   m_TagString: Untagged
@@ -5653,7 +5654,19 @@ MonoBehaviour:
     m_Bits: 64
   yOffset: 0.05
   dropDuringTutorial: 0
-  debugLog: 0
+--- !u!114 &2298691075560844598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519701519376992259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4f963a10bffa74eaef1de842c568fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VisualCustomerLink
+  cutsceneCustomers: {fileID: 5519701519376992259, guid: 1b6ce6c303a12894e98589b4185b2a46, type: 3}
 --- !u!1 &8616304034295552988
 GameObject:
   m_ObjectHideFlags: 0
